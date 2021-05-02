@@ -828,11 +828,11 @@ a {
 }
 
 
- :root {--mermaid-font-zoom:2em ;} 
+ :root {--mermaid-font-zoom:1em ;} 
 </style>
 </head>
 <body class='typora-export os-windows'>
-<div id='write'  class=''><h1><a name="mpv懒人包快速说明-v20210324" class="md-header-anchor"></a><span>MPV懒人包快速说明 v20210324</span></h1><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ），可适当留时间和性能给缩略图缓存完毕再开始播放（移动至进度条查看建立的完成度）</span></li><li><span>默认不开启</span><strong><span>Krig</span></strong><span>，手动使用 </span><code>CTRL+1</code><span> 开启/关闭，更多相关注意事项见</span><code>input.conf</code></li><li><span>默认不开启</span><strong><span>RAVU</span></strong><span>,手动使用 </span><code>CTRL+2</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>FSRCNNX</span></strong><span>,手动使用 </span><code>CTRL+3</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>Anime4k</span></strong><span>，手动使用 </span><code>CTRL+4</code><span> 替换当前所有着色器，</span><strong><span>CTRL+`</span></strong><span> 为清除所有已加载的glsl/hook着色器</span></li><li><span>默认不开启</span><strong><span>补帧</span></strong><span>滤镜，</span><code>CTRL+6</code><span> 开启/关闭mvtools补帧通用版；</span><code>CTRL+7</code><span> 开启/关闭mvtools补帧快速版（低开销）。</span><code>CTRL+8</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出），</span><code>CTRL+9</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font><span>。</span><code>CTRL+0</code><span> 清除所有已加载的vf滤镜</span></li><li><span>默认不预设其余滤镜、着色器，如何设置可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数。</span></li></ul><h2><a name="注意事项" class="md-header-anchor"></a><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>写入权限</span></font><span>（可能引起脚本无效化）</span></p><p><font color=orange><span>广色域屏</span></font><span>用户使用前应进行色彩管理相关设定（参见mpv.conf中的 </span><code>视频</code><span> 部分）</span></p><p><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
+<div id='write'  class=''><h1><a name="mpv懒人包快速说明-v20210502" class="md-header-anchor"></a><span>MPV懒人包快速说明 v20210502</span></h1><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ），可适当留时间和性能给缩略图缓存完毕再开始播放（移动至进度条查看建立的完成度）</span></li><li><span>默认不开启缩略图显示，考虑到不低的cpu性能要求初始关闭，开启方法见</span><code>thumbnailer.conf</code></li><li><span>默认不开启</span><strong><span>Krig</span></strong><span>，手动使用 </span><code>CTRL+1</code><span> 开启/关闭，更多相关注意事项见</span><code>input.conf</code></li><li><span>默认不开启</span><strong><span>RAVU</span></strong><span>,手动使用 </span><code>CTRL+2</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>FSRCNNX</span></strong><span>,手动使用 </span><code>CTRL+3</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>Anime4k</span></strong><span>，手动使用 </span><code>CTRL+4</code><span> 替换当前所有着色器，</span><strong><span>CTRL+`</span></strong><span> 为清除所有已加载的glsl/hook着色器</span></li><li><span>默认不开启</span><strong><span>补帧</span></strong><span>滤镜，</span><code>CTRL+6</code><span> 开启/关闭mvtools补帧通用版；</span><code>CTRL+7</code><span> 开启/关闭mvtools补帧快速版（低开销）。</span><code>CTRL+8</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出），</span><code>CTRL+9</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font><span>。</span><code>CTRL+0</code><span> 清除所有已加载的vf滤镜</span></li><li><span>默认不预设其余滤镜、着色器，如何设置可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数。</span></li></ul><h2><a name="注意事项" class="md-header-anchor"></a><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>写入权限</span></font><span>（可能引起脚本无效化）</span></p><p><font color=orange><span>广色域屏</span></font><span>用户使用前应进行色彩管理相关设定（参见mpv.conf中的 </span><code>视频</code><span> 部分）</span></p><p><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
 <code>X:\xxxxx\mpv-lazy\installer\mpv-install.bat</code>
 <span>若移动 </span><code>mpv.exe</code><span> 文件的路径后，需要重新执行该批处理来正确关联格式</span>
 <span>要从计算机中删除此批处理的所有痕迹，以管理员身份运行同目录下的 </span><code>mpv-uninstall.bat</code></p><p><span>有MPV使用基础可以自行修改配置文件以调整性能占用（每行首字为 # 的是不启用的）</span>
@@ -840,7 +840,8 @@ a {
 <span>而同目录下的 </span><code>input.conf</code><span> 则是当前的快捷预设方案</span></p><p><span>mvtools补帧方案的脚本中，可自行修改补帧帧率（默认为 </span><code>dfps = 60000</code><span> 即60.000帧）</span>
 <span>例：</span><code>X:\xxxxx\mpv-lazy\portable_config\mvtools-xxxx.vpy</code>
 <span>svpflow补帧脚本也可设置，甚至可以调用显卡加速，具体方法用编辑器（notepad3这类软件你没有就用记事本凑活）打开查看</span>
-<code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></p><p><span>缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></p><p><span>该目录下的都是脚本的设置文件，可自行编辑进行自定义</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\script-opts\</code></p><p><span>缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
 <code>C:\Users\你的用户名\AppData\Local\Temp\Thumbnailer\</code></p><p><span>▲ 对 </span><code>X:\xxxxx\mpv-lazy\portable_config\shaders\</code><span> 文件夹中的着色器/滤镜见手册 </span><font color=green><span>[01]</span></font>
 <span>▲ 其它常见问题的解决途径见 </span><strong><span>发布页FAQ</span></strong></p><h2><a name="鼠标控制-键盘快捷键" class="md-header-anchor"></a><span>鼠标控制 键盘快捷键</span></h2><p><code>左键</code><span> 双击---切换---全屏/窗口化</span>
 <code>右键</code><span> 单机---切换---暂停/播放</span>
@@ -865,12 +866,12 @@ a {
 <span>    </span><code>←</code><span>  </span><code>→</code><span> 选中/取消选中 当前选择的条目</span>
 <span>    </span><code>Backspace</code><span> 移除当前选择/选中的条目</span>
 <span>    </span><code>Enter</code><span> 播放当前选择/选中的条目</span>
-<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2><a name="内部组件整合列表" class="md-header-anchor"></a><span>内部组件整合列表</span></h2><p><strong><span>☑ mpv-x86_64-20210316-git</span></strong><span> （运行主程序mpv.exe打开本体）</span>
-<span>  </span><strong><span>☑ libEGL &amp; libGLESv2 _2.1.15250-git</span></strong><span> ANGLE后端所需</span>
-<span>  </span><strong><span>☑ VapourSynth64-Portable-R52</span></strong><span> 环境支持</span>
-<span>  </span><strong><span>☑ Python-3.8.8-embed-amd64</span></strong><span> 环境支持</span>
-<span>  </span><strong><span>☑ FFmpeg-4.3.2-static</span></strong><span> 缩略图加速</span>
-<span>  </span><strong><span>☑ youtube-dl _2021.03.14</span></strong><span> 网络串流增强</span>
+<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2><a name="内部组件整合列表" class="md-header-anchor"></a><span>内部组件整合列表</span></h2><p><strong><span>☑ mpv-x86_64-20210502-git</span></strong><span> （运行主程序mpv.exe打开本体）</span>
+<span>  </span><strong><span>☑ libEGL &amp; libGLESv2 _2.1.15588-git</span></strong><span> ANGLE后端所需</span>
+<span>  </span><strong><span>☑ VapourSynth64-Portable-R53</span></strong><span> 环境支持</span>
+<span>  </span><strong><span>☑ Python-3.9.4-embed-amd64</span></strong><span> 环境支持</span>
+<span>  </span><strong><span>☑ FFmpeg-4.4-static</span></strong><span> 缩略图加速</span>
+<span>  </span><strong><span>☑ youtube-dl _2021.04.26</span></strong><span> 网络串流增强</span>
 <span>  </span><strong><span>☑ 系列手册</span></strong>
 <span>  </span><strong><span>☑ 特殊模式</span></strong><span> 仅用于测试用途</span></p><p><strong><span>☑ 脚本</span></strong>
 <span>  </span><strong><span>☑ autoload</span></strong><span> 自动加载同级目录视频</span>
