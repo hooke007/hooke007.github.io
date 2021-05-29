@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>index</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
@@ -66,7 +67,7 @@ div.hr:focus { cursor: none; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
 .md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -91,6 +92,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
   .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
@@ -137,11 +139,12 @@ code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
 .html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
 .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
 .MathJax_SVG * { transition: none 0s ease 0s; }
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
@@ -154,7 +157,8 @@ iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
 mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
 @media print {
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
@@ -162,6 +166,50 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 
 
 :root {
@@ -553,26 +601,27 @@ mark {
 }
 
  :root {--mermaid-font-zoom:2em ;} 
-</style>
+</style><title>index</title>
 </head>
-<body class='typora-export os-windows'>
-<div id='write'  class=''><p><font color=black><strong><span>目录</span></strong></font></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n4"><a class="md-toc-inner" href="#mpv">MPV+</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n5"><a class="md-toc-inner" href="#mpv-n5">mpv</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n9"><a class="md-toc-inner" href="#mpv-lazy">mpv-lazy</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n13"><a class="md-toc-inner" href="#系列手册">系列手册</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n17"><a class="md-toc-inner" href="#directshow">DirectShow+</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n18"><a class="md-toc-inner" href="#mpc">MPC</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n21"><a class="md-toc-inner" href="#优质外部组件">优质外部组件</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n25"><a class="md-toc-inner" href="#杂">杂</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n26"><a class="md-toc-inner" href="#网盘备份">网盘备份</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n29"><a class="md-toc-inner" href="#全面战争战锤2">全面战争：战锤2</a></span></p></div><p>&nbsp;</p><h1><a name="mpv" class="md-header-anchor"></a><span>MPV+</span></h1><h2><a name="mpv-n5" class="md-header-anchor"></a><span>mpv</span></h2><p><font color=black><span>一个免费、开源、跨平台、简洁、强大的媒体播放器</span></font></p><p><span>  官方网站：</span><a href='https://mpv.io/'><span>🎥 Command line video player</span></a>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><p><font color=black><strong><span>目录</span></strong></font></p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n37"><a class="md-toc-inner" href="#mpv-1">MPV+</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n38"><a class="md-toc-inner" href="#mpv-2">mpv</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n42"><a class="md-toc-inner" href="#mpv-lazy">mpv-lazy</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n48"><a class="md-toc-inner" href="#系列手册">系列手册</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n52"><a class="md-toc-inner" href="#directshow">DirectShow+</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n53"><a class="md-toc-inner" href="#mpc">MPC</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n56"><a class="md-toc-inner" href="#优质外部组件">优质外部组件</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n60"><a class="md-toc-inner" href="#杂">杂</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n61"><a class="md-toc-inner" href="#网盘备份">网盘备份</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n64"><a class="md-toc-inner" href="#全面战争战锤2">全面战争：战锤2</a></span></p></div><p>&nbsp;</p><h1 id='mpv-1'><span>MPV+</span></h1><h2 id='mpv-2'><span>mpv</span></h2><p><font color=black><span>一个免费、开源、跨平台、简洁、强大的媒体播放器</span></font></p><p><span>  官方网站：</span><a href='https://mpv.io/'><span>🎥 Command line video player</span></a>
 <span>  第三方win10x64版： </span><a href='https://sourceforge.net/projects/mpv-player-windows/files/64bit/' target='_blank' class='url'>https://sourceforge.net/projects/mpv-player-windows/files/64bit/</a>
 <span>  VCB-Studio出品的设置入门： </span><a href='https://vcb-s.com/archives/7594' target='_blank' class='url'>https://vcb-s.com/archives/7594</a>
 <span>  我的 </span><font color=orange><span>[win10]</span></font><span> mpv播放器设置教程： </span><a href='mpv-lazy/mpv.html'><span>⚙️ MPV-start</span></a></p><p><span>  第三方基于libmpv的弹幕播放器： </span><a href='https://kikoplay.fun/' target='_blank' class='url'>https://kikoplay.fun/</a>
 <span>  第三方安卓版： </span><a href='https://github.com/mpv-android/mpv-android/releases' target='_blank' class='url'>https://github.com/mpv-android/mpv-android/releases</a>
-<span>  第三方MAC版的成熟的前端： </span><a href='https://iina.io/' target='_blank' class='url'>https://iina.io/</a></p><h2><a name="mpv-lazy" class="md-header-anchor"></a><span>mpv-lazy</span></h2><p><span>  </span><img src="IMG/index-mpv-lazy.webp" alt="mpv-lazy" style="zoom: 35%;" /></p><p><span>  </span><font color=black><span>一个打包齐全、便于上手、附完整解决方案的mpv版本（懒人包）</span></font></p><p><span>  发布页： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
-<span>  项目主页： </span><a href='https://github.com/hooke007/MPV_lazy'><span>🔄 mpv播放器折腾记录</span></a></p><h3><a name="系列手册" class="md-header-anchor"></a><span>系列手册</span></h3><p><font color=black><span>懒人包的中文说明文档</span></font></p><p><span>  </span><a href='mpv-lazy/[00]_懒人包快速说明.html'><span>[00]_懒人包快速说明</span></a>
+<span>  第三方MAC版的成熟的前端： </span><a href='https://iina.io/' target='_blank' class='url'>https://iina.io/</a></p><h2 id='mpv-lazy'><span>mpv-lazy</span></h2><p><span>  </span><img src="IMG/index-mpv-lazy.webp" alt="mpv-lazy" style="zoom: 35%;" /></p><p><span>  </span><font color=black><span>一个打包齐全、便于上手、附完整解决方案的mpv版本（懒人包）</span></font></p><p><span>  发布页： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
+<span>  项目主页： </span><a href='https://github.com/hooke007/MPV_lazy'><span>🔄 mpv播放器折腾记录</span></a></p><p><span>  衍生MOD项目： </span><a href='https://bbs.vcb-s.com/thread-7798-1-1.html'><span>🎞 mpv.net_CM</span></a><span> （面向萌新）</span></p><p><span>  </span><img src="IMG/index-mpvnet_CM.webp" alt="mpvnet_CM" style="zoom: 35%;" /></p><h3 id='系列手册'><span>系列手册</span></h3><p><font color=black><span>懒人包的中文说明文档</span></font></p><p><span>  </span><a href='mpv-lazy/[00]_懒人包快速说明.html'><span>[00]_懒人包快速说明</span></a>
 <span>  </span><font color=red><span>mpv.conf</span></font><span> ; </span><font color=red><span>input.conf</span></font><span> 等配置文件打开即可查看自带的中文注释</span>
 <span>  </span><a href='mpv-lazy/[01]_第三方着色器介绍.html'><span>[01]_第三方着色器介绍</span></a>
 <span>  </span><a href='mpv-lazy/[02]_配置参数说明与另类写法示例.html'><span>[02]_配置参数说明与另类写法示例</span></a>
 <span>  </span><a href='mpv-lazy/[08]_性能优化的不靠谱意见.html'><span>[08]_性能优化的不靠谱意见</span></a>
 <span>  </span><a href='https://mpv.io/manual/master/'><span>[09]_mpv原版官方的开发版手册（英文）</span></a>
-<span>  </span><a href='mpv-lazy/[10]_从零开始制作整合包.html'><span>[10]_从零开始制作整合包</span></a></p><p>&nbsp;</p><h1><a name="directshow" class="md-header-anchor"></a><span>DirectShow+</span></h1><h2><a name="mpc" class="md-header-anchor"></a><span>MPC</span></h2><p><font color=black><span>MadVR的最佳工具人（PotPlayer是邪教）</span></font></p><p><span>  mpc-hc社区版： </span><a href='https://github.com/clsid2/mpc-hc/releases' target='_blank' class='url'>https://github.com/clsid2/mpc-hc/releases</a>
-<span>  mpc-be： </span><a href='https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/' target='_blank' class='url'>https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/</a></p><h2><a name="优质外部组件" class="md-header-anchor"></a><span>优质外部组件</span></h2><p><span>  Lavfilter 解码器： </span><a href='https://github.com/Nevcairiel/LAVFilters/releases' target='_blank' class='url'>https://github.com/Nevcairiel/LAVFilters/releases</a>
+<span>  </span><a href='mpv-lazy/[10]_从零开始制作整合包.html'><span>[10]_从零开始制作整合包</span></a></p><p>&nbsp;</p><h1 id='directshow'><span>DirectShow+</span></h1><h2 id='mpc'><span>MPC</span></h2><p><font color=black><span>MadVR的最佳工具人（PotPlayer是邪教）</span></font></p><p><span>  mpc-hc社区版： </span><a href='https://github.com/clsid2/mpc-hc/releases' target='_blank' class='url'>https://github.com/clsid2/mpc-hc/releases</a>
+<span>  mpc-be： </span><a href='https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/' target='_blank' class='url'>https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/</a></p><h2 id='优质外部组件'><span>优质外部组件</span></h2><p><span>  Lavfilter 解码器： </span><a href='https://github.com/Nevcairiel/LAVFilters/releases' target='_blank' class='url'>https://github.com/Nevcairiel/LAVFilters/releases</a>
 <span>  (pfmod) XyVSfilter &amp; Xysubfilter 字幕渲染：</span><a href='https://github.com/pinterf/xy-VSFilter/releases' target='_blank' class='url'>https://github.com/pinterf/xy-VSFilter/releases</a>
 <span>  MadVR 渲染器： </span><a href='http://www.madvr.com/' target='_blank' class='url'>http://www.madvr.com/</a>
-<span>  MPCVR 渲染器： </span><a href='https://github.com/Aleksoid1978/VideoRenderer/releases' target='_blank' class='url'>https://github.com/Aleksoid1978/VideoRenderer/releases</a></p><p><span>  </span><a href='DirectShow+/mpc.html'><span>⚙️ 简易mpcvr高画质播放方案指南</span></a></p><p>&nbsp;</p><h1><a name="杂" class="md-header-anchor"></a><span>杂</span></h1><h2><a name="网盘备份" class="md-header-anchor"></a><span>网盘备份</span></h2><p><font color=black><span>这里是一些资源的备份</span></font></p><p><a href='https://1drv.ms/u/s!Amu3TH7_M0USmlzxJ-i5cLntBgKu?e=uczmUa'><span>☁️ OneDrive</span></a>
-<a href='https://cloud.189.cn/t/V3umamZNJbu2'><span>☁️ 天翼云盘</span></a></p><h2><a name="全面战争战锤2" class="md-header-anchor"></a><span>全面战争：战锤2</span></h2><p><a href='https://gist.github.com/hooke007/be1eba6fd97889d1edecc8b56a9bc77d'><span>影片全解锁补丁</span></a></p></div>
+<span>  MPCVR 渲染器： </span><a href='https://github.com/Aleksoid1978/VideoRenderer/releases' target='_blank' class='url'>https://github.com/Aleksoid1978/VideoRenderer/releases</a></p><p><span>  </span><a href='DirectShow+/mpc.html'><span>⚙️ 简易mpcvr高画质播放方案指南</span></a></p><p>&nbsp;</p><h1 id='杂'><span>杂</span></h1><h2 id='网盘备份'><span>网盘备份</span></h2><p><font color=black><span>这里是一些资源的备份</span></font>
+<span>  包括以上提及的所有资源</span></p><p><a href='https://1drv.ms/u/s!Amu3TH7_M0USmlzxJ-i5cLntBgKu?e=uczmUa'><span>☁️ OneDrive</span></a>
+<a href='https://cloud.189.cn/t/V3umamZNJbu2'><span>☁️ 天翼云盘</span></a></p><h2 id='全面战争战锤2'><span>全面战争：战锤2</span></h2><p><a href='https://gist.github.com/hooke007/be1eba6fd97889d1edecc8b56a9bc77d'><span>影片全解锁补丁</span></a></p></div></div>
 </body>
 </html>
