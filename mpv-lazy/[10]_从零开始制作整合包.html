@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>[10]_从零开始制作整合包</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
@@ -66,7 +67,7 @@ div.hr:focus { cursor: none; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
 .md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -91,6 +92,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
   .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
@@ -137,11 +139,12 @@ code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
 .html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
 .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
 .MathJax_SVG * { transition: none 0s ease 0s; }
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
@@ -154,7 +157,8 @@ iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
 mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
 @media print {
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
@@ -162,6 +166,50 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 
 
 .CodeMirror { height: auto; }
@@ -232,6 +280,14 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 .CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
 .cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
 @media print {
   .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 }
@@ -838,11 +894,11 @@ input:focus {
 }
 
 
- :root {--mermaid-font-zoom:1em ;} 
-</style>
+ :root {--mermaid-font-zoom:2em ;} 
+</style><title>[10]_从零开始制作整合包</title>
 </head>
-<body class='typora-export os-windows'>
-<div id='write'  class=''><h1><a name="从零开始制作mpv懒人包-v20210324" class="md-header-anchor"></a><span>从零开始制作MPV懒人包 v20210324</span></h1><h2><a name="主要文件" class="md-header-anchor"></a><span>主要文件</span></h2><p><span>  </span><strong><span>☑ mpv-x86_64-git</span></strong><span> 本体</span>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='从零开始制作mpv懒人包-v20210617'><span>从零开始制作MPV懒人包 v20210617</span></h1><h2 id='主要文件'><span>主要文件</span></h2><p><span>  </span><strong><span>☑ mpv-x86_64-git</span></strong><span> 本体</span>
 <a href='https://sourceforge.net/projects/mpv-player-windows/files/64bit/' target='_blank' class='url'>https://sourceforge.net/projects/mpv-player-windows/files/64bit/</a>
 <span>解压后主程序 </span><font color=red><span>mpv.exe</span></font><span> 所在位置新建 </span><code>\portable_config\</code><span> 文件夹，该文件夹内放置 </span><font color=red><span>input.conf</span></font><span> 和 </span><font color=red><span>mpv.conf</span></font></p><p><span>  </span><strong><span>☑ libEGL &amp; libGLESv2</span></strong><span> 提供angle后端支持</span>
 <span>通常你可以在Chromium/Firefox的根目录里找到，将两个 </span><font color=red><span>.dll</span></font><span> 文件放在 </span><code>mpv.exe</code><span> 旁</span></p><p><span>  </span><strong><span>☑ VapourSynth64-Portable</span></strong><span> 提供vs插件和脚本的运行环境</span>
@@ -853,15 +909,18 @@ input:focus {
 <a href='https://ffmpeg.org/download.html#build-windows' target='_blank' class='url'>https://ffmpeg.org/download.html#build-windows</a>
 <span>静态库static版只需要把单独的 </span><font color=red><span>ffmpeg.exe</span></font><span> 文件放在 </span><code>mpv.exe</code><span> 旁 // 动态库shared版需要把压缩包内的 </span><code>\bin\</code><span> 文件夹内所有文件放在 </span><code>mpv.exe</code><span> 旁</span></p><p><span>  </span><strong><span>☑ youtube-dl</span></strong><span> 网络串流增强</span>
 <a href='https://github.com/ytdl-org/youtube-dl/releases' target='_blank' class='url'>https://github.com/ytdl-org/youtube-dl/releases</a>
-<span>把 </span><font color=red><span>youtube-dl.exe</span></font><span> 文件放在 </span><code>mpv.exe</code><span> 旁</span></p><p><span>▲ 按需下载组合使用：libEGL和libGLESv2是为了提供angle后端(</span><font color=blue><span>mpv.conf</span></font><span> </span><font color=orange><span>--gpu-context=angle</span></font><span>)支持；py是vs的运行环境并注意所要求的对应版本号，vs插件和脚本运行需要vs（本体编译时未包含）；FFmpeg加速缩略图生成（没有也正常工作只是速度慢）；ytdl加强了加密流媒体的抓取能力，mpv本身就支持局域网和一般网络视频的播放</span></p><p>&nbsp;</p><h2><a name="脚本" class="md-header-anchor"></a><span>脚本</span></h2><p><font color=red><span>.lua</span></font><span> 置于 </span><code>\portable_config\scripts\</code><span> ，脚本对应 </span><font color=red><span>.conf</span></font><span> 配置文件置于 </span><code>\portable_config\script-opts\</code></p><p><span>  </span><strong><span>☑ autoload</span></strong><span> 自动加载同级目录视频</span>
-<a href='https://github.com/mpv-player/mpv/tree/master/TOOLS/lua' target='_blank' class='url'>https://github.com/mpv-player/mpv/tree/master/TOOLS/lua</a></p><p><span>  </span><strong><span>☑ cycle-adevice</span></strong><span> 快速切换音频输出设备</span>
-<a href='https://gist.github.com/bitingsock/ad58ee5da560ecb922fa4a867ac0ecfd' target='_blank' class='url'>https://gist.github.com/bitingsock/ad58ee5da560ecb922fa4a867ac0ecfd</a></p><p><span>  </span><strong><span>☑ ontop-playback.lua</span></strong><span> 仅在播放时置顶（需激活 </span><font color=blue><span>mpv.conf</span></font><span> 中的 </span><font color=orange><span>--ontop</span></font><span> 参数）</span>
-<a href='https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/ontop-playback.lua' target='_blank' class='url'>https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/ontop-playback.lua</a></p><p><span>  </span><strong><span>☑ open-file-dialog</span></strong><span> 手动选择快速打开视频文件</span>
+<span>把 </span><font color=red><span>youtube-dl.exe</span></font><span> 文件放在 </span><code>mpv.exe</code><span> 旁</span></p><p><span>  </span><strong><span>☑ yt-dlp</span></strong><span> 网络串流增强（备选）</span>
+<a href='https://github.com/yt-dlp/yt-dlp/releases' target='_blank' class='url'>https://github.com/yt-dlp/yt-dlp/releases</a>
+<span>把 </span><font color=red><span>yt-dlp.exe</span></font><span> 文件放在 </span><code>mpv.exe</code><span> 旁</span></p><p><span>▲ 按需下载组合使用：libEGL和libGLESv2是为了提供angle后端(</span><font color=blue><span>mpv.conf</span></font><span> </span><font color=orange><span>--gpu-context=angle</span></font><span>)支持；py是vs的运行环境并注意所要求的对应版本号，vs插件和脚本运行需要vs（本体编译时未包含）；FFmpeg加速缩略图生成（没有也正常工作只是速度慢）；ytdl加强了加密流媒体的抓取能力，mpv本身就支持局域网和一般网络视频的播放</span></p><p>&nbsp;</p><h2 id='脚本'><span>脚本</span></h2><p><font color=red><span>.lua</span></font><span> 置于 </span><code>\portable_config\scripts\</code><span> ，脚本对应 </span><font color=red><span>.conf</span></font><span> 配置文件置于 </span><code>\portable_config\script-opts\</code>
+<span>懒人包内的版本基本都进行了细微改动，此处列出源出处。</span></p><p><span>  </span><strong><span>☑ autoload</span></strong><span> 自动加载同级目录视频</span>
+<a href='https://github.com/mpv-player/mpv/tree/master/TOOLS/lua' target='_blank' class='url'>https://github.com/mpv-player/mpv/tree/master/TOOLS/lua</a></p><p><span>  </span><strong><span>☑ cycle_adevice</span></strong><span> 快速切换音频输出设备</span>
+<a href='https://gist.github.com/bitingsock/ad58ee5da560ecb922fa4a867ac0ecfd' target='_blank' class='url'>https://gist.github.com/bitingsock/ad58ee5da560ecb922fa4a867ac0ecfd</a></p><p><span>  </span><strong><span>☑ ontop_playback.lua</span></strong><span> 仅在播放时置顶（需激活 </span><font color=blue><span>mpv.conf</span></font><span> 中的 </span><font color=orange><span>--ontop</span></font><span> 参数）</span>
+<a href='https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/ontop-playback.lua' target='_blank' class='url'>https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/ontop-playback.lua</a></p><p><span>  </span><strong><span>☑ open_file</span></strong><span> 手动选择快速打开视频文件</span>
 <a href='https://github.com/elig0n/mpv-open-file-dialog' target='_blank' class='url'>https://github.com/elig0n/mpv-open-file-dialog</a></p><p><span>  </span><strong><span>☑ playlistmanager</span></strong><span> 高级播放列表 (如果不需要列表自动排序的功能那么 menu.json 是不必要的)</span>
 <a href='https://github.com/jonniek/mpv-playlistmanager' target='_blank' class='url'>https://github.com/jonniek/mpv-playlistmanager</a></p><p><span>  </span><strong><span>☑ Thumbnailer</span></strong><span> 缩略图引擎 (</span><font color=red><span>Thumbnailer.lua</span></font><span>;</span><font color=red><span>Thumbnailer_OSC.lua</span></font><span>;</span><font color=red><span>Thumbnailer_Worker.lua</span></font><span>)</span>
-<a href='https://github.com/deus0ww/mpv-conf/tree/master/scripts' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/scripts</a></p><p><span>▲ </span><font color=red><span>console.conf</span></font><span>;</span><font color=red><span>osc.conf</span></font><span>;</span><font color=red><span>stats.conf</span></font><span> 属于内置脚本的对应配置文件，不应该放在 </span><code>mpv.conf</code><span> 旁，也应该放置于 </span><code>\script-opts\</code><span> ； </span><code>Thumbnailer_OSC.lua</code><span> 本质上是个OSC，因此需要先禁用内置的 osc.lua 脚本(</span><font color=blue><span>mpv.conf</span></font><span> </span><font color=orange><span>--osc=no</span></font><span>)，此外所有的osc类界面脚本(例 </span><em><span>mpvthumbnail</span></em><span> )相互冲突。</span></p><p>&nbsp;</p><h2><a name="着色器" class="md-header-anchor"></a><span>着色器</span></h2><p><font color=red><span>.hook .glsl</span></font><span> 置于 </span><code>\portable_config\shaders\</code><span> （介绍和来源见系列手册</span><font color=green><span>[01]</span></font><span>）</span></p><p>&nbsp;</p><h2><a name="vs插件" class="md-header-anchor"></a><span>VS插件</span></h2><p><span>补帧的 </span><font color=red><span>.dll</span></font><span> 置于 </span><code>\vapoursynth64\plugins\</code><span> ，补帧脚本 </span><font color=red><span>.vpy</span></font><span> 可置于 </span><code>\portable_config\</code></p><p><span>  </span><strong><span>☑ mvtools-win64</span></strong><span> 及附属补帧脚本</span>
+<a href='https://github.com/deus0ww/mpv-conf/tree/master/scripts' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/scripts</a></p><p><span>▲ </span><font color=red><span>console.conf</span></font><span>;</span><font color=red><span>osc.conf</span></font><span>;</span><font color=red><span>stats.conf</span></font><span> 属于内置脚本的对应配置文件，不应该放在 </span><code>mpv.conf</code><span> 旁，也应该放置于 </span><code>\script-opts\</code><span> ； </span><code>Thumbnailer_OSC.lua</code><span> 本质上是个OSC，因此需要先禁用内置的 osc.lua 脚本(</span><font color=blue><span>mpv.conf</span></font><span> </span><font color=orange><span>--osc=no</span></font><span>)，此外所有的osc类界面脚本(例 </span><em><span>mpvthumbnail</span></em><span> )相互冲突。</span></p><p>&nbsp;</p><h2 id='着色器'><span>着色器</span></h2><p><font color=red><span>.hook .glsl</span></font><span> 置于 </span><code>\portable_config\shaders\</code><span> （介绍和来源见系列手册</span><font color=green><span>[01]</span></font><span>）</span></p><p>&nbsp;</p><h2 id='vs插件'><span>VS插件</span></h2><p><span>补帧的 </span><font color=red><span>.dll</span></font><span> 置于 </span><code>\vapoursynth64\plugins\</code><span> ，补帧脚本 </span><font color=red><span>.vpy</span></font><span> 可置于 </span><code>\portable_config\</code></p><p><span>  </span><strong><span>☑ mvtools-win64</span></strong><span> 及附属补帧脚本</span>
 <a href='https://github.com/dubhater/vapoursynth-mvtools/releases' target='_blank' class='url'>https://github.com/dubhater/vapoursynth-mvtools/releases</a>
 <a href='https://gist.github.com/KCCat/1b3a7b7f085a066af3719859f88ded02' target='_blank' class='url'>https://gist.github.com/KCCat/1b3a7b7f085a066af3719859f88ded02</a></p><p><span>  </span><strong><span>☑ svpflow</span></strong><span> 补帧引擎（发布帖有其他坛友的脚本）</span>
-<span>  </span><em><span>闭源无法分发</span></em><span>   可从懒人包内获取</span></p><p>&nbsp;</p><h2><a name="mpv-lazy版的部分文件" class="md-header-anchor"></a><span>mpv-lazy版的部分文件</span></h2><p><a href='https://github.com/hooke007/MPV_lazy' target='_blank' class='url'>https://github.com/hooke007/MPV_lazy</a></p><p>&nbsp;</p><pre spellcheck="false" class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 32px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 24px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -24px; width: 24px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -24px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 17px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">以上步骤执行完基本完成，完善好属你自己的配置方案，打包好就可以到处随意使用了</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 25px;"></div><div class="CodeMirror-gutters" style="height: 25px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 24px;"></div></div></div></div></pre><p><span>更懒一点？成品更新地址：</span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a></p></div>
+<span>  </span><em><span>闭源</span></em><span>   可从懒人包内获取</span></p><p>&nbsp;</p><h2 id='mpv-lazy版的部分文件'><span>mpv-lazy版的部分文件</span></h2><p><a href='https://github.com/hooke007/MPV_lazy' target='_blank' class='url'>https://github.com/hooke007/MPV_lazy</a></p><p>&nbsp;</p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.75px; left: 32px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 24px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -24px; width: 24px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -24px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 17px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">以上步骤执行完基本完成，完善好属你自己的配置方案，打包好就可以到处随意使用了</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="height: 26px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 24px;"></div></div></div></div></pre><p><span>更懒一点？成品更新地址：</span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a></p></div></div>
 </body>
 </html>
