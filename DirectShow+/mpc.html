@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>mpc</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
@@ -66,7 +67,7 @@ div.hr:focus { cursor: none; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
 .md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
 #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
@@ -91,6 +92,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
   .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
@@ -137,11 +139,12 @@ code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
 .html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
 .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
 .MathJax_SVG * { transition: none 0s ease 0s; }
 .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
@@ -154,7 +157,8 @@ iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
 mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
 @media print {
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
@@ -162,6 +166,50 @@ mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 
 
 :root {
@@ -885,23 +933,24 @@ blockquote>h6::before {
     background-color: #3b78e718!important;
 }
 
- :root {--mermaid-font-zoom:2em ;} 
-</style>
+ :root {--mermaid-font-zoom:1em ;} 
+</style><title>mpc</title>
 </head>
-<body class='typora-export os-windows'>
-<div id='write'  class=''><blockquote><p><span>本章所提及的文件都可以在首页 </span><strong><span>DirectShow+</span></strong><span> 查找对应链接（或者直接在我的OD备份中获取）</span></p></blockquote><h1><a name="1-mpc-hc" class="md-header-anchor"></a><span>1. MPC-HC</span></h1><p><span>个人认为是DirectShow的天花板级的播放器。（输给了PotPlayer那一身好看的皮囊</span>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#1-mpc-hc">1. MPC-HC</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#11-播放器本体">1.1 播放器本体</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#12-解码器">1.2 解码器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#13-字幕插件">1.3 字幕插件</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#131-内置">1.3.1 内置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#132-xy系">1.3.2 Xy系</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#14-渲染器">1.4 渲染器</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#141-其它渲染器">1.4.1 其它渲染器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#142-mpc-video-renderer">1.4.2 MPC Video Renderer</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#15-其它设置">1.5 其它设置</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2-mpc-be">2. MPC-BE</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><blockquote><p><span>v20210315</span></p><p><span>本章所提及的文件都可以在首页 </span><strong><span>DirectShow+</span></strong><span> 查找对应链接（或者直接在 网盘备份 中获取）</span></p></blockquote><h1 id='1-mpc-hc'><span>1. MPC-HC</span></h1><p><span>个人认为是DirectShow的天花板级的播放器。（输给了PotPlayer那一身好看的皮囊</span>
 <img src="IMG/mpc-hc-00.jpg" style="zoom:50%;" /></p><p><span>如果你厌烦了potplayer+LAV Filters+madvr+xysubfilter那一套费劲的设置操作，试试这套省事的方案吧。</span>
-<span>虽然官方早已宣布停止开发，但是开源社区的力量让它得以持续维护。</span></p><h2><a name="11-播放器本体" class="md-header-anchor"></a><span>1.1 播放器本体</span></h2><p><span>现任主力维护者clsid2的发布页面 </span><code>releases</code><span> 中，既可以下载 </span><code>Development Build</code><span> 即开发版尝鲜，也可以选择 数字系列 例如 </span><code>1.9.10</code><span> 这样的稳定版使用。</span><code>.exe</code><span> 后缀的是安装版，</span><code>.zip</code><span> 后缀的是便携版无需安装解压即用。</span></p><h2><a name="12-解码器" class="md-header-anchor"></a><span>1.2 解码器</span></h2><p><span>mpc-hc直接内置了最新版LAV Filters并作为默认解码器，省去了你在potplayer那边一通鼠标乱点累死人的操作。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）内部滤镜 → 内部LAV Filters设置</code>
-<img src="IMG/mpc-hc-settings-01.jpg" alt="mpc-hc-settings-01" style="zoom:50%;" /></p><p><span>在这里即可更改内置LAV Filters的设置。此处省略LAV Filters的设置教程（网上已经有太多了）。</span></p><h2><a name="13-字幕插件" class="md-header-anchor"></a><span>1.3 字幕插件</span></h2><h3><a name="131-内置" class="md-header-anchor"></a><span>1.3.1 内置</span></h3><p><span>自带的已经够用。</span></p><h3><a name="132-xy系" class="md-header-anchor"></a><span>1.3.2 Xy系</span></h3><p><span>如果你是xy系的信徒，推荐你使用pfmod这个活跃的维护修改版，将下载的压缩包解压到指定位置后安装注册后，不要删除这些解压的文件。（该发布者没有集成XyVSfilter的安装文件，你可以使用我在OD中打包的版本）。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → 字幕渲染器</code>
-<img src="IMG/mpc-hc-settings-02.jpg" alt="mpc-hc-settings-02" style="zoom:50%;" /></p><p><span>在这里更改为你想要使用的字幕插件（XyVSfilter 即 VSfilter/DirectVobSub)。</span></p><h2><a name="14-渲染器" class="md-header-anchor"></a><span>1.4 渲染器</span></h2><h3><a name="141-其它渲染器" class="md-header-anchor"></a><span>1.4.1 其它渲染器</span></h3><p><span>MadVR是DirectShow的天花板级的渲染器，而win10白给的EVR是一坨X。前者也有众多的教程所以省略，后者压根没有改的必要。这里给出一个折中的选择——</span><strong><span>MPCVR</span></strong><span>。</span></p><h3><a name="142-mpc-video-renderer" class="md-header-anchor"></a><span>1.4.2 MPC Video Renderer</span></h3><p><span>MPC Video Renderer由mpc-be的团队开发。将下载的压缩包解压到指定位置后安装（建议只安装64位），不要删除这些解压的文件。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → DirectShow视频</code>
+<span>虽然官方早已宣布停止开发，但是开源社区的力量让它得以持续维护。</span></p><h2 id='11-播放器本体'><span>1.1 播放器本体</span></h2><p><span>现任主力维护者clsid2的发布页面 </span><code>releases</code><span> 中，既可以下载 </span><code>Development Build</code><span> 即开发版尝鲜，也可以选择 数字系列 例如 </span><code>1.9.10</code><span> 这样的稳定版使用。</span><code>.exe</code><span> 后缀的是安装版，</span><code>.zip</code><span> 后缀的是便携版无需安装解压即用。</span></p><h2 id='12-解码器'><span>1.2 解码器</span></h2><p><span>mpc-hc直接内置了最新版LAV Filters并作为默认解码器，省去了你在potplayer那边一通鼠标乱点累死人的操作。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）内部滤镜 → 内部LAV Filters设置</code>
+<img src="IMG/mpc-hc-settings-01.jpg" alt="mpc-hc-settings-01" style="zoom:50%;" /></p><p><span>在这里即可更改内置LAV Filters的设置。此处省略LAV Filters的设置教程（网上已经有太多了）。</span></p><h2 id='13-字幕插件'><span>1.3 字幕插件</span></h2><h3 id='131-内置'><span>1.3.1 内置</span></h3><p><span>自带的已经够用。</span></p><h3 id='132-xy系'><span>1.3.2 Xy系</span></h3><p><span>如果你是xy系的信徒，推荐你使用pfmod这个活跃的维护修改版，将下载的压缩包解压到指定位置后安装注册后，不要删除这些解压的文件。（该发布者没有集成XyVSfilter的安装文件，你可以使用我在OD中打包的版本）。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → 字幕渲染器</code>
+<img src="IMG/mpc-hc-settings-02.jpg" alt="mpc-hc-settings-02" style="zoom:50%;" /></p><p><span>在这里更改为你想要使用的字幕插件（XyVSfilter 即 VSfilter/DirectVobSub)。</span></p><h2 id='14-渲染器'><span>1.4 渲染器</span></h2><h3 id='141-其它渲染器'><span>1.4.1 其它渲染器</span></h3><p><span>MadVR是DirectShow的天花板级的渲染器，而win10白给的EVR是一坨X。前者也有众多的教程所以省略，后者压根没有改的必要。这里给出一个折中的选择——</span><strong><span>MPCVR</span></strong><span>。</span></p><h3 id='142-mpc-video-renderer'><span>1.4.2 MPC Video Renderer</span></h3><p><span>MPC Video Renderer由mpc-be的团队开发。将下载的压缩包解压到指定位置后安装（建议只安装64位），不要删除这些解压的文件。</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → DirectShow视频</code>
 <img src="IMG/mpc-hc-settings-03.jpg" alt="mpc-hc-settings-03" style="zoom:50%;" /></p><p><span>在这里选择你想要使用的渲染器。</span>
 <span>该渲染器设计的简洁实用，因此调校十分方便。</span></p><p><code>载入视频播放后 → 画面中右键 → 滤镜 → MPC视频渲染器</code>
 <img src="IMG/mpc-hc-settings-04.jpg" alt="mpc-hc-settings-04" style="zoom: 40%;" /></p><p><span>点击进入修改设置，这里直接贴出我个人的推荐参数。</span>
-<img src="IMG/mpcvr-01.jpg" alt="mpcvr-01" style="zoom:40%;" /></p><p><span>简单注解一下：</span></p><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Use Direct3D 11</code><span>                === 使用d3d11而不是d3d9</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Texture format</code><span>                  === 像素格式即内部处理精度，16位浮点同mpv和madvr的默认级别，降级的话可选10bit（不要用8bit）</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Show statistics</code><span>                  === 显示如图显示的统计信息，此外你也可以在播放界面按下 </span><code>Ctrl+j</code><span> 开启/关闭</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Passthrough to display</code><span>      === 按需选择是否使用hdr直通</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Convert to SDR</code><span>                 === 如果需要显示设备不支持hdr或需要转sdr观看请勾选此项</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Use dithering</code><span>                    === 使用色深抖动</span></p></li></ul><p><span>色度升频，拉伸算法的选择不多，按图设置即可。 </span><code>DXVA2 and D3D11 video processor</code><span> 部分因可能存在 </span><a href='https://github.com/Aleksoid1978/VideoRenderer/issues/15#issuecomment-750926062'><span>色差bug</span></a><span> 暂时不用。</span></p><h2><a name="15-其它设置" class="md-header-anchor"></a><span>1.5 其它设置</span></h2><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → 音频渲染器</code>
+<img src="IMG/mpcvr-01.jpg" alt="mpcvr-01" style="zoom:40%;" /></p><p><span>简单注解一下：</span></p><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Use Direct3D 11</code><span>            === 使用d3d11而不是d3d9</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Texture format</code><span>       === 像素格式即内部处理精度，16位浮点同mpv和madvr的默认级别，降级的话可选10bit（不要用8bit）</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Show statistics</code><span>         === 显示如图显示的统计信息，此外你也可以在播放界面按下 </span><code>Ctrl+j</code><span> 开启/关闭</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Passthrough to display</code><span>       === 按需选择是否使用hdr直通</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><code>Convert to SDR</code><span>             === 如果需要显示设备不支持hdr或需要转sdr观看请勾选此项</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><code>Use dithering</code><span>              === 使用色深抖动</span></p></li></ul><p><span>色度升频，拉伸算法的选择不多，按图设置即可。 </span><code>DXVA2 and D3D11 video processor</code><span> 部分因可能存在 </span><a href='https://github.com/Aleksoid1978/VideoRenderer/issues/15#issuecomment-750926062'><span>色差bug</span></a><span> 暂时不用。</span></p><h2 id='15-其它设置'><span>1.5 其它设置</span></h2><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）输出 → 音频渲染器</code>
 <span>选择“内部音频渲染器”即使用win10的wasapi</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）调节 → 在进度栏显示视频预览</code>
 <span>启用/关闭 人人都喜爱的缩略图预览功能</span></p><p><code>运行&quot;mpc-hc64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）扩展滤镜</code>
-<span>此处可以额外添加 DmitriRender 这类额外滤镜插件（省略因通常这些软件自带操作说明）</span></p><h1><a name="2-mpc-be" class="md-header-anchor"></a><span>2. MPC-BE</span></h1><p><span>作为一般用户不用了解它和原hc的恩恩怨怨，好用就完事了。</span>
+<span>此处可以额外添加 DmitriRender 这类额外滤镜插件（省略因通常这些软件自带操作说明）</span></p><h1 id='2-mpc-be'><span>2. MPC-BE</span></h1><p><span>作为一般用户不用了解它和原hc的恩恩怨怨，好用就完事了。</span>
 <img src="IMG/mpc-be-00.jpg" style="zoom:50%;" /></p><p><span>基本功能操作都和hc类似，明显的区别是，内置的默认解码器是他们自己开发的，如果需要替换LAV，你需要安装lav后在设置的扩展滤镜里添加并改为首选。一些对应的设置位置有所变动，例如：</span></p><p><code>运行&quot;mpc-be64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）视频 → 视频渲染器</code></p><p><code>运行&quot;mpc-be64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）音频 → 音频渲染器</code>
-<span>其中的 </span><code>MPC Audio Renderer</code><span> 对应“内部音频渲染器”</span></p><p><code>运行&quot;mpc-be64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）字幕 → 字幕渲染器</code></p><p><span>对使用lav的用户来说多了一点操作步骤，设置步骤基本参考hc即可。</span></p></div>
-</body>
+<span>其中的 </span><code>MPC Audio Renderer</code><span> 对应“内部音频渲染器”</span></p><p><code>运行&quot;mpc-be64.exe&quot; → （标题栏菜单）查看 → 选项 → （左侧目录）字幕 → 字幕渲染器</code></p><p><span>对使用lav的用户来说多了一点操作步骤，设置步骤基本参考hc即可。</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
 </html>
