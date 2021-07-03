@@ -1,0 +1,613 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+ :root {--mermaid-font-zoom:2em ;} 
+</style><title>[VCB-Studio 科普教程 6] 动漫视频常见的瑕疵缺陷介绍</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#vcb-studio-科普教程-6-动漫视频常见的瑕疵缺陷介绍">[VCB-Studio 科普教程 6] 动漫视频常见的瑕疵缺陷介绍</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#正文">正文</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#色带bandingcolor-banding">色带(banding/color banding)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#锯齿aliasing">锯齿(aliasing)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#晕轮振铃ringinghaloing">晕轮/振铃(ringing/haloing)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#macroblockblocking色块">MacroBlock/blocking(色块)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#拉丝横纹交错interlacing">拉丝/横纹/交错(interlacing)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缟缟combing其实此翻译有争议但是vcb-s的发布页看到这个单词你默认就是下图的效果">缟缟(combing，其实此翻译有争议，但是vcb-s的发布页看到这个单词，你默认就是下图的效果)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#鬼影blendingghosting）">鬼影（blending/ghosting）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#颜色越界overflowunderflow）">颜色越界（overflow/underflow）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#噪点彩色噪点色度噪点noisegrain-chroma-noisegrain）">噪点；彩色噪点/色度噪点（Noise/Grain; chroma noise/grain）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#烂边蚊噪dct-ringingdct-noise">烂边/蚊噪(DCT ringing/DCT noise)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#色度色带chroma-banding">色度色带(Chroma banding)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#色度锯齿chroma-aliasing">色度锯齿(chroma aliasing)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#色度偏移chroma-shift）">色度偏移（chroma shift）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#色度溢出chroma-bleeding）">色度溢出（chroma bleeding）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#重复场duplicate-field）">重复场（duplicate field）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#revertible-upscale可还原拉升）">revertible upscale（可还原拉升）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#over-blurring过度柔化">Over Blurring(过度柔化)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#晃动global-motionpan">晃动(Global Motion/pan)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#彩虹rainbow）">彩虹（rainbow）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#点状斑纹dot-crawl">点状斑纹(dot-crawl):</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='vcb-studio-科普教程-6-动漫视频常见的瑕疵缺陷介绍'><span>[VCB-Studio 科普教程 6] 动漫视频常见的瑕疵缺陷介绍</span></h1><p><img src="IMG/vcbs06/lp.jpg" alt="lp" style="zoom:50%;" /><span> </span><code>16-1-04</code><span> </span><code>LittlePox</code><span> </span><code>VCB-Studio 初代队长/技术组组长</code></p><p><em><span>镜像源地址：</span></em><span> </span><a href='https://vcb-s.com/archives/4738' target='_blank' class='url'>https://vcb-s.com/archives/4738</a></p><p>&nbsp;</p><h1 id='正文'><span>正文</span></h1><p><img src="IMG/vcbs06/QQ图片20151108112952.jpg" alt="QQ图片20151108112952" style="zoom:100%;" /></p><p><span>这篇科普教程本身有两个目的，第一个作为给观众们的科普，讲述一下动漫处理中常见的画面问题，帮助大家理解每次vcb-s发布帖当中那些技术描述；第二个作为vcb-s内部处理教程的基础部分，帮助组内组外所有入门压制的新手们了解所面对的“敌人”。</span></p><p><span>需要注意的是，下文列举的大多数瑕疵，大多数情况下，是无法修复/无法完全修复/无法不具备破坏力部分修复的。多数瑕疵可修复的程度，取决于问题的轻重，rippers水准，以及牺牲的有效细节多寡……</span></p><p><font color=red><span>阅读本教程前，强烈建议先理解教程3中的内容，并在大屏pc上观看（方便看图）</span></font></p><p><strong><span>本文中，如果图像看不明显，建议点击单独打开，并缩放到1:1观看。</span></strong><span>放大版图片使用的是临近采样放大到2x倍，相当于一个像素放大到2×2倍大小，方便大家理解。</span></p><p><font color=blue><span>本教程中所有图例，除非有说明，否则均来自于动漫蓝光原盘截图。</span></font></p><p>&nbsp;</p><h2 id='色带bandingcolor-banding'><span>色带(banding/color banding)</span></h2><p><span>色带是出现频率最多的瑕疵，没有之一。色带产生的原因是精度不足。因为几乎100%的片源采用YUV 8bit编码，而这种编码是不足以达到可视范围精度的极限，所以编码本身的瓶颈，决定了从制作到放源，几乎一定会因为精度不足产生色带。</span></p><p><img src="IMG/vcbs06/banding.png" alt="banding" style="zoom:100%;" /></p><p><span>色带的表现大家应该看得多了，颜色在渐变区域表现为波浪状、环状的阶梯型。常见于暗场处。</span></p><p><span>去色带一般被叫做deband/de-banding</span></p><p>&nbsp;</p><h2 id='锯齿aliasing'><span>锯齿(aliasing)</span></h2><p><span>锯齿是最典型、最常见的线条部分瑕疵，通常是因为制作分辨率较低，且不规范拉升到更高分辨率造成的：</span></p><p><img src="IMG/vcbs06/aliasing.png" alt="aliasing" style="zoom:100%;" /></p><p><span>锯齿的处理方式叫做抗锯齿(anti-aliasing, aa)</span></p><p>&nbsp;</p><h2 id='晕轮振铃ringinghaloing'><span>晕轮/振铃(ringing/haloing)</span></h2><p><span>严格来说这俩是不同的东西，但是表现非常相似，处理时候也通常不区分。它们也是较为典型的线条瑕疵，通常是因为制作分辨率较低，且不规范拉升到更高分辨率，且/或 过度锐化造成的：</span></p><p><img src="IMG/vcbs06/ringing.png" alt="ringing" style="zoom:100%;" /></p><p><span>瑕疵表现为线条周围似乎裹着一层明亮的光晕，如果上图看不出，下图放大版，仔细看线条两侧：</span></p><p><img src="IMG/vcbs06/ringing2x.png" alt="ringing2x" style="zoom:100%;" /></p><p>&nbsp;</p><p><span>ringing/haloing通常和aliasing是伴生的，这在upscale片源中尤其常见。</span></p><p><span>播放器拉大、锐化等处理（包括madVR的功能），也很容易出现这两种瑕疵。</span></p><p><span>ringing/haloing的处理方法叫做去晕轮(dering/de-ringing,  dehalo/de-haloing)</span></p><p>&nbsp;</p><h2 id='macroblockblocking色块'><span>MacroBlock/blocking(色块)</span></h2><p><span>色块一般是严重欠码，或者是视频损坏，导致的图像如网格状凸显，横平竖直:</span></p><p><img src="IMG/vcbs06/macroblock.png" alt="macroblock" style="zoom:100%;" /></p><p><span>更严重的大家自己去看各种在线视频就好。上图是LL的演唱会蓝光。</span></p><p><span>色块一般跟色带共生。解决方法称为去色块(deblock/de-blocking)</span></p><p>&nbsp;</p><h2 id='拉丝横纹交错interlacing'><span>拉丝/横纹/交错(interlacing)</span></h2><p><span>拉丝是指图像中相邻两行错位造成的视觉效果：</span></p><p><img src="IMG/vcbs06/interlacing.png" alt="interlacing" style="zoom:100%;" /></p><p><span>拉丝的产生，一般是原生隔行扫描(interlaced)的片源，没有经过任何处理（或者部分片段漏了处理），然后在逐行扫描(progressive)的设备上（比如pc显示器）播放的结果。</span></p><p><span>隔行扫描和逐行扫描啥意思啥区别大家不用细究，你只要知道，前者是老技术，后者是新技术，两者之间需要一定步骤做转换，不转换就可能出这种问题。</span></p><p><span>这玩意是你在任何小白向的压制论坛，见到最多的提问：为啥我压制出来的东西播放有横纹？</span></p><p><span>根据片源类型的不同，处理方式一般有以下几类：</span></p><p><span>反交错(de-interlacing)/场匹配(field-matching)/反交卷过带(ivtc)</span></p><p>&nbsp;</p><h2 id='缟缟combing其实此翻译有争议但是vcb-s的发布页看到这个单词你默认就是下图的效果'><span>缟缟(combing，其实此翻译有争议，但是vcb-s的发布页看到这个单词，你默认就是下图的效果)</span></h2><p><span>缟缟的效果兼具拉丝和锯齿的效果，有其特殊的线条特征：</span></p><p><img src="IMG/vcbs06/combing.png" alt="combing" style="zoom:100%;" /></p><p><span>缟缟的产生是隔行扫描的源，没有先转换为逐行扫描，而是在隔行状态下，用逐行扫描的算法放大的结果。</span></p><p><span>缟缟的去除叫做decomb/de-combing</span></p><p>&nbsp;</p><h2 id='鬼影blendingghosting）'><span>鬼影（blending/ghosting）</span></h2><p><span>排除掉视频本身采用的特效，这里鬼影指的是非正常的帧融合，造成的动态瑕疵（图片自制，其实寒蝉的BD挺适合拿来展示，但是当初我下好准备做BDRip，看了一眼就shift+delete了）：</span></p><p><img src="IMG/vcbs06/blending.png" alt="blending" style="zoom:100%;" /></p><p><span>blending一般是不规范的反交错/交卷过带产生，且/或者是滥用不可靠的时域处理造成的。</span></p><p><span>多数情况下无解（比如寒蝉那BDBOX）；少数有规律可循的，一定手段可以还原。一般称为de-blending/ghost-removal</span></p><p>&nbsp;</p><h2 id='颜色越界overflowunderflow）'><span>颜色越界（overflow/underflow）</span></h2><p><span>数字图像处理中，数据如同道路上机动车的速度一样，在规章制度下有着严格的范围限定。而颜色溢出则是发生了数据在既定规范下上下溢出的问题。典型的如dal的OP：</span></p><p><img src="IMG/vcbs06/2670.png" alt="2670" style="zoom:100%;" /></p><p><span>黑咕隆咚的，看我变出点纹理细节来：</span></p><p><img src="IMG/vcbs06/2670v.png" alt="2670v" style="zoom:100%;" /></p><p><span>越界的调整一般需要对数字图像规范有着专业的了解，同时还得熟知中间的变换公式。记为fix overflow/underflow</span></p><p>&nbsp;</p><h2 id='噪点彩色噪点色度噪点noisegrain-chroma-noisegrain）'><span>噪点；彩色噪点/色度噪点（Noise/Grain; chroma noise/grain）</span></h2><p><span>噪点不多介绍了；这里单独贴一下Chroma平面的噪点，往往表现为噪点本身花花绿绿的：</span></p><p><img src="IMG/vcbs06/14494.png" alt="14494" style="zoom:100%;" /></p><p><span>如果你表示看不出啥，加一张去掉上图中色度噪点的：</span></p><p><img src="IMG/vcbs06/uvnr.png" alt="uvnr" style="zoom:100%;" /></p><p><span>一般来说手段就是降噪(de-noise/de-grain)。</span></p><p>&nbsp;</p><p><span>不讨论特效噪点，就普通数字噪点，降噪本身应该与否，这是被讨论烂的问题。这里简单说一下我个人的一些看法，注意这是很主观的，完全不是什么“普世价值”：</span></p><p><span>1、噪点的重要性低于有效细节，然而，噪点依旧是组成画面的重要部分，</span><strong><span>在片源噪点明显时候，定位于中/高还原度的BDRip，噪点不应该被一刀切，导致源和成品画风突变；</span></strong></p><p><span>2、噪点会消耗大量码率这是不争的事实；因此，</span><strong><span>越是本身细节丰富动态高的视频，且低码率压制，那么降噪的意义越大，</span></strong><span>因为可以把有限的码率省下来给真正需要的细节。</span></p><p><span>3、</span><strong><span>降噪会不可避免的损失有效细节，</span></strong><span>特别是暗场处，因此，降噪时候，保留有效细节的多寡，是衡量一个ripper降噪水准的重要指标；</span></p><p><span>4、</span><strong><span>降噪应该引入视觉的心理学优化，</span></strong><span>比如说Chroma noise对画风的影响基本是恼人的，应该尽可能去掉；亮处的噪点去掉了对画风影响教低，而暗处较高；降噪应该在人眼不注意的地方强力，在人眼容易注意的地方较轻，等等。</span></p><p>&nbsp;</p><h2 id='烂边蚊噪dct-ringingdct-noise'><span>烂边/蚊噪(DCT ringing/DCT noise)</span></h2><p><span>突出一个烂字。是指画面欠码的时候，线条和平面都出现了很脏的观感，似乎线条被一圈絮絮叨叨的脏东西裹着，而平面有噪点的地方，噪点烂的很不规律，伴随着色块很难看：</span></p><p><img src="IMG/vcbs06/bad.png" alt="bad" style="zoom:100%;" /></p><p><span>这种瑕疵是因为现在的视频都是基于DCT(Discrete Cosine Transform，离散余弦变换)的编码。在编码码率严重不足的时候，将一些频率一刀切，就会造成这样的后果。越是早期的视频编码格式越常见。处理一般要求搭配deband/deblock/denoise进行综合性的处理。</span></p><p>&nbsp;</p><h2 id='色度色带chroma-banding'><span>色度色带(Chroma banding)</span></h2><p><span>色度色带，特别指色度平面的精度不足。专门把它拉出来说的原因是，随着SBMV技术普及，蓝光加噪带来的效果，就是亮度平面精度不足问题削弱，相比较而言，色度平面问题则凸显。色度色带在目视表现上，跟一般的色带略有区别（下图自制）：</span></p><p><img src="IMG/vcbs06/uvbanding.png" alt="uvbanding" style="zoom:100%;" /></p><p><span>通常来说，表面看不出画面有波浪状的断层，但是颜色过渡很不自然。只有单独拉出UV平面看才发现精度不足：</span></p><p><img src="IMG/vcbs06/ubanding.png" alt="ubanding" style="zoom:100%;" /></p><p><span>Chroma banding的处理一般随着正常deband的处理，无非是强化UV平面的力度。</span></p><p>&nbsp;</p><h2 id='色度锯齿chroma-aliasing'><span>色度锯齿(chroma aliasing)</span></h2><p><span>色度锯齿特指色度平面的锯齿，之所以单独说，是因为色度半采样的存在，导致色度平面经常需要被放大缩小（比如转为RGB处理，再转回去做视频），如果缩放不规范，就容易造成色度锯齿：</span></p><p><img src="IMG/vcbs06/23100.png" alt="23100" style="zoom:100%;" /></p><p><span>图放大到两倍：</span></p><p><img src="IMG/vcbs06/uvaliasing2x.png" alt="uvaliasing2x" style="zoom:100%;" /></p><p><span>chroma aliasing的处理方式一般是拆分UV平面的抗锯齿(chroma aa)</span></p><p>&nbsp;</p><h2 id='色度偏移chroma-shift）'><span>色度偏移（chroma shift）</span></h2><p><span>色度偏移，指的是色度平面相对亮度平面的错位，通常在极红/蓝/绿/紫处（这四个地方分别是U/V极大值或者极小值），线条多了一些重影（下图自制）：</span></p><p><img src="IMG/vcbs06/chromashift.png" alt="chromashift" style="zoom:100%;" /></p><p><span>上图是故意将UV左移两个像素。实际蓝光中鲜有这么大尺度的偏移，最多偏移一个像素，效果非常不明显；一般人很难观察到。</span></p><p><span>Chroma shift一般发生在数字图像处理中，不正确处理Chroma placement(Chroma相对Luma的位移)，造成的后果。修复手段通常叫做fix chroma shift。</span></p><p>&nbsp;</p><h2 id='色度溢出chroma-bleeding）'><span>色度溢出（chroma bleeding）</span></h2><p><span>色度溢出跟色度偏移很像，区别在于色度偏移是有方向的偏移，色度溢出是无方向的扩张（找不到更明显的图了；看不出来就算了吧）：</span></p><p><img src="IMG/vcbs06/chromableeding.png" alt="chromableeding" style="zoom:100%;" /></p><p><span>注意上图线条两侧，可以观察到颜色似乎跟周围饱和度不一致。这是轻度的溢出；失控的如下图（自制）：</span></p><p><img src="IMG/vcbs06/roguecb.png" alt="roguecb" style="zoom:100%;" /></p><p><span>整个图线条部分，颜色饱和度都不正常了。</span></p><p><span>修复手段叫做fix chroma bleeding</span></p><p>&nbsp;</p><h2 id='重复场duplicate-field）'><span>重复场（duplicate field）</span></h2><p><span>重复场表现为一张图，奇数行和偶数行相同。视觉效果如下（轻音少女横滨演唱会；部分动漫中也有，如K的剧场版）：</span></p><p><img src="IMG/vcbs06/S2.png" alt="S2" style="zoom:100%;" /></p><p><span>通常和锯齿难以区分；但是如果把奇数行和偶数行拆开各自组成一幅图，把图像一分为二，两份图是一样的。</span></p><p><span>解决方法就是丢掉奇数行或者偶数行，用剩下的缩放到原来高度。记为fix duplicate field。</span></p><p>&nbsp;</p><h2 id='revertible-upscale可还原拉升）'><span>revertible upscale（可还原拉升）</span></h2><p><span>指的是图像明显是放大而来，而放大的算法，可以被精确或者近似的判断出，然后设计逆向，把图像缩回去：</span></p><p><img src="IMG/vcbs06/bicubic.png" alt="bicubic" style="zoom:100%;" /></p><p><span>比如这图（局部），线条有大量锯齿，且出现ringing/haloing，经验丰富的rippers大致可以判断图像是通过类似Bicubic(sharp=-1.0)的算法拉升到1080p的。那么压制之前就可以根据拉升算法本身数学性质，逆向回720p再处理压制。这样的处理比一般性降低到720p来的科学。</span></p><p><span>一般你见到inverse-upscale/de-bilinear/de-bicubic之类的，就说明用了这样的手段。</span></p><p>&nbsp;</p><h2 id='over-blurring过度柔化'><span>Over Blurring(过度柔化)</span></h2><p><span>说简单点就是图像太模糊了。本身分辨率低，然后用柔和的算法给拉上来：</span></p><p><img src="IMG/vcbs06/bilinear829cc.png" alt="bilinear829cc" style="zoom:100%;" /></p><p><span>注意这种模糊是全局性的，不是个别镜头/个别位置。一般来说图像还没有锯齿/ringing之类的问题。</span></p><p><span>处理手段可以是inverse-upscale，拉回低分辨率，也可以采用主动性锐化(active sharpening)。注意这样的操作属于主观调整。锐化本身是很考验设计的，如何调整强度，设计自适应(adaptive)和保护手段(protective)，来保证不出现过度锐化的瑕疵（比如锯齿，haloing等），都是学问。</span></p><p><span>锐化一般分为四种：</span></p><p><span>补偿性锐化（contra-sharp），</span><strong><span>不属于主观调整，</span></strong><span>目的是补偿一些修复操作中，损失的细节和锐利度，补偿性锐化后的图像看起来不会比源锐利。补偿性锐化更多作为一些修复操作的保护手段，保护细节纹理不受太多损失。</span></p><p><span>可控性锐化（controlled sharp），属于主观调整，目的是补偿一些在非极高码率编码下，可能会损失的细节（我知道编码会损失细节，那么在编码之前，我先把容易损失的细节强化一点点，补偿编码的削减），</span><strong><span>以及在不破坏原盘画风的前提下，</span></strong><span>改善细节和纹理观感。往往看源和成品，第一眼看上去没啥区别，特别是线条部分；仔细看才发现，一些细微纹理，成品似乎比源还要清晰点。可控性锐化被中文区raw组不约而同地使用，强度不一。</span></p><p><span>主动性锐化（active sharp），属于主观调整，目的是让成品清晰度明显的高于源，</span><strong><span>同时几乎不引入过度锐化导致的瑕疵。</span></strong><span>主动性锐化会破坏原盘本身画风，以此换来主观观感的极大提升。典型的比如date a live第二季度，vcb-s和TUC的合作版BDRip。</span></p><p><span>过度锐化（over sharp），属于主观调整，相比主动性锐化，结果就是出现大量锯齿/ringing等瑕疵。常见于韩国raw组。</span></p><p>&nbsp;</p><p><span>这几种锐化我个人的态度：</span></p><p><span>1、补偿性锐化是画面修复手段，不是主观调整，没有什么争议。</span></p><p><span>2、过度锐化非常不可取，与其这样不如让观众自己在播放器里调整。</span></p><p><span>3、可控性锐化和主动性锐化，是锐化强度，从量变到质变（是否引起画风明显改变）的过程。因人而异，也很难说到底什么强度算可控，什么强度算主动。</span></p><p><span>4、实践证明，在中文区raw组和观众习惯的体积范围(~1GB/集)，可控性锐化利大于弊。强度太低，往往编码造成的损失肉眼可见，画面相比片源明显模糊；强度过高则画风改变明显，让多数观众厌恶。所以各组一般都选择一个适中的强度，最大程度的平衡观众满意度，也让BDRip的细节保留和画面观感，能与2GB/集的BDRip相媲美。这也是BDRip制作中的一种心理学优化。</span></p><p>&nbsp;</p><h2 id='晃动global-motionpan'><span>晃动(Global Motion/pan)</span></h2><p><span>通常是在老片翻新过程中，因为镜头/胶带位置不固定，导致录制的视频，似乎镜头在不断晃动一样，哪怕是应该静止的场景，都有不规律的、小幅晃动</span></p><p><span>动态图就不找了。大家自己脑补自己拿着手机，边走边录像的效果。</span></p><p><span>解决方法一般记为depan。</span></p><p>&nbsp;</p><h2 id='彩虹rainbow）'><span>彩虹（rainbow）</span></h2><p><span>Rainbow多出现在早期真人视频中。表现为亮度快速变化的地方，UV似乎像彩虹一般红蓝交织（网上找的图）：</span></p><p><img src="IMG/vcbs06/rainbow.jpg" alt="rainbow" style="zoom:100%;" /></p><p><span>看球拍部位。rainbow的产生是YUV数据作为电磁信号传输过程中，高频的Y信号，因为传输介质不理想，影响到了UV，而产生的后果。如果这时候进行进一步转录，就会把这个问题保留。</span></p><p><span>B站放的《亮剑》，也有这个问题：战士们背着枪在雪地里走，黑色的枪和白色的雪构成了高频的亮度变化，结果枪身周围出现了红蓝光晕。弹幕一些人吐槽说这枪怎么还带魔法效果……</span>
+<span>然而我早已看穿了一切┑(￣Д ￣)┍</span></p><p><span>修复手段一般称为de-rainbow</span></p><p>&nbsp;</p><h2 id='点状斑纹dot-crawl'><span>点状斑纹(dot-crawl):</span></h2><p><span>点装斑纹也是传输YUV中，不正确处理导致的问题（wiki上的图）：</span></p><p><img src="IMG/vcbs06/300px-Crawl.jpg" alt="300px-Crawl" style="zoom:100%;" /></p><p><span>Rainbow和Dot-Crawl在一些上古蓝光，甚至是上古TV源中还能发现它们的存在。高清数字时代之后，特别是动漫，几乎找不到了。</span></p><p><span>解决方法一般记为 Dot-Crawl removal</span></p><p>&nbsp;</p><h1 ><span>...</span></h1><p><span>最后，用两对问答来结束本章科普：</span>
+<span>问：作为一名ripper，你都干过哪些本末倒置的事情？</span>
+<span>答：为了看高清高画质，学习视频修复。</span></p><p><span>问：作为一名收藏党，你都干过哪些本末倒置的事情？</span>
+<span>答：为了省硬盘，逛vcb-s.com。</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

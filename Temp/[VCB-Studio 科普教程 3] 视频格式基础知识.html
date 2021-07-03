@@ -1,0 +1,630 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+ :root {--mermaid-font-zoom:2em ;} 
+</style><title>[VCB-Studio 科普教程 3] 视频格式基础知识</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#vcb-studio-科普教程-3-视频格式基础知识">[VCB-Studio 科普教程 3] 视频格式基础知识</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#正文">正文</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#1封装格式mp4mkv--vs-媒体格式h264flacaac">1、封装格式(MP4/MKV…)  vs 媒体格式(H.264/FLAC/AAC…)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2视频的基础参数分辨率帧率和码率">2、视频的基础参数：分辨率，帧率和码率。</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3图像的表示方法rgb模型-vs-yuv模型">3、图像的表示方法：RGB模型 vs YUV模型</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#4色深">4、色深</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#5色度半采样">5、色度半采样</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#6空间上的低频与高频平面纹理和线条">6、空间上的低频与高频：平面，纹理和线条</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#7时间上的低频与高频动态">7、时间上的低频与高频：动态</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#8清晰度与画质简述">8、清晰度与画质简述</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#1源的画质">1、源的画质。</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2播放条件">2、播放条件。</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3码率投入vs编码复杂度">3、码率投入vs编码复杂度。</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#4码率分配的效率和合理度">4、码率分配的效率和合理度。</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#5编码前的预处理预处理分三种">5、编码前的预处理。预处理分三种：</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='vcb-studio-科普教程-3-视频格式基础知识'><span>[VCB-Studio 科普教程 3] 视频格式基础知识</span></h1><p><img src="IMG/vcbs03/lp.jpg" alt="lp" style="zoom:50%;" /><span> </span><code>14-12-19</code><span> </span><code>LittlePox</code><span> </span><code>VCB-Studio 初代队长/技术组组长</code></p><p><em><span>镜像源地址：</span></em><span> </span><a href='https://vcb-s.com/archives/2726' target='_blank' class='url'>https://vcb-s.com/archives/2726</a></p><p>&nbsp;</p><h1 id='正文'><span>正文</span></h1><p><span>这本来是群内写给队友做入门知识学习的，然后觉得挺适合改改贴出来向大家科普，所以就有了这篇教程。之前的两篇播放器教程可以算 1 和 2 吧。</span></p><p><span>本教程意在讲述一些视频音频制作的基础知识和术语，适合不了解压片原理的收片党们自学。它可以比较详细地回答以下常见的问题：</span></p><ul><li><span>MP4/MKV 这些格式有什么区别？哪个画质好？</span></li><li><span>视频的码率是怎么算的？为什么同样是 1080p 的视频，有些体积大有些体积小？</span></li><li><span>视频储存的图像信息是什么格式的？跟显示器一样的红绿蓝么？</span></li><li><span>8-bit/10-bit 到底指的什么？为什么说 8-bit 显示器还有必要看 10-bit 视频？</span></li><li><span>YUV420/444 这些标示到底什么意思？哪个好？</span></li><li><span>线条，平面，纹理这些到底是什么意思？视频为啥还有高频低频？</span></li><li><span>码率越高的视频画质越好么？</span></li></ul><p><strong><span>本教程将分以下模块详细叙述：</span></strong>
+<span>1.封装格式（MP4/MKV…）vs 媒体格式（H.264/FLAC/AAC…）</span>
+<span>2.视频的基础参数：分辨率、帧率和码率</span>
+<span>3.图像的表示方法：RGB 模型 vs YUV 模型</span>
+<span>4.色深</span>
+<span>5.色度半采样</span>
+<span>6.空间上的低频与高频：平面、纹理和线条</span>
+<span>7.时间上的低频与高频：动态</span>
+<span>8.清晰度与画质简述</span></p><h2 id='1封装格式mp4mkv--vs-媒体格式h264flacaac'><span>1、封装格式(MP4/MKV…)  vs 媒体格式(H.264/FLAC/AAC…)</span></h2><p><span>MP4+MKV是你下载的视频文件最常见的种类。这些文件其实类似一个包裹，它的后缀则是包裹的包装方式。这些包裹里面，包含了视频（只有图像），音频（只有声音），字幕等。当播放器在播放的时候，首先对这个包裹进行拆包（专业术语叫做分离/splitting）,把其中的视频、音频等拿出来，再进行播放。</span></p><p>&nbsp;</p><p><span>既然它们只是一个包裹，就意味着这个后缀不能保证里面的东西是啥，也不能保证到底有多少东西。包裹里面的每一件物品，我们称之为轨道(track)，一般有这么些：</span></p><p>&nbsp;</p><p><span>视频(Video): 一般来说肯定都有，但是也有例外，比如mka格式的外挂音轨，其实就是没视频的mkv。注意我们说到视频的时候，是不包括声音的。</span></p><p><span>音频(audio)：一般来说也肯定有，但是有些情况是静音的，就没必要带了。</span></p><p><span>章节(Chapter): 蓝光原盘中自带的分段信息。如果文件带上了，那么你可以在播放器中看到带章节的效果：</span></p><ul><li><span>potplayer右键画面，选项-播放-在进度条上显示书签/章节标记</span></li><li><span>mpc-hc 右键画面，选项-调节-在进度条显示章节标记</span></li></ul><p><span>字幕(Subtitles)：有些时候文件自带字幕，并且字幕并非是直接整合于视频的硬字幕，那么就是一起被打包在封装容器中。</span></p><p><span>其他可能还有附件等，不一一列举。每个类型也不一定只有一条轨道，比如经常见到带多音轨的MKV。</span></p><p>&nbsp;</p><p><span>每个轨道，都有自己的格式。比如大家常说的，视频是H.264，音频是AAC，这些就是每个轨道的格式。</span></p><p><span>视频的格式，常见的有H.264(可以细分为8bit/10bit)，H.265(当前也有8bit/10bit之分)，RealVideo(常见于早期rm/rmvb)，VC-1(微软主导的，常见于wmv)。基本上，H.264=AVC=AVC1, H.265=HEVC。</span></p><p><span>音频的格式，常见的有 FLAC/ALAC/TrueHD/DTS-HD MA这四种无损，和AAC/MP3/AC3/DTS(Core)这四种有损。</span></p><p>&nbsp;</p><p><span>MKV vs MP4，主要的区别在于：</span></p><ol start='' ><li><span>MKV支持封装FLAC作为音频，MP4则不支持。但是MP4也可以封装无损音轨(比如说ALAC，虽然普遍认为ALAC的效率不如FLAC优秀)</span></li><li><span>MKV支持封装ASS/SSA格式的字幕，MP4则不支持。一般字幕组制作的字幕是ASS格式，所以内封字幕多见于MKV格式</span></li><li><span>MP4作为工业标准，在视频编辑软件和播放设备上的兼容性一般好于MKV。这也是vcb-s那些为移动设备优化的视频基本上选择MP4封装的原因。</span></li></ol><p><span>除此之外，这两个格式很大程度上可以互相代替。比如它们都支持封装AVC和HEVC，包括8bit/10bit的精度。所以MP4画质不如MKV好，这种论断是非常无知的——它们完全可以封装一样的视频。</span></p><p><span>为什么会有这样的分歧，就是历史原因了。MKV是民间研发，为了代替古老的AVI，从而更好地支持H264，它开发和修改的灵活度使得它可以兼容flac/ass这类非工业标准的格式；而MP4则是出生豪门，作为工业标准，替代更古老的MPG，作为新一代视频/音频封装服务的。</span></p><h2 id='2视频的基础参数分辨率帧率和码率'><span>2、视频的基础参数：分辨率，帧率和码率。</span></h2><p><span>视频是由连续的图像构成的。每一张图像，我们称为一帧(frame)。图像则是由像素(pixel)构成的。一张图像有多少像素，称为这个图像的分辨率。比如说1920×1080的图像，说明它是由横纵1920×1080个像素点构成。视频的分辨率就是每一帧图像的分辨率。</span></p><p>&nbsp;</p><p><span>一个视频，每一秒由多少图像构成，称为这个视频的帧率(frame-rate)。常见的帧率有24000/1001=23.976, 30000/1001=29.970, 60000/1001=59.940, 25.000, 50.000等等。这个数字是一秒钟内闪过的图像的数量。比如23.976，就是1001秒内，有24000张图像。视频的帧率是可以是恒定的(cfr, Const Frame-Rate)，也可以是变化的(vfr, Variable Frame-Rate)</span></p><p>&nbsp;</p><p><span>码率的定义是视频文件体积除以时间。单位一般是Kbps(Kbit/s)或者Mbps(Mbit/s)。注意1B(Byte)=8b(bit)。所以一个24分钟，900MB的视频：</span></p><p><span>体积：900MB = 900MByte = 7200Mbit</span></p><p><span>时间：24min = 1440s</span></p><p><span>码率：7200/1440  = 5000 Kbps = 5Mbps</span></p><p>&nbsp;</p><p><span>当视频文件的时间基本相同的时候（比如现在一集番大概是24分钟），码率和体积基本上是等价的，都是用来描述视频大小的参数。长度分辨率都相同的文件，体积不同，实际上就是码率不同。</span></p><p><span>码率也可以解读为单位时间内，用来记录视频的数据总量。码率越高的视频，意味着用来记录视频的数据量越多，潜在的解读就是视频可以拥有更好的质量。（注意，仅仅是潜在，后文我们会分析为什么高码率不一定等于高画质）</span></p><h2 id='3图像的表示方法rgb模型-vs-yuv模型'><span>3、图像的表示方法：RGB模型 vs YUV模型</span></h2><p><span>光的三原色是红(Red)、绿(Green)、蓝(Blue)。现代的显示器技术就是通过组合不同强度的三原色，来达成几乎任何一种可见光的颜色。图像储存中，通过记录每个像素红绿蓝强度，来记录图像的方法，称为RGB模型 (RGB Model)</span></p><p><span>常见的图片格式中，PNG和BMP这两种就是基于RGB模型的。</span></p><p>&nbsp;</p><p><span>比如说原图：</span></p><p><img src="IMG/vcbs03/1111.jpg" alt="1111" style="zoom:100%;" /></p><p><span>分别只显示R G B通道的强度，效果如下：</span></p><p><img src="IMG/vcbs03/111.jpg" alt="111" style="zoom:100%;" />
+<img src="IMG/vcbs03/1112.jpg" alt="1112" style="zoom:100%;" />
+<img src="IMG/vcbs03/1113.jpg" alt="1113" style="zoom:100%;" /></p><p><span>三个通道下，信息量和细节程度不一定是均匀分布的。比如说可以注意南小鸟脸上的红晕，在3个平面上的区分程度就不同——红色平面下几乎无从区分，造成区别的主要是绿色和蓝色的平面。外围白色的脸颊，三色都近乎饱和；但是红晕部分，只有红色饱和，绿色和蓝色不饱和。这是造成红色凸显的原因。</span></p><p>&nbsp;</p><p><span>除了RGB模型，还有一种广泛采用的模型，称为YUV模型，又被称为亮度-色度模型（Luma-Chroma）。它是通过数学转换，将RGB三个通道，转换为一个代表亮度的通道(Y,又称为Luma)，和两个代表色度的通道(UV，并成为Chroma)。</span></p><p>&nbsp;</p><p><span>举个形象点的例子：一家养殖场饲养猪和牛，一种记数方式是：（猪的数量，牛的数量）</span></p><p><span>但是也可以这么记录：（总数量=猪的数量+牛的数量，相差=猪的数量-牛的数量）。两种方法之间有数学公式可以互转。</span></p><p>&nbsp;</p><p><span>YUV模型干的是类似的事儿。通过对RGB数据的合理转换，得到另一种表示方式。YUV模型下，还有不同的实现方式。举个用的比较多的YCbCr模型：它把RGB转换成一个亮度(Y)，和 蓝色色度(Cb) 以及 红色色度(Cr)。转换背后复杂的公式大家不需要了解，只需要看看效果：</span></p><p><span>只有亮度通道：</span></p><p><img src="IMG/vcbs03/1114.jpg" alt="1114" style="zoom:100%;" /></p><p><span>只有蓝色色度：</span></p><p><img src="IMG/vcbs03/1115.jpg" alt="1115" style="zoom:100%;" /></p><p><span>只有红色色度：</span></p><p><img src="IMG/vcbs03/1116.jpg" alt="1116" style="zoom:100%;" /></p><p><span>在图像视频的加工与储存中，YUV格式一般更受欢迎，理由如下：</span></p><p>&nbsp;</p><p><span>1、人眼对亮度的敏感度远高于色度，因此人眼看到的有效信息主要来自于亮度。YUV模型可以将绝大多数的有效信息分配到Y通道。UV通道相对记录的信息少的多。相对于RGB模型较为平均的分配，YUV模型将多数有效信息集中在Y通道，不但减少了冗余信息量，还为压缩提供了便利</span></p><p><span>2、保持了对黑白显示设备的向下兼容</span></p><p><span>3、图像编辑中，调节亮度和颜色饱和度，在YUV模型下更方便。</span></p><p><span>几乎所有的视频格式，以及广泛使用的JPEG图像格式，都是基于YCbCr模型的。播放的时候，播放器需要将YCbCr的信息，通过计算，转换为RGB。这个步骤称为渲染（Rendering）</span></p><p><span>每个通道的记录，通常是用整数来表示。比如RGB24，就是RGB各8个bit，用0~255 (8bit的二进制数范围)来表示某个颜色的强弱。YUV模型也不例外，也是用整数来表示每个通道的高低。</span></p><p>&nbsp;</p><h2 id='4色深'><span>4、色深</span></h2><p><span>色深(bit-depth)，就是我们通常说的8bit和10bit，是指每个通道的精度。8bit就是每个通道用一个8bit整数(0~255)代表，10bit就是用10bit整数(0~1023)来显示。16bit则是0~65535</span></p><p><span>(注意，上文的表述是不严谨的，视频在编码的时候，并非一定能用到0~255的所有范围，而是可能有所保留，只用到一部分，比如16~235。这我们就不详细展开了)</span></p><p>&nbsp;</p><p><span>你的显示器是8bit的，代表它能显示RGB每个通道0~255所有强度。但是视频的色深是YUV的色深，播放的时候，YUV需要通过计算转换到RGB。因此，10bit的高精度是间接的，它使得运算过程中精度增加，以让最后的颜色更细腻。</span></p><p>&nbsp;</p><p><span>如何理解8bit显示器，播放10bit是有必要的呢：</span></p><p><span>一个圆的半径是12.33m, 求它的面积，保留两位小数。</span></p><p><span>半径的精度给定两位小数，结果也要求两位小数，那么圆周率精度需要给多高呢？也只要两位小数么？</span>
+<span>取pi=3.14, 面积算出来是477.37平方米</span>
+<span>取pi=3.1416，面积算出来是477.61平方米</span>
+<span>取pi精度足够高，面积算出来是477.61平方米。所以取pi=3.1416是足够的，但是3.14就不够了。</span></p><p>&nbsp;</p><p><span>换言之，即便最终输出的精度要求较低，也不意味着参与运算的数字，以及运算过程，可以保持较低的精度。在最终输出是8bit RGB的前提下，10bit YUV比起8bit YUV依旧具有精度优势的原因就在这里。事实上，8bit YUV转换后，覆盖的精度大概相当于8bit RGB的26%，而10bit转换后的精度大约可以覆盖97%——你想让你家8bit显示器发挥97%的细腻度么？看10bit吧。</span></p><p>&nbsp;</p><p><span>8bit精度不足，主要表现在亮度较低的区域，容易形成色带：</span></p><p><img src="IMG/vcbs03/logo11.png" alt="logo11" style="zoom:100%;" /></p><p>&nbsp;</p><p><span>注意这图右边那一圈圈跟波浪一样的效果。这就是颜色精度不足的表现。</span></p><p><span>10bit的优势不只在于显示精度的提高，在提高视频压缩率，减少失真方面，相对8bit也有优势。这方面就不展开了。</span></p><p>&nbsp;</p><h2 id='5色度半采样'><span>5、色度半采样</span></h2><p><span>在YUV模型的应用中，Y和UV的重要性是不等同的。图像视频的实际储存和传输中，通常将Y以全分辨率记录，UV以减半甚至1/4的分辨率记录。这个手段被称为色度半采样(Chroma Sub-Sampling)。色度半采样可以有效减少传输带宽，和加大UV平面的压缩率，但是不可避免的会损失UV平面的有效信息。</span></p><p>&nbsp;</p><p><span>我们平常的视频，最常见的是420采样。配合YUV格式，常常被写作yuv420。这种采样是Y保留全部，UV只以(1/2) x (1/2)的分辨率记录。比如说1920×1080的视频，其实只有亮度平面是1920×1080。两个色度平面都只有960×540的分辨率。</span></p><p><span>当然了，你也可以选择不做缩减。这种称为444采样，或者yuv444。YUV三个平面全是满分辨率。</span></p><p>&nbsp;</p><p><span>在做YUV-&gt;RGB的时候，首先需要将缩水的UV分辨率拉升到Y的分辨率（madVR中允许自定义算法，在Chroma Upscaling当中），然后再转换到RGB。做RGB-&gt;YUV的转换，也是先转换到444（YUV的分辨率相同），再将UV分辨率降低。</span></p><p>&nbsp;</p><p><span>一般能拿到的片源，包括所有蓝光原盘，都是420采样的。所以成品一般也保留420采样。所以yuv420就表示这个视频是420采样的yuv格式。</span></p><p><span>将420做成444格式，需要自己手动将UV分辨率拉升2×2倍。在今天madVR等渲染器可以很好地拉升UV平面的情况下，这种做法无异于毫无必要的拉升DVD做成伪高清。</span></p><p><span>当然了，有时候也需要在444/RGB平面下做处理和修复，常见的比如视频本身RGB平面不重叠（比如摩卡少女樱），这种修复过程首先要将UV分辨率拉升，然后转RGB，做完修复再转回YUV。修复后的结果相当于全新构图，这种情况下保留444格式就是有理由，有必要的。</span></p><p>&nbsp;</p><p><span>H264格式编码444格式，需要High 4:4:4 Predictive Profile（简称Hi444pp）。所以看到Hi444pp/yuv444 之类的标示，你就需要去找压制者的陈述，为什么他要做这么个拉升。如果找不到有效的理由，你应该默认作者是在瞎做。</span></p><p>&nbsp;</p><h2 id='6空间上的低频与高频平面纹理和线条'><span>6、空间上的低频与高频：平面，纹理和线条</span></h2><p><span>在视频处理中，空间(spatial)的概念指的是一帧图片以内（你可以认为就是一张图所呈现的二维空间/平面）。跟时间(temporal)相对；时间的概念就强调帧与帧之间的变换。</span></p><p>&nbsp;</p><p><span>于是我们重新来看这张亮度的图：</span></p><p><img src="IMG/vcbs03/1117.jpg" alt="1117" style="zoom:100%;" /></p><p><span>亮度变化较快，变动幅度大的区域，我们称之为高频区域。否则，亮度变化缓慢且不明显的区域，我们称为低频区域。</span></p><p>&nbsp;</p><p><span>图中的蓝圈就是一块典型的低频区域，或者就叫做平面（平坦的部分）。亮度几乎没有变化</span></p><p><span>绿圈中，亮度呈现跳跃式的突变，这种高频区域我们称之为线条。</span></p><p><span>红圈中，亮度频繁变化，幅度有高有低，这种高频区域我们称为纹理。</span></p><p>&nbsp;</p><p><span>有时候，线条和纹理（高频区域）统称为线条，平面（低频区域）又叫做非线条。</span></p><p>&nbsp;</p><p><span>这是亮度平面。色度平面，高频低频，线条等概念也同样适用，就是描述色度变化的快慢轻重。一般我们所谓的“细节”，就是指图像中的高频信息。</span></p><p><span>一般来说，一张图的高频信息越多，意味着这张图信息量越大，所需要记录的数据量就越多，编码所需要的运算量也越大。如果一个视频包含的空间性高频信息很多（通俗点说就是每一帧内细节很多），意味着这个视频的空间复杂度很高。</span></p><p><span>记录一张图片，编码器需要决定给怎样的部分多少码率。码率在一张图内不同部分的分配，叫做码率的空间分配。分配较好的时候，往往整幅图目视观感比较统一；分配不好常见的后果，就是线条纹理尚可，背景平面区域出现大量色带色块（码率被过分的分配给线条）；或者背景颜色过渡自然，纹理模糊，线条烂掉（码率被过分的分配给非线条）。</span></p><p>&nbsp;</p><h2 id='7时间上的低频与高频动态'><span>7、时间上的低频与高频：动态</span></h2><p><span>在视频处理中，时间(temporal)的概念强调帧与帧之间的变换。跟空间(spatial)相对。</span></p><p><span>动态的概念无需多解释；就是帧与帧之间图像变化的强弱，变化频率的高低。一段视频如果动态很高，变化剧烈，我们称为时间复杂度较高，时域上的高频信息多。否则如果视频本身舒缓多静态，我们称为时间复杂度低，时域上的低频信息多。</span></p><p>&nbsp;</p><p><span>一般来说，一段视频的时域高频信息多，动态的信息量就大，所需要记录的数据量就越多，编码所需要的运算量也越大。但是另一方面，人眼对高速变化的场景，敏感度不如静态的图片来的高（你没有时间去仔细观察细节），所以动态场景的优先度可以低于静态场景。如何权衡以上两点去分配码率，被称为码率的时间分配。分配较好的时候，看视频无论动态还是静态效果都较好；分配不好的时候往往是静态部分看着还行，动态部分糊烂掉；或者动态部分效果过分的好，浪费了大量码率，造成静态部分欠码，瑕疵明显。</span></p><p>&nbsp;</p><p><span>很多人喜欢看静止的截图对比，来判断视频的画质。从观看的角度，这种做法其实并不完全科学——如果你觉得比较烂的一帧其实是取自高动态场景，那么这一帧稍微烂点无可厚非，反正观看的时候你注意不到，将码率省下来给静态部分会更好。</span></p><p>&nbsp;</p><h2 id='8清晰度与画质简述'><span>8、清晰度与画质简述</span></h2><p><span>我们经常讨论，一个视频清晰度如何，画质好不好。但是如何给这两个术语做定义呢？</span></p><p>&nbsp;</p><p><span>经常看到的说法：“这个视频清晰度是1080p的”。其实看过上文你就应该知道，1080p只是视频的分辨率，它不能直接代表清晰度——比如说，我可以把一个480p的dvd视频拉升到1080p，那又怎样呢？它的清晰度难道就提高了么？</span></p><p>&nbsp;</p><p><span>一个比较接近清晰度的概念，是上文所讲述的，空间高频信息量，就是一帧内的细节。一张图，一个视频的细节多，它的清晰度就高。分辨率决定了高频信息量的上限；就是它最清晰能到什么地步。1080p之所以比480p好，是因为它可以允许图像记录的高频信息多。这个说法看样子很靠谱，但是，有反例：</span></p><p><img src="IMG/vcbs03/oversharped.png" alt="oversharped" style="zoom:100%;" /></p><p><span>右图的高频信息远比左图多——它的线条很锐利，有大量致密的噪点（注意噪点完全符合高频信息的定义；它使得图像变化的非常快）</span>
+<span>但是你真的觉得右图清晰度高么？</span>
+<span>事实上，右图完全是通过左图加工而来。通过过度锐化+强噪点，人为的增加无效的高频信息。</span></p><p>&nbsp;</p><p><span>所以清晰度的定义我更倾向于这样一个说法：图像或视频中，原生、有效的高频信息。</span>
+<span>原生，强调这种清晰度是非人工添加的；有效；强调细节本身有意义，而不是毫无意义的噪点特效。</span></p><p>&nbsp;</p><p><span>值得一提的是，人为增加的高频信息不见得完全没有帮助。有的时候适度锐化的确能够起到不错的目视效果：</span></p><p><img src="IMG/vcbs03/finesharped.png" alt="finesharped" style="zoom:100%;" /></p><p><span>这是一幅适度锐化后的效果。如果有人觉得右图更好，至少某些部分更好，相信我，你不是一个人。所以适度锐化依旧是视频和图像处理中，可以接受的一种主观调整的手段，一定的场合下，它确实有助于提高目视效果。</span></p><p>&nbsp;</p><p><span>以上是清晰度的概述。注意，清晰度只是空间方面（就是一帧以内）。如果再考虑到动态效果的优秀与否（视频是不是那种一动起来就糊成一团的，或者动起来感觉卡顿明显的，常见于早起RMVB），空间和时间上优秀的观看效果共同定义了画质。所以我们说madVR/svp那些倍帧效果有助于提高画质，实际上它们增强了时间上的观看效果。</span></p><p>&nbsp;</p><p><span>好的画质，是制作者和观众共同追求的。怎么样的视频会有好的画质呢？是不是码率越高的视频画质越好呢？真不见得。视频的画质，是由以下几点共同决定的：</span></p><p>&nbsp;</p><h3 id='1源的画质'><span>1、源的画质。</span></h3><p><span>俗话说的好，上梁不正下梁歪。如果源的画质本身很差，那么再如何折腾都别指望画质好到哪去。所以压制者往往会选择更好的源进行压制——举个栗子，BDRip一般都比TVRip来的好，哪怕是720p。蓝光也分销售地区，一般日本销售的日版，画质上比美版、台版、港版啥的都来得好，所以同样是BDRip，选取更好的源，就能做到画质上优先一步。</span></p><h3 id='2播放条件'><span>2、播放条件。</span></h3><p><span>观众是否用了足矣支持高画质播放的硬件和软件。这就是为啥我们在发布Rip的同时大力普及好的播放器；有时候一个好的播放器胜过多少在制作方面的精力投入。</span></p><h3 id='3码率投入vs编码复杂度'><span>3、码率投入vs编码复杂度。</span></h3><p><span>视频的时间和空间复杂度，并称为编码复杂度。编码复杂度高的视频，往往细节多，动态高（比如《魔法少女小圆剧场版 叛逆的物语》），这样的视频天生需要较高的码率去维持一个优秀的观看效果。</span>
+<span>相反，有些视频编码复杂度低（比如《请问今天要来点兔子么》，动态少，线条细节柔和），这种视频就是比较节省码率的。</span></p><h3 id='4码率分配的效率和合理度'><span>4、码率分配的效率和合理度。</span></h3><p><span>同样多的码率，能起到怎样好的效果，被称为效率。比如H264就比之前的RealVideo效率高；10bit比8bit效率高；编码器先进，参数设置的比较合理，编码器各种高端参数全开（通常以编码时间作为代价），码率效率就高。</span>
+<span>合理度就是码率在时空分配方面合理与否，合理的分配，给观众的观看效果就比较统一协调。 码率分配的效率和合理度，是对制作者的要求，要求制作者对片源分析，参数设置有比较到位的理解。</span></p><p><span>码率分配和合理度做的好，就常常能做出低码率高画质的良心作品。</span></p><p>&nbsp;</p><p><span>这里再多提一句，至少在这个时间点，也就是此文发布的2014年年底，HEVC相对于AVC可以提高50%的效率，依旧是一个纸面上的理论值。实际操作中，因为HEVC编码器的成熟度远不及经过了十几年发展的AVC编码器，导致现在HEVC的潜力远没有能发挥出来，特别是高画质下甚至不如。</span>
+<span>对于目前主流的，定位收藏画质的BDRip，同样码率下x265的画质相对于x264没有优势；所以在近期，大家不用优先的去下载HEVC版作为收藏目的，更不必迷信什么“码率降低一半”。再强调一次，这个时间点；如果一年后以上陈述被不断进步的HEVC编码器推翻，我毫不惊讶。</span></p><h3 id='5编码前的预处理预处理分三种'><span>5、编码前的预处理。预处理分三种：</span></h3><p><span>①，客观修复。强调修复片源固有的瑕疵，比如锯齿，色带，晕轮等等。</span>
+<span>②，主观调整，强调将片源调整的更适合人眼观看，比如适度的锐化，调色（有时候你是可以通过科学方法判定片源的颜色有问题，然后针对的做修复的）。</span>
+<span>③，移除无效高频信息，比如降噪，避免码率浪费在无效的噪点上</span></p><p><span>预处理做的好，往往能达到画质上超越片源，或是在几乎不牺牲清晰度的前提下，节省码率开销。</span></p><p><span>但是预处理是一把双刃剑，优化的同时，可能引入副效果。降噪、抗锯齿、去晕轮等操作会不可避免的损失一些有效细节（或多或少，取决于制作者水准）；主观调整很可能会引入副效果（比如过度锐化会导致锯齿和晕轮），或是变成了作者的自我满足，形成对观众的欺骗。</span></p><p>&nbsp;</p><h1 ><span>...</span></h1><p><span>综上，一个优秀的画质，是由片源、制作者、观看者共同决定的；码率高低也只是部分因素，并非决定性的效果。</span></p><p><span>于是这篇教程就写到这里吧。它最初的目的是给学习视频制作入门的人而写，也不知道对于一般的观众，能让大家理解多少。有啥需要交流讨论提问的就在下文回复吧。如果反响较好，以后我们还会发布更多这样科普教学类的文章。</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>
