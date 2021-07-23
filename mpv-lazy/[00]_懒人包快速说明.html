@@ -6,7 +6,7 @@
 <link href='file://C://Users//hooke//AppData//Roaming//Typora/themes/purple.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
@@ -137,16 +137,6 @@ kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
 code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.md-inline-math .MathJax_SVG .noError { display: none !important; }
-.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
-.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
-.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
-#math-inline-preview-content { zoom: 1.1; }
-.MathJax_SVG * { transition: none 0s ease 0s; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
@@ -165,9 +155,9 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-diagram-panel .messageText { stroke: none !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
 .md-fences.md-fences-math { font-size: 1em; }
-.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
 .md-fences-advanced:not(.md-focus) { background: inherit; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
@@ -210,6 +200,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
 .typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
 .typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
 
 
 :root {
@@ -849,22 +840,168 @@ a {
 }
 
 
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
  :root {--mermaid-font-zoom:2em ;} 
 </style><title>[00]_懒人包快速说明</title>
 </head>
 <body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
-<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-lazy-懒人包快速说明">mpv-lazy 懒人包快速说明</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#默认设置">默认设置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#注意事项">注意事项</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#常用快捷键">常用快捷键</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#高级播放列表操作">高级播放列表操作</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组件整合列表">组件整合列表</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='mpv-lazy-懒人包快速说明'><span>mpv-lazy 懒人包快速说明</span></h1><p><em><span>ver.20210720</span></em></p><h2 id='默认设置'><span>默认设置</span></h2><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ），可适当留时间和性能给缩略图缓存完毕再开始播放（移动至进度条查看建立的完成度）</span></li><li><span>默认不开启缩略图显示，考虑到不低的cpu性能要求初始关闭，开启方法见</span><code>thumbnailer.conf</code></li><li><span>默认不开启</span><strong><span>Krig</span></strong><span>，手动使用 </span><code>CTRL+1</code><span> 开启/关闭，更多相关注意事项见</span><code>input.conf</code></li><li><span>默认不开启</span><strong><span>RAVU</span></strong><span>,手动使用 </span><code>CTRL+2</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>FSRCNNX</span></strong><span>,手动使用 </span><code>CTRL+3</code><span> 开启/关闭</span></li><li><span>默认不开启</span><strong><span>Anime4k</span></strong><span>，手动使用 </span><code>CTRL+4</code><span> 替换当前所有着色器，</span><strong><span>CTRL+`</span></strong><span> 为清除所有已加载的glsl/hook着色器</span></li><li><span>默认不开启</span><strong><span>补帧</span></strong><span>滤镜，</span><code>CTRL+6</code><span> 开启/关闭mvtools补帧通用版；</span><code>CTRL+7</code><span> 开启/关闭mvtools补帧快速版（低开销）。</span><code>CTRL+8</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出），</span><code>CTRL+9</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font><span>。</span><code>CTRL+0</code><span> 清除所有已加载的vf滤镜</span></li><li><span>默认不预设其余滤镜、着色器，如何设置可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数。</span></li></ul><h2 id='注意事项'><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>读写权限</span></font><span>（可引起脚本无效、无法加载着色器等多种问题）</span></p><p><font color=orange><span>广色域屏</span></font><span>用户使用前应进行色彩管理相关设定（参见mpv.conf中的 </span><code>视频</code><span> 部分）</span></p><p><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-lazy-懒人包快速说明">mpv-lazy 懒人包快速说明</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#默认设置">默认设置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#注意事项">注意事项</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#常用快捷键">常用快捷键</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#高级播放列表操作">高级播放列表操作</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组件整合列表">组件整合列表</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#主要程序">主要程序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#额外">额外</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#脚本">脚本</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#着色器">着色器</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='mpv-lazy-懒人包快速说明'><span>mpv-lazy 懒人包快速说明</span></h1><p><em><span>ver.20210723</span></em></p><h1 ><span>...</span></h1><p><span>mpv-lazy是mpv播放器的win10平台开箱即用的解决方案，具备基础的中文手册以供参阅。</span></p><p>&nbsp;</p><h2 id='默认设置'><span>默认设置</span></h2><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ）。原本设计为留时间给缩略图缓存完毕（移动至进度条查看建立的完成度）</span></li><li><span>默认不启动缩略图显示，考虑到不低的cpu性能要求初始关闭，开启应编辑 </span><code>thumbnailer.conf</code></li><li><span>默认不启动</span><strong><span>Krig</span></strong><span> ，手动使用 </span><code>CTRL+1</code><span> 开/关</span></li><li><span>默认不启动</span><strong><span>RAVU</span></strong><span> ，手动使用 </span><code>CTRL+2</code><span> 开/关</span></li><li><span>默认不启动</span><strong><span>FSRCNNX</span></strong><span> ，手动使用 </span><code>CTRL+3</code><span> 开/关</span></li><li><span>默认不启动</span><strong><span>Anime4k</span></strong><span> ，手动 </span><code>CTRL+4</code><span> 使用预设组合替换当前所有着色器， </span><code>CTRL</code><span>+</span><code>`</code><span> 清除所有已加载的glsl/hook着色器</span></li><li><span>默认不启动</span><strong><span>补帧</span></strong><span>滤镜， </span><code>CTRL+6</code><span> 开/关 mvtools补帧通用版；</span><code>CTRL+7</code><span> 开/关 mvtools补帧快速版（低开销）。</span><code>CTRL+8</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出），</span><code>CTRL+9</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font><span>。</span><code>CTRL+0</code><span> 清除所有已加载的vf滤镜</span></li><li><span>默认不预设其余滤镜、着色器，如何设置和注意事项可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数与手册 </span><font color=green><span>[01]</span></font><span> 。</span></li></ul><h2 id='注意事项'><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>读写权限</span></font><span>（可引起脚本无效、无法加载着色器等多种问题）</span></p><ul><li><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
 <code>X:\xxxxx\mpv-lazy\installer\mpv-install.bat</code>
 <span>若移动 </span><code>mpv.exe</code><span> 文件的路径后，需要重新执行该批处理来正确关联格式</span>
-<span>要从计算机中删除此批处理的所有痕迹，以管理员身份运行同目录下的 </span><code>mpv-uninstall.bat</code></p><p><span>有MPV使用基础可以自行修改配置文件以调整性能占用（每行首字为 # 的是不启用的）</span>
+<span>要从计算机中删除此批处理的所有痕迹，以管理员身份运行同目录下的 </span><code>mpv-uninstall.bat</code></li><li><span>有MPV使用基础可以自行修改配置文件以调整性能占用（每行首字为 # 的是不启用的）</span>
 <code>X:\xxxxx\mpv-lazy\portable_config\mpv.conf</code>
-<span>而同目录下的 </span><code>input.conf</code><span> 则是当前的快捷预设方案</span></p><p><span>mvtools补帧方案的脚本中，可自行修改补帧帧率（默认为 </span><code>dfps = 60000</code><span> 即60.000帧）</span>
+<span>而同目录下的 </span><code>input.conf</code><span> 则是当前的快捷预设方案</span></li><li><span>mvtools补帧方案的脚本中，可自行修改补帧帧率（默认为 </span><code>dfps = 60000</code><span> 即60.000帧）</span>
 <span>例：</span><code>X:\xxxxx\mpv-lazy\portable_config\mvtools-xxxx.vpy</code>
 <span>svpflow补帧脚本也可设置，甚至可以调用显卡加速，具体方法用编辑器（notepad3这类软件你没有就用记事本凑活）打开查看</span>
-<code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></p><p><span>该目录下的都是脚本的设置文件，可自行编辑进行自定义</span>
-<code>X:\xxxxx\mpv-lazy\portable_config\script-opts\</code></p><p><span>缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
-<code>C:\Users\你的用户名\AppData\Local\Temp\Thumbnailer\</code></p><p><span>▲ 对 </span><code>X:\xxxxx\mpv-lazy\portable_config\shaders\</code><span> 文件夹中的着色器见手册 </span><font color=green><span>[01]</span></font>
-<span>▲ 其它常见问题的解决途径见 </span><strong><span>发布页FAQ</span></strong><span> 或镜像手册 </span><font color=green><span>[04]</span></font></p><h2 id='常用快捷键'><span>常用快捷键</span></h2><p><code>左键</code><span> 双击---切换---全屏/窗口化</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></li><li><span>该目录下的都是脚本的设置文件，可自行编辑进行自定义</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\script-opts\</code></li><li><span>缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
+<code>C:\Users\你的用户名\AppData\Local\Temp\Thumbnailer\</code>
+<code>\watch_later\</code><span> </span><code>\icc_cache\</code><span> </span><code>\shaders_cache\</code><span> 皆为缓存文件夹，可手动清理</span></li><li><font color=orange><span>广色域屏</span></font><span>用户使用前应进行色彩管理相关设定（查看 mpv.conf 中的 </span><code>#视频#</code><span> 部分）</span></li></ul><p><span>▲ 其它常见问题的解决途径见 </span><strong><span>发布页FAQ</span></strong><span> 或镜像手册 </span><font color=green><span>[04]</span></font></p><h2 id='常用快捷键'><span>常用快捷键</span></h2><p><code>左键</code><span> 双击---切换---全屏/窗口化</span>
 <code>右键</code><span> 单机---切换---暂停/播放</span>
 <code>滚轮向上/向下</code><span> 向前/向后搜索10秒</span>
 <code>空格</code><span> 暂停/播放</span>
@@ -878,40 +1015,42 @@ a {
 <code>s</code><span> 截图</span>
 <code>i</code><span> 显示有关当前播放文件的</span><font color=orange><span>统计信息stats</span></font><span>，例如编解码器，帧速率等。 此时按 </span><code>1</code><span> </span><code>2</code><span> </span><code>3</code><span> </span><code>4</code><span> </span><code>0</code><span> 分别显示不同页面的信息（ </span><code>2</code><span> </span><code>4</code><span> </span><code>0</code><span> 页可方向键上下滚动），第四页显示</span><font color=blue><span>已绑定的快捷键信息</span></font>
 <code>Shift</code><span> + </span><code>i</code><span> 作用同上，此时统计信息常驻，再次按下关闭</span>
-<code>`</code><span> 打开控制台，此时按 </span><code>Esc</code><span> 关闭</span></p><p><span>更多操作及自定义见 </span><code>input.conf</code></p><h2 id='高级播放列表操作'><span>高级播放列表操作</span></h2><p><code>Shift</code><span> + </span><code>Enter</code><span> 打开高级播放列表，此时：（以下按键皆为动态绑定）</span>
+<code>`</code><span> 打开控制台，此时按 </span><code>Esc</code><span> 关闭</span></p><p><span>▲ 更多操作及自定义见 </span><code>input.conf</code></p><h2 id='高级播放列表操作'><span>高级播放列表操作</span></h2><p><code>Shift</code><span> + </span><code>Enter</code><span> 打开高级播放列表，此时：（以下按键皆为动态绑定）</span>
 <span>    </span><code>↑</code><span>  </span><code>↓</code><span> 选择条目（当选中时，功能改变为移动该条目在列表中的位置）</span>
 <span>    </span><code>←</code><span>  </span><code>→</code><span> 选中/取消选中 当前选择的条目</span>
 <span>    </span><code>Backspace</code><span> 移除当前选择/选中的条目</span>
 <span>    </span><code>Enter</code><span> 播放当前选择/选中的条目</span>
-<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2 id='组件整合列表'><span>组件整合列表</span></h2><p><strong><span>☑ mpv _x64_20210720_git</span></strong><span> （运行主程序mpv.exe打开本体）</span>
-<span>  </span><strong><span>☑ libEGL &amp; libGLESv2 _2.1.16235_git</span></strong><span> ANGLE后端所需</span>
-<span>  </span><strong><span>☑ Python _3.9.6_embed_amd64</span></strong><span> 环境支持</span>
-<span>  </span><strong><span>☑ VapourSynth64 _Portable_R54-RC1</span></strong><span> 帧服务器</span>
-<span>  </span><strong><span>☑ FFmpeg _20210718_essentials</span></strong><span> 缩略图加速</span>
-<span>  </span><strong><span>☑ youtube-dl _20210606</span></strong><span> 网络串流增强</span>
-<span>  </span><strong><span>☑ yt-dlp _20210707</span></strong><span> 网络串流增强（备选）</span>
+<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2 id='组件整合列表'><span>组件整合列表</span></h2><h3 id='主要程序'><span>主要程序</span></h3><p><span>  </span><strong><span>☑ mpv-x64</span></strong><span> &lt;git_20210720&gt; 【运行主程序mpv.exe打开本体】</span>
+<span>  </span><strong><span>☑ libEGL &amp; libGLESv2</span></strong><span> &lt;git_2.1.16235&gt; 【OpenGL-ANGLE后端所需】</span>
+<span>  </span><strong><span>☑ Python-embed-amd64</span></strong><span> &lt;3.9.6&gt; 【环境支持】</span>
+<span>  </span><strong><span>☑ VapourSynth64-Portable</span></strong><span> </span><R54-RC1><span> 【帧服务器】</span>
+<span>  </span><strong><span>☑ FFmpeg</span></strong><span> &lt;20210718&gt; 【缩略图加速】</span>
+<span>  </span><strong><span>☑ youtube-dl</span></strong><span> &lt;20210606&gt; 【网络串流增强】</span>
+<span>  </span><strong><span>☑ yt-dlp</span></strong><span> &lt;20210707&gt; 【网络串流增强（备选）】</span></p><h3 id='额外'><span>额外</span></h3><p><span>&lt;20210723&gt;</span>
+<span>  </span><strong><span>☑ 封装</span></strong><span> 【必备运行库；安装脚本等】</span>
 <span>  </span><strong><span>☑ 系列手册</span></strong>
-<span>  </span><strong><span>☑ 特殊模式</span></strong><span> 仅用于测试用途</span></p><p><strong><span>☑ 脚本</span></strong>
-<span>  </span><strong><span>☑ autoload</span></strong><span> 自动加载同级目录视频</span>
-<span>  </span><strong><span>☑ cycle_adevice</span></strong><span> 快捷键 </span><code>Ctrl/Alt+a</code><span> 快速切换音频输出设备</span>
-<span>  </span><strong><span>☑ ontop_playback</span></strong><span> 仅在播放时置顶（需激活mpv.conf文件中的--ontop参数）</span>
-<span>  </span><strong><span>☑ open_file</span></strong><span> 快捷键 </span><code>Ctrl+o</code><span> 手动加载额外的视频文件</span>
-<span>  </span><strong><span>☑ playlistmanager</span></strong><span> 高级播放列表（适当精简）</span>
-<span>  </span><strong><span>☑ Thumbnailer</span></strong><span> 缩略图引擎</span>
-<span>  </span><strong><span>☑ mvtools_v23_win64</span></strong><span> 补帧</span>
-<span>  </span><strong><span>☑ SVPflow</span></strong><span> 补帧（发布帖有其他坛友的脚本）</span></p><p><strong><span>☑ 着色器</span></strong>
-<span>  </span><strong><span>☑ Krig</span></strong><span> 高级cscale色度升频</span>
-<span>  </span><strong><span>☑ Anime4K</span></strong><span> 动漫方向的视频画面优化</span>
-<span>  </span><strong><span>☑ ACNet</span></strong><span> 动漫方向的人工智能视频画面优化</span>
-<span>  </span><strong><span>☑ FSRCNNX</span></strong><span> 快速超分辨率卷积神经网络的放大算法</span>
-<span>  </span><strong><span>☑ AviSynth AiUpscale</span></strong><span> 和FSRCNNX同体系的放大算法</span>
-<span>  </span><strong><span>☑ RAVU</span></strong><span> 快速准确的图像超分辨率算法</span>
-<span>  </span><strong><span>☑ NNEDI3</span></strong><span> 可当作放大算法</span>
-<span>  </span><strong><span>☑ SSimDownscaler</span></strong><span> 高级缩小算法</span>
-<span>  </span><strong><span>☑ SSimSuperRes</span></strong><span> 对mpv内置放大算法的修正</span>
-<span>  </span><strong><span>☑ Adaptive Sharpen</span></strong><span> 自适应锐化</span>
-<span>  </span><strong><span>☑ CAS</span></strong><span> 对比度自适应锐化</span>
-<span>  </span><strong><span>☑ Noise static</span></strong><span> 优化静态噪点</span></p><p>&nbsp;</p><h1 id='其它'><span>其它</span></h1><p><span>mpv-lazy懒人包的更新地址： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
+<span>  </span><strong><span>☑ 特殊模式</span></strong><span> 【仅测试用途】</span></p><h3 id='脚本'><span>脚本</span></h3><p><span>&lt;20210723&gt;</span>
+<span>  </span><strong><span>☑ autoload</span></strong><span> 【自动加载同级目录视频】</span>
+<span>  </span><strong><span>☑ cycle_adevice</span></strong><span> 【快捷键 </span><code>Ctrl/Alt+a</code><span> 快速切换音频输出设备】</span>
+<span>  </span><strong><span>☑ ontop_playback</span></strong><span> 【仅在播放时置顶（需激活 mpv.conf 文件中的 </span><code>--ontop</code><span> 参数）】</span>
+<span>  </span><strong><span>☑ open_file</span></strong><span> 【快捷键 </span><code>Ctrl+o</code><span> 手动加载额外的视频文件】</span>
+<span>  </span><strong><span>☑ playlistmanager</span></strong><span> 【高级播放列表】</span>
+<span>  </span><strong><span>☑ Thumbnailer</span></strong><span> 【缩略图引擎】</span>
+<span>  </span><strong><span>☑ mvtools</span></strong><span> 【补帧】</span>
+<span>  </span><strong><span>☑ SVPflow</span></strong><span> 【补帧（发布帖有其他坛友的脚本）】</span></p><h3 id='着色器'><span>着色器</span></h3><p><span>&lt;20210723&gt;</span>
+<span>  </span><strong><span>☑ Krig</span></strong><span> 【高级cscale色度升频】</span>
+<span>  </span><strong><span>☑ Anime4K</span></strong><span> 【动漫向的视频画面优化】</span>
+<span>  </span><strong><span>☑ ACNet</span></strong><span> 【动漫向的人工智能视频画面优化】</span>
+<span>  </span><strong><span>☑ FSRCNNX</span></strong><span> 【快速超分辨率卷积神经网络的放大算法】</span>
+<span>  </span><strong><span>☑ AviSynth AiUpscale</span></strong><span> 【和FSRCNNX同体系的放大算法】</span>
+<span>  </span><strong><span>☑ RAVU</span></strong><span> 【快速准确的图像超分辨率算法】</span>
+<span>  </span><strong><span>☑ SuperXBR</span></strong><span> 【经典的放大算法】</span>
+<span>  </span><strong><span>☑ NNEDI3</span></strong><span> 【可当作放大算法】</span>
+<span>  </span><strong><span>☑ SSimDownscaler</span></strong><span> 【高级缩小算法】</span>
+<span>  </span><strong><span>☑ SSimSuperRes</span></strong><span> 【对mpv内置放大算法的修正】</span>
+<span>  </span><strong><span>☑ Adaptive Sharpen</span></strong><span> 【自适应锐化】</span>
+<span>  </span><strong><span>☑ CAS</span></strong><span> 【对比度自适应锐化】</span>
+<span>  </span><strong><span>☑ Noise static</span></strong><span> 【优化静态噪点】</span></p><p>&nbsp;</p><h1 id='其它'><span>其它</span></h1><p><span>mpv-lazy懒人包的更新地址： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
 <span>mpv-lazy项目地址： </span><a href='https://github.com/hooke007/MPV_lazy' target='_blank' class='url'>https://github.com/hooke007/MPV_lazy</a></p><p><span>从零开始的MPV播放器教程 </span><font color=blue><span>[win10]</span></font><span>： </span><a href='https://hooke007.github.io/mpv-lazy/mpv.html' target='_blank' class='url'>https://hooke007.github.io/mpv-lazy/mpv.html</a>
 <span>关于 </span><code>mpv.conf</code><span> 内参数设定的最新的描述文档： </span><a href='https://mpv.io/manual/master/' target='_blank' class='url'>https://mpv.io/manual/master/</a></p><p><span>Win10上我用过的最好的基于libmpv的弹幕播放器： </span><a href='https://kikoplay.fun/' target='_blank' class='url'>https://kikoplay.fun/</a><span> （官网）</span>
 <span>适用于小白的libmpv播放器： </span><a href='https://github.com/hooke007/mpv.net_CM' target='_blank' class='url'>https://github.com/hooke007/mpv.net_CM</a></p></div></div>

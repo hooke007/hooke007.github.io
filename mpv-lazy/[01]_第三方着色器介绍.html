@@ -6,7 +6,7 @@
 <link href='file://C://Users//hooke//AppData//Roaming//Typora/themes/purple.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
@@ -137,16 +137,6 @@ kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 
 .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
 code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.md-inline-math .MathJax_SVG .noError { display: none !important; }
-.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
-.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
-.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
-#math-inline-preview-content { zoom: 1.1; }
-.MathJax_SVG * { transition: none 0s ease 0s; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
@@ -165,9 +155,9 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-diagram-panel .messageText { stroke: none !important; }
 .md-diagram-panel .start-state { fill: var(--node-fill); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
 .md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
 .md-fences.md-fences-math { font-size: 1em; }
-.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
 .md-fences-advanced:not(.md-focus) { background: inherit; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
@@ -210,6 +200,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
 .typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
 .typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
 
 
 .CodeMirror { height: auto; }
@@ -256,12 +247,12 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 .CodeMirror { position: relative; overflow: hidden; }
 .CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
 .CodeMirror-sizer { position: relative; }
-.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
 .CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
-.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
 .CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
 .CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
-.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
 .CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
 .CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
 .CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
@@ -271,7 +262,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
 .CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
 .CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
 .CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
-.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
 .CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
 .CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
 .CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
@@ -894,32 +885,6 @@ input:focus {
 }
 @import "";
 
-:root {
-  --select-text-bg-color: #dae3ea;
-}
-pre {
-  --select-text-bg-color: #dae3ea;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-h1:after {
-  border-bottom: 2px solid var(--text-color);
-}
-
-h2 {
-  border-left: 9px solid var(--text-color);
-  border-bottom: 1px solid var(--text-color);
-}
-
 /* inline code */
 #write code,
 tt {
@@ -934,7 +899,6 @@ tt {
   border: 1px solid #e7eaed;
 }
 
-/* 引用 */
 blockquote {
   border-left: 0.2rem solid #dfe2e5;
 }
@@ -948,8 +912,8 @@ a {
   border-bottom: 1px solid var(--text-color);
 }
 #write a:hover {
-  border-bottom: 1px solid #777;
-  color: #777;
+  border-bottom: 1px solid var(--purple-light-4);
+  color: var(--link-color);
   text-decoration: none;
 }
 .md-content {
@@ -957,17 +921,163 @@ a {
 }
 
 
- :root {--mermaid-font-zoom:1em ;} 
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+ :root {--mermaid-font-zoom:2em ;} 
 </style><title>[01]_第三方着色器介绍</title>
 </head>
 <body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
-<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器介绍-v20210619">第三方着色器介绍 v20210619</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k">Anime4K</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#cas">CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器介绍-v20210619'><span>第三方着色器介绍 v20210619</span></h1><p><span>   \shaders\ 目录下通常放置编译好的第三方着色器，常见后缀名为 .glsl .hook</span>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器">第三方着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k">Anime4K</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#superxbr">SuperXBR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#cas">CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器'><span>第三方着色器</span></h1><p><em><span>ver.20210723</span></em></p><h1 ><span>...</span></h1><p><span>   我选择主设置文件夹下新建的 \shaders\ 目录下放置第三方着色器，常见后缀名为 .glsl .hook</span>
 <span>   通过编辑 </span><strong><span>mpv.conf</span></strong><span> / </span><strong><span>input.conf</span></strong><span> 自行决定自动/手动加载第三方着色器（语法见对应文件内示例）</span>
 <span>   部分放大着色器有最小缩放倍数的触发限制条件，即 </span><font color=pink><span>目标分辨率 ＞或＝ 源分辨率x最小触发倍数</span></font>
 <span>   通常AI类缩放算法无特别说明，都只对源执行一次双倍放大，不足/超过目标分辨率的部分由 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale/dscale</span></font><span> 算法接力执行</span>
 <span>   通过控制台console(`)和统计信息界面stats(shift+i → 2)共同检查着色器的工作状态</span></p><p><span>扩展阅读：</span>
 <span>关于色度、亮度升频和缩放：</span><a href='https://vcb-s.com/archives/2726' target='_blank' class='url'>https://vcb-s.com/archives/2726</a><span> 关于影像瑕疵：</span><a href='https://vcb-s.com/archives/4738' target='_blank' class='url'>https://vcb-s.com/archives/4738</a>
-<span>不同着色器/算法的比较参考：</span><a href='https://artoriuz.github.io/blog/mpv_upscaling.html' target='_blank' class='url'>https://artoriuz.github.io/blog/mpv_upscaling.html</a></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='anime4k'><span>Anime4K</span></h2><p><span>   它是一组开源的高质量的实时动漫缩放/降噪算法。在v1之前是个纯粹的锐化滤镜，v2引入人工智能卷积核，在v3之后进行了模块化改造。</span>
+<span>不同着色器/算法的比较参考：</span><a href='https://artoriuz.github.io/blog/mpv_upscaling.html' target='_blank' class='url'>https://artoriuz.github.io/blog/mpv_upscaling.html</a></p><p>&nbsp;</p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='anime4k'><span>Anime4K</span></h2><p><span>   它是一组开源的高质量的实时动漫缩放/降噪算法。在v1之前是个纯粹的锐化滤镜，v2引入人工智能卷积核，在v3之后进行了模块化改造。</span>
 <span>A4k不提供cscale色度升频着色器。</span>
 <span>M → L → UL 性能要求逐渐提高，处理结果越好</span>
 <span>多种模块组合使用的大致顺序推荐：降噪 → 去模糊 → 加深线条 → 细化线条 → 放大（→ 额外 → 二次放大）→ 抗重采样伪影</span>
@@ -1055,16 +1165,17 @@ a {
 <code>AiUpscale_HQ_2x_Photo.glsl</code>
 <code>AiUpscale_HQ_Sharp_2x_LineArt.glsl</code>
 <code>AiUpscale_HQ_Sharp_2x_Photo.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='adaptive-sharpen'><span>Adaptive Sharpen</span></h2><p><span>   自适应锐化</span></p><h2 id='krig'><span>Krig</span></h2><p><span>   利用亮度信息进行高质量的色度升频</span>
-<span>mpv目前最好的色度升频着色器，可以与其他缩放（</span><font color=orange><span>--scale/dscale</span></font><span>）算法共同使用</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法</span></p><h2 id='ssimdownscaler'><span>SSimDownscaler</span></h2><p><span>   基于感知的缩小算法增强</span></p><p><span>▲ 仅当 </span><strong><span>mpv.conf</span></strong><span> 中设定 </span><font color=orange><span>--dscale=mitchell</span></font><span>   </span><font color=orange><span>--linear-downscaling=no</span></font><span> 时正常工作</span></p><h2 id='ssimsuperres'><span>SSimSuperRes</span></h2><p><span>   该着色器的目的是对mpv内置 --scale=xxxxx 算法进行增强校正。</span></p><p><span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a>
+<span>mpv目前最好的色度升频着色器，可以与其他缩放（</span><font color=orange><span>--scale/dscale</span></font><span>）算法共同使用</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法</span></p><h2 id='ssimdownscaler'><span>SSimDownscaler</span></h2><p><span>   基于感知的缩小算法增强</span></p><p><span>▲ 仅当 </span><strong><span>mpv.conf</span></strong><span> 中设定 </span><font color=orange><span>--dscale=mitchell</span></font><span>   </span><font color=orange><span>--linear-downscaling=no</span></font><span> 时正常工作</span></p><h2 id='ssimsuperres'><span>SSimSuperRes</span></h2><p><span>   该着色器的目的是对mpv内置 --scale=xxxxx 算法进行增强校正。</span></p><p><span>以上四项及FSRCNNX皆由同一开发者移植</span>
+<span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a>
 <code>adaptive-sharpen.glsl</code>
 <code>KrigBilateral.glsl</code>
 <code>SSimDownscaler.glsl</code>
-<code>SSimSuperRes.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span></p><h2 id='nnedi3'><span>NNEDI3</span></h2><p><span>   全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。nnedi3版速度较快（即便如此相比其它算法依旧速度极慢，开销巨大）</span>
-<span>开发者在目录中提供了更多说明 </span><a href='https://github.com/bjin/mpv-prescalers' target='_blank' class='url'>https://github.com/bjin/mpv-prescalers</a></p><p><span>r2 → r3 → r4；</span><span>	</span><span>nns16 → nns32 → nns64 → nns128 → nns256；win8x4 → win8x6 质量更好但性能大增</span>
+<code>SSimSuperRes.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span>
+<span>   RAVU整体的性能消耗设计上比mpv内置的ewa系缩放器只略高。</span></p><h2 id='nnedi3'><span>NNEDI3</span></h2><p><span>   全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。nnedi3版速度较快（即便如此相比其它算法依旧速度极慢，开销巨大）</span></p><h2 id='superxbr'><span>SuperXBR</span></h2><p><span>   一个经典的整数倍放大算法，消耗介于NNEDI3和RAVU之间。</span></p><p><span>以上三项由同一开发者移植，在项目中提供了更多说明： </span><a href='https://github.com/bjin/mpv-prescalers' target='_blank' class='url'>https://github.com/bjin/mpv-prescalers</a></p><p>&nbsp;</p><p><span>r2 → r3 → r4；</span><span>	</span><span>nns16 → nns32 → nns64 → nns128 → nns256；win8x4 → win8x6 质量更好但性能大增</span>
 <span>开发者的 </span><strong><span>\compute</span></strong><span> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 </span><strong><span>\gather</span></strong><span> 内的（OpenGL≥4.0）更快，后者比 </span><strong><span>主目录 \master</span></strong><span> 的更快</span>
-<span> </span><strong><span>\vulkan</span></strong><span> 内的需要 </span><strong><span>mpv.conf</span></strong><span> 内配置为 </span><font color=orange><span>--gpu-api=d3d11</span></font><span>或</span><font color=orange><span>vulkan</span></font><span>   </span><font color=orange><span>--fbo-format=rgba16hf</span></font></p><p><span>▲ 除了 </span><font color=blue><span> -chroma </span></font><span> 变体（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法），其它只处理(YUV)luma通道（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法）</span>
-<span>▲  </span><font color=blue><span> -3x </span></font><span> 变体直接放大三倍，适用于超低清源。 </span><font color=blue><span> -lite </span></font><span> 变体最快最锐利但无半像素偏移，可能产生锯齿和晕轮/振铃。 </span><font color=blue><span> -rgb </span></font><span> 和 </span><font color=blue><span> -yuv </span></font><span> 变体在 </span><font color=orange><span> --cscale </span></font><span> 执行完之后开始作用，但 </span><font color=blue><span> -yuv </span></font><span> 无法处理rgb的源（例如png图片）</span>
-<span>▲ 关于半像素偏移，除了 </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -chroma </span></font><span> 变体，其它ravu和nnedi3中都存在。可以用 </span><strong><span>mpv.conf</span></strong><span> 中的 </span><font color=orange><span>--scaler-resizes-only=no</span></font><span> 修正它，但是没必要（感知不强）</span></p><p><span>▲  </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -lite </span></font><span> 变体的最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>， </span><font color=blue><span> ravu-3x-r </span></font><span> 变体最小缩放触发倍率约为</span><font color=red><span>2.121</span></font><span>。 </span><font color=blue><span> -zoom </span></font><span> 变体直接放大到目标分辨率，触发倍率</span><font color=red><span>＞1</span></font><span>；nnedi3最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>，对性能要求极高且瞬时加载易假死，建议使用（条件）配置预载而不是 </span><strong><span>input.conf</span></strong><span> 中的热键切换触发， </span><font color=blue><span> -nns64 </span></font><span> 级别以上的因速度极慢而很难即时观看时使用。</span></p><p><span>懒人包内精简并保留的部分列表：</span>
+<span> </span><strong><span>\vulkan</span></strong><span> 内的需要 </span><strong><span>mpv.conf</span></strong><span> 内配置为 </span><font color=orange><span>--gpu-api=d3d11</span></font><span>或</span><font color=orange><span>vulkan</span></font><span>   </span><font color=orange><span>--fbo-format=rgba16hf</span></font></p><p><span> </span><font color=blue><span> -3x </span></font><span> 变体直接放大三倍，适用于超低清源。 </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -3x </span></font><span> 变体的训练模型为动漫， </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -zoom </span></font><span> 变体为通用模型。</span></p><p><span>▲ 除了 </span><font color=blue><span> -chroma </span></font><span> 变体（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法），其它只处理(YUV)luma通道（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法）</span>
+<span>▲  </span><font color=blue><span> -lite </span></font><span> 变体最快最锐利但无半像素偏移，可能产生锯齿和晕轮/振铃。 </span><font color=blue><span> -rgb </span></font><span> 和 </span><font color=blue><span> -yuv </span></font><span> 变体在 </span><font color=orange><span> --cscale </span></font><span> 执行完之后开始作用，但 </span><font color=blue><span> -yuv </span></font><span> 无法处理rgb的源（例如png图片）</span>
+<span>▲ 关于半像素偏移，除了 </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -chroma </span></font><span> 变体，其它ravu和nnedi3和sxbr中都存在。可以用 </span><strong><span>mpv.conf</span></strong><span> 中的 </span><font color=orange><span>--scaler-resizes-only=no</span></font><span> 修正它，但是没必要（感知不强）</span></p><p><span>▲ sxbr没有触发倍率限制； </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -lite </span></font><span> 变体的最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>， </span><font color=blue><span> ravu-3x-r </span></font><span> 变体最小缩放触发倍率约为</span><font color=red><span>2.121</span></font><span>。 </span><font color=blue><span> -zoom </span></font><span> 变体直接放大到目标分辨率，触发倍率</span><font color=red><span>＞1</span></font><span>；nnedi3最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>，对性能要求极高且瞬时加载易假死，建议使用（条件）配置预载而不是 </span><strong><span>input.conf</span></strong><span> 中的热键切换触发， </span><font color=blue><span> -nns64 </span></font><span> 级别以上的因速度极慢而很难即时观看时使用。</span></p><p><span>懒人包内精简并保留的部分列表：</span>
 <span>   来自 \vulkan\compute\</span>
 <code>ravu-3x-r2.hook</code>
 <code>ravu-3x-r2-rgb.hook</code>
@@ -1108,7 +1219,10 @@ a {
 <code>nnedi3-nns128-win8x4.hook</code>
 <code>nnedi3-nns128-win8x6.hook</code>
 <code>nnedi3-nns256-win8x4.hook</code>
-<code>nnedi3-nns256-win8x6.hook</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='cas'><span>CAS</span></h2><p><span>   (Contrast Adaptive Sharpening) 对比度自适应锐化是一种低开销的锐化算法</span>
+<code>nnedi3-nns256-win8x6.hook</code></p><p><span>   来自 \</span>
+<code>superxbr.hook</code>
+<code>superxbr-rgb.hook</code>
+<code>superxbr-yuv.hook</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='cas'><span>CAS</span></h2><p><span>   (Contrast Adaptive Sharpening) 对比度自适应锐化是一种低开销的锐化算法</span>
 <span>移植自AMD FidelityFX CAS，来源：</span><a href='https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas</a>
 <span>▲ 参考同前 </span><font color=blue><span> -yuv </span></font><span> 变体， </span><font color=blue><span> _luma </span></font><span> 变体无法处理rgb的源</span></p><p><span>相关列表：</span>
 <code>cas_luma.glsl</code>
@@ -1123,8 +1237,8 @@ a {
 <span>   反直觉的是，经过上一级着色器放大后的源大小变成了放大后的尺寸。遵守这一规则的有：Anime4k中的其它放大变体;ACNet;FSRCNNX;AviSynth AiUpscale;RAVU;NNEDI3</span></p><p><span>例一：在1440p显示器上打开一个1080p视频全屏，此时你（只要性能足够）可以无限叠加n个 </span><code>Anime4K_Upscale_Original_x2.glsl</code><span> 无障碍实现2^n倍放大。</span>
 <span>例二：同上的硬件环境，720p的视频先调用了nnedi3再调用fsrcnnx进行二次放大，你可能发现无法真实触发后者，原因在于720p的视频经过nnedi3第一次放大后被后方加载的fsrcnnx认为源是(720x2=)1440p，此时2k的显示器在全屏模式的分辨率并不满足fsrcnnx的最小放大触发倍率</span></p><h1 id='快捷键动态启用'><span>快捷键动态启用</span></h1><p><span>适用于 </span><strong><span>input.conf</span></strong>
 <span>   语法结构： </span><code>按键(组合)   change-list   glsl-shaders   (不带&quot;-&quot;的)后缀   着色器(组合)</code></p><p><a href='https://mpv.io/manual/master/#string-list-and-path-list-options' target='_blank' class='url'>https://mpv.io/manual/master/#string-list-and-path-list-options</a></p><figure><table><thead><tr><th style='text-align:left;' ><span>可用后缀</span></th><th style='text-align:left;' ><span>说明（不推荐的语法可能在将来被弃用）</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-set</span></td><td style='text-align:left;' ><span>设置着色器列表为一个或多个着色器（使用 </span><code>;</code><span> 分隔多个着色器，使用 </span><code>\</code><span> 作为转义符）</span></td></tr><tr><td style='text-align:left;' ><span>-append</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方</span></td></tr><tr><td style='text-align:left;' ><span>-add</span></td><td style='text-align:left;' ><span>追加一个或多个着色器到着色器列表的后方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-pre</span></td><td style='text-align:left;' ><span>增加一个或多个着色器到着色器列表的前方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-clr</span></td><td style='text-align:left;' ><span>清空着色器列表</span></td></tr><tr><td style='text-align:left;' ><span>-remove</span></td><td style='text-align:left;' ><span>移除一个列表中已存在的着色器</span></td></tr><tr><td style='text-align:left;' ><span>-del</span></td><td style='text-align:left;' ><span>移除一个或多个列表中已存在的着色器（不推荐）</span></td></tr><tr><td style='text-align:left;' ><span>-toggle</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方，如果已存在则移除它</span></td></tr></tbody></table></figure><p><span>支持使用mpv的相对路径（比如 </span><code>~~/</code><span> 指向主设置文件夹）</span>
-<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.75px; left: 33px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 25px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -25px; width: 25px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -25px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 18px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.hook;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="height: 26px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 25px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
-<span>   实际速度</span><strong><span>极大</span></strong><span>取决于</span><font color=pink><span>视频的质量</span></font><span>、</span><font color=pink><span>缩放倍率</span></font><span>和你的</span><font color=pink><span>显卡性能</span></font><span>，因此两表中同一个 fsrcnnx16 的性能差异不符合常理也不要奇怪，数据仅供大概参考。</span></p><p><em><span>数据来源 GitHub@Alexkral</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>着 色 器</span></th><th style='text-align:center;' ><span>mpv_2x : 1080p → 2160p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>A4k M</span></td><td style='text-align:center;' ><span>407</span></td></tr><tr><td style='text-align:center;' ><span>A4k L</span></td><td style='text-align:center;' ><span>287</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 8</span></td><td style='text-align:center;' ><span>256</span></td></tr><tr><td style='text-align:center;' ><span>AiU Fast</span></td><td style='text-align:center;' ><span>145</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>93</span></td></tr><tr><td style='text-align:center;' ><span>A4k UL</span></td><td style='text-align:center;' ><span>75</span></td></tr><tr><td style='text-align:center;' ><span>AiU M</span></td><td style='text-align:center;' ><span>51</span></td></tr><tr><td style='text-align:center;' ><span>AiU HQ</span></td><td style='text-align:center;' ><span>26</span></td></tr></tbody></table></figure><p><em><span>数据来源 GitHub@Artoriuz</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>算法&amp;着色器</span></th><th style='text-align:center;' ><span>mpv_2x : 720p → 1440p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>bilinear</span></td><td style='text-align:center;' ><span>468</span></td></tr><tr><td style='text-align:center;' ><span>spline36</span></td><td style='text-align:center;' ><span>383</span></td></tr><tr><td style='text-align:center;' ><span>ewa_lanczossharp</span></td><td style='text-align:center;' ><span>338</span></td></tr><tr><td style='text-align:center;' ><span>RAVU lite r4</span></td><td style='text-align:center;' ><span>307</span></td></tr><tr><td style='text-align:center;' ><span>RAVU r4</span></td><td style='text-align:center;' ><span>238</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 16 8x4</span></td><td style='text-align:center;' ><span>210</span></td></tr><tr><td style='text-align:center;' ><span>SSSR</span></td><td style='text-align:center;' ><span>169</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 32 8x4</span></td><td style='text-align:center;' ><span>156</span></td></tr><tr><td style='text-align:center;' ><span>RAVU zoom r4</span></td><td style='text-align:center;' ><span>138</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 64 8x4</span></td><td style='text-align:center;' ><span>99</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 128 8x4</span></td><td style='text-align:center;' ><span>55</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>52</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 256 8x4</span></td><td style='text-align:center;' ><span>30</span></td></tr></tbody></table></figure></div></div>
+<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.625px; left: 33px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 25px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -25px; width: 25px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -25px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 18px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.hook;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 51px;"></div><div class="CodeMirror-gutters" style="height: 51px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 25px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
+<span>   实际速度</span><strong><span>极大</span></strong><span>取决于</span><font color=pink><span>视频的质量</span></font><span>、</span><font color=pink><span>缩放倍率</span></font><span>和你的</span><font color=pink><span>显卡性能</span></font><span>，因此两表中同一个 fsrcnnx16 的性能差异不符合常理也不要奇怪，数据仅供大概参考。</span></p><p><em><span>数据来源 GitHub@Alexkral(NVIDIA GTX 1080)</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>着 色 器</span></th><th style='text-align:center;' ><span>mpv_2x : 1080p → 2160p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>A4k M</span></td><td style='text-align:center;' ><span>407</span></td></tr><tr><td style='text-align:center;' ><span>A4k L</span></td><td style='text-align:center;' ><span>287</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 8</span></td><td style='text-align:center;' ><span>256</span></td></tr><tr><td style='text-align:center;' ><span>AiU Fast</span></td><td style='text-align:center;' ><span>145</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>93</span></td></tr><tr><td style='text-align:center;' ><span>A4k UL</span></td><td style='text-align:center;' ><span>75</span></td></tr><tr><td style='text-align:center;' ><span>AiU M</span></td><td style='text-align:center;' ><span>51</span></td></tr><tr><td style='text-align:center;' ><span>AiU HQ</span></td><td style='text-align:center;' ><span>26</span></td></tr></tbody></table></figure><p><em><span>数据来源 GitHub@Artoriuz</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>算法&amp;着色器</span></th><th style='text-align:center;' ><span>mpv_2x : 720p → 1440p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>bilinear</span></td><td style='text-align:center;' ><span>468</span></td></tr><tr><td style='text-align:center;' ><span>spline36</span></td><td style='text-align:center;' ><span>383</span></td></tr><tr><td style='text-align:center;' ><span>ewa_lanczossharp</span></td><td style='text-align:center;' ><span>338</span></td></tr><tr><td style='text-align:center;' ><span>RAVU lite r4</span></td><td style='text-align:center;' ><span>307</span></td></tr><tr><td style='text-align:center;' ><span>RAVU r4</span></td><td style='text-align:center;' ><span>238</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 16 8x4</span></td><td style='text-align:center;' ><span>210</span></td></tr><tr><td style='text-align:center;' ><span>SSSR</span></td><td style='text-align:center;' ><span>169</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 32 8x4</span></td><td style='text-align:center;' ><span>156</span></td></tr><tr><td style='text-align:center;' ><span>RAVU zoom r4</span></td><td style='text-align:center;' ><span>138</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 64 8x4</span></td><td style='text-align:center;' ><span>99</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 128 8x4</span></td><td style='text-align:center;' ><span>55</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>52</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 256 8x4</span></td><td style='text-align:center;' ><span>30</span></td></tr></tbody></table></figure></div></div>
 
 <script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
 </html>
