@@ -3,7 +3,7 @@
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 
-<link href='file://C://Users//hooke//AppData//Roaming//Typora/themes/purple.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
 .mac-os-11 { --title-bar-height:28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
@@ -948,208 +948,221 @@ a {
 }
 
 
-
-mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-  min-height: 1px;
-  min-width: 1px;
-}
-
-mjx-container[jax="SVG"] > svg a {
-  fill: blue;
-  stroke: blue;
-}
-
-mjx-assistive-mml {
-  position: absolute !important;
-  top: 0px;
-  left: 0px;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 1px 0px 0px 0px !important;
-  border: 0px !important;
-  display: block !important;
-  width: auto !important;
-  overflow: hidden !important;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-mjx-assistive-mml[display="block"] {
-  width: 100% !important;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][display="true"][width="full"] {
-  display: flex;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > g > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
-  stroke-width: 3;
-}
-
-g[data-mml-node="xypic"] path {
-  stroke-width: inherit;
-}
-
-.MathJax g[data-mml-node="xypic"] path {
-  stroke-width: inherit;
-}
  :root {--mermaid-font-zoom:2em ;} 
 </style><title>[01]_第三方着色器介绍</title>
 </head>
 <body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
-<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器">第三方着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k">Anime4K</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#superxbr">SuperXBR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#cas">CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器'><span>第三方着色器</span></h1><p><em><span>ver.20210729</span></em></p><h1 ><span>...</span></h1><p><span>   我选择主设置文件夹下新建的 \shaders\ 目录下放置第三方着色器，常见后缀名为 .glsl .hook</span>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器">第三方着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k">Anime4K</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#superxbr">SuperXBR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#cas">CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实际工作顺序">实际工作顺序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#附录">附录</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-v3-v31">Anime4k v3-v3.1</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器'><span>第三方着色器</span></h1><p><em><span>ver.20210818</span></em></p><h1 ><span>...</span></h1><p><span>   我选择主设置文件夹下新建的 </span><strong><span>shaders</span></strong><span> 目录下放置第三方着色器，常见后缀名为 .glsl .hook</span>
 <span>   通过编辑 </span><strong><span>mpv.conf</span></strong><span> / </span><strong><span>input.conf</span></strong><span> 自行决定自动/手动加载第三方着色器（语法见对应文件内示例）</span>
 <span>   部分放大着色器有最小缩放倍数的触发限制条件，即 </span><font color=pink><span>目标分辨率 ＞或＝ 源分辨率x最小触发倍数</span></font>
 <span>   通常AI类缩放算法无特别说明，都只对源执行一次双倍放大，不足/超过目标分辨率的部分由 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale/dscale</span></font><span> 算法接力执行</span>
 <span>   通过控制台console(`)和统计信息界面stats(shift+i → 2)共同检查着色器的工作状态</span></p><p><span>扩展阅读：</span>
 <span>关于色度、亮度升频和缩放：</span><a href='https://vcb-s.com/archives/2726' target='_blank' class='url'>https://vcb-s.com/archives/2726</a><span> 关于影像瑕疵：</span><a href='https://vcb-s.com/archives/4738' target='_blank' class='url'>https://vcb-s.com/archives/4738</a>
-<span>不同着色器/算法的比较参考：</span><a href='https://artoriuz.github.io/blog/mpv_upscaling.html' target='_blank' class='url'>https://artoriuz.github.io/blog/mpv_upscaling.html</a></p><p>&nbsp;</p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='anime4k'><span>Anime4K</span></h2><p><span>   它是一组开源的高质量的实时动漫缩放/降噪算法。在v1之前是个纯粹的锐化滤镜，v2引入人工智能卷积核，在v3之后进行了模块化改造。</span>
-<span>A4k不提供cscale色度升频着色器。</span>
-<span>M → L → UL 性能要求逐渐提高，处理结果越好</span>
+<span>不同着色器/算法的比较参考：</span><a href='https://artoriuz.github.io/blog/mpv_upscaling.html' target='_blank' class='url'>https://artoriuz.github.io/blog/mpv_upscaling.html</a></p><p>&nbsp;</p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='anime4k'><span>Anime4K</span></h2><p><span>   它是一组开源的高质量的实时动漫缩放/降噪算法。在v1之前是个纯粹的锐化滤镜，v2引入人工智能卷积核，在v3之后进行了模块化改造，目前版本v4在局部场景下能达到waifu2x的效果。</span>
+<span>A4k不提供cscale色度升频类着色器。(v3.2-v4不兼容v3.1及之前的版本，旧版与区别说明见 </span><strong><span>附录</span></strong><span> 部分)</span></p><p><span>S → M → L → VL → UL 性能要求逐渐提高（处理耗时大致加倍），处理结果越好</span></p><p><span>   去模糊系列：（推荐 </span><strong><span>Anime4K_Deblur_DoG.glsl</span></strong><span> 变体）</span>
+<code>Anime4K_Deblur_DoG.glsl</code>
+<code>Anime4K_Deblur_Original.glsl</code></p><p><span>   降噪系列： Mean → Mode → Median 速度逐渐变慢。（推荐 </span><strong><span>Anime4K_Denoise_Bilateral_Mode.glsl</span></strong><span> 变体）</span>
+<code>Anime4K_Denoise_Bilateral_Mean.glsl</code>
+<code>Anime4K_Denoise_Bilateral_Mode.glsl</code>
+<code>Anime4K_Denoise_Bilateral_Median.glsl</code></p><p><span>   线条加深、变细系列： VeryFast → Fast → HQ 速度逐渐变慢。（推荐 </span><strong><span>Anime4K_Darken_HQ.glsl</span></strong><span> 和 </span><strong><span>Anime4K_Thin_HQ.glsl</span></strong><span> 变体）</span>
+<code>Anime4K_Darken_VeryFast.glsl</code>
+<code>Anime4K_Darken_Fast.glsl</code>
+<code>Anime4K_Darken_HQ.glsl</code></p><p><code>Anime4K_Thin_VeryFast.glsl</code>
+<code>Anime4K_Thin_Fast.glsl</code>
+<code>Anime4K_Thin_HQ.glsl</code></p><p><span>   线条重建系列： Light → Moderate ；  </span><font color=blue><span> Soft </span></font><span> 为柔化（抗锯齿）的版本（推荐 </span><strong><span>Anime4K_Restore_CNN_Moderate_M.glsl</span></strong><span> 变体）</span>
+<code>Anime4K_Restore_CNN_Light_S.glsl</code>
+<code>Anime4K_Restore_CNN_Light_M.glsl</code>
+<code>Anime4K_Restore_CNN_Light_L.glsl</code>
+<code>Anime4K_Restore_CNN_Light_VL.glsl</code>
+<code>Anime4K_Restore_CNN_Light_UL.glsl</code>
+<code>Anime4K_Restore_CNN_Light_Soft_S.glsl</code>
+<code>Anime4K_Restore_CNN_Light_Soft_M.glsl</code>
+<code>Anime4K_Restore_CNN_Light_Soft_L.glsl</code>
+<code>Anime4K_Restore_CNN_Light_Soft_VL.glsl</code>
+<code>Anime4K_Restore_CNN_Light_Soft_UL.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_S.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_M.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_L.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_VL.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_UL.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_Soft_S.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_Soft_M.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_Soft_L.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_Soft_VL.glsl</code>
+<code>Anime4K_Restore_CNN_Moderate_Soft_UL.glsl</code></p><p><span>   放大系列： </span><font color=blue><span> CNN </span></font><span> 变体最小缩放触发倍率为</span><font color=red><span>1.2</span></font><span>。 </span><font color=blue><span>  Original  </span></font><span>  变体始终执行二倍放大且无缩放触发倍率限制。</span>
+<code>Anime4K_Upscale_CNN_x2_S.glsl</code>
+<code>Anime4K_Upscale_CNN_x2_M.glsl</code>
+<code>Anime4K_Upscale_CNN_x2_L.glsl</code>
+<code>Anime4K_Upscale_CNN_x2_VL.glsl</code>
+<code>Anime4K_Upscale_CNN_x2_UL.glsl</code>
+<code>Anime4K_Upscale_Original_x2.glsl</code></p><p><span>   放大为主的混合系列： 以下除 </span><font color=blue><span> Deblur_Original </span></font><span> （无限制）外，最小缩放触发倍率皆为</span><font color=red><span>1.2</span></font><span>。</span>
+<code>Anime4K_Upscale_DoG_x2.glsl</code>
+<code>Anime4K_Upscale_DTD_x2.glsl</code>
+<code>Anime4K_Upscale_Deblur_Original_x2.glsl</code>
+<code>Anime4K_Upscale_Deblur_DoG_x2.glsl</code>
+<code>Anime4K_Upscale_Denoise_CNN_x2_S.glsl</code>
+<code>Anime4K_Upscale_Denoise_CNN_x2_M.glsl</code>
+<code>Anime4K_Upscale_Denoise_CNN_x2_L.glsl</code>
+<code>Anime4K_Upscale_Denoise_CNN_x2_VL.glsl</code>
+<code>Anime4K_Upscale_Denoise_CNN_x2_UL.glsl</code></p><p><span>   其它系列：</span>
+<span>   AutoDownscalePre 常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率远超显示设备分辨率），也可用于4k屏两次放大720p视频。该着色器位置放在两次放大着色器之间。</span>
+<span>   Clamp 主要用于抗振铃。该着色器位置放在所有后处理着色器之前。</span>
+<code>Anime4K_AutoDownscalePre_x4.glsl</code>
+<code>Anime4K_Clamp_Highlights.glsl</code></p><p><span>追加说明：对新版着色器的混合顺序为 Clamp → Restore → Upscale → AutoDownscalePre → Upscale ...（仅作为推荐，可自行调节删改）</span>
+<span>通常仅需一个 </span><strong><span>Anime4K_Restore_CNN_Moderate_M.glsl</span></strong><span> 模块即满足大多数人的口味（适度画面修复+弱感知强化+微量伪影引入）</span></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='acnet'><span>ACNet</span></h2><p><span>   是Anime4KCPP-Net的缩写，设计用于高性能动画风格的图像和视频放大，它与Asymmetric Convolution Net(缩写重名ACNet)无关，与现在的Anime4k也无太大关联。ACNet是Anime4KCPP自己的基于CNN的算法。</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
+<span>🔺 最小缩放触发倍率为</span><font color=red><span>1.2</span></font>
+<span>副作用： </span><font color=blue><span> HDN </span></font><span> 变体能更好的降噪，等级1 → 2 → 3，越高降噪效果越好，但可能导致模糊和缺少细节。</span></p><p><span>相关列表：</span><a href='https://github.com/TianZerL/ACNetGLSL' target='_blank' class='url'>https://github.com/TianZerL/ACNetGLSL</a>
+<code>ACNet.glsl</code>
+<code>ACNet_HDN_L1.glsl</code>
+<code>ACNet_HDN_L2.glsl</code>
+<code>ACNet_HDN_L3.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='fsrcnnx'><span>FSRCNNX</span></h2><p><span>   由原始SRCNN发展而来，是FSRCNN的变体，较快速的通用型AI放大算法。</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
+<span>🔺 最小缩放触发倍率为</span><font color=red><span>1.3</span></font>
+<span> </span><font color=blue><span> LineArt </span></font><span> 和 </span><font color=blue><span> anime </span></font><span> 变体更适合2d动画</span>
+<span> </span><font color=blue><span> enhance </span></font><span> 变体在去除伪影强度上更大</span></p><p><span>副作用： </span><font color=blue><span> 16-0-4-1 </span></font><span> 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</span></p><p><span>相关列表：</span><a href='https://github.com/igv/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/igv/FSRCNN-TensorFlow</a><span> &amp; </span><a href='https://github.com/HelpSeeker/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/HelpSeeker/FSRCNN-TensorFlow</a>
+<code>FSRCNNX_x2_8-0-4-1.glsl</code>
+<code>FSRCNNX_x2_8-0-4-1_LineArt.glsl</code>
+<code>FSRCNNX_x2_16-0-4-1.glsl</code>
+<code>FSRCNNX_x2_16-0-4-1_anime_enhance.glsl</code>
+<code>FSRCNNX_x2_16-0-4-1_enhance.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='avisynth-aiupscale'><span>AviSynth AiUpscale</span></h2><p><span>   名字奇怪是因为开发者主要移植到AviSynth+上用的，和FSRCNNX有相似的体系结构，但使用了不同的滤镜。</span></p><p><span> x2 x3 x4 分别对应 二倍 三倍 四倍 放大</span>
+<span>质量上 </span><font color=blue><span> Fast </span></font><span> 弱于 </span><font color=blue><span> Medium </span></font><span> 弱于 </span><font color=blue><span> HQ </span></font>
+<span>性能需求上 Fast2x 介于 FSRCNNX8 和 FSRCNNX16 之间， 但是 Medium2x 远高于 FSRCNNX16， 变体 </span><font color=blue><span> HQ </span></font><span> 因速度极慢而难以用于高质量片源</span>
+<font color=blue><span> LineArt </span></font><span> 适合2D画面而 </span><font color=blue><span> Photo </span></font><span> 适合现实类画面</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
+<span>🔺 不同倍率对应的最小缩放触发倍率分别为</span><font color=red><span>1.4</span></font><span>   </span><font color=red><span>2.4</span></font><span>   </span><font color=red><span>3.4</span></font></p><p><span>出于实用角度，懒人包内仅保留2x的变体</span>
+<span>相关列表：</span><a href='https://github.com/Alexkral/AviSynthAiUpscale' target='_blank' class='url'>https://github.com/Alexkral/AviSynthAiUpscale</a>
+<code>AiUpscale_Fast_2x_LineArt.glsl</code>
+<code>AiUpscale_Fast_2x_Photo.glsl</code>
+<code>AiUpscale_Fast_Sharp_2x_LineArt.glsl</code>
+<code>AiUpscale_Fast_Sharp_2x_Photo.glsl</code>
+<code>AiUpscale_Medium_2x_LineArt.glsl</code>
+<code>AiUpscale_Medium_2x_Photo.glsl</code>
+<code>AiUpscale_Medium_Sharp_2x_LineArt.glsl</code>
+<code>AiUpscale_Medium_Sharp_2x_Photo.glsl</code>
+<code>AiUpscale_HQ_2x_LineArt.glsl</code>
+<code>AiUpscale_HQ_2x_Photo.glsl</code>
+<code>AiUpscale_HQ_Sharp_2x_LineArt.glsl</code>
+<code>AiUpscale_HQ_Sharp_2x_Photo.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='adaptive-sharpen'><span>Adaptive Sharpen</span></h2><p><span>   自适应锐化</span></p><h2 id='krig'><span>Krig</span></h2><p><span>   利用亮度信息进行高质量的色度升频</span>
+<span>mpv目前最好的色度升频着色器，可以与其他缩放（</span><font color=orange><span>--scale/dscale</span></font><span>）算法共同使用</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法</span></p><h2 id='ssimdownscaler'><span>SSimDownscaler</span></h2><p><span>   基于感知的缩小算法增强</span></p><p><span>🔺 仅当 </span><strong><span>mpv.conf</span></strong><span> 中设定 </span><font color=orange><span>--dscale=mitchell</span></font><span>   </span><font color=orange><span>--linear-downscaling=no</span></font><span> 时正常工作</span></p><h2 id='ssimsuperres'><span>SSimSuperRes</span></h2><p><span>   该着色器的目的是对mpv内置 --scale=xxxxx 算法进行增强校正。</span></p><p><span>以上四项及FSRCNNX皆由同一开发者移植</span>
+<span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a>
+<code>adaptive-sharpen.glsl</code>
+<code>KrigBilateral.glsl</code>
+<code>SSimDownscaler.glsl</code>
+<code>SSimSuperRes.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span>
+<span>   RAVU整体的性能消耗设计上比mpv内置的ewa系缩放器只略高。</span></p><h2 id='nnedi3'><span>NNEDI3</span></h2><p><span>   全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。nnedi3版速度较快（即便如此相比其它算法依旧速度极慢，开销巨大）</span></p><h2 id='superxbr'><span>SuperXBR</span></h2><p><span>   一个经典的整数倍放大算法，消耗介于NNEDI3和RAVU之间。</span></p><p><span>以上三项由同一开发者移植，在项目中提供了更多说明： </span><a href='https://github.com/bjin/mpv-prescalers' target='_blank' class='url'>https://github.com/bjin/mpv-prescalers</a></p><p>&nbsp;</p><p><span>r2 → r3 → r4；</span><span>	</span><span>nns16 → nns32 → nns64 → nns128 → nns256；win8x4 → win8x6 质量更好但性能大增</span>
+<span>开发者的 </span><strong><span>\compute</span></strong><span> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 </span><strong><span>\gather</span></strong><span> 内的（OpenGL≥4.0）更快，后者比 </span><strong><span>主目录 \master</span></strong><span> 的更快</span>
+<span> </span><strong><span>\vulkan</span></strong><span> 内的需要 </span><strong><span>mpv.conf</span></strong><span> 内配置为 </span><font color=orange><span>--gpu-api=d3d11</span></font><span>或</span><font color=orange><span>vulkan</span></font><span>   </span><font color=orange><span>--fbo-format=rgba16hf</span></font></p><p><span> </span><font color=blue><span> -3x </span></font><span> 变体直接放大三倍，适用于超低清源。 </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -3x </span></font><span> 变体的训练模型为动漫， </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -zoom </span></font><span> 变体为通用模型。</span></p><p><span>🔺 除了 </span><font color=blue><span> -chroma </span></font><span> 变体（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法），其它只处理(YUV)luma通道（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法）</span>
+<span>🔺  </span><font color=blue><span> -lite </span></font><span> 变体最快最锐利但无半像素偏移，可能产生锯齿和晕轮/振铃。 </span><font color=blue><span> -rgb </span></font><span> 和 </span><font color=blue><span> -yuv </span></font><span> 变体在 </span><font color=orange><span> --cscale </span></font><span> 执行完之后开始作用，但 </span><font color=blue><span> -yuv </span></font><span> 无法处理rgb的源（例如png图片）</span>
+<span>🔺 关于半像素偏移，除了 </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -chroma </span></font><span> 变体，其它ravu和nnedi3和sxbr中都存在。可以用 </span><strong><span>mpv.conf</span></strong><span> 中的 </span><font color=orange><span>--scaler-resizes-only=no</span></font><span> 修正它，但是没必要（感知不强）</span></p><p><span>🔺 sxbr没有触发倍率限制； </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -lite </span></font><span> 变体的最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>， </span><font color=blue><span> ravu-3x-r </span></font><span> 变体最小缩放触发倍率约为</span><font color=red><span>2.121</span></font><span>。 </span><font color=blue><span> -zoom </span></font><span> 变体直接放大到目标分辨率，触发倍率</span><font color=red><span>＞1</span></font><span>；nnedi3最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>，对性能要求极高且瞬时加载易假死，建议使用（条件）配置预载而不是 </span><strong><span>input.conf</span></strong><span> 中的热键切换触发， </span><font color=blue><span> -nns64 </span></font><span> 级别以上的因速度极慢而很难即时观看时使用。</span></p><p><span>懒人包内精简并保留的部分列表（已统一修改后缀格式名为glsl）：</span>
+<span>   来自 </span><em><span>*\vulkan\compute</span><span>*</span></em>
+<code>ravu-3x-r2.glsl</code>
+<code>ravu-3x-r2-rgb.glsl</code>
+<code>ravu-3x-r2-yuv.glsl</code>
+<code>ravu-3x-r3.glsl</code>
+<code>ravu-3x-r3-rgb.glsl</code>
+<code>ravu-3x-r3-yuv.glsl</code>
+<code>ravu-3x-r4.glsl</code>
+<code>ravu-3x-r4-rgb.glsl</code>
+<code>ravu-3x-r4-yuv.glsl</code>
+<code>ravu-lite-r2.glsl</code>
+<code>ravu-lite-r3.glsl</code>
+<code>ravu-lite-r4.glsl</code>
+<code>ravu-r2.glsl</code>
+<code>ravu-r2-rgb.glsl</code>
+<code>ravu-r2-yuv.glsl</code>
+<code>ravu-r3.glsl</code>
+<code>ravu-r3-rgb.glsl</code>
+<code>ravu-r3-yuv.glsl</code>
+<code>ravu-r4.glsl</code>
+<code>ravu-r4-rgb.glsl</code>
+<code>ravu-r4-yuv.glsl</code>
+<code>ravu-zoom-r2.glsl</code>
+<code>ravu-zoom-r2-chroma.glsl</code>
+<code>ravu-zoom-r2-rgb.glsl</code>
+<code>ravu-zoom-r2-yuv.glsl</code>
+<code>ravu-zoom-r3.glsl</code>
+<code>ravu-zoom-r3-chroma.glsl</code>
+<code>ravu-zoom-r3-rgb.glsl</code>
+<code>ravu-zoom-r3-yuv.glsl</code>
+<code>ravu-zoom-r4.glsl</code>
+<code>ravu-zoom-r4-chroma.glsl</code>
+<code>ravu-zoom-r4-rgb.glsl</code>
+<code>ravu-zoom-r4-yuv.glsl</code></p><p><span>   来自 </span><em><span>*\compute</span><span>*</span></em>
+<code>nnedi3-nns16-win8x4.glsl</code>
+<code>nnedi3-nns16-win8x6.glsl</code>
+<code>nnedi3-nns32-win8x4.glsl</code>
+<code>nnedi3-nns32-win8x6.glsl</code>
+<code>nnedi3-nns64-win8x4.glsl</code>
+<code>nnedi3-nns64-win8x6.glsl</code>
+<code>nnedi3-nns128-win8x4.glsl</code>
+<code>nnedi3-nns128-win8x6.glsl</code>
+<code>nnedi3-nns256-win8x4.glsl</code>
+<code>nnedi3-nns256-win8x6.glsl</code></p><p><span>   来自 </span><em><span>*</span><span>*</span></em>
+<code>superxbr.glsl</code>
+<code>superxbr-rgb.glsl</code>
+<code>superxbr-yuv.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='cas'><span>CAS</span></h2><p><span>   (Contrast Adaptive Sharpening) 对比度自适应锐化是一种低开销的锐化算法</span>
+<span>移植自AMD FidelityFX CAS，来源：</span><a href='https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas</a>
+<span>🔺 参考同前 </span><font color=blue><span> -yuv </span></font><span> 变体， </span><font color=blue><span> luma </span></font><span> 变体无法处理rgb的源</span></p><p><span>相关列表：</span>
+<code>cas_luma.glsl</code>
+<code>cas_rgb.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='noise-static'><span>Noise Static</span></h2><p><span>   优化静态（亮度/色度）噪点。本版略作修改</span>
+<span>来源：</span><a href='https://pastebin.com/yacMe6EZ' target='_blank' class='url'>https://pastebin.com/yacMe6EZ</a><span> &amp; </span><a href='https://pastebin.com/15ZTaaUC' target='_blank' class='url'>https://pastebin.com/15ZTaaUC</a>
+<span>🔺 需要 </span><strong><span>mpv.conf</span></strong><span> 中设置为 </span><font color=orange><span> --deband-grain=0 </span></font><span> 的前提下使用</span></p><p><span>相关列表：</span>
+<code>noise_static_luma.glsl</code>
+<code>noise_static_chroma.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><p>&nbsp;</p><h1 id='实际工作顺序'><span>实际工作顺序</span></h1><p><span>   着色器按工作插入位置可分为“预处理”与“后处理”两类，此由着色器本身决定，无法被配置文件更改。（在统计信息的第二页可直观查看）</span>
+<span>   如图，以 </span><font color=purple><span>combining planes</span></font><span> 为分界——之前的步骤为预处理， </span><font color=orange><span>--cscale=xxxxx</span></font><span> 也在此处（图中被krig替换）。之后的步骤为后处理， </span><font color=orange><span>--scale/dscale=xxxxx</span></font><span> 也在此处。</span>
+<img src="IMG/[01] stats-01.webp" alt="stats-01" style="zoom:100%;" />
+<span>   因此，着色器的实际工作顺序，首选遵守该原则，其次才是用户指定的顺序。（此外在预处理与后处理中也有顺序限制，具体请自行测试）</span></p><ul><li><span>预处理</span>
+<span>ACNet   FSRCNNX   AiU   Krig   RAVU   NNEDI3   SXBR   CAS   NoiseS</span></li><li><span>后处理</span>
+<span>A4k   SSDS   SSSR   Adaptive   所有yuv、rgb变体</span></li></ul><p>&nbsp;</p><h1 id='叠加放大类着色器的注意点'><span>叠加放大类着色器的注意点</span></h1><p><span>   前文已经讲了着色器加载顺序上的一些逻辑，这里补充放大类着色器的专属问题。</span></p><p><span>   不同的放大类着色器对“源”尺寸的影响不一样：</span>
+<span>   直觉认识里，1080p的视频不管怎么拉伸，源的大小始终是1080p。符合这一逻辑的只有：Anime4k中带有 _Original_x2 的变体</span>
+<span>   反直觉的是，经过上一级着色器放大后的源大小变成了放大后的尺寸。遵守这一规则的有：Anime4k中的其它放大变体;ACNet;FSRCNNX;AviSynth AiUpscale;RAVU;NNEDI3</span></p><p><span>例一：在1440p显示器上打开一个1080p视频全屏，此时你（只要性能足够）可以无限叠加n个 </span><code>Anime4K_Upscale_Original_x2.glsl</code><span> 无障碍实现2^n倍放大。</span>
+<span>例二：同上的硬件环境，720p的视频先调用了nnedi3再调用fsrcnnx进行二次放大，你可能发现无法真实触发后者，原因在于720p的视频经过nnedi3第一次放大后被后方加载的fsrcnnx认为源是(720x2=)1440p，此时2k的显示器在全屏模式的分辨率并不满足fsrcnnx的最小放大触发倍率</span></p><p>&nbsp;</p><h1 id='快捷键动态启用'><span>快捷键动态启用</span></h1><p><span>适用于 </span><strong><span>input.conf</span></strong>
+<span>   语法结构： </span><code>按键(组合)   change-list   glsl-shaders   (不带&quot;-&quot;的)后缀   着色器(组合)</code></p><p><a href='https://mpv.io/manual/master/#string-list-and-path-list-options' target='_blank' class='url'>https://mpv.io/manual/master/#string-list-and-path-list-options</a></p><figure><table><thead><tr><th style='text-align:left;' ><span>可用后缀</span></th><th style='text-align:left;' ><span>说明（不推荐的语法可能在将来被弃用）</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-set</span></td><td style='text-align:left;' ><span>设置着色器列表为一个或多个着色器（使用 </span><code>;</code><span> 分隔多个着色器，使用 </span><code>\</code><span> 作为转义符）</span></td></tr><tr><td style='text-align:left;' ><span>-append</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方</span></td></tr><tr><td style='text-align:left;' ><span>-add</span></td><td style='text-align:left;' ><span>追加一个或多个着色器到着色器列表的后方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-pre</span></td><td style='text-align:left;' ><span>增加一个或多个着色器到着色器列表的前方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-clr</span></td><td style='text-align:left;' ><span>清空着色器列表</span></td></tr><tr><td style='text-align:left;' ><span>-remove</span></td><td style='text-align:left;' ><span>移除一个列表中已存在的着色器</span></td></tr><tr><td style='text-align:left;' ><span>-del</span></td><td style='text-align:left;' ><span>移除一个或多个列表中已存在的着色器（不推荐）</span></td></tr><tr><td style='text-align:left;' ><span>-toggle</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方，如果已存在则移除它</span></td></tr></tbody></table></figure><p><span>支持使用mpv的相对路径（比如 </span><code>~~/</code><span> 指向主设置文件夹）</span>
+<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.625px; left: 33px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 25px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -25px; width: 25px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -25px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 18px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.glsl;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 51px;"></div><div class="CodeMirror-gutters" style="height: 51px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 25px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
+<span>   实际速度</span><strong><span>极大</span></strong><span>取决于</span><font color=pink><span>视频的质量</span></font><span>、</span><font color=pink><span>缩放倍率</span></font><span>和你的</span><font color=pink><span>显卡性能</span></font><span>，因此两表中同一个 fsrcnnx16 的性能差异不符合常理也不要奇怪，数据仅供大概参考。</span></p><p><em><span>数据来源 GitHub@Alexkral(NVIDIA GTX 1080)</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>着 色 器</span></th><th style='text-align:center;' ><span>mpv_2x : 1080p → 2160p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>A4k M</span></td><td style='text-align:center;' ><span>407</span></td></tr><tr><td style='text-align:center;' ><span>A4k L</span></td><td style='text-align:center;' ><span>287</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 8</span></td><td style='text-align:center;' ><span>256</span></td></tr><tr><td style='text-align:center;' ><span>AiU Fast</span></td><td style='text-align:center;' ><span>145</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>93</span></td></tr><tr><td style='text-align:center;' ><span>A4k UL</span></td><td style='text-align:center;' ><span>75</span></td></tr><tr><td style='text-align:center;' ><span>AiU M</span></td><td style='text-align:center;' ><span>51</span></td></tr><tr><td style='text-align:center;' ><span>AiU HQ</span></td><td style='text-align:center;' ><span>26</span></td></tr></tbody></table></figure><p><em><span>数据来源 GitHub@Artoriuz</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>算法&amp;着色器</span></th><th style='text-align:center;' ><span>mpv_2x : 720p → 1440p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>bilinear</span></td><td style='text-align:center;' ><span>468</span></td></tr><tr><td style='text-align:center;' ><span>spline36</span></td><td style='text-align:center;' ><span>383</span></td></tr><tr><td style='text-align:center;' ><span>ewa_lanczossharp</span></td><td style='text-align:center;' ><span>338</span></td></tr><tr><td style='text-align:center;' ><span>RAVU lite r4</span></td><td style='text-align:center;' ><span>307</span></td></tr><tr><td style='text-align:center;' ><span>RAVU r4</span></td><td style='text-align:center;' ><span>238</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 16 8x4</span></td><td style='text-align:center;' ><span>210</span></td></tr><tr><td style='text-align:center;' ><span>SSSR</span></td><td style='text-align:center;' ><span>169</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 32 8x4</span></td><td style='text-align:center;' ><span>156</span></td></tr><tr><td style='text-align:center;' ><span>RAVU zoom r4</span></td><td style='text-align:center;' ><span>138</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 64 8x4</span></td><td style='text-align:center;' ><span>99</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 128 8x4</span></td><td style='text-align:center;' ><span>55</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>52</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 256 8x4</span></td><td style='text-align:center;' ><span>30</span></td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h1 id='附录'><span>附录</span></h1><h2 id='anime4k-v3-v31'><span>Anime4k v3-v3.1</span></h2><p><span>   这里是旧版a4k的说明。</span>
+<span>   旧版工作在luma通道，新版工作在RGB空间。 </span><font color=blue><span> RA Upscale+Deblur_CNN Deblur_CNN </span></font><span> 这些变体在v4中合并在 </span><font color=blue><span> Restore </span></font><span> 模块中</span>
+<span>🔺 新旧版本的模块混用可能产生bug</span></p><p><span>M → L → UL 性能要求逐渐提高，处理结果越好</span>
 <span>多种模块组合使用的大致顺序推荐：降噪 → 去模糊 → 加深线条 → 细化线条 → 放大（→ 额外 → 二次放大）→ 抗重采样伪影</span>
 <span>文件数量众多，完整详情直接见文档 </span><a href='https://github.com/bloc97/Anime4K/wiki' target='_blank' class='url'>https://github.com/bloc97/Anime4K/wiki</a></p><p><span>   去模糊系列：图像尺寸保持不变，以超分辨率的方式进行去模糊。</span>
-<span>副作用： </span><font color=blue><span> _CNN_M </span></font><span> 和 </span><font color=blue><span> _CNN_L </span></font><span>  变体可能引入棋盘伪影</span>
+<span>副作用： </span><font color=blue><span> CNN_M </span></font><span> 和 </span><font color=blue><span> CNN_L </span></font><span> 变体可能引入棋盘伪影</span>
 <span>开发者推荐模块为 </span><strong><span>Anime4K_Deblur_DoG.glsl</span></strong>
 <span>相关列表：</span>
 <code>Anime4K_Deblur_DoG.glsl</code>
 <code>Anime4K_Deblur_Original.glsl</code>
 <code>Anime4K_Deblur_CNN_M.glsl</code>
-<code>Anime4K_Deblur_CNN_L.glsl</code></p><p><span>   降噪系列：Mean → Mode → Median 速度逐渐变慢。Heavy未说明</span>
-<span>副作用： </span><font color=blue><span> _Mean </span></font><span> 可能引入模糊， </span><font color=blue><span> _Mode </span></font><span> 可能引入锯齿， </span><font color=blue><span> _Median </span></font><span> 可能引入色带伪影</span>
+<code>Anime4K_Deblur_CNN_L.glsl</code></p><p><span>   降噪系列：Mean → Mode → Median → Heavy 速度逐渐变慢。</span>
+<span>副作用： </span><font color=blue><span> Mean </span></font><span> 可能引入模糊， </span><font color=blue><span> Mode </span></font><span> 可能引入锯齿， </span><font color=blue><span> Median </span></font><span> 可能引入色带伪影</span>
 <span>开发者推荐模块为 </span><strong><span>Anime4K_Denoise_Bilateral_Mode.glsl</span></strong>
 <span>相关列表：</span>
 <code>Anime4K_Denoise_Bilateral_Mode.glsl</code>
 <code>Anime4K_Denoise_Bilateral_Median.glsl</code>
 <code>Anime4K_Denoise_Bilateral_Mean.glsl</code>
 <code>Anime4K_Denoise_Heavy_CNN_L.glsl</code></p><p><span>   线条加深系列：使线条更暗，增加感知对比度。</span>
-<span>副作用：对线条的误识别可能引起细小图形变暗。 </span><font color=blue><span> _Fast </span></font><span> 和 </span><font color=blue><span> _VeryFast </span></font><span> 变体虽然显著提升速度但牺牲了细节质量</span>
+<span>副作用：对线条的误识别可能引起细小图形变暗。 </span><font color=blue><span> Fast </span></font><span> 和 </span><font color=blue><span> VeryFast </span></font><span> 变体虽然显著提升速度但牺牲了细节质量</span>
 <span>开发者推荐模块为 </span><strong><span>Anime4K_DarkLines_HQ.glsl</span></strong>
 <span>相关列表：</span>
 <code>Anime4K_DarkLines_VeryFast.glsl</code>
 <code>Anime4K_DarkLines_Fast.glsl</code>
 <code>Anime4K_DarkLines_HQ.glsl</code></p><p><span>   线条细化系列：特别适合老旧动漫</span>
-<span>副作用：细节变糊。对线条的误识别可能引起细小图形变形。 </span><font color=blue><span> _Fast </span></font><span> 和 </span><font color=blue><span> _VeryFast </span></font><span> 变体的问题参考同前。在高分辨率源（≥1440p）上 </span><font color=blue><span> _HQ </span></font><span> 变体速度可能过慢。</span>
+<span>副作用：细节变糊。对线条的误识别可能引起细小图形变形。 </span><font color=blue><span> Fast </span></font><span> 和 </span><font color=blue><span> VeryFast </span></font><span> 变体的问题参考同前。在高分辨率源（≥1440p）上 </span><font color=blue><span> HQ </span></font><span> 变体速度可能过慢。</span>
 <span>开发者推荐模块为 </span><strong><span>Anime4K_ThinLines_HQ.glsl</span></strong>
 <span>相关列表：</span>
 <code>Anime4K_ThinLines_VeryFast.glsl</code>
 <code>Anime4K_ThinLines_Fast.glsl</code>
-<code>Anime4K_ThinLines_HQ.glsl</code></p><p><span>   线条重建系列：（测试中，暂无说明）</span>
+<code>Anime4K_ThinLines_HQ.glsl</code></p><p><span>   线条重建系列：（v4版 </span><font color=blue><span> Restore </span></font><span> 模块的预览版）</span>
 <span>个人推荐模块为 </span><strong><span>Anime4K_Line_Reconstruction_Heavy_L.glsl</span></strong>
 <span>相关列表：</span>
 <code>Anime4K_DeRing.glsl</code>
 <code>Anime4K_Line_Reconstruction_Light_L.glsl</code>
 <code>Anime4K_Line_Reconstruction_Medium_L.glsl</code>
 <code>Anime4K_Line_Reconstruction_Heavy_L.glsl</code></p><p><span>   抗重采样伪影系列：尝试减少由非线性重采样引起的重采样伪影（振铃/锯齿）</span>
-<span>高分辨率源（≥1080p）使用 </span><font color=blue><span> _DoG </span></font><span> 变体可在不影响质量前提下显著提升速度</span></p><p><span>副作用： </span><font color=blue><span> _CNN_M </span></font><span> 和 </span><font color=blue><span> _CNN_L </span></font><span> 变体的问题参考同前。</span>
+<span>高分辨率源（≥1080p）使用 </span><font color=blue><span> DoG </span></font><span> 变体可在不影响质量前提下显著提升速度</span></p><p><span>副作用： </span><font color=blue><span> CNN_M </span></font><span> 和 </span><font color=blue><span> CNN_L </span></font><span> 变体的问题参考同前。</span>
 <span>相关列表：</span>
 <code>Anime4K_RA_CNN_M.glsl</code>
 <code>Anime4K_RA_CNN_L.glsl</code>
 <code>Anime4K_RA_CNN_UL.glsl</code>
 <code>Anime4K_RA_DoG.glsl</code></p><p><span>   放大（混合）系列：不同变体组合可执行x4甚至x8倍放大。</span>
-<span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
-<span>▲  </span><font color=blue><span> _CNN </span></font><span> 和 </span><font color=blue><span> _DoG_x2 </span></font><span> 变体最小缩放触发倍率为</span><font color=red><span>1.2</span></font><span>， </span><font color=blue><span> _DTD_x2 </span></font><span> 和 </span><font color=blue><span> _Original_x2 </span></font><span> 变体无限制条件但即使缩小也工作(bug?)</span></p><p><span>其中 </span><font color=blue><span> _DTD </span></font><span> 即Darken-Thin-Deblur三个着色组合成，通过使线条变暗，细化然后去模糊来提升源图像中线条的感知质量。也可以通过Anime4K_DarkLines + Anime4K_ThinLines + (Anime4K_Deblur or Anime4K_Upscale_Deblur)自行组合拼接</span>
-<font color=blue><span> _DoG_x2 </span></font><span> 和 </span><font color=blue><span> _Original_x2 </span></font><span> 变体在高分辨率源（≥1080p）不影响质量前提下显著提升速度。</span></p><p><span>副作用： </span><font color=blue><span> _CNN </span></font><span> 虽然质量好但速度较慢。 </span><font color=blue><span> _CNN_M </span></font><span> 和 </span><font color=blue><span> _CNN_L </span></font><span> 变体的问题参考同前。注意组合顺序，当此类着色器先执行x2图像放大后，之后放置的其他着色器执行速度慢至少4倍。</span>
+<span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
+<span>🔺  </span><font color=blue><span> CNN </span></font><span> 和 </span><font color=blue><span> DoG_x2 </span></font><span> 变体最小缩放触发倍率为</span><font color=red><span>1.2</span></font><span>， </span><font color=blue><span> DTD_x2 </span></font><span> 和 </span><font color=blue><span> Original_x2 </span></font><span> 变体无限制条件但即使缩小也工作(bug?)</span></p><p><span>其中 </span><font color=blue><span> DTD </span></font><span> 即Darken-Thin-Deblur三个着色组合成，通过使线条变暗，细化然后去模糊来提升源图像中线条的感知质量。也可以通过Anime4K_DarkLines + Anime4K_ThinLines + (Anime4K_Deblur or Anime4K_Upscale_Deblur)自行组合拼接</span>
+<font color=blue><span> DoG_x2 </span></font><span> 和 </span><font color=blue><span> Original_x2 </span></font><span> 变体在高分辨率源（≥1080p）不影响质量前提下显著提升速度。</span></p><p><span>副作用： </span><font color=blue><span> CNN </span></font><span> 虽然质量好但速度较慢。 </span><font color=blue><span> CNN_M </span></font><span> 和 </span><font color=blue><span> CNN_L </span></font><span> 变体的问题参考同前。注意组合顺序，当此类着色器先执行x2图像放大后，之后放置的其他着色器执行速度慢至少4倍。</span>
 <span>相关列表：</span>
 <code>Anime4K_Upscale_CNN_M_x2.glsl</code>
 <code>Anime4K_Upscale_CNN_L_x2.glsl</code>
@@ -1166,112 +1179,7 @@ g[data-mml-node="xypic"] path {
 <code>Anime4K_Upscale_CNN_UL_x2_Denoise.glsl</code>
 <code>Anime4K_Upscale_DoG_x2_Deblur.glsl</code>
 <code>Anime4K_Upscale_Original_x2_Deblur_x2.glsl</code></p><p><span>   额外：可用于1440p/4K监视器的第一次和第二次放大，缩小中间图像的比例，以便第二次放大过程不会超出屏幕大小并浪费处理能力</span>
-<code>Anime4K_Auto_Downscale_Pre_x4.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='acnet'><span>ACNet</span></h2><p><span>   是Anime4KCPP-Net的缩写，设计用于高性能动画风格的图像和视频放大，它与Asymmetric Convolution Net无关，尽管有相同的缩写（与现在的anime4k也无太大关联）。ACNet是Anime4KCPP自己的基于CNN的算法。</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
-<span>▲ 最小缩放触发倍率为</span><font color=red><span>1.2</span></font>
-<span>副作用： </span><font color=blue><span> _HDN </span></font><span> 变体能更好的降噪，等级1 → 2 → 3，越高降噪效果越好，但可能导致模糊和缺少细节。</span></p><p><span>相关列表：</span><a href='https://github.com/TianZerL/ACNetGLSL' target='_blank' class='url'>https://github.com/TianZerL/ACNetGLSL</a>
-<code>ACNet.glsl</code>
-<code>ACNet_HDN_L1.glsl</code>
-<code>ACNet_HDN_L2.glsl</code>
-<code>ACNet_HDN_L3.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='fsrcnnx'><span>FSRCNNX</span></h2><p><span>   是FSRCNN的变体，较快速的通用型AI放大算法。</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
-<span>▲ 最小缩放触发倍率为</span><font color=red><span>1.3</span></font>
-<span> </span><font color=blue><span> _LineArt </span></font><span> 和 </span><font color=blue><span> _anime </span></font><span> 变体更适合2d动画</span>
-<span> </span><font color=blue><span> _enhance </span></font><span> 变体在去除伪影强度上更大</span></p><p><span>副作用： </span><font color=blue><span> _16-0-4-1 </span></font><span> 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</span></p><p><span>相关列表：</span><a href='https://github.com/igv/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/igv/FSRCNN-TensorFlow</a><span> &amp; </span><a href='https://github.com/HelpSeeker/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/HelpSeeker/FSRCNN-TensorFlow</a>
-<code>FSRCNNX_x2_8-0-4-1.glsl</code>
-<code>FSRCNNX_x2_8-0-4-1_LineArt.glsl</code>
-<code>FSRCNNX_x2_16-0-4-1.glsl</code>
-<code>FSRCNNX_x2_16-0-4-1_anime_enhance.glsl</code>
-<code>FSRCNNX_x2_16-0-4-1_enhance.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='avisynth-aiupscale'><span>AviSynth AiUpscale</span></h2><p><span>   名字奇怪是因为开发者主要移植到AviSynth+上用的，和FSRCNNX有相似的体系结构，但使用了不同的滤镜。</span></p><p><span> x2 x3 x4 分别对应 二倍 三倍 四倍 放大</span>
-<span>质量上 </span><font color=blue><span> Fast </span></font><span> 弱于 </span><font color=blue><span> Medium </span></font><span> 弱于 </span><font color=blue><span> HQ </span></font>
-<span>性能需求上 Fast2x 介于 FSRCNNX8 和 FSRCNNX16 之间， 但是 Medium2x 远高于 FSRCNNX16， 变体 </span><font color=blue><span> HQ </span></font><span> 因速度极慢而难以用于高质量片源</span>
-<font color=blue><span> LineArt </span></font><span> 适合2D画面而 </span><font color=blue><span> Photo </span></font><span> 适合现实类画面</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
-<span>▲ 不同倍率对应的最小缩放触发倍率分别为</span><font color=red><span>1.4</span></font><span>   </span><font color=red><span>2.4</span></font><span>   </span><font color=red><span>3.4</span></font></p><p><span>出于实用角度，懒人包内仅保留2x的变体</span>
-<span>相关列表：</span><a href='https://github.com/Alexkral/AviSynthAiUpscale' target='_blank' class='url'>https://github.com/Alexkral/AviSynthAiUpscale</a>
-<code>AiUpscale_Fast_2x_LineArt.glsl</code>
-<code>AiUpscale_Fast_2x_Photo.glsl</code>
-<code>AiUpscale_Fast_Sharp_2x_LineArt.glsl</code>
-<code>AiUpscale_Fast_Sharp_2x_Photo.glsl</code>
-<code>AiUpscale_Medium_2x_LineArt.glsl</code>
-<code>AiUpscale_Medium_2x_Photo.glsl</code>
-<code>AiUpscale_Medium_Sharp_2x_LineArt.glsl</code>
-<code>AiUpscale_Medium_Sharp_2x_Photo.glsl</code>
-<code>AiUpscale_HQ_2x_LineArt.glsl</code>
-<code>AiUpscale_HQ_2x_Photo.glsl</code>
-<code>AiUpscale_HQ_Sharp_2x_LineArt.glsl</code>
-<code>AiUpscale_HQ_Sharp_2x_Photo.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='adaptive-sharpen'><span>Adaptive Sharpen</span></h2><p><span>   自适应锐化</span></p><h2 id='krig'><span>Krig</span></h2><p><span>   利用亮度信息进行高质量的色度升频</span>
-<span>mpv目前最好的色度升频着色器，可以与其他缩放（</span><font color=orange><span>--scale/dscale</span></font><span>）算法共同使用</span></p><p><span>▲ 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法</span></p><h2 id='ssimdownscaler'><span>SSimDownscaler</span></h2><p><span>   基于感知的缩小算法增强</span></p><p><span>▲ 仅当 </span><strong><span>mpv.conf</span></strong><span> 中设定 </span><font color=orange><span>--dscale=mitchell</span></font><span>   </span><font color=orange><span>--linear-downscaling=no</span></font><span> 时正常工作</span></p><h2 id='ssimsuperres'><span>SSimSuperRes</span></h2><p><span>   该着色器的目的是对mpv内置 --scale=xxxxx 算法进行增强校正。</span></p><p><span>以上四项及FSRCNNX皆由同一开发者移植</span>
-<span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a>
-<code>adaptive-sharpen.glsl</code>
-<code>KrigBilateral.glsl</code>
-<code>SSimDownscaler.glsl</code>
-<code>SSimSuperRes.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span>
-<span>   RAVU整体的性能消耗设计上比mpv内置的ewa系缩放器只略高。</span></p><h2 id='nnedi3'><span>NNEDI3</span></h2><p><span>   全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。nnedi3版速度较快（即便如此相比其它算法依旧速度极慢，开销巨大）</span></p><h2 id='superxbr'><span>SuperXBR</span></h2><p><span>   一个经典的整数倍放大算法，消耗介于NNEDI3和RAVU之间。</span></p><p><span>以上三项由同一开发者移植，在项目中提供了更多说明： </span><a href='https://github.com/bjin/mpv-prescalers' target='_blank' class='url'>https://github.com/bjin/mpv-prescalers</a></p><p>&nbsp;</p><p><span>r2 → r3 → r4；</span><span>	</span><span>nns16 → nns32 → nns64 → nns128 → nns256；win8x4 → win8x6 质量更好但性能大增</span>
-<span>开发者的 </span><strong><span>\compute</span></strong><span> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 </span><strong><span>\gather</span></strong><span> 内的（OpenGL≥4.0）更快，后者比 </span><strong><span>主目录 \master</span></strong><span> 的更快</span>
-<span> </span><strong><span>\vulkan</span></strong><span> 内的需要 </span><strong><span>mpv.conf</span></strong><span> 内配置为 </span><font color=orange><span>--gpu-api=d3d11</span></font><span>或</span><font color=orange><span>vulkan</span></font><span>   </span><font color=orange><span>--fbo-format=rgba16hf</span></font></p><p><span> </span><font color=blue><span> -3x </span></font><span> 变体直接放大三倍，适用于超低清源。 </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -3x </span></font><span> 变体的训练模型为动漫， </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -zoom </span></font><span> 变体为通用模型。</span></p><p><span>▲ 除了 </span><font color=blue><span> -chroma </span></font><span> 变体（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法），其它只处理(YUV)luma通道（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法）</span>
-<span>▲  </span><font color=blue><span> -lite </span></font><span> 变体最快最锐利但无半像素偏移，可能产生锯齿和晕轮/振铃。 </span><font color=blue><span> -rgb </span></font><span> 和 </span><font color=blue><span> -yuv </span></font><span> 变体在 </span><font color=orange><span> --cscale </span></font><span> 执行完之后开始作用，但 </span><font color=blue><span> -yuv </span></font><span> 无法处理rgb的源（例如png图片）</span>
-<span>▲ 关于半像素偏移，除了 </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -chroma </span></font><span> 变体，其它ravu和nnedi3和sxbr中都存在。可以用 </span><strong><span>mpv.conf</span></strong><span> 中的 </span><font color=orange><span>--scaler-resizes-only=no</span></font><span> 修正它，但是没必要（感知不强）</span></p><p><span>▲ sxbr没有触发倍率限制； </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -lite </span></font><span> 变体的最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>， </span><font color=blue><span> ravu-3x-r </span></font><span> 变体最小缩放触发倍率约为</span><font color=red><span>2.121</span></font><span>。 </span><font color=blue><span> -zoom </span></font><span> 变体直接放大到目标分辨率，触发倍率</span><font color=red><span>＞1</span></font><span>；nnedi3最小缩放触发倍率约为</span><font color=red><span>1.414</span></font><span>，对性能要求极高且瞬时加载易假死，建议使用（条件）配置预载而不是 </span><strong><span>input.conf</span></strong><span> 中的热键切换触发， </span><font color=blue><span> -nns64 </span></font><span> 级别以上的因速度极慢而很难即时观看时使用。</span></p><p><span>懒人包内精简并保留的部分列表：</span>
-<span>   来自 \vulkan\compute\</span>
-<code>ravu-3x-r2.hook</code>
-<code>ravu-3x-r2-rgb.hook</code>
-<code>ravu-3x-r2-yuv.hook</code>
-<code>ravu-3x-r3.hook</code>
-<code>ravu-3x-r3-rgb.hook</code>
-<code>ravu-3x-r3-yuv.hook</code>
-<code>ravu-3x-r4.hook</code>
-<code>ravu-3x-r4-rgb.hook</code>
-<code>ravu-3x-r4-yuv.hook</code>
-<code>ravu-lite-r2.hook</code>
-<code>ravu-lite-r3.hook</code>
-<code>ravu-lite-r4.hook</code>
-<code>ravu-r2.hook</code>
-<code>ravu-r2-rgb.hook</code>
-<code>ravu-r2-yuv.hook</code>
-<code>ravu-r3.hook</code>
-<code>ravu-r3-rgb.hook</code>
-<code>ravu-r3-yuv.hook</code>
-<code>ravu-r4.hook</code>
-<code>ravu-r4-rgb.hook</code>
-<code>ravu-r4-yuv.hook</code>
-<code>ravu-zoom-r2.hook</code>
-<code>ravu-zoom-r2-chroma.hook</code>
-<code>ravu-zoom-r2-rgb.hook</code>
-<code>ravu-zoom-r2-yuv.hook</code>
-<code>ravu-zoom-r3.hook</code>
-<code>ravu-zoom-r3-chroma.hook</code>
-<code>ravu-zoom-r3-rgb.hook</code>
-<code>ravu-zoom-r3-yuv.hook</code>
-<code>ravu-zoom-r4.hook</code>
-<code>ravu-zoom-r4-chroma.hook</code>
-<code>ravu-zoom-r4-rgb.hook</code>
-<code>ravu-zoom-r4-yuv.hook</code></p><p><span>   来自 \compute\</span>
-<code>nnedi3-nns16-win8x4.hook</code>
-<code>nnedi3-nns16-win8x6.hook</code>
-<code>nnedi3-nns32-win8x4.hook</code>
-<code>nnedi3-nns32-win8x6.hook</code>
-<code>nnedi3-nns64-win8x4.hook</code>
-<code>nnedi3-nns64-win8x6.hook</code>
-<code>nnedi3-nns128-win8x4.hook</code>
-<code>nnedi3-nns128-win8x6.hook</code>
-<code>nnedi3-nns256-win8x4.hook</code>
-<code>nnedi3-nns256-win8x6.hook</code></p><p><span>   来自 \</span>
-<code>superxbr.hook</code>
-<code>superxbr-rgb.hook</code>
-<code>superxbr-yuv.hook</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='cas'><span>CAS</span></h2><p><span>   (Contrast Adaptive Sharpening) 对比度自适应锐化是一种低开销的锐化算法</span>
-<span>移植自AMD FidelityFX CAS，来源：</span><a href='https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas</a>
-<span>▲ 参考同前 </span><font color=blue><span> -yuv </span></font><span> 变体， </span><font color=blue><span> _luma </span></font><span> 变体无法处理rgb的源</span></p><p><span>相关列表：</span>
-<code>cas_luma.glsl</code>
-<code>cas_rgb.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='noise-static'><span>Noise Static</span></h2><p><span>   优化静态（亮度/色度）噪点。本版略作修改</span>
-<span>说明资料不足，来源：</span><a href='https://pastebin.com/yacMe6EZ' target='_blank' class='url'>https://pastebin.com/yacMe6EZ</a><span>   </span><a href='https://pastebin.com/15ZTaaUC' target='_blank' class='url'>https://pastebin.com/15ZTaaUC</a>
-<span>▲ 需要 </span><strong><span>mpv.conf</span></strong><span> 中设置为 </span><font color=orange><span> --deband-grain=0 </span></font><span> 的前提下使用</span></p><p><span>相关列表：</span>
-<code>noise_static_luma.hook</code>
-<code>noise_static_chroma.hook</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><p>&nbsp;</p><h1 id='叠加放大类着色器的注意点'><span>叠加放大类着色器的注意点</span></h1><p><span>   前文已经讲了着色器加载顺序上的一些逻辑，这里补充放大类着色器的专属问题。</span>
-<span>	</span>
-<span>   不同的放大类着色器对“源”尺寸的影响不一样：</span>
-<span>   直觉认识里，1080p的视频不管怎么拉伸，源的大小始终是1080p。符合这一逻辑的只有：Anime4k中带有 _Original_x2 的变体</span>
-<span>   反直觉的是，经过上一级着色器放大后的源大小变成了放大后的尺寸。遵守这一规则的有：Anime4k中的其它放大变体;ACNet;FSRCNNX;AviSynth AiUpscale;RAVU;NNEDI3</span></p><p><span>例一：在1440p显示器上打开一个1080p视频全屏，此时你（只要性能足够）可以无限叠加n个 </span><code>Anime4K_Upscale_Original_x2.glsl</code><span> 无障碍实现2^n倍放大。</span>
-<span>例二：同上的硬件环境，720p的视频先调用了nnedi3再调用fsrcnnx进行二次放大，你可能发现无法真实触发后者，原因在于720p的视频经过nnedi3第一次放大后被后方加载的fsrcnnx认为源是(720x2=)1440p，此时2k的显示器在全屏模式的分辨率并不满足fsrcnnx的最小放大触发倍率</span></p><h1 id='快捷键动态启用'><span>快捷键动态启用</span></h1><p><span>适用于 </span><strong><span>input.conf</span></strong>
-<span>   语法结构： </span><code>按键(组合)   change-list   glsl-shaders   (不带&quot;-&quot;的)后缀   着色器(组合)</code></p><p><a href='https://mpv.io/manual/master/#string-list-and-path-list-options' target='_blank' class='url'>https://mpv.io/manual/master/#string-list-and-path-list-options</a></p><figure><table><thead><tr><th style='text-align:left;' ><span>可用后缀</span></th><th style='text-align:left;' ><span>说明（不推荐的语法可能在将来被弃用）</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-set</span></td><td style='text-align:left;' ><span>设置着色器列表为一个或多个着色器（使用 </span><code>;</code><span> 分隔多个着色器，使用 </span><code>\</code><span> 作为转义符）</span></td></tr><tr><td style='text-align:left;' ><span>-append</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方</span></td></tr><tr><td style='text-align:left;' ><span>-add</span></td><td style='text-align:left;' ><span>追加一个或多个着色器到着色器列表的后方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-pre</span></td><td style='text-align:left;' ><span>增加一个或多个着色器到着色器列表的前方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-clr</span></td><td style='text-align:left;' ><span>清空着色器列表</span></td></tr><tr><td style='text-align:left;' ><span>-remove</span></td><td style='text-align:left;' ><span>移除一个列表中已存在的着色器</span></td></tr><tr><td style='text-align:left;' ><span>-del</span></td><td style='text-align:left;' ><span>移除一个或多个列表中已存在的着色器（不推荐）</span></td></tr><tr><td style='text-align:left;' ><span>-toggle</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方，如果已存在则移除它</span></td></tr></tbody></table></figure><p><span>支持使用mpv的相对路径（比如 </span><code>~~/</code><span> 指向主设置文件夹）</span>
-<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.625px; left: 33px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 25px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -25px; width: 25px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -25px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 18px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.hook;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 51px;"></div><div class="CodeMirror-gutters" style="height: 51px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 25px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
-<span>   实际速度</span><strong><span>极大</span></strong><span>取决于</span><font color=pink><span>视频的质量</span></font><span>、</span><font color=pink><span>缩放倍率</span></font><span>和你的</span><font color=pink><span>显卡性能</span></font><span>，因此两表中同一个 fsrcnnx16 的性能差异不符合常理也不要奇怪，数据仅供大概参考。</span></p><p><em><span>数据来源 GitHub@Alexkral(NVIDIA GTX 1080)</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>着 色 器</span></th><th style='text-align:center;' ><span>mpv_2x : 1080p → 2160p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>A4k M</span></td><td style='text-align:center;' ><span>407</span></td></tr><tr><td style='text-align:center;' ><span>A4k L</span></td><td style='text-align:center;' ><span>287</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 8</span></td><td style='text-align:center;' ><span>256</span></td></tr><tr><td style='text-align:center;' ><span>AiU Fast</span></td><td style='text-align:center;' ><span>145</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>93</span></td></tr><tr><td style='text-align:center;' ><span>A4k UL</span></td><td style='text-align:center;' ><span>75</span></td></tr><tr><td style='text-align:center;' ><span>AiU M</span></td><td style='text-align:center;' ><span>51</span></td></tr><tr><td style='text-align:center;' ><span>AiU HQ</span></td><td style='text-align:center;' ><span>26</span></td></tr></tbody></table></figure><p><em><span>数据来源 GitHub@Artoriuz</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>算法&amp;着色器</span></th><th style='text-align:center;' ><span>mpv_2x : 720p → 1440p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>bilinear</span></td><td style='text-align:center;' ><span>468</span></td></tr><tr><td style='text-align:center;' ><span>spline36</span></td><td style='text-align:center;' ><span>383</span></td></tr><tr><td style='text-align:center;' ><span>ewa_lanczossharp</span></td><td style='text-align:center;' ><span>338</span></td></tr><tr><td style='text-align:center;' ><span>RAVU lite r4</span></td><td style='text-align:center;' ><span>307</span></td></tr><tr><td style='text-align:center;' ><span>RAVU r4</span></td><td style='text-align:center;' ><span>238</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 16 8x4</span></td><td style='text-align:center;' ><span>210</span></td></tr><tr><td style='text-align:center;' ><span>SSSR</span></td><td style='text-align:center;' ><span>169</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 32 8x4</span></td><td style='text-align:center;' ><span>156</span></td></tr><tr><td style='text-align:center;' ><span>RAVU zoom r4</span></td><td style='text-align:center;' ><span>138</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 64 8x4</span></td><td style='text-align:center;' ><span>99</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 128 8x4</span></td><td style='text-align:center;' ><span>55</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>52</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 256 8x4</span></td><td style='text-align:center;' ><span>30</span></td></tr></tbody></table></figure></div></div>
+<code>Anime4K_Auto_Downscale_Pre_x4.glsl</code></p></div></div>
 
 <script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
 </html>
