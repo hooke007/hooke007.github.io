@@ -202,33 +202,30 @@ mark .md-meta { color: rgb(0, 0, 0); }
 
 
 :root {
-  --control-text-color: #777;
-  --select-text-bg-color: #ebe1f5;
-  --search-select-bg-color: #8163bd;
-
-  --title-color: /* #6c549c */ #79589f;
-  --text-color: #333333;
+  --title-color: #8064a9;
+  --text-color: #444444;
   --light-text-color: #666666;
+  --lighter-text-color: #888888;
+  --link-color: #2aa899;
+  --code-color: #745fb5;
 
-  --link-color: #745fb5;
-  --code-color: #ff79c6;
-  --purple-light-1: rgba(116, 95, 181, 0.05);
-  --purple-light-2: rgba(116, 95, 181, 0.1);
-  --purple-light-3: rgba(116, 95, 181, 0.3);
-  --purple-light-4: rgba(116, 95, 181, 0.7);
-  --purple-light-5: rgba(116, 95, 181, 0.8);
-  --border: #eee;
+  --shadow-color: #eee;
+  --border-quote: rgba(116, 95, 181, 0.2);
+  --border: #e7e7e7;
+  --link-bottom: #bbb;
+  --shadow: 3px 3px 10px var(--shadow-color);
+  --inline-code-bg: #f4f2f9;
 
-  --shadow: 0rem 0.2rem 0.4rem var(--purple-light-2);
+  --header-weight: normal;
 
-  /* side bar */
-  --side-bar-bg-color: #f7f7fb;
+  --side-bar-bg-color: #fafafa;
+  --control-text-color: var(var(--light-text-color));
   --active-file-text-color: var(--title-color);
-  --active-file-bg-color: var(--purple-light-2);
-  --item-hover-bg-color: var(--purple-light-2);
-  --active-file-border-color: var(--purple-light-4);
+  --active-file-bg-color: var(--shadow-color);
+  --item-hover-bg-color: var(--shadow-color);
+  --active-file-border-color: var(var(--title-color));
 
-  --base-font: "Helvetica Neue", "Noto Sans", -apple-system, Ubuntu,
+  --base-font: "Helvetica Neue", -apple-system, Ubuntu,
     "Microsoft YaHei", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans",
     "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC",
     "Source Han Sans CN", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
@@ -244,13 +241,25 @@ mark .md-meta { color: rgb(0, 0, 0); }
     "Roboto Mono", Courier, Monospace !important;
 }
 
-/* PDF打印：A3 */
+/* 打印 */
 @media print {
+  html {
+    font-size: 0.9rem;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+
+  pre {
+    word-wrap: break-word;
+  }
   #write {
     max-width: 100%;
   }
   @page {
-    size: A3; /* A4 */
+    size: A3; /* PDF output size */
     margin-left: 0;
     margin-right: 0;
   }
@@ -294,20 +303,22 @@ body > *:last-child {
   margin-bottom: 0 !important;
 }
 
+/* Link 链接 */
 a {
   color: var(--link-color);
   text-decoration: none;
 }
 #write a {
-  border-bottom: none;
+  border-bottom: 1px solid var(--link-bottom);
 }
 #write a:hover {
-  border-bottom: 1px solid var(--purple-light-4);
-  color: var(--purple-light-4);
-  text-decoration: none;
+  border-bottom: 1px solid var(--link-color);
+  /*   color: var(--link-color);
+    text-decoration: none; */
 }
+
 .md-content {
-  color: var(--purple-light-4);
+  color: var(--light-text-color);
 }
 
 h1,
@@ -317,49 +328,19 @@ h4,
 h5,
 h6 {
   position: relative;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
-  font-weight: normal;
-  line-height: 1.4;
+  font-weight: var(--header-weight);
+  line-height: 1.3;
   cursor: text;
   color: var(--title-color);
   font-family: var(--title-font);
 }
 
-h1 tt,
-h1 code {
-  font-size: inherit !important;
-}
-h2 tt,
-h2 code {
-  font-size: inherit !important;
-}
-h3 tt,
-h3 code {
-  font-size: inherit !important;
-}
-h4 tt,
-h4 code {
-  font-size: inherit !important;
-}
-h5 tt,
-h5 code {
-  font-size: inherit !important;
-}
-h6 tt,
-h6 code {
-  font-size: inherit !important;
-}
-
-h1 {
-  padding-bottom: 0.4rem;
-  font-size: 2.2rem;
-  line-height: 1.3;
-}
 h1 {
   text-align: center;
   font-size: 2.25em;
-  line-height: 1.2;
+  margin-bottom: 2rem;
 }
 h1:after {
   content: "";
@@ -372,23 +353,21 @@ h1:after {
 
 h2 {
   padding-left: 0.4em;
-  line-height: 1.4;
   font-size: 1.75em;
-  border-left: 9px solid var(--title-color);
+  border-left: 0.4em solid var(--title-color);
   border-bottom: 1px solid var(--title-color);
 }
 h3 {
   font-size: 1.5em;
-  line-height: 1.43;
 }
 h4 {
-  font-size: 1.25em;
+  font-size: 1.3em;
 }
 h5 {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 h6 {
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 p,
@@ -402,8 +381,7 @@ table {
 
 /* horizontal rule */
 hr {
-  margin: 1em auto;
-  border: 0;
+  margin: 1.5em auto;
   border-top: 1px solid var(--border);
 }
 
@@ -439,14 +417,13 @@ ul li {
 
 /* 引用 */
 blockquote {
-  border-left: 0.2em solid var(--purple-light-3);
+  border-left: 0.3rem solid var(--border-quote);
   padding-left: 1em;
   color: var(--light-text-color);
   font-family: var(--base-font);
 }
 
 /* 表格 */
-
 table {
   margin-bottom: 1.25rem;
 }
@@ -463,10 +440,6 @@ table th {
 table thead th {
   vertical-align: middle;
 }
-
-/* 表格 背景色 */
-
-/* 表格 背景色 */
 table tr:nth-child(2n),
 thead {
   background-color: #fcfcfc;
@@ -486,25 +459,18 @@ tt {
   font-family: var(--monospace);
   font-size: 0.9rem;
   color: var(--code-color);
-  background-color: var(--purple-light-1);
-}
-
-tt {
+  background-color: var(--inline-code-bg);
   margin: 0 2px;
 }
 
 #write .md-footnote {
-  background-color: var(--purple-light-1);
   color: var(--code-color);
+  background-color: var(--inline-code-bg);
 }
 
 /* highlight. */
 #write mark {
-  background-color: var(--select-text-bg-color);
-  border-radius: 0.3rem;
-  padding: 2px 4px;
-  margin: 0 2px;
-  color: var(--text-color);
+  background: rgb(255, 255, 196);
 }
 
 #write del {
@@ -513,21 +479,6 @@ tt {
 
 .md-task-list-item > input {
   margin-left: -1.3em;
-}
-
-@media print {
-  html {
-    font-size: 0.9rem;
-  }
-
-  table,
-  pre {
-    page-break-inside: avoid;
-  }
-
-  pre {
-    word-wrap: break-word;
-  }
 }
 
 #write pre.md-meta-block {
@@ -562,14 +513,22 @@ tt {
 
 /* 写![shadow-...]() 显示图片阴影 */
 img[alt|="shadow"] {
-  box-shadow: 0rem 0.4rem 0.8rem var(--purple-light-2);
+  box-shadow: var(--shadow);
 }
 
+/* TOC: 加粗h2 */
 #write a.md-toc-inner {
   line-height: 1.6;
   white-space: pre-line;
   border-bottom: none;
+  color: var(--lighter-text-color);
   font-size: 0.9rem;
+}
+/* .md-toc-h1 {
+  display: none;
+} */
+.md-toc-h2 .md-toc-inner {
+  font-weight: bold;
 }
 
 header,
@@ -592,20 +551,16 @@ footer {
   --item-hover-bg-color: #e6f0fe;
 }
 
-/* 代码框 */
-/* CodeMirror 3024 Day theme */
+/* Code fences */
 
-/* 代码段 背景 */
-pre {
-  --select-text-bg-color: #ebe1f5;
-}
-
-/* border and bg */
+/* border, bg, font */
 .md-fences {
   border: 1px solid var(--border);
   border-radius: 5px;
   background: #fdfdfd !important;
+  font-size: 0.9rem;
 }
+/* 代码框阴影 */
 #write pre.md-fences {
   display: block;
   -webkit-overflow-scrolling: touch;
@@ -632,19 +587,6 @@ pre {
   color: #b8b5b4;
 }
 
-.cm-s-inner .CodeMirror-line::selection,
-.cm-s-inner .CodeMirror-line::-moz-selection,
-.cm-s-inner .CodeMirror-line > span::selection,
-.cm-s-inner .CodeMirror-line > span::-moz-selection,
-.cm-s-inner .CodeMirror-line > span > span::selection,
-.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
-  background: var(--purple-light-1);
-}
-
-.md-fences.md-focus .cm-s-inner .CodeMirror-activeline-background {
-  background: var(--purple-light-1);
-}
-
 .cm-s-inner .CodeMirror-matchingbracket {
   text-decoration: underline;
   color: #a34e8f !important;
@@ -656,6 +598,9 @@ pre {
 
 .cm-s-inner span.cm-comment {
   color: #9daab6;
+}
+.cm-s-inner span.cm-builtin {
+  color: #0451a5;
 }
 
 /* language tip */
@@ -733,108 +678,13 @@ pre {
   opacity: 0.6;
 }
 
-/* sidebar and outline */
-.pin-outline .outline-active {
-  color: var(--active-file-text-color);
-}
-
+/* sidebar */
 #typora-sidebar,
 .typora-node #typora-sidebar {
-  box-shadow: 3px 0px 10px var(--purple-light-2);
+  box-shadow: 3px 0px 10px var(--shadow-color);
 }
-
-.file-list-item {
-  border-bottom: 1px solid;
-  border-color: var(--purple-light-2);
-}
-
-.file-list-item-summary {
-  font-weight: normal;
-}
-
-.file-list-item.active {
-  color: var(--active-file-text-color);
-  background-color: var(--purple-light-2);
-}
-
-.file-tree-node.active > .file-node-background {
-  background-color: var(--purple-light-2);
-  font-weight: normal;
-}
-
-.file-tree-node.active > .file-node-content {
-  color: var(--active-file-text-color);
-  font-weight: normal;
-}
-
-.sidebar-tabs {
-  border-bottom: none;
-}
-.sidebar-tab.active {
-  font-weight: normal;
-}
-.info-panel-tab-border {
-  color: var(--purple-light-4);
-}
-
 .sidebar-content-content {
   font-size: 0.9rem;
-}
-
-/* 搜索 */
-.ty-file-search-match-text {
-  background-color: var(--purple-light-3);
-}
-.md-search-hit {
-  background-color: var(--purple-light-3);
-  contain: style;
-}
-
-element.style {
-  width: calc(100% - 18px);
-}
-#file-library-search-input:focus {
-  border-color: var(--purple-light-3);
-}
-.code-tooltip .ty-input:focus,
-input:focus {
-  border-color: var(--purple-light-3);
-}
-@import "";
-
-/* inline code */
-#write code,
-tt {
-  color: #3f3f44;
-  background-color: var(--purple-light-1);
-  border: 1px solid #e7eaed;
-}
-
-#write .md-footnote {
-  color: #3f3f44;
-  background-color: var(--purple-light-1);
-  border: 1px solid #e7eaed;
-}
-
-blockquote {
-  border-left: 0.2rem solid #dfe2e5;
-}
-
-/* 链接 */
-a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-#write a {
-  border-bottom: 1px solid var(--text-color);
-}
-#write a:hover {
-  border-bottom: 1px solid var(--purple-light-4);
-  color: var(--link-color);
-  text-decoration: none;
-}
-.md-content {
-  color: #777;
 }
 
 
@@ -842,70 +692,57 @@ a {
 </style><title>[00]_懒人包快速说明</title>
 </head>
 <body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
-<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-lazy-懒人包快速说明">mpv-lazy 懒人包快速说明</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#默认设置">默认设置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#注意事项">注意事项</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#常用快捷键">常用快捷键</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#高级播放列表操作">高级播放列表操作</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组件整合列表">组件整合列表</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#主要程序">主要程序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#脚本">脚本</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#着色器">着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#vs脚本与插件">VS脚本与插件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#额外">额外</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='mpv-lazy-懒人包快速说明'><span>mpv-lazy 懒人包快速说明</span></h1><p><em><span>ver.20211031</span></em></p><h1 ><span>...</span></h1><p><span>mpv-lazy是mpv播放器的win10平台开箱即用的解决方案，具备基础的中文手册以供参阅。</span></p><p>&nbsp;</p><h2 id='默认设置'><span>默认设置</span></h2><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ）。原本设计为留时间给缩略图缓存完毕（移动至进度条查看建立的完成度）</span></li><li><span>默认不启动缩略图显示，考虑到不低的cpu性能要求初始关闭，开启应编辑 </span><code>thumbnailer.conf</code></li><li><span>默认不启动</span><strong><span>Anime4k</span></strong><span>的线条重建着色器 ，手动 </span><code>CTRL+4</code><span> 开/关</span></li><li><span>旧的</span><strong><span>Anime4k</span></strong><span>的DTDD感知强化预设方案，手动按 </span><code>CTRL+9</code><span> 将自动清除已挂载的着色器后（替换当前所有）启用</span></li><li><code>CTRL</code><span>+</span><code>`</code><span> 手动清除所有已加载的glsl/hook着色器</span></li><li><span>默认不启动</span><strong><span>补帧</span></strong><span>滤镜， </span><code>SHIFT+1</code><span> 开/关 mvtools补帧通用版； </span><code>SHIFT+2</code><span> 开/关 mvtools补帧快速版（低开销）。 </span><code>SHIFT+3</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出）， </span><code>SHIFT+4</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）， </span><code>SHIFT+5</code><span> 开启/关闭svpflow补帧坛友版（高质量）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font></li><li><code>CTRL+0</code><span> 手动清除所有已加载的视频滤镜</span></li><li><span>默认不预设其余滤镜、着色器，如何设置和注意事项可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数与手册 </span><font color=green><span>[01]</span></font><span> 。</span></li></ul><h2 id='注意事项'><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>读写权限</span></font><span>（可引起脚本无效、无法加载着色器等多种问题）</span></p><ul><li><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-lazy-懒人包快速说明">mpv-lazy 懒人包快速说明</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#默认设置">默认设置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#注意事项">注意事项</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#常用快捷键">常用快捷键</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#高级播放列表操作">高级播放列表操作</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组件整合列表">组件整合列表</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#主要程序">主要程序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#脚本">脚本</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#着色器">着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#vs脚本与插件">VS脚本与插件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#额外">额外</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></div></div><div id='write'  class=''><h1 id='mpv-lazy-懒人包快速说明'><span>mpv-lazy 懒人包快速说明</span></h1><p><em><span>ver.20211220</span></em></p><h1 ><span>...</span></h1><p><span>mpv-lazy是mpv播放器的win10平台开箱即用的解决方案，具备基础的中文手册以供参阅。</span></p><p>&nbsp;</p><h2 id='默认设置'><span>默认设置</span></h2><ul><li><span>载入视频时默认暂停，需手动点击开始播放（ </span><code>鼠标右键</code><span> 或 </span><code>空格键</code><span> 或 </span><code>p</code><span> ）。原始设计为留时间给缩略图缓存完毕（移动至进度条查看建立的完成度）</span></li><li><span>默认不启动缩略图显示，考虑到不低的cpu性能要求初始关闭，开启应编辑 </span><code>thumbnailer.conf</code><span> 中相关的参数</span></li><li><span>默认不启动</span><strong><span>Anime4k</span></strong><span>的线条重建着色器 ，手动 </span><code>CTRL+4</code><span> 开/关</span></li><li><span>旧的</span><strong><span>Anime4k</span></strong><span>的DTDD感知强化预设方案，手动按 </span><code>CTRL+9</code><span> 将自动清除已挂载的着色器后（替换当前所有）启用</span></li><li><code>CTRL</code><span>+</span><code>`</code><span> 手动清除所有已加载的glsl/hook着色器</span></li><li><span>默认不启动</span><strong><span>补帧</span></strong><span>滤镜， </span><code>SHIFT+1</code><span> 开/关 mvtools补帧通用版； </span><code>SHIFT+2</code><span> 开/关 mvtools补帧快速版（低开销）。 </span><code>SHIFT+3</code><span> 开启/关闭svpflow倍帧2d动画版（适合动态帧率和10bit输出）， </span><code>SHIFT+4</code><span> 开启/关闭svpflow补帧8bit位深版（低开销）， </span><code>SHIFT+5</code><span> 开启/关闭svpflow补帧坛友版（高质量）。</span><font color=red><span>同一时间只能开启一个补帧滤镜</span></font></li><li><code>CTRL+0</code><span> 手动清除所有已加载的视频滤镜</span></li><li><span>默认不预设任何滤镜、着色器伴随播放器启动，如何设置和注意事项可参考 </span><code>input.conf</code><span> 和 </span><code>mpv.conf</code><span> 的相关参数与手册 </span><font color=green><span>[01]</span></font><span> 。</span></li></ul><h2 id='注意事项'><span>注意事项</span></h2><p><font color=red><span>请不要放在中文目录下运行！！！</span></font><span>非Administrator用户若放在C盘须确保安置路径具有</span><font color=orange><span>读写权限</span></font><span>（可能引起脚本无效、无法加载着色器等问题）</span></p><ul><li><span>想让其作为默认播放器使用请先运行如下批处理文件，再修改win10视频类的默认打开文件</span>
 <code>X:\xxxxx\mpv-lazy\installer\mpv-install.bat</code>
 <span>若移动 </span><code>mpv.exe</code><span> 文件的路径后，需要重新执行该批处理来正确关联格式</span>
-<span>要从计算机中删除此批处理的所有痕迹，以管理员身份运行同目录下的 </span><code>mpv-uninstall.bat</code></li><li><span>有MPV使用基础可以自行修改配置文件以调整性能占用（每行首字为 # 的是不启用的）</span>
+<span>要从计算机中删除此批处理的所有痕迹，以管理员身份运行同目录下的 </span><code>mpv-uninstall.bat</code></li><li><span>mpv的播放器主要设置由此文件读取（每行首字为 # 的是不启用的）</span>
 <code>X:\xxxxx\mpv-lazy\portable_config\mpv.conf</code>
-<span>而同目录下的 </span><code>input.conf</code><span> 则是当前的快捷预设方案</span></li><li><span>mvtools补帧方案的脚本中，可自行修改补帧帧率（默认为 </span><code>dfps = 60000</code><span> 即60.000帧）</span>
-<span>例：</span><code>X:\xxxxx\mpv-lazy\portable_config\mvtools-xxxx.vpy</code>
-<span>svpflow补帧脚本也可设置，甚至可以调用显卡加速，具体方法用编辑器（notepad3这类软件你没有就用记事本凑活）打开查看</span>
-<code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></li><li><span>该目录下的都是脚本的设置文件，可自行编辑进行自定义</span>
-<code>X:\xxxxx\mpv-lazy\portable_config\script-opts\</code></li><li><span>缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
+<span>而同目录下的 </span><code>input.conf</code><span> 则是当前的快捷预设方案</span></li><li><span>该目录下的都是脚本的设置文件，可自行编辑进行自定义</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\script-opts\</code></li><li><span>补帧方案的脚本中，可自行修改补帧帧率</span>
+<code>X:\xxxxx\mpv-lazy\portable_config\mvtools-xxxx.vpy</code><span>  </span><code>X:\xxxxx\mpv-lazy\portable_config\svpflow-xxxx.vpy</code></li><li><span>默认的缩略图缓存文件夹，默认设置为正常退出程序即自动清理</span>
 <code>C:\Users\你的用户名\AppData\Local\Temp\Thumbnailer\</code>
-<code>\watch_later\</code><span> </span><code>\icc_cache\</code><span> </span><code>\shaders_cache\</code><span> 皆为缓存文件夹，可手动清理</span></li><li><font color=orange><span>广色域屏</span></font><span>用户使用前应进行色彩管理相关设定（查看 mpv.conf 中的 </span><code>#视频#</code><span> 部分）</span></li></ul><p><span>🔺 其它常见问题的解决途径见 </span><strong><span>发布页FAQ</span></strong><span> 或镜像手册 </span><font color=green><span>[04]</span></font></p><h2 id='常用快捷键'><span>常用快捷键</span></h2><p><code>左键</code><span> 双击---切换---全屏/窗口化</span>
-<code>右键</code><span> 单机---切换---暂停/播放</span>
-<code>滚轮向上/向下</code><span> 向前/向后搜索10秒</span>
+<code>\_cache\</code><span> 为着色器、icc-lut缓存、稍后观看记录的共用缓存文件夹，可手动清理</span></li><li><font color=orange><span>广色域屏</span></font><span>用户可进行色彩管理相关设定（查看 mpv.conf 中的 </span><code>#视频#</code><span> 部分）</span></li></ul><p><span>🔺 其它常见问题的解决途径见 </span><strong><span>发布页FAQ</span></strong><span> 或镜像手册 </span><font color=green><span>[04]</span></font></p><h2 id='常用快捷键'><span>常用快捷键</span></h2><p><code>鼠标左键</code><span> 双击---切换---全屏/窗口化</span>
+<code>鼠标右键</code><span> 单机 唤起 </span><font color=blue><span>图形上下文菜单</span></font>
 <code>空格</code><span> 暂停/播放</span>
 <code>1</code><span>  </span><code>2</code><span> 调节对比； </span><code>3</code><span>  </span><code>4</code><span> 调节亮度； </span><code>5</code><span>  </span><code>6</code><span> 调节伽玛； </span><code>7</code><span>  </span><code>8</code><span> 调节饱和； </span><code>9</code><span>  </span><code>0</code><span> 调节色相</span>
 <code>-</code><span>  </span><code>=</code><span> 调节音量</span>
 <code>[</code><span>  </span><code>]</code><span> 调节速度； </span><code>Backspace</code><span> 重置播放速度</span>
-<code>F8</code><span> 显示</span><s><span>简易播放列表</span></s><span>（也可在osc的前后切换按钮上按 </span><code>鼠标右键</code><span> ）已替换为</span><font color=orange><span>高级播放列表</span></font><span>，具体见下一节</span>
-<code>Shift+t</code><span> 手动播放器置顶</span>
+<code>F8</code><span> 显示</span><s><span>简易播放列表</span></s><span> 已替换为</span><font color=orange><span>高级播放列表</span></font><span>，具体见下一节</span>
+<code>Shift+t</code><span> 切换播放器置顶</span>
 <code>f</code><span> 切换全屏</span>
 <code>ENTER</code><span> 进入全屏</span>
-<code>Alt</code><span> + </span><code>1</code><span> 将视频窗口调整为原始大小</span>
 <code>s</code><span> 截图</span>
 <code>i</code><span> 显示有关当前播放文件的</span><font color=orange><span>统计信息stats</span></font><span>，例如编解码器，帧速率等。 此时按 </span><code>1</code><span> </span><code>2</code><span> </span><code>3</code><span> </span><code>4</code><span> </span><code>0</code><span> 分别显示不同页面的信息（ </span><code>2</code><span> </span><code>4</code><span> </span><code>0</code><span> 页可方向键上下滚动），第四页显示</span><font color=blue><span>已绑定的快捷键信息</span></font>
 <code>Shift</code><span> + </span><code>i</code><span> 作用同上，此时统计信息常驻，再次按下关闭</span>
-<code>`</code><span> 打开控制台，此时按 </span><code>Esc</code><span> 关闭</span></p><p><span>🔺 更多操作及自定义见 </span><code>input.conf</code></p><h2 id='高级播放列表操作'><span>高级播放列表操作</span></h2><p><code>Shift</code><span> + </span><code>Enter</code><span> 打开高级播放列表，此时：（以下按键皆为动态绑定）</span>
+<code>`</code><span> 打开控制台，此时按 </span><code>Esc</code><span> 关闭</span></p><p><span>🔺 更多操作及自定义见 </span><code>input.conf</code></p><h2 id='高级播放列表操作'><span>高级播放列表操作</span></h2><p><code>Shift</code><span> + </span><code>Enter</code><span> 打开高级播放列表（超时自动隐藏），此时：（以下按键皆为动态绑定）</span>
 <span>    </span><code>↑</code><span>  </span><code>↓</code><span> 选择条目（当选中时，功能改变为移动该条目在列表中的位置）</span>
 <span>    </span><code>←</code><span>  </span><code>→</code><span> 选中/取消选中 当前选择的条目</span>
 <span>    </span><code>Backspace</code><span> 移除当前选择/选中的条目</span>
 <span>    </span><code>Enter</code><span> 播放当前选择/选中的条目</span>
 <span>    </span><code>HOME</code><span> </span><code>END</code><span> </span><code>PGUP</code><span> </span><code>PGDWM</code><span> 高速翻页</span>
-<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2 id='组件整合列表'><span>组件整合列表</span></h2><h3 id='主要程序'><span>主要程序</span></h3><p><span>  </span><strong><span>☑ mpv-x64</span></strong><span> &lt;git_20211031&gt; 【运行主程序mpv.exe打开本体】</span>
-<span>  </span><strong><span>☑ libEGL &amp; libGLESv2</span></strong><span> &lt;git_2.1.17153&gt; 【OpenGL-ANGLE后端所需】</span>
-<span>  </span><strong><span>☑ Python-embed-amd64</span></strong><span> &lt;3.9.7&gt; 【环境支持】</span>
+<span>    </span><code>Esc</code><span> 关闭高级播放列表（此时以上按键不再绑定，恢复其原来的功能）</span></p><p>&nbsp;</p><h2 id='组件整合列表'><span>组件整合列表</span></h2><h3 id='主要程序'><span>主要程序</span></h3><p><span>  </span><strong><span>☑ mpv-x64</span></strong><span> &lt;git_20211219&gt; 【运行主程序mpv.exe打开本体】</span>
+<span>  </span><strong><span>☑ Python-embed-amd64</span></strong><span> &lt;3.9.9&gt; 【环境支持】</span>
 <span>  </span><strong><span>☑ VapourSynth-Classic</span></strong><span> &lt;R57.A0&gt; 【帧服务器】</span>
-<span>  </span><strong><span>☑ FFmpeg</span></strong><span> &lt;git_20211030&gt; 【缩略图加速】</span>
-<span>  </span><strong><span>☑ yt-dlp</span></strong><span> &lt;20211022&gt; 【网络串流增强】</span>
-<span>  </span><strong><span>☑ youtube-dl</span></strong><span> &lt;20210606&gt; 【网络串流增强（备选）】</span></p><h3 id='脚本'><span>脚本</span></h3><p><span>&lt;20211031&gt;</span>
+<span>  </span><strong><span>☑ FFmpeg</span></strong><span> &lt;git_20211214&gt; 【缩略图加速】</span>
+<span>  </span><strong><span>☑ yt-dlp</span></strong><span> &lt;20211201&gt; 【网络串流增强】</span>
+<span>  </span><strong><span>☑ Tcl/Tk</span></strong><span> &lt;8.6.12&gt; 【图形菜单依赖】</span></p><h3 id='脚本'><span>脚本</span></h3><p><span>&lt;20211220&gt;</span>
 <span>  </span><strong><span>☑ autoload</span></strong><span> 【自动加载同级目录视频】</span>
-<span>  </span><strong><span>☑ cycle_adevice</span></strong><span> 【快捷键 </span><code>Ctrl/Alt+a</code><span> 快速切换音频输出设备】</span>
+<span>  </span><strong><span>☑ contextmenu_gui</span></strong><span> 【图形化菜单】</span>
+<span>  </span><strong><span>☑ cycle_adevice</span></strong><span> 【快速切换音频输出设备】</span>
 <span>  </span><strong><span>☑ ontop_playback</span></strong><span> 【仅在播放时置顶（需激活 mpv.conf 文件中的 </span><code>--ontop</code><span> 参数）】</span>
-<span>  </span><strong><span>☑ open_dialog</span></strong><span> 【快捷键 </span><code>Ctrl+o</code><span> 手动加载额外的视频文件】</span>
+<span>  </span><strong><span>☑ open_dialog</span></strong><span> 【快捷键加载文件】</span>
 <span>  </span><strong><span>☑ osc_lazy</span></strong><span> 【兼容缩略图引擎的增强型界面】</span>
 <span>  </span><strong><span>☑ playlistmanager</span></strong><span> 【高级播放列表】</span>
-<span>  </span><strong><span>☑ Thumbnailer</span></strong><span> 【缩略图引擎】</span></p><h3 id='着色器'><span>着色器</span></h3><p><span>&lt;20211031&gt;</span>
-<span>  </span><strong><span>☑ Krig</span></strong><span> 【高级cscale色度升频】</span>
-<span>  </span><strong><span>☑ Anime4K</span></strong><span> 【动漫向的视频画面高速综合优化】</span>
-<span>  </span><strong><span>☑ ACNet</span></strong><span> 【动漫向的人工智能视频画面优化】</span>
-<span>  </span><strong><span>☑ FSRCNNX</span></strong><span> 【快速超分辨率卷积神经网络的放大算法】</span>
-<span>  </span><strong><span>☑ AviSynth AiUpscale</span></strong><span> 【和FSRCNNX同体系的放大算法】</span>
-<span>  </span><strong><span>☑ RAVU</span></strong><span> 【快速准确的图像超分辨率算法】</span>
-<span>  </span><strong><span>☑ SuperXBR</span></strong><span> 【经典的放大算法】</span>
-<span>  </span><strong><span>☑ NNEDI3</span></strong><span> 【可当作放大算法】</span>
-<span>  </span><strong><span>☑ SSimDownscaler</span></strong><span> 【高级缩小算法】</span>
-<span>  </span><strong><span>☑ SSimSuperRes</span></strong><span> 【对mpv内置放大算法的修正】</span>
-<span>  </span><strong><span>☑ Adaptive Sharpen</span></strong><span> 【自适应锐化】</span>
-<span>  </span><strong><span>☑ CAS</span></strong><span> 【对比度自适应锐化】</span>
-<span>  </span><strong><span>☑ Noise static</span></strong><span> 【优化静态噪点】</span></p><h3 id='vs脚本与插件'><span>VS脚本与插件</span></h3><p><span>&lt;20211031&gt;</span>
-<span>  </span><strong><span>☑ mvtools</span></strong><span> 【补帧】</span>
-<span>  </span><strong><span>☑ SVPflow</span></strong><span> 【补帧（发布帖有其他坛友的脚本）】</span></p><h3 id='额外'><span>额外</span></h3><p><span>&lt;20211031&gt;</span>
+<span>  </span><strong><span>☑ Thumbnailer</span></strong><span> 【缩略图引擎】</span></p><h3 id='着色器'><span>着色器</span></h3><p><span>&lt;20211220&gt;</span>
+<span>  </span><strong><span>☑ Anime4K</span></strong><span> 【动漫向的综合优化】</span>
+<span>  </span><strong><span>☑ FSRCNNX</span></strong><span> 【快速超分卷积神经网络的放大算法】</span>
+<span>  </span><strong><span>☑ NNEDI3</span></strong><span> 【用作放大算法】</span>
+<span>  ......更多见手册 </span><font color=green><span>[01]</span></font></p><h3 id='vs脚本与插件'><span>VS脚本与插件</span></h3><p><span>&lt;20211220&gt;</span>
+<span>  </span><strong><span>☑ MVTools</span></strong><span> 【补帧】</span>
+<span>  </span><strong><span>☑ SVPflow</span></strong><span> 【补帧】</span>
+<span>  </span><strong><span>☑ stab</span></strong><span> 【稳定镜头】</span></p><h3 id='额外'><span>额外</span></h3><p><span>&lt;20211220&gt;</span>
 <span>  </span><strong><span>☑ 封装</span></strong><span> 【必备运行库；安装脚本等】</span>
-<span>  </span><strong><span>☑ 系列手册</span></strong>
-<span>  </span><strong><span>☑ 特殊模式</span></strong><span> 【仅测试用途】</span></p><p>&nbsp;</p><h1 id='其它'><span>其它</span></h1><p><span>mpv-lazy懒人包的更新地址： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
+<span>  </span><strong><span>☑ 特殊模式</span></strong><span> 【仅测试用途】</span></p><p>&nbsp;</p><h1 id='其它'><span>其它</span></h1><p><span>mpv-lazy懒人包的原发布页： </span><a href='https://bbs.vcb-s.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.vcb-s.com/thread-5843-1-1.html</a>
 <span>mpv-lazy项目地址： </span><a href='https://github.com/hooke007/MPV_lazy' target='_blank' class='url'>https://github.com/hooke007/MPV_lazy</a></p><p><span>从零开始的MPV播放器教程 </span><font color=blue><span>[win10]</span></font><span>： </span><a href='https://hooke007.github.io/mpv-lazy/mpv.html' target='_blank' class='url'>https://hooke007.github.io/mpv-lazy/mpv.html</a>
 <span>关于 </span><code>mpv.conf</code><span> 内参数设定的最新的描述文档： </span><a href='https://mpv.io/manual/master/' target='_blank' class='url'>https://mpv.io/manual/master/</a></p><p><span>Win10上我用过的最好的基于libmpv的弹幕播放器： </span><a href='https://kikoplay.fun/' target='_blank' class='url'>https://kikoplay.fun/</a><span> （官网）</span>
 <span>适用于小白的libmpv播放器： </span><a href='https://github.com/hooke007/mpv.net_CM' target='_blank' class='url'>https://github.com/hooke007/mpv.net_CM</a></p></div></div>
