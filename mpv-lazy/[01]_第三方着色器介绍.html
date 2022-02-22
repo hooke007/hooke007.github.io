@@ -283,33 +283,30 @@ span.cm-strikethrough { text-decoration: line-through; }
 
 
 :root {
-  --control-text-color: #777;
-  --select-text-bg-color: #ebe1f5;
-  --search-select-bg-color: #8163bd;
-
-  --title-color: /* #6c549c */ #79589f;
-  --text-color: #333333;
+  --title-color: #8064a9;
+  --text-color: #444444;
   --light-text-color: #666666;
+  --lighter-text-color: #888888;
+  --link-color: #2aa899;
+  --code-color: #745fb5;
 
-  --link-color: #745fb5;
-  --code-color: #ff79c6;
-  --purple-light-1: rgba(116, 95, 181, 0.05);
-  --purple-light-2: rgba(116, 95, 181, 0.1);
-  --purple-light-3: rgba(116, 95, 181, 0.3);
-  --purple-light-4: rgba(116, 95, 181, 0.7);
-  --purple-light-5: rgba(116, 95, 181, 0.8);
-  --border: #eee;
+  --shadow-color: #eee;
+  --border-quote: rgba(116, 95, 181, 0.2);
+  --border: #e7e7e7;
+  --link-bottom: #bbb;
+  --shadow: 3px 3px 10px var(--shadow-color);
+  --inline-code-bg: #f4f2f9;
 
-  --shadow: 0rem 0.2rem 0.4rem var(--purple-light-2);
+  --header-weight: normal;
 
-  /* side bar */
-  --side-bar-bg-color: #f7f7fb;
+  --side-bar-bg-color: #fafafa;
+  --control-text-color: var(var(--light-text-color));
   --active-file-text-color: var(--title-color);
-  --active-file-bg-color: var(--purple-light-2);
-  --item-hover-bg-color: var(--purple-light-2);
-  --active-file-border-color: var(--purple-light-4);
+  --active-file-bg-color: var(--shadow-color);
+  --item-hover-bg-color: var(--shadow-color);
+  --active-file-border-color: var(var(--title-color));
 
-  --base-font: "Helvetica Neue", "Noto Sans", -apple-system, Ubuntu,
+  --base-font: "Helvetica Neue", -apple-system, Ubuntu,
     "Microsoft YaHei", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans",
     "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC",
     "Source Han Sans CN", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
@@ -325,13 +322,25 @@ span.cm-strikethrough { text-decoration: line-through; }
     "Roboto Mono", Courier, Monospace !important;
 }
 
-/* PDF打印：A3 */
+/* 打印 */
 @media print {
+  html {
+    font-size: 0.9rem;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+
+  pre {
+    word-wrap: break-word;
+  }
   #write {
     max-width: 100%;
   }
   @page {
-    size: A3; /* A4 */
+    size: A3; /* PDF output size */
     margin-left: 0;
     margin-right: 0;
   }
@@ -375,20 +384,22 @@ body > *:last-child {
   margin-bottom: 0 !important;
 }
 
+/* Link 链接 */
 a {
   color: var(--link-color);
   text-decoration: none;
 }
 #write a {
-  border-bottom: none;
+  border-bottom: 1px solid var(--link-bottom);
 }
 #write a:hover {
-  border-bottom: 1px solid var(--purple-light-4);
-  color: var(--purple-light-4);
-  text-decoration: none;
+  border-bottom: 1px solid var(--link-color);
+  /*   color: var(--link-color);
+    text-decoration: none; */
 }
+
 .md-content {
-  color: var(--purple-light-4);
+  color: var(--light-text-color);
 }
 
 h1,
@@ -398,49 +409,19 @@ h4,
 h5,
 h6 {
   position: relative;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
-  font-weight: normal;
-  line-height: 1.4;
+  font-weight: var(--header-weight);
+  line-height: 1.3;
   cursor: text;
   color: var(--title-color);
   font-family: var(--title-font);
 }
 
-h1 tt,
-h1 code {
-  font-size: inherit !important;
-}
-h2 tt,
-h2 code {
-  font-size: inherit !important;
-}
-h3 tt,
-h3 code {
-  font-size: inherit !important;
-}
-h4 tt,
-h4 code {
-  font-size: inherit !important;
-}
-h5 tt,
-h5 code {
-  font-size: inherit !important;
-}
-h6 tt,
-h6 code {
-  font-size: inherit !important;
-}
-
-h1 {
-  padding-bottom: 0.4rem;
-  font-size: 2.2rem;
-  line-height: 1.3;
-}
 h1 {
   text-align: center;
   font-size: 2.25em;
-  line-height: 1.2;
+  margin-bottom: 2rem;
 }
 h1:after {
   content: "";
@@ -453,23 +434,21 @@ h1:after {
 
 h2 {
   padding-left: 0.4em;
-  line-height: 1.4;
   font-size: 1.75em;
-  border-left: 9px solid var(--title-color);
+  border-left: 0.4em solid var(--title-color);
   border-bottom: 1px solid var(--title-color);
 }
 h3 {
   font-size: 1.5em;
-  line-height: 1.43;
 }
 h4 {
-  font-size: 1.25em;
+  font-size: 1.3em;
 }
 h5 {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 h6 {
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 p,
@@ -483,8 +462,7 @@ table {
 
 /* horizontal rule */
 hr {
-  margin: 1em auto;
-  border: 0;
+  margin: 1.5em auto;
   border-top: 1px solid var(--border);
 }
 
@@ -520,14 +498,13 @@ ul li {
 
 /* 引用 */
 blockquote {
-  border-left: 0.2em solid var(--purple-light-3);
+  border-left: 0.3rem solid var(--border-quote);
   padding-left: 1em;
   color: var(--light-text-color);
   font-family: var(--base-font);
 }
 
 /* 表格 */
-
 table {
   margin-bottom: 1.25rem;
 }
@@ -544,10 +521,6 @@ table th {
 table thead th {
   vertical-align: middle;
 }
-
-/* 表格 背景色 */
-
-/* 表格 背景色 */
 table tr:nth-child(2n),
 thead {
   background-color: #fcfcfc;
@@ -567,25 +540,18 @@ tt {
   font-family: var(--monospace);
   font-size: 0.9rem;
   color: var(--code-color);
-  background-color: var(--purple-light-1);
-}
-
-tt {
+  background-color: var(--inline-code-bg);
   margin: 0 2px;
 }
 
 #write .md-footnote {
-  background-color: var(--purple-light-1);
   color: var(--code-color);
+  background-color: var(--inline-code-bg);
 }
 
 /* highlight. */
 #write mark {
-  background-color: var(--select-text-bg-color);
-  border-radius: 0.3rem;
-  padding: 2px 4px;
-  margin: 0 2px;
-  color: var(--text-color);
+  background: rgb(255, 255, 196);
 }
 
 #write del {
@@ -594,21 +560,6 @@ tt {
 
 .md-task-list-item > input {
   margin-left: -1.3em;
-}
-
-@media print {
-  html {
-    font-size: 0.9rem;
-  }
-
-  table,
-  pre {
-    page-break-inside: avoid;
-  }
-
-  pre {
-    word-wrap: break-word;
-  }
 }
 
 #write pre.md-meta-block {
@@ -643,14 +594,22 @@ tt {
 
 /* 写![shadow-...]() 显示图片阴影 */
 img[alt|="shadow"] {
-  box-shadow: 0rem 0.4rem 0.8rem var(--purple-light-2);
+  box-shadow: var(--shadow);
 }
 
+/* TOC: 加粗h2 */
 #write a.md-toc-inner {
   line-height: 1.6;
   white-space: pre-line;
   border-bottom: none;
+  color: var(--lighter-text-color);
   font-size: 0.9rem;
+}
+/* .md-toc-h1 {
+  display: none;
+} */
+.md-toc-h2 .md-toc-inner {
+  font-weight: bold;
 }
 
 header,
@@ -673,20 +632,16 @@ footer {
   --item-hover-bg-color: #e6f0fe;
 }
 
-/* 代码框 */
-/* CodeMirror 3024 Day theme */
+/* Code fences */
 
-/* 代码段 背景 */
-pre {
-  --select-text-bg-color: #ebe1f5;
-}
-
-/* border and bg */
+/* border, bg, font */
 .md-fences {
   border: 1px solid var(--border);
   border-radius: 5px;
   background: #fdfdfd !important;
+  font-size: 0.9rem;
 }
+/* 代码框阴影 */
 #write pre.md-fences {
   display: block;
   -webkit-overflow-scrolling: touch;
@@ -713,19 +668,6 @@ pre {
   color: #b8b5b4;
 }
 
-.cm-s-inner .CodeMirror-line::selection,
-.cm-s-inner .CodeMirror-line::-moz-selection,
-.cm-s-inner .CodeMirror-line > span::selection,
-.cm-s-inner .CodeMirror-line > span::-moz-selection,
-.cm-s-inner .CodeMirror-line > span > span::selection,
-.cm-s-inner .CodeMirror-line > span > span::-moz-selection {
-  background: var(--purple-light-1);
-}
-
-.md-fences.md-focus .cm-s-inner .CodeMirror-activeline-background {
-  background: var(--purple-light-1);
-}
-
 .cm-s-inner .CodeMirror-matchingbracket {
   text-decoration: underline;
   color: #a34e8f !important;
@@ -737,6 +679,9 @@ pre {
 
 .cm-s-inner span.cm-comment {
   color: #9daab6;
+}
+.cm-s-inner span.cm-builtin {
+  color: #0451a5;
 }
 
 /* language tip */
@@ -814,135 +759,23 @@ pre {
   opacity: 0.6;
 }
 
-/* sidebar and outline */
-.pin-outline .outline-active {
-  color: var(--active-file-text-color);
-}
-
+/* sidebar */
 #typora-sidebar,
 .typora-node #typora-sidebar {
-  box-shadow: 3px 0px 10px var(--purple-light-2);
+  box-shadow: 3px 0px 10px var(--shadow-color);
 }
-
-.file-list-item {
-  border-bottom: 1px solid;
-  border-color: var(--purple-light-2);
-}
-
-.file-list-item-summary {
-  font-weight: normal;
-}
-
-.file-list-item.active {
-  color: var(--active-file-text-color);
-  background-color: var(--purple-light-2);
-}
-
-.file-tree-node.active > .file-node-background {
-  background-color: var(--purple-light-2);
-  font-weight: normal;
-}
-
-.file-tree-node.active > .file-node-content {
-  color: var(--active-file-text-color);
-  font-weight: normal;
-}
-
-.sidebar-tabs {
-  border-bottom: none;
-}
-.sidebar-tab.active {
-  font-weight: normal;
-}
-.info-panel-tab-border {
-  color: var(--purple-light-4);
-}
-
 .sidebar-content-content {
   font-size: 0.9rem;
-}
-
-/* 搜索 */
-.ty-file-search-match-text {
-  background-color: var(--purple-light-3);
-}
-.md-search-hit {
-  background-color: var(--purple-light-3);
-  contain: style;
-}
-
-element.style {
-  width: calc(100% - 18px);
-}
-#file-library-search-input:focus {
-  border-color: var(--purple-light-3);
-}
-.code-tooltip .ty-input:focus,
-input:focus {
-  border-color: var(--purple-light-3);
 }
 @import "";
 
 :root {
-  --select-text-bg-color: #dae3ea;
-}
-pre {
-  --select-text-bg-color: #dae3ea;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-h1:after {
-  border-bottom: 2px solid var(--text-color);
-}
-
-h2 {
-  border-left: 9px solid var(--text-color);
-  border-bottom: 1px solid var(--text-color);
-}
-
-/* inline code */
-#write code,
-tt {
-  color: #3f3f44;
-  background-color: var(--purple-light-1);
-  border: 1px solid #e7eaed;
-}
-
-#write .md-footnote {
-  color: #3f3f44;
-  background-color: var(--purple-light-1);
-  border: 1px solid #e7eaed;
-}
-
-/* 引用 */
-blockquote {
-  border-left: 0.2rem solid #dfe2e5;
-}
-
-/* 链接 */
-a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-#write a {
-  border-bottom: 1px solid var(--text-color);
-}
-#write a:hover {
-  border-bottom: 1px solid #777;
-  color: #777;
-  text-decoration: none;
-}
-.md-content {
-  color: #777;
+  --title-color: var(--text-color);
+  --link-color: var(--lighter-text-color);
+  --code-color: #222222;
+  --border-quote: var(--border);
+  --header-weight: bold;
+  --inline-code-bg: #eee;
 }
 
 
@@ -950,7 +783,7 @@ a {
 </style><title>[01]_第三方着色器介绍</title>
 </head>
 <body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
-<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器">第三方着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#起">起</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-v32-v4x">Anime4K v3.2-v4.x</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-legacy">Anime4k-legacy</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#superxbr">SuperXBR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#cas">CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实际工作顺序">实际工作顺序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#附录">附录</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-v3-v31">Anime4k v3-v3.1</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器'><span>第三方着色器</span></h1><p><em><span>ver.20211123</span></em></p><h1 id='起'><span>起</span></h1><p><span>   我选择主设置文件夹下新建的 </span><strong><span>shaders</span></strong><span> 目录下放置第三方着色器，常见后缀名为 .glsl .hook</span>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三方着色器">第三方着色器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#起">起</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-v32-v4x">Anime4K v3.2-v4.x</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-legacy">Anime4k-legacy</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#acnet">ACNet</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#fsrcnnx">FSRCNNX</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#avisynth-aiupscale">AviSynth AiUpscale</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#adaptive-sharpen">Adaptive Sharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#krig">Krig</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimsuperres">SSimSuperRes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ssimdownscaler">SSimDownscaler</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#ravu">RAVU</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nnedi3">NNEDI3</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#superxbr">SuperXBR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#amd-cas">AMD-CAS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#amd-fsr">AMD-FSR</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nv-nis">NV-NIS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#nv-nvsharpen">NV-NVSharpen</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#noise-static">Noise Static</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其它">其它</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实际工作顺序">实际工作顺序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#叠加放大类着色器的注意点">叠加放大类着色器的注意点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#快捷键动态启用">快捷键动态启用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#速度的对比参考">速度的对比参考</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#附录">附录</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#anime4k-v3-v31">Anime4k v3-v3.1</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='第三方着色器'><span>第三方着色器</span></h1><p><em><span>ver.20220222</span></em></p><h1 id='起'><span>起</span></h1><p><span>   我选择主设置文件夹下新建的 </span><strong><span>shaders</span></strong><span> 目录下放置第三方着色器，常见后缀名为 .glsl .hook</span>
 <span>   通过编辑 </span><strong><span>mpv.conf</span></strong><span> / </span><strong><span>input.conf</span></strong><span> 自行决定自动/手动加载第三方着色器（语法见对应文件内示例）</span>
 <span>   部分放大着色器有最小缩放倍数的触发限制条件，即 </span><font color=pink><span>目标分辨率 ＞或＝ 源分辨率x最小触发倍数</span></font>
 <span>   通常AI类缩放算法无特别说明，都只对源执行一次双倍放大，不足/超过目标分辨率的部分由 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale/dscale</span></font><span> 算法接力执行</span>
@@ -1005,7 +838,7 @@ a {
 <code>Anime4K_Clamp_Highlights.glsl</code>
 <code>Anime4K_3DGraphics_Upscale_x2_US.glsl</code>
 <code>Anime4K_3DGraphics_AA_Upscale_x2_US.glsl</code></p><p><span>追加说明：对新版的混合搭配顺序为 Clamp → Restore → Upscale → AutoDownscalePre → Upscale ...（仅作为推荐，可自行调节删改）</span>
-<span>通常仅需一个 </span><strong><span>Anime4K_Restore_CNN_M.glsl</span></strong><span> 模块即满足大多数人的口味（适度画面修复+弱感知强化+微量瑕疵引入）</span></p><h2 id='anime4k-legacy'><span>Anime4k-legacy</span></h2><p><span>   此处专指旧版不带放大功能的Anime4k v1及之前的版本，可作为动漫向专用的锐化器独立或搭配其它放大着色器使用实现不错的最终效果。</span>
+<span>通常仅需一个 </span><strong><span>Anime4K_Restore_CNN_M.glsl</span></strong><span> 模块即满足大多数人的口味（适度画面修复+弱感知强化+微量瑕疵引入）</span></p><h2 id='anime4k-legacy'><span>Anime4k-legacy</span></h2><p><span>   此处专指旧版不带放大功能的Anime4k v1及之前的版本，可作为动漫向专用的锐化器独立或搭配其它放大着色器使用，实现不错的最终效果。</span>
 <span>重命名为直观的anime-sharpen并降低v1中不合理的缩放倍率限制。</span>
 <span>10系列中被开发者视为最佳质量的变体反而被我认为质量最差（扭曲文字图形且油画感太重）</span></p><p><span>🔺 变体 </span><font color=blue><span> 10 </span></font><span> 的最小缩放触发倍率为</span><font color=red><span>1</span></font></p><p><span>相关列表：（推荐程度 </span><strong><span>09 &gt;&gt; 10_UltraFast &gt; 10_Fast &gt; 10</span></strong><span> ）</span>
 <code>anime-sharpen_09.glsl</code>
@@ -1020,10 +853,10 @@ a {
 <code>ACNet_HDN_L3.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='fsrcnnx'><span>FSRCNNX</span></h2><p><span>   由原始SRCNN发展而来，是FSRCNN的变体，较快速的通用型AI放大算法。</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法</span>
 <span>🔺 最小缩放触发倍率为</span><font color=red><span>1.3</span></font>
 <span> </span><font color=blue><span> LineArt </span></font><span> 和 </span><font color=blue><span> anime </span></font><span> 变体更适合2d动画</span>
-<span> </span><font color=blue><span> enhance </span></font><span> 变体在去除伪影强度上更大</span></p><p><span>副作用： </span><font color=blue><span> 16-0-4-1 </span></font><span> 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</span></p><p><span>相关列表：</span><a href='https://github.com/igv/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/igv/FSRCNN-TensorFlow</a><span> &amp; </span><a href='https://github.com/HelpSeeker/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/HelpSeeker/FSRCNN-TensorFlow</a>
+<span> </span><font color=blue><span> enhance </span></font><span> 变体在去除伪影强度上更大</span></p><p><span>副作用： </span><font color=blue><span> 16-0-4-1 </span></font><span> 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</span></p><p><span>相关列表：</span><a href='https://github.com/igv/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/igv/FSRCNN-TensorFlow</a>
 <code>FSRCNNX_x2_8-0-4-1.glsl</code>
 <code>FSRCNNX_x2_8-0-4-1_LineArt.glsl</code>
-<code>FSRCNNX_x2_16-0-4-1.glsl</code>
+<code>FSRCNNX_x2_16-0-4-1.glsl</code></p><p><span>相关列表：</span><a href='https://github.com/HelpSeeker/FSRCNN-TensorFlow' target='_blank' class='url'>https://github.com/HelpSeeker/FSRCNN-TensorFlow</a>
 <code>FSRCNNX_x2_16-0-4-1_anime_enhance.glsl</code>
 <code>FSRCNNX_x2_16-0-4-1_enhance.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='avisynth-aiupscale'><span>AviSynth AiUpscale</span></h2><p><span>   名字奇怪是因为开发者主要移植到AviSynth+上用的，和FSRCNNX有相似的体系结构，但使用了不同的滤镜。</span></p><p><span> x2 x3 x4 分别对应 二倍 三倍 四倍 放大</span>
 <span>质量上 </span><font color=blue><span> Fast </span></font><span> 弱于 </span><font color=blue><span> Medium </span></font><span> 弱于 </span><font color=blue><span> HQ </span></font>
@@ -1045,14 +878,14 @@ a {
 <code>AiUpscale_HQ_Sharp_2x_Photo.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='adaptive-sharpen'><span>Adaptive Sharpen</span></h2><p><span>   自适应锐化</span>
 <span>变体 </span><font color=blue><span> best </span></font><span> 理论上拥有最佳质量但强度较低；变体 </span><font color=blue><span> 2_0_anime </span></font><span> 锐化度更强且启用了动画适配；变体 </span><font color=blue><span> luma </span></font><span> 只处理亮度通道不适合rgb源</span></p><h2 id='krig'><span>Krig</span></h2><p><span>   利用亮度信息进行高质量的色度升频</span>
 <span>mpv目前最好的色度升频着色器，可以与其他缩放（</span><font color=orange><span>--scale/dscale</span></font><span>）算法共同使用</span></p><p><span>🔺 启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法</span></p><h2 id='ssimsuperres'><span>SSimSuperRes</span></h2><p><span>   该着色器的目的是对mpv内置 </span><font color=orange><span>--scale=xxxxx</span></font><span> 放大算法进行增强校正。</span></p><h2 id='ssimdownscaler'><span>SSimDownscaler</span></h2><p><span>   基于感知的对mpv内置 </span><font color=orange><span>--dscale=xxxxx</span></font><span> 缩小算法进行增强校正。（例如抗振铃）</span></p><p><span>🔺 仅当 </span><strong><span>mpv.conf</span></strong><span> 中设定 </span><font color=orange><span>--linear-downscaling=no</span></font><span> 时正常工作</span></p><p><span>以上四项及FSRCNNX皆由同一开发者移植</span>
-<span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a><span> （变体 </span><font color=blue><span> luma </span></font><span> 仅作用于亮度通道， </span><font color=blue><span> 2_0 </span></font><span> 锐化强度为2.0，标准强度1.0， </span><font color=blue><span> best </span></font><span> 强度为0.3）</span>
+<span>相关列表：</span><a href='https://gist.github.com/igv' target='_blank' class='url'>https://gist.github.com/igv</a>
 <code>adaptive-sharpen.glsl</code>
-<code>adaptive-sharpen_luma.glsl</code>
-<code>adaptive-sharpen_best.glsl</code>
-<code>adaptive-sharpen_2_0_anime.glsl</code>
 <code>KrigBilateral.glsl</code>
 <code>SSimDownscaler.glsl</code>
-<code>SSimSuperRes.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span>
+<code>SSimSuperRes.glsl</code></p><p><span>相关列表：MOD</span>
+<span>（变体 </span><font color=blue><span> anime </span></font><span> 预设为动漫优化；变体 </span><font color=blue><span> luma </span></font><span> 仅作用于亮度通道）</span>
+<code>adaptive-sharpen_anime.glsl</code>
+<code>adaptive-sharpen_luma.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='ravu'><span>RAVU</span></h2><p><span>   (Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频器。 它具有不同的变体以适应不同的场景。</span>
 <span>   RAVU整体的性能消耗设计上比mpv内置的ewa系缩放器只略高。</span></p><h2 id='nnedi3'><span>NNEDI3</span></h2><p><span>   全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。nnedi3版速度较快（即便如此相比其它算法依旧速度极慢，开销巨大）</span></p><h2 id='superxbr'><span>SuperXBR</span></h2><p><span>   一个经典的整数倍放大算法，消耗介于NNEDI3和RAVU之间。</span></p><p><span>以上三项由同一开发者移植，在项目中提供了更多说明： </span><a href='https://github.com/bjin/mpv-prescalers' target='_blank' class='url'>https://github.com/bjin/mpv-prescalers</a></p><p>&nbsp;</p><p><span>r2 → r3 → r4；</span><span>	</span><span>nns16 → nns32 → nns64 → nns128 → nns256；win8x4 → win8x6 质量更好但性能大增</span>
 <span>开发者的 </span><strong><span>\compute</span></strong><span> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 </span><strong><span>\gather</span></strong><span> 内的（OpenGL≥4.0）更快，后者比 </span><strong><span>主目录 \master</span></strong><span> 的更快</span>
 <span> </span><strong><span>\vulkan</span></strong><span> 内的需要 </span><strong><span>mpv.conf</span></strong><span> 内配置为 </span><font color=orange><span>--gpu-api=d3d11</span></font><span>或</span><font color=orange><span>vulkan</span></font><span>   </span><font color=orange><span>--fbo-format=rgba16hf</span></font></p><p><span> </span><font color=blue><span> -3x </span></font><span> 变体直接放大三倍，适用于超低清源。 </span><font color=blue><span> ravu-r </span></font><span> 和 </span><font color=blue><span> -3x </span></font><span> 变体的训练模型为动漫， </span><font color=blue><span> -lite </span></font><span> 和 </span><font color=blue><span> -zoom </span></font><span> 变体为通用模型。</span></p><p><span>🔺 除了 </span><font color=blue><span> -chroma </span></font><span> 变体（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--cscale=xxxxx</span></font><span> 算法），其它只处理(YUV)luma通道（启用将覆盖 </span><strong><span>mpv.conf</span></strong><span> 中指定的 </span><font color=orange><span>--scale=xxxxx</span></font><span> 算法）</span>
@@ -1100,17 +933,27 @@ a {
 <code>nnedi3-nns256-win8x6.glsl</code></p><p><span>   来自 </span><em><span>*</span><span>*</span></em>
 <code>superxbr.glsl</code>
 <code>superxbr-rgb.glsl</code>
-<code>superxbr-yuv.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='cas'><span>CAS</span></h2><p><span>   (Contrast Adaptive Sharpening) 对比度自适应锐化是一种低开销的锐化算法</span>
-<span>移植自AMD FidelityFX CAS，来源：</span><a href='https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas</a>
-<span>🔺 </span><font color=blue><span> luma </span></font><span> 变体无法处理rgb的源</span></p><p><span>相关列表：（ 变体 </span><font color=blue><span> 0_5 </span></font><span> 的锐化强度为0.5，标准强度0.4）</span>
-<code>cas_luma.glsl</code>
-<code>cas_luma_0_5.glsl</code>
-<code>cas_rgb.glsl</code>
-<code>cas_rgb_0_5.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='noise-static'><span>Noise Static</span></h2><p><span>   优化静态（亮度/色度）噪点。</span>
+<code>superxbr-yuv.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='amd-cas'><span>AMD-CAS</span></h2><p><span>   移植自AMD FidelityFX CAS (Contrast Adaptive Sharpening)，原始设计用于游戏，对比度自适应锐化是一种低开销的锐化算法。</span></p><p><span>🔺 </span><font color=blue><span> rgb </span></font><span> 变体作用于后处理，比常规版本开销微高，速度微慢</span></p><h2 id='amd-fsr'><span>AMD-FSR</span></h2><p><span>   移植自AMD FidelityFX Super Resolution (FSR)，原始设计用于游戏，是一种先执行常规放大后再进行对比度自适应锐化的改良算法。放大部分基于lanczos+bilinear，锐化部分基于cas</span></p><p>&nbsp;</p><p><span>相关列表：</span><a href='https://gist.github.com/agyild/82219c545228d70c5604f865ce0b0ce5' target='_blank' class='url'>https://gist.github.com/agyild/82219c545228d70c5604f865ce0b0ce5</a><span> &amp; </span><a href='https://gist.github.com/agyild/bbb4e58298b2f86aa24da3032a0d2ee6' target='_blank' class='url'>https://gist.github.com/agyild/bbb4e58298b2f86aa24da3032a0d2ee6</a>
+<span>（变体 </span><font color=blue><span> scaled </span></font><span> 功能完整，附带了缩放模块而非纯粹的锐化算法）</span>
+<code>AMD-CAS.glsl</code>
+<code>AMD-CAS-scaled.glsl</code>
+<code>AMD-FSR.glsl</code></p><p><span>相关列表：MOD</span>
+<span>（变体 </span><font color=blue><span> rgb </span></font><span> 没有放大倍率的上限；变体 </span><font color=blue><span> EASU </span></font><span> 分离自fsr的放大模块，用作纯粹的放大算法）</span>
+<code>AMD-CAS_rgb.glsl</code>
+<code>AMD-CAS-scaled_rgb.glsl</code>
+<code>AMD-FSR_rgb.glsl</code>
+<code>AMD-FSR-EASU_rgb.glsl</code></p><p><span>相关列表：</span><a href='https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas' target='_blank' class='url'>https://github.com/deus0ww/mpv-conf/tree/master/shaders/cas</a>
+<span>（另一种移植的精简cas功能后的版本，更快速和低耗）</span>
+<code>AMD-CAS-lite_luma.glsl</code>
+<code>AMD-CAS-lite_rgb.glsl</code></p><p><span>🔺 无后缀名的版本都只作用于亮度通道（预处理）</span></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='nv-nis'><span>NV-NIS</span></h2><p><span>   移植自NVIDIA Image Scaling (NIS)，原始设计用于游戏，是一种基于lanczos的常规放大算法，并辅以自适应锐化改变观感。</span></p><p><span>🔺 此算法的振铃伪影异常明显，并且会随着锐化强度的增加而愈发显著</span></p><h2 id='nv-nvsharpen'><span>NV-NVSharpen</span></h2><p><span>   移植自NIS中的锐化模块，原始设计用于游戏。</span></p><p>&nbsp;</p><p><span>相关列表：</span><a href='https://gist.github.com/agyild/7e8951915b2bf24526a9343d951db214' target='_blank' class='url'>https://gist.github.com/agyild/7e8951915b2bf24526a9343d951db214</a>
+<code>NVScaler.glsl</code>
+<code>NVSharpen.glsl</code></p><p><span>相关列表：MOD</span>
+<span>（变体 </span><font color=blue><span> rgb </span></font><span> 作用于后处理，比常规版本开销微高，速度微慢）</span>
+<code>NVScaler_rgb.glsl</code></p><p><span>🔺无后缀名的 NVScaler 只作用于亮度通道（预处理），而 NVSharpen 作用于后处理</span></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='noise-static'><span>Noise Static</span></h2><p><span>   优化静态（亮度/色度）噪点。</span>
 <span>来源：</span><a href='https://pastebin.com/yacMe6EZ' target='_blank' class='url'>https://pastebin.com/yacMe6EZ</a><span> &amp; </span><a href='https://pastebin.com/15ZTaaUC' target='_blank' class='url'>https://pastebin.com/15ZTaaUC</a>
 <span>🔺 需要 </span><strong><span>mpv.conf</span></strong><span> 中设置为 </span><font color=orange><span> --deband-grain=0 </span></font><span> 的前提下使用</span></p><p><span>相关列表：</span>
 <code>noise_static_luma.glsl</code>
-<code>noise_static_chroma.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='其它'><span>其它</span></h2><p><span>相关列表：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="lua"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="lua"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.513px; left: 39.9783px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 32px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>12</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -31.9957px; width: 32px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">color-alt_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩黑白翻转（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 色彩范围扩展</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand_chroma.glsl</span> &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围扩展（色度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围扩展（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 色彩范围收缩</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink_chroma.glsl</span> &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围收缩（色度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围收缩（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">minblur-usm.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 通用锐化，程度细微</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">saturate.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 通用过饱和，程度较低</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 通用锐化，程度轻微</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp-masking_blur_1_0.glsl</span> &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 通用糊化，强度1.0</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp-masking_sharpen_1_0.glsl</span> &nbsp; <span class="cm-comment">-- 通用锐化，强度1.0</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 301px;"></div><div class="CodeMirror-gutters" style="height: 301px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 32px;"></div></div></div></div></pre><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><p>&nbsp;</p><h1 id='实际工作顺序'><span>实际工作顺序</span></h1><p><span>   着色器按工作插入位置可分为“预处理”与“后处理”两类，此由着色器本身决定，无法被配置文件更改。（在统计信息的第二页可直观查看）</span>
+<code>noise_static_chroma.glsl</code></p><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><h2 id='其它'><span>其它</span></h2><p><span>相关列表：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="lua"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="lua"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.513px; left: 39.9783px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 32px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -31.9957px; width: 32px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">color-alt_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩黑白翻转（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 色彩范围扩展</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand_chroma.glsl</span> &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围扩展（色度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_expand_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围扩展（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 色彩范围收缩</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink_chroma.glsl</span> &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围收缩（色度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">colorlevel_shrink_luma.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 色彩范围收缩（亮度通道）</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">minblur-usm.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 通用锐化，程度细微</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">saturate.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 通用过饱和，程度较低</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 通用锐化，程度轻微</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 26px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp-masking_blur.glsl</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">-- 通用糊化，强度1.0</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31.9957px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 26px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">unsharp-masking_sharpen.glsl</span> &nbsp; &nbsp; &nbsp; <span class="cm-comment">-- 通用锐化，强度1.0</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 301px;"></div><div class="CodeMirror-gutters" style="height: 301px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 32px;"></div></div></div></div></pre><center><font color="green">☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</font></center><p>&nbsp;</p><h1 id='实际工作顺序'><span>实际工作顺序</span></h1><p><span>🔺 （未完整列出全部着色器）</span></p><p><span>   着色器按工作插入位置可分为“预处理”与“后处理”两类，此由着色器本身决定，无法被配置文件更改。（在统计信息的第二页可直观查看）</span>
 <span>   如图，以 </span><font color=purple><span>combining planes</span></font><span> 为分界——之前的步骤为预处理， </span><font color=orange><span>--cscale=xxxxx</span></font><span> 也在此处（图中被krig替换）。之后的步骤为后处理， </span><font color=orange><span>--scale/dscale=xxxxx</span></font><span> 也在此处。</span>
 <img src="IMG/[01] stats-01.webp" alt="stats-01" style="zoom:100%;" />
 <span>   因此，着色器的实际工作顺序，首选遵守该原则，其次才是用户指定的顺序。（此外在预处理与后处理中也有顺序限制，具体请自行测试）</span></p><ul><li><span>预处理</span>
@@ -1121,7 +964,7 @@ a {
 <span>   反直觉的是，经过上一级着色器放大后的源大小变成了放大后的尺寸。遵守这一规则的有：Anime4k中的其它放大变体;ACNet;FSRCNNX;AviSynth AiUpscale;RAVU;NNEDI3</span></p><p><span>例一：在1440p显示器上打开一个1080p视频全屏，此时你（只要性能足够）可以无限叠加n个 </span><code>Anime4K_Upscale_Original_x2.glsl</code><span> 无障碍实现2^n倍放大。</span>
 <span>例二：同上的硬件环境，720p的视频先调用了nnedi3再调用fsrcnnx进行二次放大，你可能发现无法真实触发后者，原因在于720p的视频经过nnedi3第一次放大后被后方加载的fsrcnnx认为源是(720x2=)1440p，此时2k的显示器在全屏模式的分辨率并不满足fsrcnnx的最小放大触发倍率</span></p><p>&nbsp;</p><h1 id='快捷键动态启用'><span>快捷键动态启用</span></h1><p><span>适用于 </span><strong><span>input.conf</span></strong>
 <span>   语法结构： </span><code>按键(组合)   change-list   glsl-shaders   (不带&quot;-&quot;的)后缀   着色器(组合)</code></p><p><a href='https://mpv.io/manual/master/#string-list-and-path-list-options' target='_blank' class='url'>https://mpv.io/manual/master/#string-list-and-path-list-options</a></p><figure><table><thead><tr><th style='text-align:left;' ><span>可用后缀</span></th><th style='text-align:left;' ><span>说明（不推荐的语法可能在将来被弃用）</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>-set</span></td><td style='text-align:left;' ><span>设置着色器列表为一个或多个着色器（使用 </span><code>;</code><span> 分隔多个着色器，使用 </span><code>\</code><span> 作为转义符）</span></td></tr><tr><td style='text-align:left;' ><span>-append</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方</span></td></tr><tr><td style='text-align:left;' ><span>-add</span></td><td style='text-align:left;' ><span>追加一个或多个着色器到着色器列表的后方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-pre</span></td><td style='text-align:left;' ><span>增加一个或多个着色器到着色器列表的前方 (同 </span><code>-set</code><span> 的注意点)</span></td></tr><tr><td style='text-align:left;' ><span>-clr</span></td><td style='text-align:left;' ><span>清空着色器列表</span></td></tr><tr><td style='text-align:left;' ><span>-remove</span></td><td style='text-align:left;' ><span>移除一个列表中已存在的着色器</span></td></tr><tr><td style='text-align:left;' ><span>-del</span></td><td style='text-align:left;' ><span>移除一个或多个列表中已存在的着色器（不推荐）</span></td></tr><tr><td style='text-align:left;' ><span>-toggle</span></td><td style='text-align:left;' ><span>追加一个着色器到着色器列表的后方，如果已存在则移除它</span></td></tr></tbody></table></figure><p><span>支持使用mpv的相对路径（比如 </span><code>~~/</code><span> 指向主设置文件夹）</span>
-<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.3043px; left: 31.9826px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 24px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -24px; width: 24px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -24px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 17px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.glsl;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 50px;"></div><div class="CodeMirror-gutters" style="height: 50px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 24px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
+<span>   例如：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.513px; left: 31.9826px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 24px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style="text-rendering: auto;"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -24px; width: 24px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -24px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 17px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">CTRL</span><span class="cm-operator">+</span><span class="cm-number">1</span> <span class="cm-variable">change</span><span class="cm-operator">-</span><span class="cm-variable">list</span> <span class="cm-variable">glsl</span><span class="cm-operator">-</span><span class="cm-variable">shaders</span> <span class="cm-variable">set</span> <span class="cm-string">"~~/shaders/KrigBilateral.glsl;~~/shaders/ravu-zoom-r3.glsl;~~/shaders/cas_luma.glsl"</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 25px;"></div><div class="CodeMirror-gutters" style="height: 25px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 24px;"></div></div></div></div></pre><p><span>   其它示例参考懒人包内的 </span><strong><span>input.conf</span></strong><span> 即可。</span></p><p>&nbsp;</p><h1 id='速度的对比参考'><span>速度的对比参考</span></h1><p><span>🔺 （信息可能已过时）</span></p><p><span>   使用个别着色器进行2x放大，计算每秒所能生成的最大帧数。数据可能过时，数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。</span>
 <span>   实际速度</span><strong><span>极大</span></strong><span>取决于</span><font color=pink><span>视频的质量</span></font><span>、</span><font color=pink><span>缩放倍率</span></font><span>和你的</span><font color=pink><span>显卡性能</span></font><span>，因此两表中同一个 fsrcnnx16 的性能差异不符合常理也不要奇怪，数据仅供大概参考。</span></p><p><em><span>数据来源 GitHub@Alexkral(NVIDIA GTX 1080)</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>着 色 器</span></th><th style='text-align:center;' ><span>mpv_2x : 1080p → 2160p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>A4k M</span></td><td style='text-align:center;' ><span>407</span></td></tr><tr><td style='text-align:center;' ><span>A4k L</span></td><td style='text-align:center;' ><span>287</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 8</span></td><td style='text-align:center;' ><span>256</span></td></tr><tr><td style='text-align:center;' ><span>AiU Fast</span></td><td style='text-align:center;' ><span>145</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>93</span></td></tr><tr><td style='text-align:center;' ><span>A4k UL</span></td><td style='text-align:center;' ><span>75</span></td></tr><tr><td style='text-align:center;' ><span>AiU M</span></td><td style='text-align:center;' ><span>51</span></td></tr><tr><td style='text-align:center;' ><span>AiU HQ</span></td><td style='text-align:center;' ><span>26</span></td></tr></tbody></table></figure><p><em><span>数据来源 GitHub@Artoriuz</span></em></p><figure><table><thead><tr><th style='text-align:center;' ><span>算法&amp;着色器</span></th><th style='text-align:center;' ><span>mpv_2x : 720p → 1440p</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>bilinear</span></td><td style='text-align:center;' ><span>468</span></td></tr><tr><td style='text-align:center;' ><span>spline36</span></td><td style='text-align:center;' ><span>383</span></td></tr><tr><td style='text-align:center;' ><span>ewa_lanczossharp</span></td><td style='text-align:center;' ><span>338</span></td></tr><tr><td style='text-align:center;' ><span>RAVU lite r4</span></td><td style='text-align:center;' ><span>307</span></td></tr><tr><td style='text-align:center;' ><span>RAVU r4</span></td><td style='text-align:center;' ><span>238</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 16 8x4</span></td><td style='text-align:center;' ><span>210</span></td></tr><tr><td style='text-align:center;' ><span>SSSR</span></td><td style='text-align:center;' ><span>169</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 32 8x4</span></td><td style='text-align:center;' ><span>156</span></td></tr><tr><td style='text-align:center;' ><span>RAVU zoom r4</span></td><td style='text-align:center;' ><span>138</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 64 8x4</span></td><td style='text-align:center;' ><span>99</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 128 8x4</span></td><td style='text-align:center;' ><span>55</span></td></tr><tr><td style='text-align:center;' ><span>FSRCNNX 16</span></td><td style='text-align:center;' ><span>52</span></td></tr><tr><td style='text-align:center;' ><span>NNEDI3 256 8x4</span></td><td style='text-align:center;' ><span>30</span></td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h1 id='附录'><span>附录</span></h1><h2 id='anime4k-v3-v31'><span>Anime4k v3-v3.1</span></h2><p><span>   这里是旧版a4k的说明。</span>
 <span>   旧版工作在luma通道，新版工作在RGB空间。 </span><font color=blue><span> RA Upscale+Deblur_CNN Deblur_CNN </span></font><span> 这些变体在v4中合并在 </span><font color=blue><span> Restore </span></font><span> 模块中</span>
 <span>🔺 新旧版本的模块混用可能产生bug</span></p><p><span>M → L → UL 性能要求逐渐提高，处理结果越好</span>
