@@ -1,0 +1,637 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --bg-color: #fffbe8;
+    --text-color: #499504ff;
+    /*change color of meta characetrs like `*` in markdown */
+    --md-char-color: #577909;
+    /*change color of meta contents like image text or link address in markdown */
+    --meta-content-color: #0d1171ff;
+    --table-border-color: #ddd6c1;
+
+    /* color of primary buttons */
+    --primary-color: #b58900;
+    --primary-btn-border-color: #cc9a00;
+    --primary-btn-text-color: #fff;
+
+    /*border for sidebar, etc*/
+    --window-border: 1px solid #eee8d5;
+
+    /*background color if list item in file tree or file list*/
+    --active-file-bg-color: #dfca8844;
+    --active-file-text-color: inherit;
+    --active-file-border-color: #cc9a00;
+
+    /*change background of sidebar*/
+    --side-bar-bg-color: #eee8d5;
+    /*background of control items when hover, like menu in sidebar*/
+    --item-hover-bg-color: #dfca8844;
+    --item-hover-text-color: inherit;
+    /*monospace font for codes, fences*/
+    --monospace: "Monaco", "Consolas", monospace;
+
+    --rawblock-edit-panel-bd: #eee8d5;
+
+    --search-select-bg-color: #b58900;
+    --active-search-item-bg-color: #dfca88;
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+code,
+.md-fences,
+tt {
+    font-size: 1rem;
+    border: 1px solid #ddd6c1;
+    border-radius: 0.25rem;
+    padding: 0 0.125rem;
+    background: transparent;
+    /* font-family: var(--monospace); */
+}
+
+blockquote {
+    background-color: var(--side-bar-bg-color);
+    position: relative;
+    margin: 1rem 0rem 1.25rem 0rem;
+    padding-left: 0.75rem;
+    font-family: var(--monospace);
+}
+
+blockquote::before {
+    content: "";
+    position: absolute;
+    left: 0rem;
+    height: 100%;
+    width: .25rem;
+    background: var(--primary-color);
+}
+
+table {
+    border: 1px solid #ddd6c1;
+    margin: 1rem 0;
+}
+
+thead {
+    background: #e8dfc4;
+}
+
+table tr:nth-child(2n) {
+    background: #eee8d5;
+}
+
+td,
+th {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #ddd6c1;
+}
+
+hr {
+    border-color: var(--table-border-color);
+}
+
+mark {
+    padding: 2px 1px;
+    color: darkred;
+}
+
+#write {
+    position: static;
+    padding-left: 10ch;
+    padding-right: 10ch;
+    line-height: 1.6;
+    transform: none;
+}
+
+/* YAML block on the top */
+#write .md-meta-block {
+    background-color: #eee8d5b0;
+    border-bottom: 2px solid #ddd6c1;
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+}
+
+#write .md-task-list-item>input {
+    -webkit-appearance: initial;
+    display: block;
+    position: absolute;
+    border: 1px solid #ddd6c1;
+    border-radius: 0.25rem;
+    margin-top: 0.1rem;
+    margin-left: -1.8rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    transition: background 0.3s;
+}
+
+#write .md-task-list-item>input:hover {
+    background: #d47405;
+}
+
+#write .md-task-list-item>input[checked]::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    height: 60%;
+    width: 2px;
+    transform: rotate(40deg);
+    background: var(--primary-color);
+}
+
+#write .md-task-list-item>input[checked]::after {
+    content: "";
+    position: absolute;
+    top: 46%;
+    left: 25%;
+    height: 30%;
+    width: 2px;
+    transform: rotate(-40deg);
+    background: var(--primary-color);
+}
+
+#write .md-task-list-item>p {
+    transition: color 0.3s;
+}
+
+#write .md-task-list-item.task-list-done>p {
+    color: var(--primary-color);
+    text-decoration: line-through;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container),
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) *,
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) ol,
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) ul {
+    color: #499504ff !important;
+}
+
+#write .md-toc-item {
+    color: var(--primary-btn-border-color);
+}
+
+#write .md-toc-h1 {
+    font-size: 1.3rem;
+}
+
+#write .md-toc-h2 {
+    font-size: 1.2rem;
+}
+
+#write h1::before,
+#write h2::before,
+#write h3::before,
+#write h4::before,
+#write h5::before,
+#write h6::before {
+    position: absolute;
+    right: calc(100% + 10px);
+    bottom: 0;
+    color: #ddd6c1;
+    font-size: 1rem;
+    font-weight: bold;
+    font-variant: "small-caps";
+    border: 0;
+    border-radius: 0;
+    left: auto;
+    float: none;
+    padding: 0;
+    vertical-align: baseline;
+    line-height: 20px;
+}
+
+#write h1 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+#write h1::before {
+    content: "H1";
+    bottom: 0.45rem;
+}
+
+#write h2 {
+    font-size: 1.4rem;
+    margin: 0.7rem 0;
+}
+
+#write h2::before {
+    content: "H2";
+    bottom: 0.2rem;
+}
+
+#write h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+#write h3::before {
+    content: "H3";
+    bottom: 0.18rem;
+}
+
+#write h4 {
+    font-size: 1.1rem;
+    margin: 0.2rem 0;
+}
+
+#write h4::before {
+    content: "H4";
+    bottom: 0.15rem;
+}
+
+#write h5,
+#write h6 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+#write h5::before,
+#write h6::before {
+    bottom: 0.1rem;
+}
+
+#write h5::before {
+    content: "H5";
+}
+
+#write h6::before {
+    content: "H6";
+}
+
+#outline-content li .outline-item-open>.outline-children {
+    border-left: var(--primary-btn-border-color) 1px dashed;
+}
+
+/* diagrams like mermaid, sequence, gantt, flow etc */
+#write .md-focus .md-diagram-panel {
+    border-color: var(--table-border-color);
+}
+
+/* hover tooltip for formula etc */
+.code-tooltip.md-hover-tip {
+    color: var(--text-color);
+    background-color: #e8dfc4ff;
+}
+
+.md-hover-tip .md-arrow:after {
+    background: #e8dfc4ff;
+}
+
+/* for ``` code block */
+.md-fences.md-focus .cm-s-inner .CodeMirror-activeline-background {
+    background: #e8dfc470;
+}
+
+.cm-s-inner .cm-number {
+    color: #9b3aff;
+}
+
+.cm-s-inner .cm-keyword {
+    color: #577909;
+    font-weight: bold;
+}
+
+.cm-s-inner .cm-def {
+    color: #499504;
+}
+
+.cm-s-inner .cm-variable {
+    color: #499504;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #05a;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #085;
+}
+
+.cm-s-inner .cm-property {
+    color: #934b3cff;
+}
+
+.cm-s-inner .cm-operator {
+    color: #577909;
+    font-weight: bold;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #95a3abff;
+}
+
+.cm-s-inner .cm-string {
+    color: #2aa198;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta {
+    color: #577909;
+    font-weight: bold;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #9b3affff;
+}
+
+.cm-s-inner .cm-tag {
+    color: #2369b6ff;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #cb2d01ff;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #0b6125ff;
+    background-color: #bbbbbb30;
+}
+
+/* for win10 unibody, which lacks the sense of beauty, but tested */
+#megamenu-menu-sidebar {
+    color: #586e75;
+    background-color: var(--side-bar-bg-color);
+}
+
+#megamenu-menu-sidebar .megamenu-menu-header {
+    background-color: var(--primary-color);
+}
+
+#megamenu-back-btn {
+    color: var(--primary-btn-text-color);
+}
+
+#megamenu-menu-header-title {
+    color: var(--primary-color);
+}
+
+#megamenu-menu-list .li :hover {
+    background-color: var(--item-hover-bg-color) !important;
+}
+
+#megamenu-menu-list .li>.active {
+    color: var(--primary-color);
+}
+
+#megamenu-content {
+    background-color: var(--bg-color);
+}
+
+/* source mode, for WIDE screen */
+#typora-source .CodeMirror-lines {
+    max-width: 128rem;
+}
+
+
+</style><title>index2</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#index-of-hooke007">INDEX of HOOKE007</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-1">MPV+</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-2">mpv</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpv-lazy">mpv-lazy</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpvnetcm">mpv.net_CM</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#文档集">文档集</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#独立教程">独立教程</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#系列手册">系列手册</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpvnet">mpv.net</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#">...</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#扩展">扩展</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#directshow">DirectShow+</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mpc">MPC</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#优质外部组件">优质外部组件</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#杂">杂</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#网盘备份">网盘备份</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#magpie">MAGPIE</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#全面战争战锤2">全面战争：战锤2</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='index-of-hooke007'><span>INDEX of HOOKE007</span></h1><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h1 id='mpv-1'><span>MPV+</span></h1><p>&nbsp;</p><h2 id='mpv-2'><span>mpv</span></h2><p><font color=black><span>一个免费、开源、跨平台、简洁、强大的媒体播放器</span></font>
+<font color=grey><em><span>套娃： mpv 分叉自 mplayer2 ， mplayer2 分叉自 MPlayer</span></em></font></p><p><span>  官方网站：</span><a href='https://mpv.io/'><span>🎥 Command line video player</span></a>
+<span>  第三方win10x64版： </span><a href='https://sourceforge.net/projects/mpv-player-windows/files/64bit/' target='_blank' class='url'>https://sourceforge.net/projects/mpv-player-windows/files/64bit/</a></p><p><span>  第三方基于libmpv的弹幕播放器： </span><a href='https://kikoplay.fun/' target='_blank' class='url'>https://kikoplay.fun/</a>
+<span>  第三方安卓版： </span><a href='https://github.com/mpv-android/mpv-android/releases' target='_blank' class='url'>https://github.com/mpv-android/mpv-android/releases</a>
+<span>  第三方MAC版的成熟的前端： </span><a href='https://iina.io/' target='_blank' class='url'>https://iina.io/</a></p><p>&nbsp;</p><h2 id='mpv-lazy'><span>mpv-lazy</span></h2><p><font color=black><span>一个打包齐全、便于上手、附完整解决方案的mpv版本（懒人包）</span></font>
+<span>  </span><img src="IMG/index-mpv-lazy.webp" alt="mpv-lazy" style="zoom: 35%;" /></p><p><span>  发布页： </span><a href='https://bbs.acgrip.com/thread-5843-1-1.html' target='_blank' class='url'>https://bbs.acgrip.com/thread-5843-1-1.html</a>
+<span>  项目主页： </span><a href='https://github.com/hooke007/MPV_lazy'><span>🔄 mpv播放器折腾记录</span></a></p><p>&nbsp;</p><h2 id='mpvnetcm'><span>mpv.net_CM</span></h2><p><font color=black><span>基于上游mpv.net（基于libmpv）衍生的中文分支模组</span></font>
+<span>  </span><font color=black><span>图形化的操作界面与较友好的初始设置（适合对手打参数抗拒的用户）</span></font>
+<span>  </span><img src="IMG/index-mpvnet_CM.webp" alt="mpvnet_CM" style="zoom: 30%;" /></p><p><span>  发布页： </span><a href='https://bbs.acgrip.com/thread-7798-1-1.html' target='_blank' class='url'>https://bbs.acgrip.com/thread-7798-1-1.html</a>
+<span>  项目主页： </span><a href='https://github.com/hooke007/mpv.net_CM'><span>🎞 mpv.net_CM</span></a></p><p>&nbsp;</p><h2 id='文档集'><span>文档集</span></h2><h3 id='独立教程'><span>独立教程</span></h3><p><font color=black><span>通用</span></font></p><p><span>  </span><font color=pink><strong><span>@VCB-Studio</span></strong></font><span> 出品的设置入门： </span><a href='https://vcb-s.com/archives/7594' target='_blank' class='url'>https://vcb-s.com/archives/7594</a>
+<span>  我的 </span><font color=lightblue><strong><span>[WIN10]</span></strong></font><span> mpv播放器设置教程： </span><a href='mpv-lazy/mpv.html'><span>⚙️ MPV入门&amp;进阶</span></a>
+<span>  mpv官方的开发版手册（英文）： </span><a href='https://mpv.io/manual/master/' target='_blank' class='url'>https://mpv.io/manual/master/</a></p><h3 id='系列手册'><span>系列手册</span></h3><p><font color=black><span>懒人包的中文说明文档</span></font></p><p><span>  </span><a href='mpv-lazy/[00]_懒人包快速说明.html'><span>[00]_懒人包快速说明</span></a>
+<span>    </span><font color=red><span>mpv.conf</span></font><span> ; </span><font color=red><span>input.conf</span></font><span> 等配置文件打开即可查看自带的中文注释</span>
+<span>    </span><a href='https://github.com/hooke007/MPV_lazy/discussions/18'><span>osc_lazy.lua 的功能指南</span></a>
+<span>  </span><a href='mpv-lazy/[01]_第三方着色器介绍.html'><span>[01]_第三方着色器介绍</span></a>
+<span>  </span><a href='mpv-lazy/[02]_配置组与另类写法示例.html'><span>[02]_配置组与另类写法示例</span></a>
+<span>    </span><a href='https://github.com/hooke007/MPV_lazy/discussions/42'><span>profiles 补充内容</span></a>
+<span>  </span><a href='mpv-lazy/[03]_视频滤镜.html'><span>[03]_视频滤镜</span></a>
+<span>  </span><a href='mpv-lazy/[04]_常见FAQ（踩坑录）.html'><span>[04]_常见FAQ（踩坑录）</span></a>
+<span>  </span><a href='mpv-lazy/[05]_快捷键自定义.html'><span>[05]_快捷键自定义</span></a>
+<span>  </span><a href='mpv-lazy/[06]_命令行界面.html'><span>[06]_命令行界面</span></a>
+<span>  [07]...不存在</span>
+<span>  [08]...已移除</span>
+<span>  </span><a href='mpv-lazy/[09]_manual.pdf'><span>[09]_懒人包内置mpv版本的手册（PDF）</span></a><span> （英文）</span>
+<span>    </span><a href='https://hooke007.github.io/official_man/index.html'><span>mpv手册汉化</span></a><span> （大坑）</span>
+<span>  [10]...已移除</span>
+<span>    </span><a href='https://github.com/hooke007/MPV_lazy/discussions/categories/%E4%BF%A1%E6%81%AF'><span>小文档</span></a></p><h3 id='mpvnet'><span>mpv.net</span></h3><p><font color=black><span>mpvnet_CM的说明文档</span></font></p><p><span>  </span><em><span>mpv-lazy的文档</span></em><span>（可供参考）</span>
+<span>  </span><a href='https://github.com/stax76/mpv.net/blob/master/docs/Manual_chs.md'><em><span>上游的汉化文档</span></em></a><span>（可供参考）</span>
+<span>  </span><a href='https://github.com/hooke007/mpv.net_CM#%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E5%AE%A2%E5%88%B6%E5%8C%96'><span>右键菜单客制化</span></a></p><h3 ><span>...</span></h3><p><font color=black><span>一些零散的操作记录</span></font></p><p><span>  </span><a href='https://github.com/hooke007/MPV_lazy/tree/master/Temp#杂物'><span>杂物</span></a></p><h3 id='扩展'><span>扩展</span></h3><p><font color=black><span>关联阅读</span></font></p><p><span>  </span><a href='Temp/[VCB-Studio 科普教程 3] 视频格式基础知识.html'><span>[VCB-Studio 科普教程 3] 视频格式基础知识</span></a><span>（镜像）</span>
+<span>  </span><a href='Temp/[VCB-Studio 科普教程 6] 动漫视频常见的瑕疵缺陷介绍.html'><span>[VCB-Studio 科普教程 6] 动漫视频常见的瑕疵缺陷介绍</span></a><span>（镜像）</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h1 id='directshow'><span>DirectShow+</span></h1><p>&nbsp;</p><h2 id='mpc'><span>MPC</span></h2><p><font color=black><span>Media Player Classic 是经典的支持各种扩展滤镜的视频播放器</span></font>
+<font color=black><span>Home Cinema 和 Black Edition 都是当前流行的分支</span><em><span>（KMPlayer 64X 和 PotPlayer 是闭源邪教）</span></em></font>
+<font color=grey><em><span>madVR的最佳工具人</span></em></font></p><p><span>  MPC-HC 社区版： </span><a href='https://github.com/clsid2/mpc-hc/releases' target='_blank' class='url'>https://github.com/clsid2/mpc-hc/releases</a>
+<span>  MPC-BE： </span><a href='https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/' target='_blank' class='url'>https://sourceforge.net/projects/mpcbe/files/MPC-BE/Release%20builds/</a></p><p>&nbsp;</p><h2 id='优质外部组件'><span>优质外部组件</span></h2><p><span>  Lavfilter 解码器： </span><a href='https://github.com/Nevcairiel/LAVFilters/releases' target='_blank' class='url'>https://github.com/Nevcairiel/LAVFilters/releases</a>
+<span>  XyVSfilter &amp; XySubFilter (pfmod) 字幕渲染： </span><a href='https://github.com/pinterf/xy-VSFilter/releases' target='_blank' class='url'>https://github.com/pinterf/xy-VSFilter/releases</a>
+<span>  XySubFilter with libass 字幕渲染： </span><a href='https://github.com/Masaiki/xy-VSFilter/releases' target='_blank' class='url'>https://github.com/Masaiki/xy-VSFilter/releases</a>
+<span>  madVR 视频渲染器： </span><a href='http://www.madvr.com/' target='_blank' class='url'>http://www.madvr.com/</a>
+<span>  MPCVR 视频渲染器（汉化）： </span><a href='https://github.com/hooke007/MPCVR_chs' target='_blank' class='url'>https://github.com/hooke007/MPCVR_chs</a></p><p><span>  </span><a href='DirectShow+/mpc.html'><span>⚙️ 简易快速的mpcvr高画质播放方案指南</span></a></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h1 id='杂'><span>杂</span></h1><p>&nbsp;</p><h2 id='网盘备份'><span>网盘备份</span></h2><p><font color=black><span>这里是一些备份</span></font>
+<span>  包括以上提及的资源</span></p><p><span>  </span><a href='https://1drv.ms/f/s!Amu3TH7_M0USmluS4jnACN4xtFp3'><span>☁️ OneDrive</span></a>
+<span>  </span><a href='https://cloud.189.cn/t/V3umamZNJbu2'><span>☁️ 天翼云盘</span></a></p><p>&nbsp;</p><h2 id='magpie'><span>MAGPIE</span></h2><p><span>  </span><a href='https://gist.github.com/hooke007/818ecc88f18e229bca743b7ae48947ad'><span>内置算法示例</span></a></p><p>&nbsp;</p><h2 id='全面战争战锤2'><span>全面战争：战锤2</span></h2><p><span>  </span><a href='https://gist.github.com/hooke007/be1eba6fd97889d1edecc8b56a9bc77d'><span>影片全解锁补丁</span></a></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

@@ -1,0 +1,396 @@
+<!doctype html>
+<html class="no-js" lang="zh_CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>音频滤镜 - mpv-doc_chs alpha_01 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">mpv-doc_chs alpha_01 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">mpv-doc_chs alpha_01 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpv.html">mpv —— 媒体播放器</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="id1">
+<h1>音频滤镜<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>音频滤镜允许你修改音频流和它的属性。其语法是：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--af=...</span></code></dt><dd><p>设置一连串的音频滤镜。完整的语法参见 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> （ <a href="#id2"><span class="problematic" id="id3">`视频滤镜`_</span></a> ）</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>要获得可用的音频滤镜的完整列表，参见 <code class="docutils literal notranslate"><span class="pre">--af=help</span></code></p>
+<p>另外，请记住，大多数实际的滤镜是通过 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> wrapper获得的，它使你可以使用libavfilter的大多数滤镜。这包括所有从MPlayer移植到libavfilter的滤镜。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--vf</span></code> 的描述阐述了如何使用libavfilter以及如何解决已过时的mpv滤镜。</p>
+</div>
+<p>参见 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 的选项组，了解 <code class="docutils literal notranslate"><span class="pre">--af-defaults</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-del</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-clr</span></code> 以及其它可能的工作方式。</p>
+<p>可用的滤镜有：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">lavcac3enc[=options]</span></code></dt><dd><p>使用libavcodec在运行时将多声道音频编码为AC-3。支持16-bit native-endian输入格式，最多6个声道。当输出原始AC-3流时，输出是big-endian，当输出到S/PDIF时是native-endian。如果输入的采样率不是48kHz、44.1kHz或32kHz，它将被重采样为48kHz。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">tospdif=&lt;yes|no&gt;</span></code></dt><dd><p>如果 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，则输出raw AC-3流，如果 <code class="docutils literal notranslate"><span class="pre">yes</span></code> （默认），则输出到S/PDIF进行透传。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bitrate=&lt;rate&gt;</span></code></dt><dd><p>用于AC-3流的比特率。设置为384以获得384kbps。</p>
+<p>默认是640。一些接收机可能无法处理。</p>
+<p>有效值： 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640.</p>
+<p>特殊值 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 根据输入的声道数选择一个默认的比特率。</p>
+<dl class="field-list simple">
+<dt class="field-odd">1ch</dt>
+<dd class="field-odd"><p>96</p>
+</dd>
+<dt class="field-even">2ch</dt>
+<dd class="field-even"><p>192</p>
+</dd>
+<dt class="field-odd">3ch</dt>
+<dd class="field-odd"><p>224</p>
+</dd>
+<dt class="field-even">4ch</dt>
+<dd class="field-even"><p>384</p>
+</dd>
+<dt class="field-odd">5ch</dt>
+<dd class="field-odd"><p>448</p>
+</dd>
+<dt class="field-even">6ch</dt>
+<dd class="field-even"><p>448</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">minch=&lt;n&gt;</span></code></dt><dd><p>如果输入声道数少于 <code class="docutils literal notranslate"><span class="pre">&lt;minch&gt;</span></code> ，滤镜将自行分离（默认： 3）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">encoder=&lt;name&gt;</span></code></dt><dd><p>选择要使用的libavcodec编码器。目前，这应该是一个AC-3编码器，使用其它编码器会失败的很惨</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">format=format:srate:channels:out-srate:out-channels</span></code></dt><dd><p>它本身不做任何格式转换。相反，如果需要的话，它可以使滤镜系统在这个滤镜之前或之后插入必要的转换滤镜。它主要用于控制进入其它滤镜的音频格式。要指定音频输出的格式，参见 <code class="docutils literal notranslate"><span class="pre">--audio-format</span></code> <code class="docutils literal notranslate"><span class="pre">--audio-samplerate</span></code> <code class="docutils literal notranslate"><span class="pre">--audio-channels</span></code> 。这个滤镜能够强制指定一个特定的格式，而 <code class="docutils literal notranslate"><span class="pre">--audio-*</span></code> 可以由音频输出驱动根据输出的兼容性进行覆盖。</p>
+<p>所有的参数都是可选的。前三个参数限制了滤镜接受的输入内容。因此它们会导致转换滤镜在这个滤镜之前被插入。 <code class="docutils literal notranslate"><span class="pre">out-</span></code> 参数告知在这个滤镜之后的滤镜或音频输出如何解析数据，而不进行实际的转换。设置这些参数可能会损坏什么，除非你真的知道你因为某些原因需要这样做，比如测试或处理损坏的媒体文件。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code></dt><dd><p>强制转换为这种格式。使用 <code class="docutils literal notranslate"><span class="pre">--af=format=format=help</span></code> 来获得有效格式的列表</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;srate&gt;</span></code></dt><dd><p>强制转换到一个特定的采样率。采样率是一个整数，例如48000</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;channels&gt;</span></code></dt><dd><p>强制混合到一个特定的声道布局。参见 <code class="docutils literal notranslate"><span class="pre">--audio-channels</span></code> 选项的可能值</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;out-srate&gt;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;out-channels&gt;</span></code></p>
+<p><em>注意</em> ：这个滤镜曾经被命名为 <code class="docutils literal notranslate"><span class="pre">force</span></code> 。旧的 <code class="docutils literal notranslate"><span class="pre">format</span></code> 滤镜曾经自行转换，不像这个滤镜让滤镜系统处理转换。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scaletempo[=option1:option2:...]</span></code></dt><dd><p>在不改变音调的情况下缩放音频节奏，可选与播放速度同步（默认）。</p>
+<p>它的工作原理是以正常速度播放 ‘stride’ 毫秒的音频，然后消耗 ‘stride*scale’ 毫秒的输入音频。它通过将 ‘overlap’% 的步长与前一个步长之后的音频混合在一起。它可选对下一个 ‘search’ 毫秒的音频进行简短的数据分析，以确定最佳重叠位置。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">scale=&lt;amount&gt;</span></code></dt><dd><p>名义上的缩放节奏的数量。除了速度之外，还对这个量进行缩放（默认： 1.0）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">stride=&lt;amount&gt;</span></code></dt><dd><p>输出每个步幅的长度，单位是毫秒。太高的值会在高音阶量时产生明显的跳动，在低音阶量时产生回声。非常低的值会反转音调。增加会改善性能（默认：60）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">overlap=&lt;percent&gt;</span></code></dt><dd><p>重叠步长的百分比。减少会改善性能（默认： 20）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">search=&lt;amount&gt;</span></code></dt><dd><p>搜索最佳重叠位置的长度，以毫秒为单位。减少会明显改善性能。在慢速系统上，你可能想把它设置得很低（默认： 14）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">speed=&lt;tempo|pitch|both|none&gt;</span></code></dt><dd><p>设置对速度变化的响应。</p>
+<dl>
+<dt>tempo</dt><dd><p>缩放速度与播放速度同步（默认）</p>
+</dd>
+<dt>pitch</dt><dd><p>反转滤镜的效果。缩放音调而不改变速度。在你的 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中加入这个，以按音乐的半音阶来调节:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">multiply</span> <span class="n">speed</span> <span class="mf">0.9438743126816935</span>
+<span class="p">]</span> <span class="n">multiply</span> <span class="n">speed</span> <span class="mf">1.059463094352953</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>失去与视频的同步</p>
+</div>
+</dd>
+<dt>both</dt><dd><p>同时缩放速度和改变音调</p>
+</dd>
+<dt>none</dt><dd><p>忽略速度的变化</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition- admonition">
+<p class="admonition-title">示例</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=scaletempo</span> <span class="pre">--speed=1.2</span> <span class="pre">media.ogg</span></code></dt><dd><p>将以1.2倍于正常的速度播放媒体，音频为正常音调。改变播放速度将改变音频节奏来匹配。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=scaletempo=scale=1.2:speed=none</span> <span class="pre">--speed=1.2</span> <span class="pre">media.ogg</span></code></dt><dd><p>将以1.2倍于正常的速度播放媒体，音频为正常音调，但改变播放速度对音频节奏没有影响。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=scaletempo=stride=30:overlap=.50:search=10</span> <span class="pre">media.ogg</span></code></dt><dd><p>会对质量和性能参数进行调整。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=scaletempo=scale=1.2:speed=pitch</span> <span class="pre">audio.ogg</span></code></dt><dd><p>将以1.2倍于正常的速度播放媒体，音频为正常音调。改变播放速度将改变音调，使音频节奏保持在1.2倍。</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scaletempo2[=option1:option2:...]</span></code></dt><dd><p>缩放音频节奏而不改变音调。这个算法是从chromium移植过来的，使用了波形相似度叠加（WSOLA）方法。它似乎比scaletempo和rubberband实现了更高的音频质量。</p>
+<p>默认情况下， <code class="docutils literal notranslate"><span class="pre">search-interval</span></code> 和 <code class="docutils literal notranslate"><span class="pre">window-size</span></code> 参数的值与chromium相同。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">min-speed=&lt;speed&gt;</span></code></dt><dd><p>如果播放速度低于 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span></code> ，则将音频静音（默认： 0.25）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max-speed=&lt;speed&gt;</span></code></dt><dd><p>如果播放速度高于 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span></code> 并且 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span> <span class="pre">!=</span> <span class="pre">0</span></code> ，则将音频静音（默认： 4.0）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">search-interval=&lt;amount&gt;</span></code></dt><dd><p>搜索最佳重叠位置的长度，以毫秒为单位（默认： 30）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">window-size=&lt;amount&gt;</span></code></dt><dd><p>overlap-and-add window的长度，以毫秒为单位（默认： 20）</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rubberband</span></code></dt><dd><p>用librubberband进行高质量的音调修正。它可以代替 <code class="docutils literal notranslate"><span class="pre">scaletempo</span></code> ，当以不同于正常的速度播放时，它将用于调整音频音调。它也可以用来调整音频音调而不改变播放速度。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code></dt><dd><p>设置音调比例系数。频率要乘以这个值。</p>
+</dd>
+</dl>
+<p>这个滤镜有许多额外的子选项。你可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=rubberband=help</span></code> 列出它们。这也会显示每个选项的默认值。这里没有记录这些选项，因为它们只是被传递给librubberband。参阅librubberband的文档以了解每个选项的作用： <a class="reference external" href="https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html">https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html</a> （mpv rubberband滤镜的子选项名称和值与librubberband的映射遵循一个简单的模式： <code class="docutils literal notranslate"><span class="pre">"Option"</span> <span class="pre">+</span> <span class="pre">Name</span> <span class="pre">+</span> <span class="pre">Value</span></code> ）</p>
+<p>这个滤镜支持下列 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 命令：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">set-pitch</span></code></dt><dd><p>动态设置 <code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code> 参数。这可以用来在运行时改变播放的音调。注意，速度是用标准的 <code class="docutils literal notranslate"><span class="pre">speed</span></code> 属性控制的，而不是 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">multiply-pitch</span> <span class="pre">&lt;factor&gt;</span></code></dt><dd><p>动态的乘以当前的 <code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code> 的值。 例如：0.5可以下降一个八度，1.5可以上升一个五度。如果你想上升或下降半音阶，用1.059463094352953和0.9438743126816935。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">lavfi=graph</span></code></dt><dd><p>使用FFmpeg的libavfilter过滤音频。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;graph&gt;</span></code></dt><dd><p>Libavfilter graph。详见 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> 视频滤镜 —— graph的语法是一样的</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>不要忘记引用libavfilter graphs，如lavfi视频滤镜部分所述</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">o=&lt;string&gt;</span></code></dt><dd><p>AVOptions</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fix-pts=&lt;yes|no&gt;</span></code></dt><dd><p>根据采样数确定PTS（默认： no）。如果这个选项被启用，播放器将不依赖于libavfilter准确的传递PTS。相反，它将采样数作为PTS传给libavfilter，并根据它和输入的PTS计算mpv使用的PTS。这有助于处理那些输出重新计算的PTS而不是原始PTS的滤镜（包括要求PTS从0开始的滤镜）。mpv通常希望滤镜不要接触PTS（或者只在改变帧边界的范围内），所以这不是默认的，但在使用损坏的滤镜时需要这样处理。在实际情况中，这些损坏的滤镜会随着时间的推移导致缓慢的A/V不同步（对于某些文件），或者如果你从文件中间跳转或开始播放，会完全中断播放。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">drop</span></code></dt><dd><p>这个滤镜丢弃或重复音频帧来适应播放速度。它总是在完整的音频帧上操作，因为它是为了处理SPDIF（压缩音频透传）。如果使用 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-adrop</span></code> 选项，它会自动使用。不要使用这个滤镜（或给定的选项）；它们的质量极低。</p>
+</dd>
+</dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, hooke007
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

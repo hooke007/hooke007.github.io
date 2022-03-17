@@ -1,0 +1,374 @@
+<!doctype html>
+<html class="no-js" lang="zh_CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>音频输出驱动 - mpv-doc_chs alpha_01 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">mpv-doc_chs alpha_01 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">mpv-doc_chs alpha_01 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpv.html">mpv —— 媒体播放器</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="id1">
+<h1>音频输出驱动<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>音频输出驱动是连接不同音频输出设施的接口。其语法是</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--ao=&lt;driver1,driver2,...[,]&gt;</span></code></dt><dd><p>指定一个要使用的音频输出驱动的优先级列表。</p>
+</dd>
+</dl>
+<p>如果这个列表末尾有 <code class="docutils literal notranslate"><span class="pre">,</span></code> ，mpv将回退到不在列表中的驱动程序。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>参见 <code class="docutils literal notranslate"><span class="pre">--ao=help</span></code> 获取已编译的音频输出驱动的列表。 <code class="docutils literal notranslate"><span class="pre">--ao=alsa</span></code> 是首选。 <code class="docutils literal notranslate"><span class="pre">--ao=pulse</span></code> 在使用PulseAudio的系统上是首选。在BSD系统上， <code class="docutils literal notranslate"><span class="pre">--ao=oss</span></code> 是首选。</p>
+</div>
+<p>可用的音频输出驱动有：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">alsa</span></code> （Linux独占）</dt><dd><p>ALSA音频输出驱动</p>
+<p>参见 <a href="#id3"><span class="problematic" id="id4">`ALSA音频输出选项`_</span></a> 以查看它的特定选项。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>要获得多声道/环绕声音频，使用 <code class="docutils literal notranslate"><span class="pre">--audio-channels=auto</span></code> 。 这个选项的默认值是 <code class="docutils literal notranslate"><span class="pre">auto-safe</span></code>，它将明确地拒绝多声道输出，因为无法检测某个声道布局是否被实际支持。</p>
+<p>你也可以尝试 <a class="reference external" href="http://git.io/vfuAy">使用上混插件</a> 。这使 <code class="docutils literal notranslate"><span class="pre">default</span></code> 设备启用多声道音频，并在共享访问的情况下自动上混，因此同时播放立体声和多声道音频将按预期工作。</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">oss</span></code></dt><dd><p>OSS音频输出驱动</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jack</span></code></dt><dd><p>JACK（Jack Audio Connection Kit）音频输出驱动</p>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--jack-port=&lt;name&gt;</span></code></dt><dd><p>连接到指定名称的端口（默认： physical ports）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--jack-name=&lt;client&gt;</span></code></dt><dd><p>传递给JACK的客户端名称（默认： <code class="docutils literal notranslate"><span class="pre">mpv</span></code> ）。如果你想让某些连接自动建立，这很有用。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--jack-autostart=&lt;yes|no&gt;</span></code></dt><dd><p>必要时自动启动jack（默认： no）。注意这往往是不可靠的，并且会使stdout中充斥着服务器信息。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--jack-connect=&lt;yes|no&gt;</span></code></dt><dd><p>自动建立与输出端口的连接（默认： yes）。当启用时，输出声道的最大数量将被限制到可用输出端口的数量。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--jack-std-channel-layout=&lt;waveext|any&gt;</span></code></dt><dd><p>选择标准的声道布局（默认： waveext）。JACK本身没有声道布局的概念（例如指定一个声道应该映射到对应的扬声器） —— 它只是接收应用程序输出的任何东西，并将其重新连接到用户定义的任何地方。这意味着用户和应用程序负责处理声道的布局。 <code class="docutils literal notranslate"><span class="pre">waveext</span></code> 使用 WAVE_FORMAT_EXTENSIBLE 顺序，尽管它是由微软定义的，但它是许多系统的标准。值 <code class="docutils literal notranslate"><span class="pre">any</span></code> 使JACK接受来自音频滤镜链的任何东西，无视声道布局，也无需重新排序。这种模式可能不是很有用，除了用于调试或固定的设置。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">coreaudio</span></code> （macOS独占）</dt><dd><p>使用AudioUnits和CoreAudio声音服务的原生macOS音频输出驱动。</p>
+<p>当播放有损格式时，自动重定向到 <code class="docutils literal notranslate"><span class="pre">coreaudio_exclusive</span></code></p>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--coreaudio-change-physical-format=&lt;yes|no&gt;</span></code></dt><dd><p>更改物理格式为与请求的音频格式相似（默认： no）。这样有利于多声道音频输出将实际起效。缺点是它会改变系统全局的音频设置。这相当于在 <code class="docutils literal notranslate"><span class="pre">Audio</span> <span class="pre">MIDI</span> <span class="pre">Setup</span></code> 工具中的 <code class="docutils literal notranslate"><span class="pre">Audio</span> <span class="pre">Devices</span></code> 对话框中改变 <code class="docutils literal notranslate"><span class="pre">Format</span></code> 设置。注意这不会影响所选的扬声器设置。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--coreaudio-spdif-hack=&lt;yes|no&gt;</span></code></dt><dd><p>尝试将AC3/DTS数据作为PCM透传。这对不支持AC3的驱动很有用。它将 AC3 数据转换为浮点，并假定驱动程序将做逆向转换，这意味着传统的A/V接收机将把它作为压缩的IEC框架的AC3流来接收，而忽略它被标记为PCM 。这禁用了正常的AC3直通功能（即使设备报告支持它）。使用时要特别小心。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">coreaudio_exclusive</span></code> （macOS独占）</dt><dd><p>原生macOS音频输出驱动，使用直接设备访问和独占模式（绕过声音服务）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">openal</span></code></dt><dd><p>OpenAL音频输出驱动</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--openal-num-buffers=&lt;2-128&gt;</span></code></dt><dd><p>指定音频缓冲区的使用数量。值越低CPU的使用率越低。默认： 4</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--openal-num-samples=&lt;256-32768&gt;</span></code></dt><dd><p>指定用于每个缓冲区的完整采样的数量。更高的值利于降低CPU占用率。默认： 8192</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--openal-direct-channels=&lt;yes|no&gt;</span></code></dt><dd><p>启用OpenAL Soft的直接声道扩展，以避免ambisonics或HRTF的音染。默认： yes</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pulse</span></code></dt><dd><p>PulseAudio音频输出驱动</p>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--pulse-host=&lt;host&gt;</span></code></dt><dd><p>指定要使用的主机。空的 &lt;host&gt; 字符串使用本地连接， “localhost” 则使用网络传输（很可能不是你期望的）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--pulse-buffer=&lt;1-2000|native&gt;</span></code></dt><dd><p>以毫秒为单位设置音频缓冲区的大小。较高的值可以缓冲更多的数据，并且有较低的缓冲区不足的概率。较小的值使音频流反应更快，例如对播放速度变化的响应。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--pulse-latency-hacks=&lt;yes|no&gt;</span></code></dt><dd><p>启用hack来解决PulseAudio的时间错误（默认： no）。如果启用，mpv将自己进行详细的延迟计算。如果禁用，它将使用PulseAudio自动更新的时间信息。禁用这个功能可能对网络音频或一些插件有帮助，而启用它可能对一些未知的情况有帮助（在旧版PulseAudio中，它曾是良好运行必要条件）</p>
+<p>如果你在使用pulse时有视频卡顿的情况，尝试启用这个选项。（或者尝试更新PulseAudio）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--pulse-allow-suspended=&lt;yes|no&gt;</span></code></dt><dd><p>即使sink挂起也允许mpv使用PulseAudio（默认： no）。如果PulseAudio以桥接到jack的方式运行，而mpv的sink-input被设置为jack使用的输入，则会很有用。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pipewire</span></code></dt><dd><p>PipeWire音频输出驱动</p>
+<p>该音频输出支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--pipewire-buffer=&lt;1-2000|native&gt;</span></code></dt><dd><p>设置音频缓冲区，以毫秒为单位。越高的值缓存更多的数据，且具有较低的缓冲区不足概率。值越小，音频流的反应越快，例如对播放速度变化的反应。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sdl</span></code></dt><dd><p>SDL 1.2+音频输出驱动。应该在任何受SDL 1.2支持的平台上工作，但可能需要为你的系统正确的设置 <code class="docutils literal notranslate"><span class="pre">SDL_AUDIODRIVER</span></code> 环境变量。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>该驱动是为了与极其陌生的环境兼容，例如其他驱动程序都无法使用的系统。</p>
+</div>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--sdl-buflen=&lt;length&gt;</span></code></dt><dd><p>以秒为单位设置音频缓冲区的长度。只作为声音系统的提示使用。用 <code class="docutils literal notranslate"><span class="pre">-v</span></code> 播放文件将显示请求的和获得的确切缓冲区大小。如果数值为0，则选择声音系统的默认值。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">null</span></code></dt><dd><p>无音频输出，但保持视频播放速度。你可以使用 <code class="docutils literal notranslate"><span class="pre">--ao=null</span> <span class="pre">--ao-null-untimed</span></code> 做基准测试。</p>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-untimed</span></code></dt><dd><p>不模拟一个完美音频设备的计时。这意味着音频解码将尽快的进行，而不是按照系统时钟计时。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-buffer</span></code></dt><dd><p>以秒为单位模拟的缓冲区长度</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-outburst</span></code></dt><dd><p>以采样为单位模拟的块状大小</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-speed</span></code></dt><dd><p>以倍率为单位模拟的音频播放速度。通常，真实的音频设备不会和系统时钟的速度完全一样。它会有一点偏差，这个选项有助于模拟这种情况。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-latency</span></code></dt><dd><p>模拟的设备延时。这是对EOF的补充。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-broken-eof</span></code></dt><dd><p>模拟损坏的音频驱动，它总是将固定的设备延迟添加到报告的音频播放位置。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-broken-delay</span></code></dt><dd><p>模拟损坏的不能正确报告延迟的音频驱动</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-channel-layouts</span></code></dt><dd><p>如果不是空值，这是一个声音输出驱动允许的以 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔的声道布局列表。这可以用来测试声道布局的选择。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-null-format</span></code></dt><dd><p>强制声音输出驱动接受的音频输出格式。如果没有设置则接受任何格式。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pcm</span></code></dt><dd><p>原始PCM/WAVE文件编码的音频输出</p>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-pcm-waveheader=&lt;yes|no&gt;</span></code></dt><dd><p>包括或不包括WAVE header（默认： yes）。如果不包括，将生成raw PCM</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-pcm-file=&lt;filename&gt;</span></code></dt><dd><p>把声音写入到 <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code> 而不是默认的 <code class="docutils literal notranslate"><span class="pre">audiodump.wav</span></code> 。如果指定了 <code class="docutils literal notranslate"><span class="pre">no-waveheader</span></code> ，则默认为 <code class="docutils literal notranslate"><span class="pre">audiodump.pcm</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao-pcm-append=&lt;yes|no&gt;</span></code></dt><dd><p>追加到文件中，而不是覆盖写入它。一定要和 <code class="docutils literal notranslate"><span class="pre">no-waveheader</span></code> 选项一起使用 —— 和 <code class="docutils literal notranslate"><span class="pre">waveheader</span></code> 一起使用会损坏，因为每次打开文件时都会写入一个WAVE header</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sndio</span></code></dt><dd><p>音频输出到OpenBSD sndio声音系统</p>
+<p>（注意：仅支持单声道，立体声，4.0/5.1和7.1声道布局）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">wasapi</span></code></dt><dd><p>音频输出到Windows音频会话API</p>
+</dd>
+</dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, hooke007
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

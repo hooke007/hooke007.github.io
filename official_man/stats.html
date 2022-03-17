@@ -1,0 +1,444 @@
+<!doctype html>
+<html class="no-js" lang="zh_CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>统计数据 - mpv-doc_chs alpha_01 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">mpv-doc_chs alpha_01 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">mpv-doc_chs alpha_01 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpv.html">mpv —— 媒体播放器</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="id1">
+<h1>统计数据<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>该内置脚本显示当前播放文件的信息和统计数据。如果mpv在编译时支持Lua，它就会默认启用。可以通过 <code class="docutils literal notranslate"><span class="pre">--load-stats-overlay=no</span></code> 选项完全禁用它。</p>
+<section id="id2">
+<h2>使用<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>下面的按键绑定默认是激活的，除非有其他功能已经被绑定：</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 8%"/>
+<col style="width: 92%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>i</p></td>
+<td><p>只在一个固定的时间段内显示统计数据</p></td>
+</tr>
+<tr class="row-even"><td><p>I</p></td>
+<td><p>切换 显示/隐藏统计数据（再次切换前始终显示）</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>当统计数据在屏幕上可见时，以下的按键绑定是激活的，无视之前已有的绑定。它们允许你在 <em>不同页面</em> 的统计数据之间切换：</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 14%"/>
+<col style="width: 86%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>显示通用信息</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>显示帧计时（可滚动）</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>输入缓存统计</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>激活的按键绑定（可滚动）</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>内部活动（可滚动）</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>在支持滚动的页面上，这些按键的绑定也是激活的：</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 18%"/>
+<col style="width: 82%"/>
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>UP</p></td>
+<td><p>向上滚动一行</p></td>
+</tr>
+<tr class="row-even"><td><p>DOWN</p></td>
+<td><p>向下滚动一行</p></td>
+</tr>
+</tbody>
+</table></div>
+<section id="id3">
+<h3>字体<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<p>为了获得最佳的视觉体验，建议使用支持多种字重和等宽的字体。默认情况下，使用开源字体 <a class="reference external" href="https://github.com/adobe-fonts/source-sans-pro">Source Sans Pro</a></p>
+</section>
+</section>
+<section id="id4">
+<h2>设置<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<p>该脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/stats.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id9"><span class="problematic" id="id10">`屏显式控制器`_</span></a> 中已描述。</p>
+<section id="id5">
+<h3>设置选项<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_1</span></code></dt><dd><p>默认： 1</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_2</span></code></dt><dd><p>默认： 2</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_3</span></code></dt><dd><p>默认： 3</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_4</span></code></dt><dd><p>默认： 4</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_0</span></code></dt><dd><p>默认： 0</p>
+<p>在显示统计数据时进行页面切换的按键绑定</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_scroll_up</span></code></dt><dd><p>默认： UP</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_scroll_down</span></code></dt><dd><p>默认： DOWN</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scroll_lines</span></code></dt><dd><p>默认： 1</p>
+<p>滚动操作的按键绑定和在支持它的页面上单次滚动的行数</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">duration</span></code></dt><dd><p>默认： 4</p>
+<p>统计数据的持续显示时间，以秒为单位（固定时间段显示时）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">redraw_delay</span></code></dt><dd><p>默认： 1</p>
+<p>统计数据的刷新间隔时间，以秒为单位（始终显示时）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">persistent_overlay</span></code></dt><dd><p>默认： no</p>
+<p>当 <cite>no</cite> 时，其它脚本输出到屏幕的文本的可以覆盖已显示的统计数据。当 <cite>yes</cite> 时，显示的统计数据会在对应的时间段内持续显示。当多个脚本决定同时输出文本时，这可能导致文本重叠。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_perfdata</span></code></dt><dd><p>默认： yes</p>
+<p>显示性能数据的图表（第2页）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_ratio</span></code></dt><dd><p>默认： yes</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_jitter</span></code></dt><dd><p>默认： yes</p>
+<p>显示vsync和jitter值的图表（第1页）。只有在始终显示时才显示。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">flush_graph_data</span></code></dt><dd><p>默认： yes</p>
+<p>在始终显示时清除用于绘制图形的数据缓存</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： Source Sans Pro</p>
+<p>字体名称。应支持尽可能多的字重来获得最佳的视觉体验。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">font_mono</span></code></dt><dd><p>默认： Source Sans Pro</p>
+<p>用于对齐文本所必需的等宽字体名称。目前，monospaced digits已足够。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 8</p>
+<p>用于渲染文本的字体大小</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">font_color</span></code></dt><dd><p>默认： FFFFFF</p>
+<p>字体颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 0.8</p>
+<p>围绕字体绘制的边框大小</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">border_color</span></code></dt><dd><p>默认： 262626</p>
+<p>字体边框的颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">alpha</span></code></dt><dd><p>默认： 11</p>
+<p>绘制文本的透明度</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_color</span></code></dt><dd><p>默认： 0000FF</p>
+<p>用于绘制图形的边框颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_bg_color</span></code></dt><dd><p>默认： 262626</p>
+<p>用于绘制图形的背景颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_color</span></code></dt><dd><p>默认： FFFFFF</p>
+<p>用于绘制图形的颜色</p>
+</dd>
+</dl>
+<p>注意：颜色为十六进制值，并使用ASS标签的顺序。BBGGRR（蓝绿红）。</p>
+</section>
+<section id="id6">
+<h3>不同的按键绑定<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<p>可以在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中设置额外的按键来显示统计数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">stats</span>
+<span class="n">E</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">stats</span><span class="o">-</span><span class="n">toggle</span>
+</pre></div>
+</div>
+<p>以及直接显示某个页面:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">page</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">e</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">page</span><span class="o">-</span><span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>激活的按键绑定的页面<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<p>列出激活的按键绑定和它们所绑定的命令，不包括统计数据脚本本身的交互键。也参见 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 以获得每个绑定的更详细信息。</p>
+<p>这些按键是通过对命令字符串的简单分析而自动分组的，不应该期望文件级别的分组精度，然而，它仍然应该是相当有用的。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">--idle</span> <span class="pre">--script-opts=stats-bindlist=yes</span></code> 会将列表输出到终端并立即退出。默认情况下，长行会被缩短到79个字符，并且终端转义序列被启用。通过将 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 改为数字（至少40）可以设置不同的长度限制，通过在数值前添加 <code class="docutils literal notranslate"><span class="pre">-</span></code> 可以禁用转义序列，例如 <code class="docutils literal notranslate"><span class="pre">...=-yes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">...=-120</span></code></p>
+<p>和 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 一样，列表中包括来自 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 和用户脚本的绑定。使用 <code class="docutils literal notranslate"><span class="pre">--no-config</span></code> 只列出内建的绑定。</p>
+</section>
+<section id="id8">
+<h3>内部活动的页面<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<p>该页显示的大多数条目都有相当模糊的含义。可能这些东西对你无用。不要试图使用它。忘记它的存在。</p>
+<p>首次选择这个页面将开始收集一些内部性能数据。这意味着在播放器运行的其余时间里，性能会比正常情况下略低（即使统计数据页面被关闭）。注意，统计数据页面本身会使用大量的CPU甚至GPU资源，可能会对性能产生严重影响。</p>
+<p>显示的信息在redraw delay时积累（显示为 <code class="docutils literal notranslate"><span class="pre">poll-time</span></code> 字段）</p>
+<p>它为每个Lua脚本增加了条目。如果有太多的脚本在运行，列表中的部分内容会简单地排列超出屏幕，但可以滚动浏览。</p>
+<p>如果底层平台不支持pthread per thread times，显示的时间将是0或随机的（我怀疑在写本文时，只有Linux通过pthread APIs提供了正确的per thread times）。</p>
+<p>大多数条目都是懒散的添加的，而且只在数据收集期间增加，这就是为什么一些条目可能会在一段时间后随机出现。这也是为什么自数据收集开始后，一直不活动的脚本的内存使用条目会消失。</p>
+<p>Memory usage是近似情况，并不反映internal fragmentation 。</p>
+<p>JS脚本的内存报告默认是禁用的，因为在JS端收集数据有一定的开销。在启动mpv之前，可以通过导出环境变量 <code class="docutils literal notranslate"><span class="pre">MPV_LEAK_REPORT=1</span></code> 来启用它，这将增加JS的内存使用。</p>
+<p>如果条目有 <code class="docutils literal notranslate"><span class="pre">/time</span></code> 和 <code class="docutils literal notranslate"><span class="pre">/cpu</span></code> 变量，前者给出真实时间（monotonic clock），而后者给出thread CPU time（只有当相应的pthread API工作并被支持时）。</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, hooke007
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            目录
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">统计数据</a><ul>
+<li><a class="reference internal" href="#id2">使用</a><ul>
+<li><a class="reference internal" href="#id3">字体</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">设置</a><ul>
+<li><a class="reference internal" href="#id5">设置选项</a></li>
+<li><a class="reference internal" href="#id6">不同的按键绑定</a></li>
+<li><a class="reference internal" href="#id7">激活的按键绑定的页面</a></li>
+<li><a class="reference internal" href="#id8">内部活动的页面</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

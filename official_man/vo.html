@@ -1,0 +1,627 @@
+<!doctype html>
+<html class="no-js" lang="zh_CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>视频输出驱动 - mpv-doc_chs alpha_01 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">mpv-doc_chs alpha_01 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">mpv-doc_chs alpha_01 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mpv.html">mpv —— 媒体播放器</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="id1">
+<h1>视频输出驱动<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>视频输出驱动是连接不同视频输出设备的接口。其语法是：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--vo=&lt;driver1,driver2,...[,]&gt;</span></code></dt><dd><p>指定一个要使用的视频输出驱动的优先级列表。</p>
+</dd>
+</dl>
+<p>如果这个列表末尾有 <code class="docutils literal notranslate"><span class="pre">,</span></code> ，mpv将回退到不在列表中的驱动程序。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>参见 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 获取已编译的视频输出驱动的列表。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 是默认的推荐的输出驱动。其他所有的驱动都是为了兼容性或特定场景。如果默认值无效，它将回退到其他驱动（优先顺序和 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 列出的相同）。</p>
+</div>
+<p>可用的视频输出驱动有：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">gpu</span></code></dt><dd><p>通用的可定制的、GPU加速的视频输出驱动。它支持扩展缩放方式、抖动、色彩管理、自定义着色器、HDR等。</p>
+<p>参见 <a href="#id2"><span class="problematic" id="id3">`GPU渲染选项`_</span></a> ，了解该视频输出的特定选项。</p>
+<p>默认情况下，它尝试使用快速和低故障的安全设置。使用配置预设 <code class="docutils literal notranslate"><span class="pre">gpu-hq</span></code> 来使初始设置为高质量渲染。这个配置预设可以通过 <code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 来应用，其内容可以用 <code class="docutils literal notranslate"><span class="pre">--show-profile=gpu-hq</span></code> 来查看。</p>
+<p>这个视频输出虚拟了几个可能的图形API和窗口环境，可以用 <code class="docutils literal notranslate"><span class="pre">--gpu-api</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context</span></code> 选项来影响它们。</p>
+<p>OpenGL-interop的硬件解码在一定程度上受支持。请注意在这种模式下，一些边缘情况可能无法被良好处理，并且色彩空间转换和色度还原通常由硬解码API负责。</p>
+<p><code class="docutils literal notranslate"><span class="pre">gpu</span></code> 默认使用FBOs。有时你可以通过改变选项 <code class="docutils literal notranslate"><span class="pre">--fbo-format</span></code> 为 <code class="docutils literal notranslate"><span class="pre">rgb16f</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb32f</span></code> 或 <code class="docutils literal notranslate"><span class="pre">rgb</span></code> 来达到更好的质量或性能。已知的问题包括Mesa/Intel不接受 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> ，Mesa有时不支持浮点纹理，以及一些macOS的设置在使用 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> 时非常慢，但使用``rgb32f``时非常快。如果你存在运行问题，也可以尝试启用 <code class="docutils literal notranslate"><span class="pre">--gpu-dumb-mode=yes</span></code> 选项。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">gpu-next</span></code></dt><dd><p>基于 <code class="docutils literal notranslate"><span class="pre">libplacebo</span></code> 的实验性视频渲染器。它几乎支持与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 相同的功能集。列表参见 <a href="#id4"><span class="problematic" id="id5">`GPU渲染选项`_</span></a></p>
+<p>通常应该更快，质量更高，但有些功能可能仍然缺失或运行异常。期待（并报告！）错误。有关已知差异和错误的列表，参见此处：</p>
+<p><a class="reference external" href="https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU">https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU</a></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">xv</span></code> （X11独占）</dt><dd><p>使用XVideo扩展来启用硬件加速显示。这是在X上兼容性最好的视频输出驱动，但可能质量低下，而且在OSD和字幕显示方面存在问题。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这个驱动程序是为了与旧系统兼容。</p>
+</div>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-adaptor=&lt;number&gt;</span></code></dt><dd><p>选择一个指定的XVideo适配器（检查xvinfo结果）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-port=&lt;number&gt;</span></code></dt><dd><p>选择一个指定的XVideo端口</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-ck=&lt;cur|use|set&gt;</span></code></dt><dd><p>选择获取color key的源（默认： cur）</p>
+<dl class="simple">
+<dt>cur</dt><dd><p>默认取当前在Xv中设置的color key</p>
+</dd>
+<dt>use</dt><dd><p>使用但不设置mpv的color key（使用 <code class="docutils literal notranslate"><span class="pre">--colorkey</span></code> 选项来变更）</p>
+</dd>
+<dt>set</dt><dd><p>与use相同，但也设置提供的color key</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-ck-method=&lt;none|man|bg|auto&gt;</span></code></dt><dd><p>设置color key的绘制方法（默认： man）</p>
+<dl class="simple">
+<dt>none</dt><dd><p>禁用color-keying</p>
+</dd>
+<dt>man</dt><dd><p>手动绘制color key（在部分情况下减少闪烁）</p>
+</dd>
+<dt>bg</dt><dd><p>将color key设置为窗口背景</p>
+</dd>
+<dt>auto</dt><dd><p>由Xv绘制color key</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-colorkey=&lt;number&gt;</span></code></dt><dd><p>变更color key为你选择的RGB值。 <code class="docutils literal notranslate"><span class="pre">0x000000</span></code> 是纯黑， <code class="docutils literal notranslate"><span class="pre">0xffffff</span></code> 是纯白</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xv-buffers=&lt;number&gt;</span></code></dt><dd><p>用于内部环形缓冲区的图片缓存的数量（默认： 2）。增大该数会使用更多的内存，但如果视频帧率接近或高于显示器刷新率，可能有助于解决X服务器响应不够快的问题。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">x11</span></code> （X11独占）</dt><dd><p>无硬件加速的共享内存视频输出驱动，只要有X11就能工作。</p>
+<p>从mpv 0.30.0开始，你可能需要使用 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 去实现正常的性能。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这只是一个后备方案，通常不应该使用。</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vdpau</span></code> （X11独占）</dt><dd><p>使用VDPAU接口来显示，也可以选择对视频进行解码。硬件解码需要和 <code class="docutils literal notranslate"><span class="pre">--hwdec=vdpau</span></code> 一起使用。注意，除了兼容性之外，绝对没有理由使用它。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=nvdec</span></code> 代替它们。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>早期版本的mpv（和MPlayer mplayer2）提供了调整vdpau后处理的子选项，如 <code class="docutils literal notranslate"><span class="pre">deint</span></code> <code class="docutils literal notranslate"><span class="pre">sharpen</span></code> <code class="docutils literal notranslate"><span class="pre">denoise</span></code> <code class="docutils literal notranslate"><span class="pre">chroma-deint</span></code> <code class="docutils literal notranslate"><span class="pre">pullup</span></code> <code class="docutils literal notranslate"><span class="pre">hqscaling</span></code> 。这些子选项已过时，你应该使用视频滤镜 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 来代替。</p>
+</div>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-sharpen=&lt;-1-1&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
+<p>正值对视频应用锐化算法，负值则为模糊算法（默认： 0）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-denoise=&lt;0-1&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
+<p>对视频应用降噪算法（默认： 0；不降噪）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-chroma-deint</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
+<p>使时域去交错器同时对亮度和色度扫描（默认）。使用no-chroma-deint只扫描亮度并加速高级去隔行。对慢速显存有用。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-pullup</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
+<p>尝试应用反胶卷过带，需要运动自适应的时域反交错。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-hqscaling=&lt;0-9&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
+<dl class="simple">
+<dt>0</dt><dd><p>使用默认的VDPAU缩放比例（默认）</p>
+</dd>
+<dt>1-9</dt><dd><p>应用高质量的VDPAU缩放（需要合格的硬件）</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-fps=&lt;number&gt;</span></code></dt><dd><p>覆盖自动检测的显示器刷新率值（该值对于framedrop来说是需要的，以允许视频播放速率高于显示刷新率，并用于vsync-aware的帧计时调整）。默认0表示使用自动检测的值。正值被解释为刷新率，单位是Hz，并覆盖了自动检测值。负值禁用所有的计时调整和framedrop逻辑。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-composite-detect</span></code></dt><dd><p>英伟达当前的VDPAU实现在合成窗口管理器下的行为有些不同，不能提供准确的帧计时信息。启用该选项后，播放器将尝试检测合成窗口管理器是否处于活动状态。如果检测到了，播放器将禁用计时调整，就像用户指定了 <code class="docutils literal notranslate"><span class="pre">fps=-1</span></code> 一样（因为它们将基于错误的输入）。这意味着计时的准确性比没有合成的情况下要低一些，但由于NVIDIA驱动程序的合成模式行为，即使没有禁用逻辑，也没有硬性的播放速度限制。默认启用，使用 <code class="docutils literal notranslate"><span class="pre">--vo-vdpau-composite-detect=no</span></code> 来禁用。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-queuetime-windowed=&lt;number&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">queuetime-fs=&lt;number&gt;</span></code></dt><dd><p>使用VDPAU的presentation queue功能，对未来的视频帧变化最多提前这么多毫秒的队列（默认： 50）。其他信息见下文。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-output-surfaces=&lt;2-15&gt;</span></code></dt><dd><p>分配这么多输出surface来显示视频帧（默认： 3）。其他信息见下文。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-colorkey=&lt;#RRGGBB|#AARRGGBB&gt;</span></code></dt><dd><p>设置VDPAU的presentation queue的背景颜色，在实践中，如果VDPAU在overlay模式下运行，它就是使用的colorkey（默认： <code class="docutils literal notranslate"><span class="pre">#020507</span></code> ，某种黑色的阴影）。如果这个值的alpha分量为0，就会使用VDPAU的默认colorkey（通常为绿色）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-force-yuv</span></code></dt><dd><p>不接受RGBA输入。这意味着mpv将插入一个滤镜，在视频输出之前转换为YUV格式。有时对强制使用某些YUV专用的功能很有用，比如视频均衡器或去隔行扫描。</p>
+</dd>
+</dl>
+<p>使用由queuetime选项控制的VDPAU的frame queuing功能使mpv的帧翻转时间对系统CPU负载不那么敏感，并允许mpv略提前解码下一帧，这可以减少个别解码缓慢的帧造成的抖动。然而，如果VDPAU正在使用blit queue（主要发生在你启用composite extension的情况下），并且该功能处于激活状态，NVIDIA图形驱动可能会使例如窗口移动不稳定。如果这种情况发生在你的系统上，并且让你感到困扰，那么你可以将queuetime值设置为0来禁用这个功能。在窗口模式和全屏模式下使用的设置是分开的，在全屏模式下应该没有理由禁用这个功能（因为驱动问题不应该影响视频本身）。</p>
+<p>你可以通过增加queuetime值和 <code class="docutils literal notranslate"><span class="pre">output_surfaces</span></code> 计数来提前排队等候更多的帧（为了确保有足够的surfaces来提前缓冲视频，你需要至少与视频在该时间内的帧数一样多的surfaces，再加上两个）。这可以帮助在某些情况下使视频更流畅。主要的缺点是增加了surfaces的视频RAM要求，以及对用户命令的显示响应更滞后（显示变化要在排队后的一段时间内才会显现）。图形驱动的实现也可能对最大队列时间的长度或队列的surface数量有限制，或根本无法正常工作。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">direct3d</span></code> （Windows独占）</dt><dd><p>使用Direct3D接口的视频输出驱动</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这个驱动是为了兼容那些没有提供合适的OpenGL驱动的系统，以及ANGLE表现不好的平台。</p>
+</div>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-direct3d-disable-texture-align</span></code></dt><dd><p>通常情况下，纹理尺寸总是对齐到16。启用这个选项后，视频纹理将总是与视频本身的尺寸完全相同。</p>
+</dd>
+</dl>
+<p>调试选项。这些可能是不正确的，可能会在将来被移除，可能会崩溃，可能会导致低速运行，等等。如果你为了性能或正常运行真的需要这些，请联系开发者。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-direct3d-force-power-of-2</span></code></dt><dd><p>总是强制纹理为2的幂，即使设备报告支持非2的幂的纹理尺寸</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-direct3d-texture-memory=&lt;mode&gt;</span></code></dt><dd><p>只影响启用着色器/纹理的操作，以及(E)OSD。可用的值：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">default</span></code> （默认）</dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_DEFAULT</span></code> 和一个 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_SYSTEMMEM</span></code> 纹理进行锁定。如果驱动支持 <code class="docutils literal notranslate"><span class="pre">D3DDEVCAPS_TEXTURESYSTEMMEMORY</span></code> ，则直接使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_SYSTEMMEM</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default-pool</span></code></dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_DEFAULT</span></code> （类似  <code class="docutils literal notranslate"><span class="pre">default</span></code> ，但绝不使用shadow-texture）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">default-pool-shadow</span></code></dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_DEFAULT</span></code> 和一个 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_SYSTEMMEM</span></code> 纹理进行锁定（类似  <code class="docutils literal notranslate"><span class="pre">default</span></code> ，但总是强制使用shadow-texture）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">managed</span></code></dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_MANAGED</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scratch</span></code></dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_SCRATCH</span></code> 和一个 <code class="docutils literal notranslate"><span class="pre">D3DPOOL_SYSTEMMEM</span></code> 纹理进行锁定</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-direct3d-swap-discard</span></code></dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">D3DSWAPEFFECT_DISCARD</span></code> 可能更快。也可能更慢，因为它必须(?)清除每一帧。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-direct3d-exact-backbuffer</span></code></dt><dd><p>始终将后缓存的大小调整到窗口大小。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sdl</span></code></dt><dd><p>SDL 2.0+ 渲染视频输出驱动，取决于是否有硬件加速的系统。应该在SDL 2.0支持的所有平台上工作。关于详细调整，请参考你的副本文件 <code class="docutils literal notranslate"><span class="pre">SDL_hints.h</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>此驱动是为了与无法提供正常的图形驱动程序的系统兼容。</p>
+</div>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--sdl-sw</span></code></dt><dd><p>即使检测到软件渲染器也继续</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sdl-switch-mode</span></code></dt><dd><p>指示SDL在全屏时切换显示器的视频模式</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vaapi</span></code></dt><dd><p>Intel VA API视频输出驱动，支持硬件解码。请注意除了兼容性之外，绝对没有理由使用这个。这是低质量的，而且在OSD方面有问题。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 代替它。</p>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vaapi-scaling=&lt;algorithm&gt;</span></code></dt><dd><dl class="simple">
+<dt>default</dt><dd><p>驱动程序的默认值（默认）</p>
+</dd>
+<dt>fast</dt><dd><p>速度快但质量低</p>
+</dd>
+<dt>hq</dt><dd><p>未指定的依赖驱动程序的高质量缩放，但速度慢</p>
+</dd>
+<dt>nla</dt><dd><p><code class="docutils literal notranslate"><span class="pre">non-linear</span> <span class="pre">anamorphic</span> <span class="pre">scaling</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vaapi-deint-mode=&lt;mode&gt;</span></code></dt><dd><p>选择去隔行扫描算法。注意默认情况下，去隔行扫描最初总是关闭的，需要用 <code class="docutils literal notranslate"><span class="pre">d</span></code> 键来启用（ <code class="docutils literal notranslate"><span class="pre">cycle</span> <span class="pre">deinterlace</span></code> 的默认按键绑定）。</p>
+<p>如果libva支持视频后处理（vpp），这个选项就不适用。在这种情况下， <code class="docutils literal notranslate"><span class="pre">deint-mode</span></code> 的默认值是 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，通过用户交互使用上述方法启用去交错，实际上是插入了 <code class="docutils literal notranslate"><span class="pre">vavpp</span></code> 视频滤镜。如果使用的libva后端实际上不支持vpp，你可以使用这个选项强行启用基于视频输出的去隔行扫描。</p>
+<dl class="simple">
+<dt>no</dt><dd><p>不允许去隔行扫描（较新的libva的默认值）</p>
+</dd>
+<dt>first-field</dt><dd><p>只显示第一个场</p>
+</dd>
+<dt>bob</dt><dd><p>bob去隔行扫描（较早的libva的默认值）</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-vaapi-scaled-osd=&lt;yes|no&gt;</span></code></dt><dd><p>如果启用，那么OSD将按视频分辨率渲染，并按显示分辨率进行缩放。默认情况下，这个功能是禁用的，如果驱动程序支持，OSD将以显示分辨率渲染。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">null</span></code></dt><dd><p>无视频输出。对于基准测试很有用。</p>
+<p>通常情况下，用 <code class="docutils literal notranslate"><span class="pre">--no-video</span></code> 来禁用视频更好。</p>
+<p>支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-null-fps=&lt;value&gt;</span></code></dt><dd><p>模拟显示FPS。这人为地限制了视频输出每秒接受的帧数。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">caca</span></code></dt><dd><p>Color ASCII art video output driver that works on a text console.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This driver is a joke.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tct</span></code></dt><dd><p>彩色Unicode艺术视频输出驱动，在文本控制台中工作。默认情况下，取决于现代终端对真彩色的支持，以完整色范围显示图像，但也支持256色输出（见下文）。在Windows上，它需要一个ansi终端例如mintty。</p>
+<p>从mpv 0.30.0开始，你可能需要使用 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
+<p>注意：TCT图像输出与mpv的其他终端输出不同步，这可能导致图像破碎。选项 <code class="docutils literal notranslate"><span class="pre">--no-terminal</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--really-quiet</span></code> 有助于解决这个问题。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-tct-algo=&lt;algo&gt;</span></code></dt><dd><p>选择如何将像素写入到终端</p>
+<dl class="simple">
+<dt>half-blocks</dt><dd><p>使用unicode LOWER HALF BLOCK字符来实现更高的垂直分辨率（默认）</p>
+</dd>
+<dt>plain</dt><dd><p>使用空格。导致垂直分辨率下降两重，但理论上在更多地方起作用</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-tct-width=&lt;width&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--vo-tct-height=&lt;height&gt;</span></code></dt><dd><p>假设终端有指定的字符宽度和/或高度。如果不能检测终端尺寸，这些默认为80x25</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-tct-256=&lt;yes|no&gt;</span></code> （默认： no）</dt><dd><p>使用256色 —— 用于不支持真彩色的终端</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sixel</span></code></dt><dd><p>使用sixels的终端图形输出。用 <code class="docutils literal notranslate"><span class="pre">mlterm</span></code> 和 <code class="docutils literal notranslate"><span class="pre">xterm</span></code> 测试。</p>
+<p>注意：Sixel图像输出与mpv的其他终端输出不同步，这可能导致图像破碎。选项 <code class="docutils literal notranslate"><span class="pre">--really-quiet</span></code> 有助于解决这个问题，建议使用。</p>
+<p>你可能需要使用 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
+<p>注意：在撰写本文时， <code class="docutils literal notranslate"><span class="pre">xterm</span></code> 默认不启用sixel —— 以 <code class="docutils literal notranslate"><span class="pre">xterm</span> <span class="pre">-ti</span> <span class="pre">340</span></code> 启动是启用它的一个方法。另外， <code class="docutils literal notranslate"><span class="pre">xterm</span></code> 默认不显示大于1000x1000像素的图像。</p>
+<p>为了正确地渲染和对齐sixel图像，mpv需要知道终端的尺寸，包括单元格和像素。默认情况下，它试图使用终端报告的值，然而，由于终端之间的差异，这是一个容易出错的过程，不能确定地自动进行 —— 一些终端报告的尺寸是以像素为单位的，包括边距 —— 例如 <code class="docutils literal notranslate"><span class="pre">xterm</span></code> ，而其他终端报告的是实际可用的像素数 - 如 <code class="docutils literal notranslate"><span class="pre">mlterm</span></code> 。此外，它们在最大化或全屏时的表现可能不同，mpv不能用标准方法检测这种状态。</p>
+<p>Sixel的大小和对齐选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-cols=&lt;columns&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--vo-sixel-rows=&lt;rows&gt;</span></code> （默认： 0）</dt><dd><p>以字符单元指定终端尺寸，否则(0)从终端读取，或退回到80x25。注意，mpv不使用最后一行的sixel，因为这似乎会导致滚动。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-width=&lt;width&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--vo-sixel-height=&lt;height&gt;</span></code> （默认： 0）</dt><dd><p>指定可用的像素大小，否则(0)从终端读取，或退回到320x240。除了排除最后一行外，高度也被进一步四舍五入为6的倍数（sixel单位高度），以避免溢出低于指定的尺寸。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-left=&lt;col&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--vo-sixel-top=&lt;row&gt;</span></code> （默认： 0）</dt><dd><p>指定图像开始在字符单元中的位置（1是第一列或第一行）。如果是0（默认），则尝试根据其他值和图像的长宽比和缩放来自动确定它。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-pad-x=&lt;pad_x&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--vo-sixel-pad-y=&lt;pad_y&gt;</span></code> （默认： -1）</dt><dd><p>只在mpv从终端读取尺寸（像素）时使用。指定终端报告的尺寸所包含的填充像素数（单边）。如果-1（默认），那么像素数将被四舍五入为单元格数的倍数（每个轴），以考虑报告中的边距 —— 这只有在每个轴的总体填充量小于单元格数时才能正确工作。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-exit-clear=&lt;yes|no&gt;</span></code> （默认： yes）</dt><dd><p>是否在退出时清除终端。当设置为no时 —— 退出后最后一个sixel图像留在屏幕上，光标跟随它。</p>
+</dd>
+</dl>
+<p>Sixel图像质量选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-dither=&lt;algo&gt;</span></code></dt><dd><p>选择libsixel应该应用的抖动算法。根据libsixel的文档，可以是以下列表中的一个。</p>
+<dl class="simple">
+<dt>auto （默认）</dt><dd><p>让libsixel选择抖动方法</p>
+</dd>
+<dt>none</dt><dd><p>不扩散</p>
+</dd>
+<dt>atkinson</dt><dd><p>用Bill Atkinson的方法进行扩散</p>
+</dd>
+<dt>fs</dt><dd><p>用Floyd-Steinberg的方法扩散</p>
+</dd>
+<dt>jajuni</dt><dd><p>用Jarvis, Judice &amp; Ninke的方法进行扩散</p>
+</dd>
+<dt>stucki</dt><dd><p>用Stucki的方法进行扩散</p>
+</dd>
+<dt>burkes</dt><dd><p>用Burkes的方法进行扩散</p>
+</dd>
+<dt>arithmetic</dt><dd><p>位置稳定的算术抖动</p>
+</dd>
+<dt>xor</dt><dd><p>基于位置稳定的算术xor抖动</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-fixedpalette=&lt;yes|no&gt;</span></code> （默认： yes）</dt><dd><p>使用libsixel的内置静态调色板，使用XTERM256配置预设进行抖动。固定调色板使用256色进行抖动。请注意，使用 <code class="docutils literal notranslate"><span class="pre">no</span></code> （在撰写本文时）会减慢 <code class="docutils literal notranslate"><span class="pre">xterm</span></code> 的速度。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-reqcolors=&lt;colors&gt;</span></code> （默认： 256）</dt><dd><p>对固定调色板没有影响。设置libsixel使用动态调色板所需的颜色数。这个值也取决于终端仿真器。Xterm支持256种颜色。可以把这个值设得低一些，以提高性能。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-sixel-threshold=&lt;threshold&gt;</span></code> （默认： -1）</dt><dd><p>对固定调色板没有影响。定义改变调色板的阈值 —— 以颜色数量的百分比表示，例如，当颜色数量改变20%时，20将改变调色板。这是一个减少调色板变化次数的简单措施，因为在某些终端（ <code class="docutils literal notranslate"><span class="pre">xterm</span></code> ）中它可能很慢。默认的(-1)将在每一帧上选择一个调色板，并且会有更好的质量。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">image</span></code></dt><dd><p>将每一帧输出到当前目录下的一个图像文件。每个文件名是用前导零填充的帧号。</p>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-format=&lt;format&gt;</span></code></dt><dd><p>选择图像文件格式</p>
+<dl class="simple">
+<dt>jpg</dt><dd><p>JPEG文件，扩展名为.jpg（默认）</p>
+</dd>
+<dt>jpeg</dt><dd><p>JPEG文件，扩展名为.jpeg</p>
+</dd>
+<dt>png</dt><dd><p>PNG文件</p>
+</dd>
+<dt>webp</dt><dd><p>WebP文件</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-png-compression=&lt;0-9&gt;</span></code></dt><dd><p>PNG压缩系数（速度与文件大小的权衡）（默认： 7）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-png-filter=&lt;0-5&gt;</span></code></dt><dd><p>在PNG压缩前应用的过滤器（0 = none; 1 = sub; 2 = up; 3 = average; 4 = Paeth; 5 = mixed）（默认： 5）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-jpeg-quality=&lt;0-100&gt;</span></code></dt><dd><p>JPEG质量系数（默认： 90）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-jpeg-optimize=&lt;0-100&gt;</span></code></dt><dd><p>JPEG优化系数（默认： 100）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-webp-lossless=&lt;yes|no&gt;</span></code></dt><dd><p>启用写入无损质量的WebP文件（默认： no）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-webp-quality=&lt;0-100&gt;</span></code></dt><dd><p>WebP质量（默认： 75）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-webp-compression=&lt;0-6&gt;</span></code></dt><dd><p>WebP压缩系数（默认： 4）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo-image-outdir=&lt;dirname&gt;</span></code></dt><dd><p>指定保存图像文件的目录（默认： <code class="docutils literal notranslate"><span class="pre">./</span></code> ）</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">libmpv</span></code></dt><dd><p>用于libmpv的直接嵌入。作为一个特例，在macOS上，它被当作mpv(cocoa-cb)中的一个普通视频输出使用。否则在其他情况下是无用的（参见 <code class="docutils literal notranslate"><span class="pre">&lt;mpv/render.h&gt;</span></code> ）。</p>
+<p>这也支持许多 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出的选项，取决于后端。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rpi</span></code> （树莓派）</dt><dd><p>在树莓派上使用MMAL API进行原生视频输出。</p>
+<p>这已过时。使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 代替，这是默认的且提供相同的功能。 <code class="docutils literal notranslate"><span class="pre">rpi</span></code> 视频输出将在mpv 0.23.0中被删除。它的功能被折叠到–vo=gpu中，现在通过把它当作硬件overlay来使用RPI硬件解码（不应用GL filtering）。在0.23.0中还将改变：–fs标志在默认情况下将被重置为 “no”（就像在其他平台上）。</p>
+<p>支持以下过时的全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--rpi-display=&lt;number&gt;</span></code></dt><dd><p>选择视频overlay应显示的显示器号码（默认： 0）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--rpi-layer=&lt;number&gt;</span></code></dt><dd><p>选择视频overlay应显示的dispmanx层（默认： -10）。注意，mpv也将使用所选层上面的2个层，来处理窗口背景和OSD。实际的视频渲染将发生在所选层上面的那一层。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--rpi-background=&lt;yes|no&gt;</span></code></dt><dd><p>是否在视频后面渲染一个黑色背景（默认： no）。通常情况下，最好结束控制台的framebuffer，这样会有更好的性能。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--rpi-osd=&lt;yes|no&gt;</span></code></dt><dd><p>默认情况下启用。如果用 <code class="docutils literal notranslate"><span class="pre">no</span></code> 禁用，就不会创建OSD层。这也意味着将不会有字幕被渲染。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">drm</span></code> (Direct Rendering Manager)</dt><dd><p>使用Kernel Mode Setting / Direct Rendering Manager的视频输出驱动。应该在不想安装完整的图形环境时使用（例如，没有X）。不支持硬件加速（如果你需要，请检查 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 后端的 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出）。</p>
+<p>从mpv 0.30.0开始，你可能需要使 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
+<p>支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-connector=[&lt;gpu_number&gt;.]&lt;name&gt;</span></code></dt><dd><p>选择要使用的连接器（通常是显示器）。如果 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 为空或 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，mpv将在第一个可用的连接器上渲染输出。使用 <code class="docutils literal notranslate"><span class="pre">--drm-connector=help</span></code> 来获取可用连接器的列表。 <code class="docutils literal notranslate"><span class="pre">&lt;gpu_number&gt;</span></code> 参数可用于区分多个显卡，但已过时，改为使用 <code class="docutils literal notranslate"><span class="pre">--drm-device</span></code> 。（默认： 空）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-device=&lt;path&gt;</span></code></dt><dd><p>选择要使用的DRM设备文件。如果指定了这个文件，它将取代自动选择卡和任何指定的卡号 <code class="docutils literal notranslate"><span class="pre">--drm-connector</span></code> 。（默认： 空）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-mode=&lt;preferred|highest|N|WxH[@R]&gt;</span></code></dt><dd><p>要使用的模式（分辨率和帧速率）。可能的值：</p>
+<dl class="field-list simple">
+<dt class="field-odd">preferred</dt>
+<dd class="field-odd"><p>使用所选连接器上的屏幕的首选模式（默认）</p>
+</dd>
+<dt class="field-even">highest</dt>
+<dd class="field-even"><p>使用所选连接器上可用的最高分辨率的模式</p>
+</dd>
+<dt class="field-odd">N</dt>
+<dd class="field-odd"><p>通过索引选择模式</p>
+</dd>
+<dt class="field-even">WxH[@R]</dt>
+<dd class="field-even"><p>通过宽度、高度和可选的刷新率来指定模式。如果有几种模式相匹配，则选择EDID模式列表中排在第一位的模式。</p>
+</dd>
+</dl>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">--drm-mode=help</span></code> 来获得所有活动连接器的可用模式列表。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-atomic=&lt;no|auto&gt;</span></code></dt><dd><p>切换使用原子模式设置。这在调试时非常有用。</p>
+<dl class="field-list simple">
+<dt class="field-odd">no</dt>
+<dd class="field-odd"><p>使用传统的模式设置</p>
+</dd>
+<dt class="field-even">auto</dt>
+<dd class="field-even"><p>使用原子模式设置，如果不能使用，则退回到传统模式设置（默认）</p>
+</dd>
+</dl>
+<p>注意：只影响到 <code class="docutils literal notranslate"><span class="pre">gpu-context=drm</span></code> 。 <code class="docutils literal notranslate"><span class="pre">vo=drm</span></code> 只支持传统的模式设置。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-draw-plane=&lt;primary|overlay|N&gt;</span></code></dt><dd><p>选择DRM平面，在正常情况下，视频和OSD被绘制到该平面。该平面可以被指定为 <code class="docutils literal notranslate"><span class="pre">primary</span></code> ，它将选择第一个适用的主平面； <code class="docutils literal notranslate"><span class="pre">overlay</span></code> ，它将选择第一个适用的覆盖平面；或者通过索引。索引是基于零的，与CRTC有关（默认： primary）</p>
+<p>当与drmprime-drm hwdec互操作使用该选项时，只有OSD被渲染到这个平面。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-drmprime-video-plane=&lt;primary|overlay|N&gt;</span></code></dt><dd><p>选择DRM平面，用于drmprime-drm hwdec接口的视频（例如RockChip SoC上的rkmpp hwdec，以及其他各种SoC上的v4l2 hwdec）。否则，该平面将不被使用。该选项接受与 <code class="docutils literal notranslate"><span class="pre">--drm-draw-plane</span></code> 相同的值。（默认： overlay）</p>
+<p>为了能够在不同的SoC上成功播放4K视频，你可能需要设置 <code class="docutils literal notranslate"><span class="pre">--drm-draw-plane=overlay</span> <span class="pre">--drm-drmprime-video-plane=primary</span></code> ，并设置 <code class="docutils literal notranslate"><span class="pre">--drm-draw-surface-size=1920x1080</span></code> ，以较低的分辨率渲染OSD（由hwdec处理的视频将在drmprime-video平面上以全4K分辨率显示）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-format=&lt;xrgb8888|xrgb2101010&gt;</span></code></dt><dd><p>选择要使用的DRM格式（默认： xrgb8888）。这允许你选择DRM模式的比特深度。xrgb8888是你常用的每像素24比特/每通道8比特的填充RGB格式。xrgb2101010是每像素30比特/每通道10比特的填充RGB格式，有2比特的填充。</p>
+<p>在某些情况下，xrgb2101010可以在 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 视频输出中工作，但不能在 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出的 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 后端工作。这是因为使用 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出，除了需要DRM驱动的支持外，还需要EGL驱动对xrgb2101010的支持。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drm-draw-surface-size=&lt;[WxH]&gt;</span></code></dt><dd><p>设置在绘制平面上使用的曲面的大小。然后，该曲面将被放大到当前的屏幕分辨率。这个选项在高分辨率下与drmprim-drm hwdec互操作一起使用时非常有用，因为它允许将绘制平面（在这种情况下只处理OSD）缩小到GPU可以处理的尺寸。</p>
+<p>当不使用drmprime-drm hwdec互操作时，这个选项只会导致视频在不同的分辨率下被渲染，然后被缩放到屏幕尺寸。</p>
+<p>注意：这个选项只有在支持DRM atomic的情况下才可用（默认： display resolution）</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mediacodec_embed</span></code> （安卓）</dt><dd><p>将 <code class="docutils literal notranslate"><span class="pre">IMGFMT_MEDIACODEC</span></code> 帧直接渲染到 <code class="docutils literal notranslate"><span class="pre">android.view.Surface</span></code> 。需要 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> 的硬件解码，以及 <code class="docutils literal notranslate"><span class="pre">--vo=mediacodec_embed</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--wid=(intptr_t)(*android.view.Surface)</span></code></p>
+<p>由于这个视频输出使用原生解码和渲染程序，mpv的许多功能（字幕渲染、OSD/OSC、视频滤镜等）在这个驱动中是不可用的。</p>
+<p>要使用硬解码应使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> ，并一起使用 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec-copy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context=android</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">wlshm</span></code> （Wayland独占）</dt><dd><p>没有硬件加速的共享内存视频输出驱动，只要有Wayland就能工作。</p>
+<p>从mpv 0.30.0开始，你可能需要使用 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这只是一个后备方案，通常不应使用。</p>
+</div>
+</dd>
+</dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, hooke007
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>
