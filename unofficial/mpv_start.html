@@ -1,0 +1,689 @@
+<!doctype html>
+<html class="no-js" lang="zh_CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="prev" title="非官方" href="index.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>mpv播放器的使用引导 - mpv-doc_chs beta 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">mpv-doc_chs beta 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">mpv-doc_chs beta 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_man/index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_man/mpv.html">mpv —— 媒体播放器</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">导航：</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">非官方</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">mpv播放器的使用引导</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="mpv">
+<h1>mpv播放器的使用引导<a class="headerlink" href="#mpv" title="永久链接至标题">#</a></h1>
+<p><em>ver.20220318</em></p>
+<ul class="simple">
+<li><p>极短的介绍</p></li>
+</ul>
+<p>mpv是极简设计的高画质的开源播放器。<br/>
+与传统的PC高画质方案Directshow+（mpc+lavfilter+madvr+xysubfilter）不同，mpv是一整套的解决方案（单播放器解码渲染字幕齐活）（VLC的既视感？？？）。用户的不同用法决定了这个方案可以十分省事，也可以非常折腾。</p>
+<ul class="simple">
+<li><p>…</p></li>
+</ul>
+<p>本文的假定使用环境 win11-x64 Intel-CPU Nvidia-GPU<br/>
+本教程独立，不从属于懒人包的文档，基于shinchiro编译并打包发布的版本撰写。</p>
+<p>推荐使用的高级文本编辑器，完全可替代系统自带的记事本 <a class="reference external" href="https://www.rizonesoft.com/downloads/notepad3/">Notepad3</a></p>
+<section id="id1">
+<h2>mpv 播放器的使用【入门】<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h2>
+<blockquote>
+<div><p>既是入门，也是最省心的用法。</p>
+</div></blockquote>
+<section id="id2">
+<h3>1.下载安装<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h3>
+<p>mpv目前没有官方编译的版本，第三方shinchiro编译的算公认的半官方版，在 <a class="reference external" href="https://sourceforge.net/projects/mpv-player-windows/files/64bit/">SOURCEGORGE</a> 或 <a class="reference external" href="https://github.com/shinchiro/mpv-winbuild-cmake/releases">他的仓库</a> 获取64位最新版本：<br/>
+全部解压至自定义目录，点击运行 <strong>mpv.exe</strong> ，拖入任意视频播放以快速测试兼容性。</p>
+<p>如果需要注册成可选的默认播放器，以管理员权限运行 <font color="green"><strong>installer</strong></font> 文件夹内的 <strong>mpv-install.bat</strong> ，此后不要更改 <strong>mpv.exe</strong> 所在文件夹的路径或名称，否则需要重新执行该文件重新注册到系统。</p>
+<p>🔺 出于兼容考虑，安置的路径里不要存在中文，最好为纯英文数字<br/>
+出于将来省事可能性的考虑（见下章 <strong>【进阶】</strong> ），mpv尽可能放在盘符根目录</p>
+</section>
+<section id="id3">
+<h3>2.更改权限（可选：视安置路径而定）<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<p>进入后方的步骤前，先确保 <strong>mpv.exe</strong> 所在路径（及子文件夹）具有被完全读写的权限。<br/>
+<em>放在C盘目录的通常需要这一步</em><br/>
+<code class="docutils literal notranslate"><span class="pre">（文件夹右键）属性</span> <span class="pre">→</span> <span class="pre">安全</span> <span class="pre">→</span> <span class="pre">编辑</span> <span class="pre">→</span> <span class="pre">选择需要被授权的用户</span> <span class="pre">→</span> <span class="pre">☑允许</span></code><br/>
+<img src="_assets/mpv_start-01.webp" style="zoom:40%;"/> <img src="_assets/mpv_start-02.webp" style="zoom:40%;"/></p>
+</section>
+<section id="id4">
+<h3>3.选项设置<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<p>因为mpv本身不具有图形化前端，绝大多数的设置选项都是靠在<strong>主设置文件</strong> <font color="blue"><strong>mpv.conf</strong></font> 中输入参数实现的。</p>
+<p>mpv的默认设置目录为 <font color="green"><strong>C:/Users/你的用户名/AppData/Roaming/mpv/</strong></font><br/>
+强烈建议你在 <strong>mpv.exe</strong> 的旁边新建一个 <font color="green"><strong>portable_config</strong></font> 的文件夹，该目录具有最高级的优先级，一旦存在此文件夹，其它所有的设置目录都会被忽略。<br/>
+因此在 <font color="green"><strong>/portable_config/</strong></font> 内新建一个 <font color="blue"><strong>mpv.conf</strong></font> 的空文本，先确保文本编码为 <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code><br/>
+即 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/mpv.conf</strong></font><br/>
+<img src="_assets/mpv_start-03.webp" style="zoom: 40%;"/></p>
+<p>这两种<strong>设置目录</strong>的选择各有特点：</p>
+<ul class="simple">
+<li><p>以 <font color="green"><strong>C:/Users/你的用户名/AppData/Roaming/mpv/</strong></font> 为设置目录，相当于这是“全局设置目录”，不管你使用电脑里存放的多少个不同版本的mpv，都会自动读取这个设置目录</p></li>
+<li><p>以 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/</strong></font> 为设置目录，除去其具有最高优先级（会让其忽略“全局设置”）的特性，还赋予了软件绿色化的特性（查看 <strong>【进阶】</strong> 章可知大部分文件都可放在设置目录），非常适合便携党。</p></li>
+</ul>
+<p>在 <font color="blue"><strong>mpv.conf</strong></font> 中输入以下必要参数：</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="na">hwdec</span><span class="o">=</span><span class="s">d3d11va                           # 使用d3d11va硬解（原生模式）</span><span class="w"></span>
+<span class="w"> </span><span class="na">hwdec-codecs</span><span class="o">=</span><span class="s">all                        # 尽可能所有格式先尝试硬解</span><span class="w"></span>
+<span class="c1">#log-file="~~desktop/mpv.log"            # 输出log日志在桌面</span><span class="w"></span>
+<span class="w"> </span><span class="na">keep-open</span><span class="o">=</span><span class="s">yes                           # 播放完毕后不自动退出</span><span class="w"></span>
+<span class="w"> </span><span class="na">save-position-on-quit</span><span class="o">=</span><span class="s">yes               # 退出时保存当前播放状态</span><span class="w"></span>
+<span class="w"> </span><span class="na">audio-file-auto</span><span class="o">=</span><span class="s">fuzzy                   # 自动加载同名外置音轨</span><span class="w"></span>
+<span class="c1">#icc-profile-auto                        # 应用系统icc文件进行色彩修正</span><span class="w"></span>
+<span class="w"> </span><span class="na">icc-cache-dir</span><span class="o">=</span><span class="s">"~~/icc_cache"            # 存储icc缓存以加速二次启动</span><span class="w"></span>
+<span class="c1">#profile=gpu-hq                          # 使用内置的预设的较高画质方案</span><span class="w"></span>
+<span class="w"> </span><span class="na">gpu-shader-cache-dir</span><span class="o">=</span><span class="s">"~~/shaders_cache" # 存储着色器缓存以加速二次启动</span><span class="w"></span>
+<span class="w"> </span><span class="na">sub-auto</span><span class="o">=</span><span class="s">fuzzy                          # 自动加载同名外置字幕</span><span class="w"></span>
+<span class="w"> </span><span class="na">screenshot-directory</span><span class="o">=</span><span class="s">"~~desktop/"       # 截图的输出路径在桌面</span><span class="w"></span>
+</pre></div>
+</div>
+<p>辅助理解：<br/>
+如何理解这样写的目的，某一行参数中如果有注释符号”<strong>#</strong>”，意味着该行 <code class="docutils literal notranslate"><span class="pre">#</span></code> 所在位置以后的内容为无效。<br/>
+如果将这一行一行参数看作一个一个可以打勾的选项。则 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va</span></code> 类似于 “☑使用d3d11va硬解” 激活该参数，反之 <code class="docutils literal notranslate"><span class="pre">#hwdec=d3d11va</span></code> 对应 “☐使用d3d11va硬解” 未勾选该选项（使用默认值）。</p>
+<p>部分被注释掉的参数：<br/>
+<code class="docutils literal notranslate"><span class="pre">--log-file</span></code> 用于输出日志查错，一般人用不到也看不懂<br/>
+<code class="docutils literal notranslate"><span class="pre">--icc-profile-auto</span></code> 对于已经校色的用户应当开启，未校色的用户开启会产生色彩错误<br/>
+<code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 如果你的显卡不太差，可以使用这个内建的方案</p>
+<p>🔺 由于主设置文件的书写规范最为宽松：<br/>
+===你可以在参数后直接注释中文解释 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va</span> <span class="pre">#</span> <span class="pre">使用d3d11va硬解（原生模式）</span></code> ；<br/>
+===也可以加大量空格美化参数的排版 <code class="docutils literal notranslate"><span class="pre">hwdec</span>  <span class="pre">=</span>  <span class="pre">d3d11va</span>  <span class="pre">#</span>  <span class="pre">使用d3d11va硬解（原生模式）</span></code> ；<br/>
+===还可以用 <code class="docutils literal notranslate"><span class="pre">--hwdec=d3d11va</span></code> 这种（不合规的）替代写法表示激活的参数；<br/>
+===甚至其中 <code class="docutils literal notranslate"><span class="pre">no-osd-bar</span></code> 这类no-开头的参数可改成为 <code class="docutils literal notranslate"><span class="pre">osd-bar=no</span></code>；<br/>
+===以及官方手册中没有赋值的参数比如 <code class="docutils literal notranslate"><span class="pre">deband</span></code> 可以写成 <code class="docutils literal notranslate"><span class="pre">deband=yes</span></code> （等效）。</p>
+</section>
+<section id="id5">
+<h3>4.高频快捷键<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<p>上方必要参数输入完保存退出。再记住常用快捷键和界面控件作用：<br/>
+<img src="_assets/mpv_start-osc.png" style="zoom: 40%;"/><br/>
+<code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code> 调整对比度<br/>
+<code class="docutils literal notranslate"><span class="pre">3</span></code> <code class="docutils literal notranslate"><span class="pre">4</span></code> 调整亮度<br/>
+<code class="docutils literal notranslate"><span class="pre">5</span></code> <code class="docutils literal notranslate"><span class="pre">6</span></code> 调整伽玛<br/>
+<code class="docutils literal notranslate"><span class="pre">7</span></code> <code class="docutils literal notranslate"><span class="pre">8</span></code> 调整饱和度<br/>
+<code class="docutils literal notranslate"><span class="pre">9</span></code> <code class="docutils literal notranslate"><span class="pre">0</span></code> 调整音量<br/>
+<code class="docutils literal notranslate"><span class="pre">[</span></code> <code class="docutils literal notranslate"><span class="pre">]</span></code> 调整播放速度<br/>
+<code class="docutils literal notranslate"><span class="pre">Backspace</span></code> 重置播放速度<br/>
+<code class="docutils literal notranslate"><span class="pre">s</span></code> 快速截屏<br/>
+<code class="docutils literal notranslate"><span class="pre">i</span></code> 显示有关当前播放文件的统计信息<br/>
+还有其它的 <a class="reference external" href="https://mpv.io/manual/master/#interactive-control">常用快捷键</a></p>
+<p><font color="purple">入门教程到此结束。</font></p>
+</section>
+</section>
+<section id="id6">
+<h2>mpv 播放器的使用【进阶】<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<blockquote>
+<div><p>开始本章前，默认已读完入门章。无尽折腾之路，由此开启。</p>
+</div></blockquote>
+<section id="id7">
+<h3>1.主设置文件细化<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<p>最可靠的途径是直接看官方的最新手册： <a class="reference external" href="https://mpv.io/manual/master/">manual</a><br/>
+为了降低难度和节省时间，我挑选了其中的一些参数并添加了 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/mpv.conf">中文注释</a><br/>
+由于涉及的文本量巨大，此处不赘述重复的内容。从自身偏好出发，个性化平衡适配你的需求和硬件。</p>
+</section>
+<section id="id8">
+<h3>2.快捷键自定义<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<p>使用 <font color="blue"><strong>input.conf</strong></font> 文件创建属于你自己的快捷键方案，该文件应和<strong>主设置文件</strong> <font color="blue"><strong>mpv.conf</strong></font> 位于同一级目录</p>
+<p>查看 <a class="reference external" href="https://github.com/mpv-player/mpv/blob/master/etc/input.conf">官方的内建方案</a> 获得全部快捷键对应的功能；<br/>
+同样我的 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/input.conf">懒人包版的中文注释</a> 也能降低上手难度。</p>
+<p>即使你的 <font color="blue"><strong>input.conf</strong></font> 文件不存在设置目录里（或为空文本），mpv依旧会使用内建的方案。</p>
+<p>🔺 和主设置文件一样，input的书写规范也很宽松，参考我的中文注释版，你可以尽情美化排版便于阅读。<br/>
+===你可以直接在 <font color="blue"><strong>mpv.conf</strong></font> 内使用 <code class="docutils literal notranslate"><span class="pre">--no-input-default-bindings</span></code> 参数完全屏蔽内建的方案，从而省去逐个参数 <code class="docutils literal notranslate"><span class="pre">ignore</span></code> 依次屏蔽各个按键的步骤。<br/>
+===（注意该参数同样会屏蔽外部脚本的初始快捷键方案，如果你不想外部脚本受影响，那么就使用另一个参数 <code class="docutils literal notranslate"><span class="pre">--no-input-builtin-bindings</span></code> ）</p>
+<section id="id9">
+<h4>2.1.运行时更改设置<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h4>
+<p>这里以 <code class="docutils literal notranslate"><span class="pre">set</span></code> <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 和 <code class="docutils literal notranslate"><span class="pre">cycle-values</span></code> 这三个命令快速举例。例如在 <font color="blue"><strong>input.conf</strong></font> 中写入：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ESC</span>        <span class="nb">set</span> <span class="n">fullscreen</span> <span class="n">no</span>                              <span class="c1"># 退出全屏状态</span>
+<span class="n">f</span>          <span class="n">cycle</span> <span class="n">fullscreen</span>                               <span class="c1"># 循环切换全屏的状态（同内建方案）</span>
+<span class="n">Ctrl</span><span class="o">+</span><span class="n">LEFT</span>  <span class="n">cycle</span><span class="o">-</span><span class="n">values</span> <span class="n">video</span><span class="o">-</span><span class="n">rotate</span> <span class="s2">"0"</span> <span class="s2">"270"</span> <span class="s2">"180"</span> <span class="s2">"90"</span> <span class="c1"># 视频输出逆时针旋转90°</span>
+<span class="n">Ctrl</span><span class="o">+</span><span class="n">RIGHT</span> <span class="n">cycle</span><span class="o">-</span><span class="n">values</span> <span class="n">video</span><span class="o">-</span><span class="n">rotate</span> <span class="s2">"0"</span> <span class="s2">"90"</span> <span class="s2">"180"</span> <span class="s2">"270"</span> <span class="c1"># ~~~~~~~~逆~~~~~~~~~~~</span>
+</pre></div>
+</div>
+<p>可保存后进行测试，观察结果是否符合预期。</p>
+<p><code class="docutils literal notranslate"><span class="pre">set</span></code> 的功能相当于 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，用于指定选项/属性修改到你设定的目标；<br/>
+<code class="docutils literal notranslate"><span class="pre">cycle</span></code> 通常用于只有 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">no</span></code> 两个状态的参数； <code class="docutils literal notranslate"><span class="pre">cycle-values</span></code> 可用于在指定的多个值从左往右切换。<br/>
+上方示例利用这个特性，成功实现了无脚本依赖的360°旋转操作。</p>
+<p>注意事项、完整功能与更多示例参考 <a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B05%5D_%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%87%AA%E5%AE%9A%E4%B9%89.html">手册[05]</a></p>
+</section>
+</section>
+<section id="lua">
+<h3>3.脚本增强（LUA）<a class="headerlink" href="#lua" title="永久链接至标题">#</a></h3>
+<p><em>JS脚本也受支持，但本文暂时不记录，用法大体相似</em></p>
+<p>mpv中的很多功能都是依赖LUA脚本的，比如 i 键显示的统计信息使用的内置脚本 <strong>stats.lua</strong> ，你使用的简易控制界面是 <strong>osc.lua</strong> 。<br/>
+脚本的部分功能可由主设置文件控制，比如 <code class="docutils literal notranslate"><span class="pre">--no-osc</span></code> 。但是绝大多数功能依旧是由各自的设置文件控制。<br/>
+因此在 <code class="docutils literal notranslate"><span class="pre">mpv.conf</span></code> 的所在位置新建 <code class="docutils literal notranslate"><span class="pre">script-opts</span></code> 文件夹，这里面将放置所有脚本的设置文件，mpv会自动读取。<br/>
+脚本的对应设置文件名为 <font color="green"><strong>同脚本名.conf</strong></font></p>
+<p>🔺 此处开始往后，应该注释掉这个参数 <code class="docutils literal notranslate"><span class="pre">--save-position-on-quit=yes</span></code><br/>
+===目前为止，这个参数除了保存了播放进度外，还储存了许多 <a class="reference external" href="https://github.com/mpv-player/mpv/issues/4641">额外的状态</a> ，个人偏好不使用；<br/>
+===如果你希望保留<strong>退出时记录播放进度</strong>的功能，可以不禁用该功能，同时用另一个参数 <code class="docutils literal notranslate"><span class="pre">watch-later-options=vid,aid,sid</span></code> 限制其额外记录的属性（示例对应的是：视频轨、音轨、字幕轨序号）</p>
+<section id="id10">
+<h4>3.1内置脚本<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h4>
+<p>内置脚本由于已集成，直接创建/编辑对应的设置文件即可，你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/tree/master/player/lua">此处</a> 查看内置脚本的更新历史。</p>
+<p>以我的推荐用法为例，在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/script-opts/</strong></font> 里放置 <code class="docutils literal notranslate"><span class="pre">xxxx.conf</span></code> 的脚本设置文件<br/>
+你依然可以在 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/tree/main/portable_config/script-opts">我的仓库</a> 里参考：<br/>
+其中 <code class="docutils literal notranslate"><span class="pre">console.conf</span></code> <code class="docutils literal notranslate"><span class="pre">osc.conf</span></code> <code class="docutils literal notranslate"><span class="pre">stats.conf</span></code> 都是内置脚本的设置文件</p>
+<p>🔺 此后为了避免识别问题，严格文本规范：<br/>
+===应该直接写 <code class="docutils literal notranslate"><span class="pre">xxx=yyy</span></code> <strong>不要加多余的空格</strong>，<strong>如需注释务必单独另起一行</strong>。<br/>
+===文本编码依旧 <font color="red">UTF-8</font> ，额外的须要换行为 <font color="red">Unix(LR)</font></p>
+<img src="_assets/mpv_start-05.webp" style="zoom:40%;"/>
+<section id="id11">
+<h5>3.1.1.控制台<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h5>
+<p>mpv集成的 <strong>console.lua</strong> 脚本带来了控制台功能，一般用于便于快速查错/临时变更属性或选项。<br/>
+官方手册 <a class="reference external" href="https://mpv.io/manual/master/#console">定位</a><br/>
+打开播放器后，按快捷键 ` 唤起控制台查看控制台信息，此时再按 Esc 关闭控制台。</p>
+<img src="_assets/mpv_start-06.webp" style="zoom:40%;"/>
+<p>控制台指令的语法同上文快捷键的语法，例如输入 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fullscreen</span> <span class="pre">yes</span></code> 回车即执行“进入全屏”。</p>
+</section>
+<section id="id12">
+<h5>3.1.2.数据统计<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h5>
+<p>mpv集成的 <strong>stats.lua</strong> 脚本带来了类似 Mediainfo 的功能，可用于查看各项状态信息。<br/>
+官方手册 <a class="reference external" href="https://mpv.io/manual/master/#stats">定位</a></p>
+</section>
+<section id="id13">
+<h5>3.1.3.条件配置<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h5>
+<p>mpv集成的 <strong>auto_profiles.lua</strong> 脚本带来了根据条件自动切换设置的功能。<br/>
+参考 <a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B02%5D_%E9%85%8D%E7%BD%AE%E7%BB%84%E4%B8%8E%E5%8F%A6%E7%B1%BB%E5%86%99%E6%B3%95%E7%A4%BA%E4%BE%8B.html">mpv-lazy系列手册02</a><br/>
+官方手册 <a class="reference external" href="https://mpv.io/manual/master/#conditional-auto-profiles">定位</a></p>
+</section>
+<section id="ytdl">
+<h5>3.1.4.YTDL<a class="headerlink" href="#ytdl" title="永久链接至标题">#</a></h5>
+<p>mpv集成的 <strong>ytdl_hook.lua</strong> 脚本加强了网络串流的播放能力。<br/>
+需要 <strong>mpv.exe</strong> 所在目录存在 <strong>youtube-dl.exe</strong> <a class="reference external" href="https://github.com/ytdl-org/youtube-dl/releases">官方发布地址</a><br/>
+官方手册 <a class="reference external" href="https://mpv.io/manual/master/#options-ytdl">定位</a></p>
+<p>该脚本兼容ytdl的热门分支yt-dlp<br/>
+需要 <strong>mpv.exe</strong> 所在目录存在 <strong>yt-dlp.exe</strong> <a class="reference external" href="https://github.com/yt-dlp/yt-dlp/releases">官方发布地址</a></p>
+<p>如何指定使用的程序可参考 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/script-opts/ytdl_hook.conf">此处</a><br/>
+（注意mpv0.34.0及之后的版本默认优先使用yt-dlp）</p>
+</section>
+</section>
+<section id="id14">
+<h4>3.2.外置脚本<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h4>
+<p>同样在<strong>主设置文件</strong>的目录，建立一个叫 <font color="green"><strong>scripts</strong></font> 文件夹，默认情况下，mpv会自动读取该文件夹内的脚本。<br/>
+你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/wiki/User-Scripts#lua-scripts">此处</a> 查看公开的第三方外置脚本（包含许多过时的脚本）</p>
+<p>以我的推荐用法为例，下载你所需要的脚本， <code class="docutils literal notranslate"><span class="pre">xxx.lua</span></code> 放置在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/scripts/</strong></font> 内<br/>
+对应的设置文件 <code class="docutils literal notranslate"><span class="pre">xxx.conf</span></code> 放置在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/script-opts/</strong></font> 里<br/>
+具体参数遵循你所使用的脚本的作者说明。同上，你依然可以参考我仓库内的示例。</p>
+<p>示范：<br/>
+===这里以许多人都会用的一个脚本 “<strong>autoload.lua</strong>” （自动导入同目录所有文件到播放列表）为例<br/>
+===对应的设置文件： https://github.com/hooke007/MPV_lazy/blob/main/portable_config/script-opts/autoload.conf<br/>
+===分别下载两个文件或手动复制源码（注意文本规范）创建到指定位置。<br/>
+===在含有多个视频文件的目录随意打开某个视频，按 F8 查看播放列表，预期情况是已正确载入所有视频文件。</p>
+<p>🔺 此处为了避免识别问题，严格文本规范：内容同上。<br/>
+🔺 一种略罕见的脚本的包装形式表现为多个文件群组。它的文件结构为：必有一个名为 <strong>main.lua</strong> 的脚本文件位于某个文件夹中，且同路径下附带有多个其它文件（不限lua）。它的使用方法与单文件的lua脚本略不同，你至少需要把整个文件夹塞进 <font color="green"><strong>scripts</strong></font> 目录中（绝对不能直接把 <strong>main.lua</strong> 放在此处），其它进一步的安装步骤遵作者本人的使用说明。</p>
+</section>
+</section>
+<section id="id15">
+<h3>4.插入滤镜<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h3>
+<p>官方手册定位：<br/>
+<a class="reference external" href="https://mpv.io/manual/master/#audio-filters">音频滤镜</a><br/>
+<a class="reference external" href="https://mpv.io/manual/master/#video-filters">视频滤镜</a></p>
+<p>🔺 此处往后，为了避免原生硬解模式不支持，在主设置文件中应使用 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va-copy</span></code> 或 <code class="docutils literal notranslate"><span class="pre">hwdec=no</span></code><br/>
+<em><code class="docutils literal notranslate"><span class="pre">dxva2-copy</span></code> 不见得一定比 <code class="docutils literal notranslate"><span class="pre">d3d11va-copy</span></code> 实际性能表现差，根据你的实际情况选择。高端N卡用户应高优先使用 <code class="docutils literal notranslate"><span class="pre">nvdec-copy</span></code></em></p>
+<section id="id16">
+<h4>4.1.常规用法<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h4>
+<p>这里导入实例讲解：<br/>
+===如果你使用 <code class="docutils literal notranslate"><span class="pre">--icc-profile-auto</span></code> 这个参数对视频进行了3dlut色彩映射操作，你可能会发觉mpv的视频色彩偏亮（如果你使用madvr的3dlut对比过）。<br/>
+===根本原因在于mpv遵循的是BT.1886曲线，因此，你需要在 <font color="blue"><strong>mpv.conf</strong></font> 中使用如下参数进行GAMMA修正以符合标准SRGB。</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">format=gamma=gamma2.2</span><span class="w"></span>
+</pre></div>
+</div>
+<p>vf参数的标准写法为 <code class="docutils literal notranslate"><span class="pre">vf=xxxxx</span></code> ，但是mpv只能存在一条这样的参数，尽管你可以使用下方参数设置初始一起插入多个滤镜。</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">滤镜①=参数❶=值:参数❷=值,滤镜②...   # 不同滤镜间用","隔开；同一滤镜的不同参数间用":"隔开</span><span class="w"></span>
+</pre></div>
+</div>
+<p>但是为了避免运行时被覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀，意为追加视频滤镜。可以存在多个 <code class="docutils literal notranslate"><span class="pre">vf-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">vf=xxxxx</span></code> 指定的滤镜</p>
+<p>🔺 此处往后，带 <code class="docutils literal notranslate"><span class="pre">-append</span></code> <code class="docutils literal notranslate"><span class="pre">-del</span></code> 之类后缀的参数只能一条带一个滤镜/着色器</p>
+</section>
+<section id="id17">
+<h4>4.2.运行时启用<a class="headerlink" href="#id17" title="永久链接至标题">#</a></h4>
+<p>除了在主设置文件中定好规则，还可以灵活的通过 <font color="blue"><strong>input.conf</strong></font> 的快捷键方案在运行时激活/关闭。导入例子：<br/>
+在 <font color="blue"><strong>input.conf</strong></font> 中写入以下参数</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span><span class="o">+</span><span class="n">UP</span>  <span class="n">vf</span> <span class="n">toggle</span> <span class="n">vflip</span>
+</pre></div>
+</div>
+<p>结构很容易理解—— “快捷键 参数”，和主设置文件不同的是，后缀 <code class="docutils literal notranslate"><span class="pre">toggle</span></code> 和 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 之间不要用 <code class="docutils literal notranslate"><span class="pre">-</span></code> 进行连接。<br/>
+保存后在mpv中播放视频测试，你可以先按下 shift+i 常驻统计信息，观察留意下方。</p>
+<img src="_assets/mpv_start-07.webp" style="zoom:40%;"/>
+<p>第一次按下 Ctrl+↑ 将插入垂直翻转滤镜，第二次按下将撤销该滤镜。</p>
+<p>滤镜类的全部 <a class="reference external" href="https://mpv.io/manual/master/#filter-options">可用后缀</a> 。</p>
+<p>🔺 关于该部分内容，重写的 <a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B03%5D_%E8%A7%86%E9%A2%91%E6%BB%A4%E9%95%9C.html">手册[03]</a> 中记录的更具体和完善。</p>
+</section>
+</section>
+<section id="id18">
+<h3>5.第三方着色器<a class="headerlink" href="#id18" title="永久链接至标题">#</a></h3>
+<p>你可以在此处获取一些公开的第三方着色器： https://github.com/mpv-player/mpv/wiki/User-Scripts#user-shaders<br/>
+下载的着色器文件扩展名通常为 <strong>.glsl</strong> 或 <strong>.hook</strong> ，mpv并没有规定这些文件的默认加载路径。<br/>
+如果你有很多着色器的使用需求，我建议你在主设置文件路径下建立一个 <font color="green"><strong>shaders</strong></font> 文件夹放置所有第三方着色器。<br/>
+以我的推荐用法为例，下载你想要的着色器， <code class="docutils literal notranslate"><span class="pre">xxx.glsl</span></code> 放置在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/shaders/</strong></font> 内</p>
+<section id="id19">
+<h4>5.1.常规用法<a class="headerlink" href="#id19" title="永久链接至标题">#</a></h4>
+<p>在主设置文件中，使用参数 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=&lt;file-list&gt;</span></code> 设置初始加载的多个着色器。<br/>
+同样为了避免运行时被覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀，意为追加着色器。可以存在多个 <code class="docutils literal notranslate"><span class="pre">glsl-shaders-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 指定的滤镜。<br/>
+注意<strong>不要混淆</strong>，近似参数 <code class="docutils literal notranslate"><span class="pre">glsl-shader=&lt;file&gt;</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">glsl-shaders-append</span></code></p>
+<p>加载着色器的路径写法，官方手册 <a class="reference external" href="https://mpv.io/manual/master/#paths">定位</a><br/>
+可以使用绝对路径，比如：</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">"X:/xxxxx/你的MPV文件夹/portable_config/shaders/xxx.glsl"</span><span class="w"></span>
+</pre></div>
+</div>
+<p>也可以使用相对路径节省字数，比如：</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">"~~/shaders/xxx.glsl"</span><span class="w"></span>
+</pre></div>
+</div>
+<p>🔺 其中 <code class="docutils literal notranslate"><span class="pre">~~/</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">~~home/</span></code> ，指代的是 设置目录**（高优先级）**<br/>
+===使用 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 加载多个着色器时用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 分隔<br/>
+===尽量避免windows的路径下 <code class="docutils literal notranslate"><span class="pre">/</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\</span></code> 的混用，统一使用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 避免可能的错误</p>
+</section>
+<section id="id20">
+<h4>5.2.运行时启用<a class="headerlink" href="#id20" title="永久链接至标题">#</a></h4>
+<p>可参考上方滤镜部分。导入例子：<br/>
+在 <a class="reference external" href="https://gist.github.com/igv/8a77e4eb8276753b54bb94c1c50c317e">此处</a> 下载 <strong>adaptive-sharpen.glsl</strong><br/>
+放置在推荐位置，在 <font color="blue"><strong>input.conf</strong></font> 中写入</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CTRL</span><span class="o">+</span><span class="mi">1</span> <span class="n">change</span><span class="o">-</span><span class="nb">list</span> <span class="n">glsl</span><span class="o">-</span><span class="n">shaders</span> <span class="n">toggle</span> <span class="s2">"~~/shaders/adaptive-sharpen.glsl"</span>
+</pre></div>
+</div>
+<p>保存后在mpv中播放视频测试，你可以先按下 “shift+i” 常驻统计信息，再按 “2” 翻到第二页，观察留意着色器列表。</p>
+<img src="_assets/mpv_start-08.webp" style="zoom:40%;"/>
+<p>第一次按下 “Ctrl+↑” 将出现 <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">shader:</span> <span class="pre">...</span></code> ，第二次按下将撤销。</p>
+<p>着色器类的 <a class="reference external" href="https://mpv.io/manual/master/#string-list-and-path-list-options">可用后缀</a> 。</p>
+</section>
+<section id="id21">
+<h4>5.3.第三方着色器介绍<a class="headerlink" href="#id21" title="永久链接至标题">#</a></h4>
+<p>参考 <a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B01%5D_%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9D%80%E8%89%B2%E5%99%A8%E4%BB%8B%E7%BB%8D.html">mpv-lazy系列手册[01]</a></p>
+</section>
+</section>
+<section id="vapoursynth">
+<h3>6.VapourSynth<a class="headerlink" href="#vapoursynth" title="永久链接至标题">#</a></h3>
+<p>VS是开源的非线性处理的视频帧服务插件，使用Python作为脚本语言，mpv支持VS以滤镜形式插入到视频播放流程中。<br/>
+mpv未集成该部分，需要手动安装（以下步骤出于绿色化考虑，使用便携包而不是安装版程序）。</p>
+<section id="id22">
+<h4>6.1.部署前置<a class="headerlink" href="#id22" title="永久链接至标题">#</a></h4>
+<p>在 <a class="reference external" href="https://www.python.org/downloads/">此处</a> 获取Python，选择64位便携包下载：</p>
+<img src="_assets/mpv_start-09.webp" style="zoom:40%;"/>
+<p>在 <a class="reference external" href="https://github.com/vapoursynth/vapoursynth/releases">此处</a> 获取VapourSyhth，选择64位便携包下载：</p>
+<img src="_assets/mpv_start-10.webp" style="zoom:40%;"/>
+<p>解压两个压缩包的全部文件到 <strong>mpv.exe</strong> 所在路径</p>
+<img src="_assets/mpv_start-11.webp" style="zoom:40%;"/>
+<p>🔺 官方的VapourSyhth版本号很依赖Python，因此需要使用匹配的Python版本才能正常工作，例如 R53-R57 对应 3.8.x-3.9.x</p>
+</section>
+<section id="mvtools">
+<h4>6.2.mvtools 补帧法<a class="headerlink" href="#mvtools" title="永久链接至标题">#</a></h4>
+<p>你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/wiki/User-Scripts#vapoursynth-scripts">此处</a> 获取公开的VS脚本<br/>
+VS滤镜参与mpv的播放流程至少需要三个部分： <em><strong>dll库 + 对应的vpy脚本 + mpv/input.conf中触发条件的参数</strong></em></p>
+<section id="id23">
+<h5>6.2.1.库的下载<a class="headerlink" href="#id23" title="永久链接至标题">#</a></h5>
+<p>“使用mvtools对视频进行补帧”作为较常见的一种用法，此处将它作为示例：<br/>
+获取mvtools所需的 <a class="reference external" href="https://github.com/dubhater/vapoursynth-mvtools/releases">库</a></p>
+<img src="_assets/mpv_start-12.webp" style="zoom:40%;"/>
+<p>解压放置 <strong>libmvtools.dll</strong> 在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/vapoursynth64/plugins/</strong></font> 内</p>
+</section>
+<section id="id24">
+<h5>6.2.2.脚本安置<a class="headerlink" href="#id24" title="永久链接至标题">#</a></h5>
+<p>获取对应的vpy脚本，无所谓扩展名是 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">.vpy</span></code> ，脚本也无命名要求规范</p>
+<p><a class="reference external" href="https://gist.github.com/KCCat/1b3a7b7f085a066af3719859f88ded02">这里</a> 是KCCat大佬的版本<br/>
+或者选择我在懒人包 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/mvtools-fast.vpy">使用的版本</a></p>
+<p>放置位置也随意，按照前文的推荐放在 <font color="green"><strong>X:/xxxxx/你的MPV文件夹/portable_config/</strong></font> 内便于调用</p>
+</section>
+<section id="id25">
+<h5>6.2.3.设置调用<a class="headerlink" href="#id25" title="永久链接至标题">#</a></h5>
+<p>一种方法是<strong>主设置文件</strong> <font color="blue"><strong>mpv.conf</strong></font> 中使用伴随mpv启动时激活</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">vapoursynth="~~/xxxxx.vpy"</span><span class="w"></span>
+</pre></div>
+</div>
+<p>另一种是 <font color="blue"><strong>input.conf</strong></font> 中使用如下的示例，灵活开启关闭</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CTRL</span><span class="o">+</span><span class="n">v</span> <span class="n">vf</span> <span class="n">toggle</span> <span class="n">vapoursynth</span><span class="o">=</span><span class="s2">"~~/xxxxx.vpy"</span>
+</pre></div>
+</div>
+<p>因为是以滤镜形式参与播放流程，所以可参考上文 <strong>插入滤镜</strong> 部分，此处不再赘述。<br/>
+VS工作状态的检验可多方结合，例如在统计信息中的滤镜列表、控制台有无报错信息、实际画面有无符合预期的变化。</p>
+</section>
+</section>
+</section>
+</section>
+<section id="faq">
+<h2>FAQ 常见问题解答<a class="headerlink" href="#faq" title="永久链接至标题">#</a></h2>
+<ul class="simple">
+<li><p><strong>选择稳定版还是开发版？</strong></p></li>
+</ul>
+<p>对mpv这个项目而言并不存在真正的稳定版，它的很多功能由其它依赖提供，即便是shinchiro发布的稳定版编译时也是用的开发版的第三方依赖；所谓的stable版本（release）只是开发者不定期拿过去的某一版git做的标记（主要是便于某些Linux发行版的仓库更新）。</p>
+<ul class="simple">
+<li><p><strong>本文涵盖了所有常见功能的介绍？</strong></p></li>
+</ul>
+<p>并不是，比如我没提“JS脚本的使用”，我只挑选了自认为多数人的中高频需求进行说明。</p>
+<ul class="simple">
+<li><p><strong>太长不想看怎么办？</strong></p></li>
+</ul>
+<p>有懒人包 <a class="reference external" href="https://github.com/hooke007/MPV_lazy">mpv-lazy</a> ，虽然我极力想精简它的整合功能的说明，但随着折腾的深入我发现这就是根本不可能的事情，所以你可能到最后还是要看文档。。。</p>
+<ul class="simple">
+<li><p><strong>mpv-lazy的发布帖收集了萌新常见问题的解决方案？</strong></p></li>
+</ul>
+<p>大部分都可以无障碍参考 <a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B04%5D_%E5%B8%B8%E8%A7%81FAQ%EF%BC%88%E8%B8%A9%E5%9D%91%E5%BD%95%EF%BC%89.html">坛友踩坑录===镜像手册[04]</a></p>
+<ul class="simple">
+<li><p><strong>mpv的命令行操作的介绍呢？</strong></p></li>
+</ul>
+<p>不是吧…伪GUI你都不用还用什么命令行啊。<a class="reference external" href="https://hooke007.github.io/mpv-lazy/%5B06%5D_%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2.html">手册[06]</a></p>
+<ul class="simple">
+<li><p><strong>mpv作为跨平台的播放器 是否这个教程适用于LINUX和MAC OS？</strong></p></li>
+</ul>
+<p>一些脚本需要看是否适配，大部分设置参数适合，但我还是强烈建议详细阅读 <a class="reference external" href="https://mpv.io/manual/master/">官方手册</a> 。<br/>
+<em>首先你要解决依赖问题，以确保几乎本文记录的所有功能在你的平台上可用</em></p>
+<ul class="simple">
+<li><p><strong>为什么这个播放器如此简jian洁lou？</strong></p></li>
+</ul>
+<p>因为它没有设计官方的前端（GUI）。</p>
+<ul class="simple">
+<li><p><strong>有无可用的第三方前端？</strong></p></li>
+</ul>
+<p>windows:<br/>
+<a class="reference external" href="https://KikoPlayProject.github.io">KikoPlay</a> 支持弹幕，简易库管理<br/>
+<a class="reference external" href="https://github.com/stax76/mpv.net">mpv.net</a> 近乎原生体验，右键提供快捷多功能<br/>
+<a class="reference external" href="https://github.com/hooke007/mpv.net_CM">mpv.net_CM</a> 因为好用于是做了汉化，并依个人需求的定制化成了单独的模组</p>
+<p>mac:<br/>
+<a class="reference external" href="https://github.com/iina/iina">IINA</a></p>
+<p>linux:<br/>
+很多，但我不熟，而且似乎没必要（</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">非官方</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, hooke007
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            目录
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">mpv播放器的使用引导</a><ul>
+<li><a class="reference internal" href="#id1">mpv 播放器的使用【入门】</a><ul>
+<li><a class="reference internal" href="#id2">1.下载安装</a></li>
+<li><a class="reference internal" href="#id3">2.更改权限（可选：视安置路径而定）</a></li>
+<li><a class="reference internal" href="#id4">3.选项设置</a></li>
+<li><a class="reference internal" href="#id5">4.高频快捷键</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">mpv 播放器的使用【进阶】</a><ul>
+<li><a class="reference internal" href="#id7">1.主设置文件细化</a></li>
+<li><a class="reference internal" href="#id8">2.快捷键自定义</a><ul>
+<li><a class="reference internal" href="#id9">2.1.运行时更改设置</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lua">3.脚本增强（LUA）</a><ul>
+<li><a class="reference internal" href="#id10">3.1内置脚本</a><ul>
+<li><a class="reference internal" href="#id11">3.1.1.控制台</a></li>
+<li><a class="reference internal" href="#id12">3.1.2.数据统计</a></li>
+<li><a class="reference internal" href="#id13">3.1.3.条件配置</a></li>
+<li><a class="reference internal" href="#ytdl">3.1.4.YTDL</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">3.2.外置脚本</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15">4.插入滤镜</a><ul>
+<li><a class="reference internal" href="#id16">4.1.常规用法</a></li>
+<li><a class="reference internal" href="#id17">4.2.运行时启用</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id18">5.第三方着色器</a><ul>
+<li><a class="reference internal" href="#id19">5.1.常规用法</a></li>
+<li><a class="reference internal" href="#id20">5.2.运行时启用</a></li>
+<li><a class="reference internal" href="#id21">5.3.第三方着色器介绍</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vapoursynth">6.VapourSynth</a><ul>
+<li><a class="reference internal" href="#id22">6.1.部署前置</a></li>
+<li><a class="reference internal" href="#mvtools">6.2.mvtools 补帧法</a><ul>
+<li><a class="reference internal" href="#id23">6.2.1.库的下载</a></li>
+<li><a class="reference internal" href="#id24">6.2.2.脚本安置</a></li>
+<li><a class="reference internal" href="#id25">6.2.3.设置调用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#faq">FAQ 常见问题解答</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>
