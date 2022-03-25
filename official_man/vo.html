@@ -275,48 +275,7 @@
 <p>这只是一个后备方案，通常不应该使用。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">vdpau</span></code> （X11独占）</dt><dd><p>使用VDPAU接口来显示，也可以选择对视频进行解码。硬件解码需要和 <code class="docutils literal notranslate"><span class="pre">--hwdec=vdpau</span></code> 一起使用。注意，除了兼容性之外，绝对没有理由使用它。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=nvdec</span></code> 代替它们。</p>
-<div class="admonition note">
-<p class="admonition-title">备注</p>
-<p>早期版本的mpv（和MPlayer mplayer2）提供了调整vdpau后处理的子选项，如 <code class="docutils literal notranslate"><span class="pre">deint</span></code> <code class="docutils literal notranslate"><span class="pre">sharpen</span></code> <code class="docutils literal notranslate"><span class="pre">denoise</span></code> <code class="docutils literal notranslate"><span class="pre">chroma-deint</span></code> <code class="docutils literal notranslate"><span class="pre">pullup</span></code> <code class="docutils literal notranslate"><span class="pre">hqscaling</span></code> 。这些子选项已过时，你应该使用视频滤镜 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 来代替。</p>
-</div>
-<p>支持以下全局选项：</p>
-<dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-sharpen=&lt;-1-1&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
-<p>正值对视频应用锐化算法，负值则为模糊算法（默认： 0）</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-denoise=&lt;0-1&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
-<p>对视频应用降噪算法（默认： 0；不降噪）</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-chroma-deint</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
-<p>使时域去交错器同时对亮度和色度扫描（默认）。使用no-chroma-deint只扫描亮度并加速高级去隔行。对慢速显存有用。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-pullup</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
-<p>尝试应用反胶卷过带，需要运动自适应的时域反交错。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-hqscaling=&lt;0-9&gt;</span></code></dt><dd><p>（已过时。参见关于 <code class="docutils literal notranslate"><span class="pre">vdpaupp</span></code> 的note）</p>
-<dl class="simple">
-<dt>0</dt><dd><p>使用默认的VDPAU缩放比例（默认）</p>
-</dd>
-<dt>1-9</dt><dd><p>应用高质量的VDPAU缩放（需要合格的硬件）</p>
-</dd>
-</dl>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-fps=&lt;number&gt;</span></code></dt><dd><p>覆盖自动检测的显示器刷新率值（该值对于framedrop来说是需要的，以允许视频播放速率高于显示刷新率，并用于vsync-aware的帧计时调整）。默认0表示使用自动检测的值。正值被解释为刷新率，单位是Hz，并覆盖了自动检测值。负值禁用所有的计时调整和framedrop逻辑。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-composite-detect</span></code></dt><dd><p>英伟达当前的VDPAU实现在合成窗口管理器下的行为有些不同，不能提供准确的帧计时信息。启用该选项后，播放器将尝试检测合成窗口管理器是否处于活动状态。如果检测到了，播放器将禁用计时调整，就像用户指定了 <code class="docutils literal notranslate"><span class="pre">fps=-1</span></code> 一样（因为它们将基于错误的输入）。这意味着计时的准确性比没有合成的情况下要低一些，但由于NVIDIA驱动程序的合成模式行为，即使没有禁用逻辑，也没有硬性的播放速度限制。默认启用，使用 <code class="docutils literal notranslate"><span class="pre">--vo-vdpau-composite-detect=no</span></code> 来禁用。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-queuetime-windowed=&lt;number&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">queuetime-fs=&lt;number&gt;</span></code></dt><dd><p>使用VDPAU的presentation queue功能，对未来的视频帧变化最多提前这么多毫秒的队列（默认： 50）。其他信息见下文。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-output-surfaces=&lt;2-15&gt;</span></code></dt><dd><p>分配这么多输出surface来显示视频帧（默认： 3）。其他信息见下文。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-colorkey=&lt;#RRGGBB|#AARRGGBB&gt;</span></code></dt><dd><p>设置VDPAU的presentation queue的背景颜色，在实践中，如果VDPAU在overlay模式下运行，它就是使用的colorkey（默认： <code class="docutils literal notranslate"><span class="pre">#020507</span></code> ，某种黑色的阴影）。如果这个值的alpha分量为0，就会使用VDPAU的默认colorkey（通常为绿色）。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vdpau-force-yuv</span></code></dt><dd><p>不接受RGBA输入。这意味着mpv将插入一个滤镜，在视频输出之前转换为YUV格式。有时对强制使用某些YUV专用的功能很有用，比如视频均衡器或去隔行扫描。</p>
-</dd>
-</dl>
-<p>使用由queuetime选项控制的VDPAU的frame queuing功能使mpv的帧翻转时间对系统CPU负载不那么敏感，并允许mpv略提前解码下一帧，这可以减少个别解码缓慢的帧造成的抖动。然而，如果VDPAU正在使用blit queue（主要发生在你启用composite extension的情况下），并且该功能处于激活状态，NVIDIA图形驱动可能会使例如窗口移动不稳定。如果这种情况发生在你的系统上，并且让你感到困扰，那么你可以将queuetime值设置为0来禁用这个功能。在窗口模式和全屏模式下使用的设置是分开的，在全屏模式下应该没有理由禁用这个功能（因为驱动问题不应该影响视频本身）。</p>
-<p>你可以通过增加queuetime值和 <code class="docutils literal notranslate"><span class="pre">output_surfaces</span></code> 计数来提前排队等候更多的帧（为了确保有足够的surfaces来提前缓冲视频，你需要至少与视频在该时间内的帧数一样多的surfaces，再加上两个）。这可以帮助在某些情况下使视频更流畅。主要的缺点是增加了surfaces的视频RAM要求，以及对用户命令的显示响应更滞后（显示变化要在排队后的一段时间内才会显现）。图形驱动的实现也可能对最大队列时间的长度或队列的surface数量有限制，或根本无法正常工作。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">vdpau</span></code> （X11独占）</dt><dd><p><a class="reference external" href="https://mpv.io/manual/master/#video-output-drivers-vdpau">https://mpv.io/manual/master/#video-output-drivers-vdpau</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">direct3d</span></code> （Windows独占）</dt><dd><p>使用Direct3D接口的视频输出驱动</p>
 <div class="admonition note">
@@ -526,56 +485,7 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">drm</span></code> (Direct Rendering Manager)</dt><dd><p>使用Kernel Mode Setting / Direct Rendering Manager的视频输出驱动。应该在不想安装完整的图形环境时使用（例如，没有X）。不支持硬件加速（如果你需要，请检查 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 后端的 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出）。</p>
-<p>从mpv 0.30.0开始，你可能需要使 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
-<p>支持以下全局选项：</p>
-<dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-connector=[&lt;gpu_number&gt;.]&lt;name&gt;</span></code></dt><dd><p>选择要使用的连接器（通常是显示器）。如果 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 为空或 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，mpv将在第一个可用的连接器上渲染输出。使用 <code class="docutils literal notranslate"><span class="pre">--drm-connector=help</span></code> 来获取可用连接器的列表。 <code class="docutils literal notranslate"><span class="pre">&lt;gpu_number&gt;</span></code> 参数可用于区分多个显卡，但已过时，改为使用 <code class="docutils literal notranslate"><span class="pre">--drm-device</span></code> 。（默认： 空）</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-device=&lt;path&gt;</span></code></dt><dd><p>选择要使用的DRM设备文件。如果指定了这个文件，它将取代自动选择卡和任何指定的卡号 <code class="docutils literal notranslate"><span class="pre">--drm-connector</span></code> 。（默认： 空）</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-mode=&lt;preferred|highest|N|WxH[@R]&gt;</span></code></dt><dd><p>要使用的模式（分辨率和帧速率）。可能的值：</p>
-<dl class="field-list simple">
-<dt class="field-odd">preferred</dt>
-<dd class="field-odd"><p>使用所选连接器上的屏幕的首选模式（默认）</p>
-</dd>
-<dt class="field-even">highest</dt>
-<dd class="field-even"><p>使用所选连接器上可用的最高分辨率的模式</p>
-</dd>
-<dt class="field-odd">N</dt>
-<dd class="field-odd"><p>通过索引选择模式</p>
-</dd>
-<dt class="field-even">WxH[@R]</dt>
-<dd class="field-even"><p>通过宽度、高度和可选的刷新率来指定模式。如果有几种模式相匹配，则选择EDID模式列表中排在第一位的模式。</p>
-</dd>
-</dl>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">--drm-mode=help</span></code> 来获得所有活动连接器的可用模式列表。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-atomic=&lt;no|auto&gt;</span></code></dt><dd><p>切换使用原子模式设置。这在调试时非常有用。</p>
-<dl class="field-list simple">
-<dt class="field-odd">no</dt>
-<dd class="field-odd"><p>使用传统的模式设置</p>
-</dd>
-<dt class="field-even">auto</dt>
-<dd class="field-even"><p>使用原子模式设置，如果不能使用，则退回到传统模式设置（默认）</p>
-</dd>
-</dl>
-<p>注意：只影响到 <code class="docutils literal notranslate"><span class="pre">gpu-context=drm</span></code> 。 <code class="docutils literal notranslate"><span class="pre">vo=drm</span></code> 只支持传统的模式设置。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-draw-plane=&lt;primary|overlay|N&gt;</span></code></dt><dd><p>选择DRM平面，在正常情况下，视频和OSD被绘制到该平面。该平面可以被指定为 <code class="docutils literal notranslate"><span class="pre">primary</span></code> ，它将选择第一个适用的主平面； <code class="docutils literal notranslate"><span class="pre">overlay</span></code> ，它将选择第一个适用的覆盖平面；或者通过索引。索引是基于零的，与CRTC有关（默认： primary）</p>
-<p>当与drmprime-drm hwdec互操作使用该选项时，只有OSD被渲染到这个平面。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-drmprime-video-plane=&lt;primary|overlay|N&gt;</span></code></dt><dd><p>选择DRM平面，用于drmprime-drm hwdec接口的视频（例如RockChip SoC上的rkmpp hwdec，以及其他各种SoC上的v4l2 hwdec）。否则，该平面将不被使用。该选项接受与 <code class="docutils literal notranslate"><span class="pre">--drm-draw-plane</span></code> 相同的值。（默认： overlay）</p>
-<p>为了能够在不同的SoC上成功播放4K视频，你可能需要设置 <code class="docutils literal notranslate"><span class="pre">--drm-draw-plane=overlay</span> <span class="pre">--drm-drmprime-video-plane=primary</span></code> ，并设置 <code class="docutils literal notranslate"><span class="pre">--drm-draw-surface-size=1920x1080</span></code> ，以较低的分辨率渲染OSD（由hwdec处理的视频将在drmprime-video平面上以全4K分辨率显示）</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-format=&lt;xrgb8888|xrgb2101010&gt;</span></code></dt><dd><p>选择要使用的DRM格式（默认： xrgb8888）。这允许你选择DRM模式的比特深度。xrgb8888是你常用的每像素24比特/每通道8比特的填充RGB格式。xrgb2101010是每像素30比特/每通道10比特的填充RGB格式，有2比特的填充。</p>
-<p>在某些情况下，xrgb2101010可以在 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 视频输出中工作，但不能在 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出的 <code class="docutils literal notranslate"><span class="pre">drm</span></code> 后端工作。这是因为使用 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出，除了需要DRM驱动的支持外，还需要EGL驱动对xrgb2101010的支持。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--drm-draw-surface-size=&lt;[WxH]&gt;</span></code></dt><dd><p>设置在绘制平面上使用的曲面的大小。然后，该曲面将被放大到当前的屏幕分辨率。这个选项在高分辨率下与drmprim-drm hwdec互操作一起使用时非常有用，因为它允许将绘制平面（在这种情况下只处理OSD）缩小到GPU可以处理的尺寸。</p>
-<p>当不使用drmprime-drm hwdec互操作时，这个选项只会导致视频在不同的分辨率下被渲染，然后被缩放到屏幕尺寸。</p>
-<p>注意：这个选项只有在支持DRM atomic的情况下才可用（默认： display resolution）</p>
-</dd>
-</dl>
+<dt><code class="docutils literal notranslate"><span class="pre">drm</span></code> (Direct Rendering Manager)</dt><dd><p><a class="reference external" href="https://mpv.io/manual/master/#video-output-drivers-drm">https://mpv.io/manual/master/#video-output-drivers-drm</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">mediacodec_embed</span></code> （安卓）</dt><dd><p>将 <code class="docutils literal notranslate"><span class="pre">IMGFMT_MEDIACODEC</span></code> 帧直接渲染到 <code class="docutils literal notranslate"><span class="pre">android.view.Surface</span></code> 。需要 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> 的硬件解码，以及 <code class="docutils literal notranslate"><span class="pre">--vo=mediacodec_embed</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--wid=(intptr_t)(*android.view.Surface)</span></code></p>
 <p>由于这个视频输出使用原生解码和渲染程序，mpv的许多功能（字幕渲染、OSD/OSC、视频滤镜等）在这个驱动中是不可用的。</p>

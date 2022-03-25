@@ -207,18 +207,18 @@
 <h1>编码/压制的详细指南<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <section id="id2">
 <h2>一般用法<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span> <span class="p">[</span><span class="o">-</span><span class="n">of</span> <span class="n">outfileformat</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">ofopts</span> <span class="n">formatoptions</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">orawts</span><span class="p">]</span> \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span> <span class="p">[</span><span class="o">--</span><span class="n">of</span><span class="o">=</span><span class="n">outfileformat</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ofopts</span><span class="o">=</span><span class="n">formatoptions</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">orawts</span><span class="p">]</span> \
   <span class="p">[(</span><span class="nb">any</span> <span class="n">other</span> <span class="n">mpv</span> <span class="n">options</span><span class="p">)]</span> \
-  <span class="o">-</span><span class="n">ovc</span> <span class="n">outvideocodec</span> <span class="p">[</span><span class="o">-</span><span class="n">ovcopts</span> <span class="n">outvideocodecoptions</span><span class="p">]</span> \
-  <span class="o">-</span><span class="n">oac</span> <span class="n">outaudiocodec</span> <span class="p">[</span><span class="o">-</span><span class="n">oacopts</span> <span class="n">outaudiocodecoptions</span><span class="p">]</span>
+  <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">outvideocodec</span> <span class="p">[</span><span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">outvideocodecoptions</span><span class="p">]</span> \
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">outaudiocodec</span> <span class="p">[</span><span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">outaudiocodecoptions</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>如果将 <code class="docutils literal notranslate"><span class="pre">help</span></code> 作为参数，则提供这些选项的帮助，比如:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="o">-</span><span class="n">ovc</span> <span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">help</span>
 </pre></div>
 </div>
-<p>这些选项的子选项通常与ffmpeg中的相同（因为选项解析被简单地委派给ffmpeg）。选项 <code class="docutils literal notranslate"><span class="pre">-ocopyts</span></code> 启用从源文件中原样的复制时间戳，而不是修正它们以匹配音频播放时间（注意：这并不适用于所有的输出容器格式）； <code class="docutils literal notranslate"><span class="pre">-orawts</span></code> 甚至可以关闭不连续性修正。</p>
-<p>注意，如果既没有指定 <code class="docutils literal notranslate"><span class="pre">-ofps</span></code> 也没有指定 <code class="docutils literal notranslate"><span class="pre">-oautofps</span></code> ，就会假定进行VFR编码，时间基准是24000fps。 <code class="docutils literal notranslate"><span class="pre">-oautofps</span></code> 将 <code class="docutils literal notranslate"><span class="pre">-ofps</span></code> 设置为一个从输入视频中的猜测的fps数。注意，并非所有的编码和格式都支持压制VFR，一些支持的格式在指定目标比特率时会存在错误 —— 在这些情况下，使用 <code class="docutils literal notranslate"><span class="pre">-ofps</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-oautofps</span></code> 来强制进行CFR编码。</p>
+<p>这些选项的子选项通常与ffmpeg中的相同（因为选项解析被简单地委派给ffmpeg）。选项 <code class="docutils literal notranslate"><span class="pre">--ocopyts</span></code> 启用从源文件中原样的复制时间戳，而不是修正它们以匹配音频播放时间（注意：这并不适用于所有的输出容器格式）； <code class="docutils literal notranslate"><span class="pre">--orawts</span></code> 甚至可以关闭不连续性修正。</p>
+<p>注意，如果既没有指定 <code class="docutils literal notranslate"><span class="pre">--ofps</span></code> 也没有指定 <code class="docutils literal notranslate"><span class="pre">--oautofps</span></code> ，就会假定进行VFR编码，时间基准是24000fps。 <code class="docutils literal notranslate"><span class="pre">--oautofps</span></code> 将 <code class="docutils literal notranslate"><span class="pre">--ofps</span></code> 设置为一个从输入视频中的猜测的fps数。注意，并非所有的编码和格式都支持压制VFR，一些支持的格式在指定目标比特率时会存在错误 —— 在这些情况下，使用 <code class="docutils literal notranslate"><span class="pre">--ofps</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--oautofps</span></code> 来强制进行CFR编码。</p>
 <p>当然，这些选项可以存储在一个配置预设中，像这样的 .config/mpv/mpv.conf 中的部分:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">myencprofile</span><span class="p">]</span>
 <span class="n">vf</span><span class="o">-</span><span class="n">add</span> <span class="o">=</span> <span class="n">scale</span><span class="o">=</span><span class="mi">480</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span>
@@ -237,39 +237,39 @@
 </div>
 <p>也可以把它们放进名为 <code class="docutils literal notranslate"><span class="pre">[encoding]</span></code> 的部分来定义默认的压制选项。（此行为在mpv0.3.x之后改变过。在mpv0.3.x中， <code class="docutils literal notranslate"><span class="pre">[default]</span></code> 部分/没有任何部分的设置选项被应用于编码。现在已经不是这样了。）</p>
 <p>然后可以使用以下命令使用该配置预设进行编码:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> <span class="o">-</span><span class="n">profile</span> <span class="n">myencprofile</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> <span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">myencprofile</span>
 </pre></div>
 </div>
-<p>在文件 etc/encoding-profiles.conf 中提供了一些配置预设的示例；至于这一点，参见下文。</p>
+<p>在官方仓库的文件 etc/encoding-profiles.conf 中提供了一些配置预设的示例；至于这一点，参见下文。</p>
 </section>
 <section id="id3">
 <h2>压制示例<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
 <p>这些是一些编码目标的示例，这段代码已被使用和测试过。</p>
 <p>压制典型的MPEG-4 Part 2 (“ASP”, “DivX”) ，AVI容器:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">avi</span> \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">avi</span> \
   <span class="o">--</span><span class="n">vf</span><span class="o">=</span><span class="n">fps</span><span class="o">=</span><span class="mi">25</span> \
-  <span class="o">-</span><span class="n">ovc</span> <span class="n">mpeg4</span> <span class="o">-</span><span class="n">ovcopts</span> <span class="n">qscale</span><span class="o">=</span><span class="mi">4</span> \
-  <span class="o">-</span><span class="n">oac</span> <span class="n">libmp3lame</span> <span class="o">-</span><span class="n">oacopts</span> <span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
+  <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">mpeg4</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">4</span> \
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libmp3lame</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
 </pre></div>
 </div>
 <p>注意：AVI不支持可变帧率，所以必须使用fps滤镜。帧率最好与输入相匹配（PAL为25，NTSC为24000/1001或30000/1001）。</p>
 <p>压制典型的MPEG-4 Part 10 (“AVC”, “H.264”) ，Matroska (MKV) 容器:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
-  <span class="o">-</span><span class="n">ovc</span> <span class="n">libx264</span> <span class="o">-</span><span class="n">ovcopts</span> <span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
-  <span class="o">-</span><span class="n">oac</span> <span class="n">libvorbis</span> <span class="o">-</span><span class="n">oacopts</span> <span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
+  <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libx264</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libvorbis</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 <p>压制典型的MPEG-4 Part 10 (“AVC”, “H.264”) ，MPEG-4 (MP4) 容器:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> \
-  <span class="o">-</span><span class="n">ovc</span> <span class="n">libx264</span> <span class="o">-</span><span class="n">ovcopts</span> <span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
-  <span class="o">-</span><span class="n">oac</span> <span class="n">aac</span> <span class="o">-</span><span class="n">oacopts</span> <span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> \
+  <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libx264</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">aac</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
 </pre></div>
 </div>
 <p>压制典型的VP8，WebM (受限制的Matroska) 容器:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
-  <span class="o">-</span><span class="n">of</span> <span class="n">webm</span> \
-  <span class="o">-</span><span class="n">ovc</span> <span class="n">libvpx</span> <span class="o">-</span><span class="n">ovcopts</span> <span class="n">qmin</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1000000</span><span class="n">k</span> \
-  <span class="o">-</span><span class="n">oac</span> <span class="n">libvorbis</span> <span class="o">-</span><span class="n">oacopts</span> <span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
+  <span class="o">--</span><span class="n">of</span><span class="o">=</span><span class="n">webm</span> \
+  <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libvpx</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">qmin</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1000000</span><span class="n">k</span> \
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libvorbis</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 </section>
@@ -283,41 +283,41 @@
 </div>
 <p>请记住， <code class="docutils literal notranslate"><span class="pre">[default]</span></code> 的配置预设是用于播放的。如果你想添加只应用于编码模式的选项，把它们放入 <code class="docutils literal notranslate"><span class="pre">[encoding]</span></code> 的部分。</p>
 <p>更多的注释请参考该文件的顶部 —— 简而言之，下列选项是由它添加的:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">dvdpal</span>      <span class="n">DVD</span><span class="o">-</span><span class="n">Video</span> <span class="n">PAL</span><span class="p">,</span> <span class="n">use</span> <span class="n">dvdauthor</span> <span class="o">-</span><span class="n">v</span> <span class="n">pal</span><span class="o">+</span><span class="mi">4</span><span class="p">:</span><span class="mi">3</span> <span class="o">-</span><span class="n">a</span> <span class="n">ac3</span><span class="o">+</span><span class="n">en</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">dvdntsc</span>     <span class="n">DVD</span><span class="o">-</span><span class="n">Video</span> <span class="n">NTSC</span><span class="p">,</span> <span class="n">use</span> <span class="n">dvdauthor</span> <span class="o">-</span><span class="n">v</span> <span class="n">ntsc</span><span class="o">+</span><span class="mi">4</span><span class="p">:</span><span class="mi">3</span> <span class="o">-</span><span class="n">a</span> <span class="n">ac3</span><span class="o">+</span><span class="n">en</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">bb</span><span class="o">-</span><span class="mi">9000</span>     <span class="n">MP4</span> <span class="k">for</span> <span class="n">Blackberry</span> <span class="n">Bold</span> <span class="mi">9000</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">nok</span><span class="o">-</span><span class="mi">6300</span>    <span class="mi">3</span><span class="n">GP</span> <span class="k">for</span> <span class="n">Nokia</span> <span class="mi">6300</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">psp</span>         <span class="n">MP4</span> <span class="k">for</span> <span class="n">PlayStation</span> <span class="n">Portable</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span>      <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span><span class="o">-</span><span class="mi">4</span>    <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span> <span class="mi">4</span> <span class="p">(</span><span class="n">double</span> <span class="n">res</span><span class="p">)</span>
-<span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span><span class="o">-</span><span class="mi">5</span>    <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span> <span class="mi">5</span> <span class="p">(</span><span class="n">even</span> <span class="n">larger</span> <span class="n">res</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">dvdpal</span>      <span class="n">DVD</span><span class="o">-</span><span class="n">Video</span> <span class="n">PAL</span><span class="p">,</span> <span class="n">use</span> <span class="n">dvdauthor</span> <span class="o">-</span><span class="n">v</span> <span class="n">pal</span><span class="o">+</span><span class="mi">4</span><span class="p">:</span><span class="mi">3</span> <span class="o">-</span><span class="n">a</span> <span class="n">ac3</span><span class="o">+</span><span class="n">en</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">dvdntsc</span>     <span class="n">DVD</span><span class="o">-</span><span class="n">Video</span> <span class="n">NTSC</span><span class="p">,</span> <span class="n">use</span> <span class="n">dvdauthor</span> <span class="o">-</span><span class="n">v</span> <span class="n">ntsc</span><span class="o">+</span><span class="mi">4</span><span class="p">:</span><span class="mi">3</span> <span class="o">-</span><span class="n">a</span> <span class="n">ac3</span><span class="o">+</span><span class="n">en</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">bb</span><span class="o">-</span><span class="mi">9000</span>     <span class="n">MP4</span> <span class="k">for</span> <span class="n">Blackberry</span> <span class="n">Bold</span> <span class="mi">9000</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">nok</span><span class="o">-</span><span class="mi">6300</span>    <span class="mi">3</span><span class="n">GP</span> <span class="k">for</span> <span class="n">Nokia</span> <span class="mi">6300</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">psp</span>         <span class="n">MP4</span> <span class="k">for</span> <span class="n">PlayStation</span> <span class="n">Portable</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span>      <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span><span class="o">-</span><span class="mi">4</span>    <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span> <span class="mi">4</span> <span class="p">(</span><span class="n">double</span> <span class="n">res</span><span class="p">)</span>
+<span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">iphone</span><span class="o">-</span><span class="mi">5</span>    <span class="n">MP4</span> <span class="k">for</span> <span class="n">iPhone</span> <span class="mi">5</span> <span class="p">(</span><span class="n">even</span> <span class="n">larger</span> <span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>你可以用这些命令行进行压制，比如:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> <span class="o">-</span><span class="n">profile</span> <span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">bb</span><span class="o">-</span><span class="mi">9000</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> <span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">enc</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">bb</span><span class="o">-</span><span class="mi">9000</span>
 </pre></div>
 </div>
-<p>当然，你可以通过在 <code class="docutils literal notranslate"><span class="pre">-profile</span></code> 后面指定其它选项，来覆盖这些配置预设设置的选项。</p>
+<p>当然，你可以通过在 <code class="docutils literal notranslate"><span class="pre">--profile</span></code> 后面指定其它选项，来覆盖这些配置预设设置的选项。</p>
 </section>
 <section id="id5">
 <h2>可用的功能<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
 <ul class="simple">
 <li><p>以可变帧率进行编码（默认）</p></li>
 <li><p>使用 –vf=fps=RATE 以恒定的帧率进行编码</p></li>
-<li><p>2-pass压制（在第一遍的 <code class="docutils literal notranslate"><span class="pre">-ovcopts</span></code> 中指定 flags=+pass1 ，在第二遍中指定 flags=+pass2 ）</p></li>
+<li><p>2-pass压制（在第一遍的 <code class="docutils literal notranslate"><span class="pre">--ovcopts</span></code> 中指定 flags=+pass1 ，在第二遍中指定 flags=+pass2 ）</p></li>
 <li><p>使用vobsub、ass或srt字幕渲染的硬编码字幕（只需像通常一样为设置mpv的字幕相关选项）</p></li>
-<li><p>硬编码任何其他mpv OSD（例如时间码，使用 <code class="docutils literal notranslate"><span class="pre">-osdlevel</span> <span class="pre">3</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-vf</span> <span class="pre">expand=::::1</span></code> ）</p></li>
+<li><p>硬编码任何其他mpv OSD（例如时间码，使用 <code class="docutils literal notranslate"><span class="pre">--osdlevel=3</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--vf=expand=::::1</span></code> ）</p></li>
 <li><p>直接从DVD、网络流、网络摄像头或任何其它mpv支持的来源进行编码</p></li>
-<li><p>使用x264预设/调节/profiles（通过在 <code class="docutils literal notranslate"><span class="pre">-ovcopts</span></code> 中使用 profile=, tune=, preset= ）</p></li>
+<li><p>使用x264预设/调节/profiles（通过在 <code class="docutils literal notranslate"><span class="pre">--ovcopts</span></code> 中使用 profile=, tune=, preset= ）</p></li>
 <li><p>使用mpv的任何用于去隔行/反交错的滤镜</p></li>
-<li><p>音频文件转换： <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">-o</span> <span class="pre">outfile.mp3</span> <span class="pre">infile.flac</span> <span class="pre">-no-video</span> <span class="pre">-oac</span> <span class="pre">libmp3lame</span> <span class="pre">-oacopts</span> <span class="pre">ab=320k</span></code></p></li>
+<li><p>音频文件转换： <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--o=outfile.mp3</span> <span class="pre">infile.flac</span> <span class="pre">--no-video</span> <span class="pre">--oac=libmp3lame</span> <span class="pre">--oacopts=ab=320k</span></code></p></li>
 </ul>
 </section>
 <section id="id6">
 <h2>尚不可用的功能<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
 <ul class="simple">
 <li><p>3-pass压制（确保总体积和比特率限制不变，同时拥有VBR音频；mencoder称之为”frameno”）</p></li>
-<li><p>直接流复制</p></li>
+<li><p>直接复制流</p></li>
 </ul>
 </section>
 </section>
