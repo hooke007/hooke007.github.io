@@ -5,8 +5,8 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
-        <title>命令接口 - mpv-doc_chs beta 文档</title>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>命令接口 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
@@ -121,7 +121,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">mpv-doc_chs beta 文档</div></a>
+      <a href="../index.html"><div class="brand">mpv_CFanStation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -141,10 +141,13 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/html_logo.png" alt="Logo"/>
+  </div>
   
-  <span class="sidebar-brand-text">mpv-doc_chs beta 文档</span>
+  <span class="sidebar-brand-text">mpv_CFanStation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
@@ -530,7 +533,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">quit</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器。如果给了一个参数，它将作为进程的退出代码。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">quit-watch-later</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器，并存储当前的播放位置。以后播放该文件时，将跳转到先前的位置。参数（可选）与 <code class="docutils literal notranslate"><span class="pre">quit</span></code> 命令完全一样。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">quit-watch-later</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器，并存储当前的播放位置。以后播放该文件时，将跳转到先前的位置。参数（可选）与 <code class="docutils literal notranslate"><span class="pre">quit</span></code> 命令完全一样。参见 <a href="#id16"><span class="problematic" id="id17">`恢复播放`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-add</span> <span class="pre">&lt;url&gt;</span> <span class="pre">[&lt;flags&gt;</span> <span class="pre">[&lt;title&gt;</span> <span class="pre">[&lt;lang&gt;]]]</span></code></dt><dd><p>加载指定的字幕文件或流。默认情况下，加载后它被选为当前字幕。</p>
 <blockquote>
@@ -662,7 +665,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">af</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>变更音频滤镜链。参见 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 命令。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>变更视频滤镜链。</p>
-<p>其语义与选项解析完全相同（参见 <a href="#id16"><span class="problematic" id="id17">`视频滤镜`_</span></a> ）。因此，下面的文字是一个多余的、不完整的总结。</p>
+<p>其语义与选项解析完全相同（参见 <a href="#id18"><span class="problematic" id="id19">`视频滤镜`_</span></a> ）。因此，下面的文字是一个多余的、不完整的总结。</p>
 <p>第一个参数决定发生什么：</p>
 <dl>
 <dt>&lt;set&gt;</dt><dd><p>用新的滤镜链覆盖之前的滤镜链</p>
@@ -835,14 +838,14 @@
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">default</span></code></dt><dd><p>应用该配置文件。如果省略该参数，则为默认。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">restore</span></code></dt><dd><p>恢复执行 <code class="docutils literal notranslate"><span class="pre">apply-profile</span></code> 命令应用该配置预设之前的选项。只有当配置预设的 <code class="docutils literal notranslate"><span class="pre">profile-restore</span></code> 设置为相关的模式时才有效。如果没有操作执行，则输出一个警告。详情参见 <a href="#id18"><span class="problematic" id="id19">`运行时的配置预设`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">restore</span></code></dt><dd><p>恢复执行 <code class="docutils literal notranslate"><span class="pre">apply-profile</span></code> 命令应用该配置预设之前的选项。只有当配置预设的 <code class="docutils literal notranslate"><span class="pre">profile-restore</span></code> 设置为相关的模式时才有效。如果没有操作执行，则输出一个警告。详情参见 <a href="#id20"><span class="problematic" id="id21">`运行时的配置预设`_</span></a></p>
 </dd>
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">load-script</span> <span class="pre">&lt;filename&gt;</span></code></dt><dd><p>加载一个脚本，类似于 <code class="docutils literal notranslate"><span class="pre">--script</span></code> 选项。这是否等待脚本完成初始化已被改变了多次，未来的行为未被定义。</p>
 <p>成功后，返回一个 <code class="docutils literal notranslate"><span class="pre">mpv_node</span></code> ，其 <code class="docutils literal notranslate"><span class="pre">client_id</span></code> 字段设置为新创建的脚本句柄的 <code class="docutils literal notranslate"><span class="pre">mpv_client_id()</span></code> API调用的返回值。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">change-list</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>该命令改变一系列的选项列表，如 <a href="#id20"><span class="problematic" id="id21">`列表选项`_</span></a> 中所述。 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 参数是普通的选项名称，而 <code class="docutils literal notranslate"><span class="pre">&lt;operation&gt;</span></code> 是选项的后缀或操作。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">change-list</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>该命令改变一系列的选项列表，如 <a href="#id22"><span class="problematic" id="id23">`列表选项`_</span></a> 中所述。 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 参数是普通的选项名称，而 <code class="docutils literal notranslate"><span class="pre">&lt;operation&gt;</span></code> 是选项的后缀或操作。</p>
 <p>有些操作不取值，但命令仍然需要值参数。在这些情况下，值必须是一个空字符串。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -1080,7 +1083,7 @@
 <h2>属性列表<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>大多数选项也可以通过属性在运行时设置。只需从选项名称中移除前面的 <code class="docutils literal notranslate"><span class="pre">--</span></code> 。下面没有记录这些内容，参见 <a href="#id22"><span class="problematic" id="id23">`选项`_</span></a> 。只有那些不存在同名的选项的属性，或者与选项有非常不同的行为的属性才会在下面记录。</p>
+<p>大多数选项也可以通过属性在运行时设置。只需从选项名称中移除前面的 <code class="docutils literal notranslate"><span class="pre">--</span></code> 。下面没有记录这些内容，参见 <a href="#id24"><span class="problematic" id="id25">`选项`_</span></a> 。只有那些不存在同名的选项的属性，或者与选项有非常不同的行为的属性才会在下面记录。</p>
 <p>标记为(RW)的属性是可写的，而那些没有标记的是只读的。</p>
 </div>
 <dl>
@@ -1658,7 +1661,7 @@
 <p>例如， <code class="docutils literal notranslate"><span class="pre">current-tracks/audio/lang</span></code> 返回当前音轨的语言字段（与 <code class="docutils literal notranslate"><span class="pre">track-list/N/lang</span></code> 的值相同）。</p>
 <p>如果通过 <code class="docutils literal notranslate"><span class="pre">--lavfi-complex</span></code> 选择了所要求的类型的轨道，将返回第一个。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">chapter-list</span></code></dt><dd><p>章节列表，当前条目被标记。目前，原始属性值是无用的。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">chapter-list</span></code> (RW)</dt><dd><p>章节列表，当前条目被标记。目前，原始属性值是无用的。</p>
 <p>这有一系列子属性。用基于0代替 <code class="docutils literal notranslate"><span class="pre">N</span></code> 的章节索引。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">chapter-list/count</span></code></dt><dd><p>章节的数量</p>
@@ -1711,7 +1714,8 @@
 </div>
 <p>任何由libass理解的ASS覆写标签都可以使用。</p>
 <p>注意，你需要转义 <code class="docutils literal notranslate"><span class="pre">\</span></code> 字符，因为字符串在传递给OSD代码之前会被处理为C转义序列。详见 <a class="reference internal" href="#flat">Flat命令语法</a></p>
-<p>标签的列表可以在这里找到： <a class="reference external" href="http://docs.aegisub.org/latest/ASS_Tags/">http://docs.aegisub.org/latest/ASS_Tags/</a></p>
+<p>标签的列表可以在这里找到：
+<a class="reference external" href="https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/">https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vo-configured</span></code></dt><dd><p>当前视频输出驱动是否被配置了。通常这与视频窗口是否可见相对应。如果使用了 <code class="docutils literal notranslate"><span class="pre">--force-window</span></code> 选项，通常总是返回``yes`` /true。</p>
 </dd>
