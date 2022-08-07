@@ -243,7 +243,7 @@
 <p>换行总是开始一个新的绑定。 <code class="docutils literal notranslate"><span class="pre">#</span></code> 开始一个注释（在被引用的字符串参数之外）。为了将命令与 <code class="docutils literal notranslate"><span class="pre">#</span></code> 键绑定，可以使用 <code class="docutils literal notranslate"><span class="pre">SHARP</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;key&gt;</span></code> 是该按键的字面字符（ASCII或Unicode字符），或者是一个符号名称（正如由 <code class="docutils literal notranslate"><span class="pre">--input-keylist</span></code> 输出的内容）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> （用 <code class="docutils literal notranslate"><span class="pre">{</span></code> 和 <code class="docutils literal notranslate"><span class="pre">}</span></code> 括起来）是这个命令的输入部分。</p>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> 是命令本身。它由命令名称和多个（或无）参数组成，所有参数都用空格隔开。字符串参数应被引用，一般用 <code class="docutils literal notranslate"><span class="pre">"</span></code> 。参见  <code class="docutils literal notranslate"><span class="pre">Flat命令语法</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> 是命令本身。它由命令名称和多个（或无）参数组成，所有参数都用空格隔开。字符串参数应被引用，一般用 <code class="docutils literal notranslate"><span class="pre">"</span></code> 。参见  <a class="reference internal" href="#flat">Flat命令语法</a></p>
 <p>你可以绑定多个命令到一个按键上。例如：</p>
 <div class="line-block">
 <div class="line">a show-text “command 1” ; show-text “command 2”</div>
@@ -298,33 +298,33 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span>  <span class="pre">::=</span> <span class="pre">[&lt;prefixes&gt;]</span> <span class="pre">&lt;command_name&gt;</span> <span class="pre">(&lt;argument&gt;)*</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;argument&gt;</span> <span class="pre">::=</span> <span class="pre">(&lt;unquoted&gt;</span> <span class="pre">|</span> <span class="pre">"</span> <span class="pre">&lt;double_quoted&gt;</span> <span class="pre">"</span> <span class="pre">|</span> <span class="pre">'</span> <span class="pre">&lt;single_quoted&gt;</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">`X</span> <span class="pre">&lt;custom_quoted&gt;</span> <span class="pre">X`)</span></code></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">command_name</span></code> 是一个不引用的包含命令名称本身的字符串。参见列表 <a class="reference internal" href="#id4">输入命令列表</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">command_name</span></code> 是一个不引用的包含命令名称本身的字符串。参见列表 <a class="reference internal" href="#id6">输入命令列表</a></p>
 <p>参数之间用空格隔开，即使命令只有一个参数。带有空格或其他特殊字符的参数必须引用，否则命令不能被正确解析。</p>
 <p>双引号引用解释JSON/C-style的转义，如 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\"</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\\</span></code> 。JSON根据RFC 8259进行转义，减去surrogate pair转义。这是唯一一种允许在值上加换行的形式 —— 如 <code class="docutils literal notranslate"><span class="pre">\n</span></code></p>
 <p>单引号引用解释字面内容，并且不能在值中包含单引号的字符。</p>
 <p>自定义引用也是解释字面内容，但比单引号引用更灵活。它们以 <code class="docutils literal notranslate"><span class="pre">`</span></code> （反引号）开始，后面是任何ASCII字符，并以同一对的第一次出现为结束，顺序相反，例如： <code class="docutils literal notranslate"><span class="pre">`-foo-`</span></code> 或 <code class="docutils literal notranslate"><span class="pre">``bar``</span></code> 。最后一对序列不允许出现在值中 —— 例子分别是 <code class="docutils literal notranslate"><span class="pre">-`</span></code> 和 <code class="docutils literal notranslate"><span class="pre">``</span></code> 。在第二个例子中，值的最后一个字符也不能是反引号。</p>
 <p>不支持对同一个参数的进行混合引用，如 <code class="docutils literal notranslate"><span class="pre">'foo'"bar"</span></code> 。</p>
-<p>请注意，参数解析和属性扩展发生在不同阶段。首先，参数如上所述被确定，然后，如果适用的话，属性被扩展 —— 无视参数的引用。然而，仍然可以用 <code class="docutils literal notranslate"><span class="pre">raw</span></code> 前缀或 <code class="docutils literal notranslate"><span class="pre">$&gt;</span></code> 防止被扩展。参见 <a class="reference internal" href="#id6">输入命令前缀</a> 和 <a class="reference internal" href="#id12">属性扩展</a></p>
-</section>
-<section id="commands-specified-as-arrays">
-<h2>Commands specified as arrays<a class="headerlink" href="#commands-specified-as-arrays" title="永久链接至标题">#</a></h2>
-<p>这适用于某些API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.commandv()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （带数组参数），或C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （带MPV_FORMAT_NODE_ARRAY）。</p>
-<p>命令以及所有的参数都以一个数组的形式传递。类似于 <a class="reference internal" href="#flat">Flat命令语法</a> ，你可以先把前缀作为字符串传递（每个都是独立的数组项），然后把命令名称作为字符串，然后把每个参数作为字符串或本地值。</p>
-<p>由于这些API将参数作为独立的字符串或本地值来传递，所以它们不期望引号，并且支持转义。在技术上，有一个input.conf解析器，它首先将命令字符串分割成参数，然后为每个参数调用参数解析器。input.conf解析器通常处理引号和转义。上面提到的数组命令API直接将字符串传递给参数解析器，或者可以通过传递非字符串值的能力绕过它们。</p>
-<p>这些API的属性扩展默认是禁用的。这可以用 <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀来改变。参见 <a class="reference internal" href="#id6">输入命令前缀</a></p>
-<p>有时候，命令的参数是字符串，而这些参数实际上是由其他组件解析的（例如，用 <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">add</span></code> 过滤字符串） —— 在这些情况下，你必须在input.conf中进行双击，但在数组API中则不需要。</p>
-<p>对于复杂的命令，可以考虑使用 <a class="reference internal" href="#named-arguments">Named arguments</a> 来代替，这样会有更多的兼容性。不过有些命令不支持命名参数，而是采用数组。</p>
-</section>
-<section id="named-arguments">
-<h2>Named arguments<a class="headerlink" href="#named-arguments" title="永久链接至标题">#</a></h2>
-<p>这适用于某些API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （有字符串键的表），或者C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （有MPV_FORMAT_NODE_MAP）。</p>
-<p>命令的名称是用 <code class="docutils literal notranslate"><span class="pre">name</span></code> 字符串字段提供的。每个命令的名称在 <a class="reference internal" href="#id4">输入命令列表</a> 中的每个命令描述中都有定义。 <code class="docutils literal notranslate"><span class="pre">--input-cmdlist</span></code> 也列出了它们。请看 <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> 命令的例子。</p>
-<p>有些命令不支持命名参数（例如 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令）。你需要使用以数组形式传递参数的API。</p>
-<p>命名参数在 “flat” 的input.conf语法中不被支持，这意味着你根本无法在input.conf中使用它们作为键的绑定。</p>
-<p>对于这些API，属性扩展默认是禁用的。这可以通过 <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀来改变。请看 <a class="reference internal" href="#id6">输入命令前缀</a></p>
+<p>请注意，参数解析和属性扩展发生在不同阶段。首先，参数如上所述被确定，然后，如果适用的话，属性被扩展 —— 无视参数的引用。然而，仍然可以用 <code class="docutils literal notranslate"><span class="pre">raw</span></code> 前缀或 <code class="docutils literal notranslate"><span class="pre">$&gt;</span></code> 防止被扩展。参见 <a class="reference internal" href="#id8">输入命令前缀</a> 和 <a class="reference internal" href="#id15">属性扩展</a></p>
 </section>
 <section id="id4">
-<h2>输入命令列表<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>指定为数组的命令<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<p>这适用于部分API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.commandv()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （带有数组参数），或者C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （带有 MPV_FORMAT_NODE_ARRAY ）。</p>
+<p>命令以及所有的参数都以一个数组的形式传递。类似于 <a class="reference internal" href="#flat">Flat命令语法</a> ，你可以先把前缀作为字符串传递（每个都是单独的数组项），然后把命令名称作为字符串，然后把每个参数作为字符串或原生值。</p>
+<p>由于这些API将参数作为单独的字符串或原生值来传递，所以它们不需要引用，并且支持转义。技术上讲，有一个input.conf解析器，它首先将命令字符串分割成数个参数，然后为每个参数调用解析器。input.conf解析器通常处理引号和转义。上面提到的数组命令API直接将字符串传递给参数解析器，或者可以通过传递非字符串值的职能回避它们。</p>
+<p>对于这些API，属性扩展默认是禁用的。这可以用 <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀来改变。参见 <a class="reference internal" href="#id8">输入命令前缀</a></p>
+<p>有时命令的参数是字符串，而这些参数实际上是由其它组件解析的（例如，用 <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">add</span></code> 的滤镜字符串） —— 在这些情况下，你不得不在input.conf中进行双击，但在数组API中则不必。</p>
+<p>对于复杂的命令，可以考虑使用 <a class="reference internal" href="#id5">命名参数</a> 来代替，这样应该会更具兼容性。不过有些命令不支持命名参数，而是采用数组参数。</p>
+</section>
+<section id="id5">
+<h2>命名参数<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<p>这适用于部分API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （有字符串键的表），或者C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （带有 MPV_FORMAT_NODE_MAP ）。</p>
+<p>命令的名称是由 <code class="docutils literal notranslate"><span class="pre">name</span></code> 字符串字段提供的。每个命令的名称在 <a class="reference internal" href="#id6">输入命令列表</a> 中的每个命令描述内都有定义。 <code class="docutils literal notranslate"><span class="pre">--input-cmdlist</span></code> 也可以列出它们。参见 <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> 命令为例。</p>
+<p>有些命令不支持命名参数（例如 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令）。你需要使用以数组形式传递参数的API。</p>
+<p>命名参数在 “flat” 的input.conf语法中不被支持，这意味着你根本无法在input.conf中使用它们作为按键的绑定。</p>
+<p>对于这些API，属性扩展默认是禁用的。这可以通过 <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀来改变。参见 <a class="reference internal" href="#id8">输入命令前缀</a></p>
+</section>
+<section id="id6">
+<h2>输入命令列表<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
 <p>带参数的命令中，参数名称用符号 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> / <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 括起来。不要在实际命令中加入这些符号。可选参数用 <code class="docutils literal notranslate"><span class="pre">[</span></code> / <code class="docutils literal notranslate"><span class="pre">]</span></code> 符号括起来。如果你不传递它们，它们将被设置为默认值。</p>
 <p>记住在input.conf中引用字符串参数（参见 <a class="reference internal" href="#flat">Flat命令语法</a> ）</p>
 <dl>
@@ -392,7 +392,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">screenshot-to-file</span> <span class="pre">&lt;filename&gt;</span> <span class="pre">&lt;flags&gt;</span></code></dt><dd><p>截图并保存到一个指定的文件。文件的格式将由扩展名来猜测（并且 <code class="docutils literal notranslate"><span class="pre">--screenshot-format</span></code> 被忽略 —— 当扩展名丢失或未知时，行为是随机的）。</p>
 <p>第二个参数和 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 的第一个参数一样，支持 <code class="docutils literal notranslate"><span class="pre">subtitles</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">window</span></code></p>
 <p>如果文件已存在，它将被覆盖写入。</p>
-<p>像所有的输入命令参数一样，文件名符合属性扩展，如 <a class="reference internal" href="#id12">属性扩展</a> 中所述。</p>
+<p>像所有的输入命令参数一样，文件名符合属性扩展，如 <a class="reference internal" href="#id15">属性扩展</a> 中所述。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-next</span> <span class="pre">&lt;flags&gt;</span></code></dt><dd><p>转到播放列表的下一个条目。</p>
 <p>第一个参数：</p>
@@ -432,7 +432,7 @@
 <dt>&lt;append-play&gt;</dt><dd><p>添加文件，如果当前没有文件播放，则开始播放（始终从添加的文件开始播放，即使在运行这个命令之前的播放列表不是空的）</p>
 </dd>
 </dl>
-<p>第三个参数是一个选项和值的列表，应该在文件播放时设置。它的形式是 <code class="docutils literal notranslate"><span class="pre">opt1=value1,opt2=value2,..</span></code> 。当使用client API时，这可以是一个 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_MAP</span></code> （或一个Lua表），但当前的值本身必须是字符串。这些选项在播放过程中设置，并在播放结束时恢复到之前的值（参见 <a href="#id14"><span class="problematic" id="id15">`单文件选项`_</span></a> ）。</p>
+<p>第三个参数是一个选项和值的列表，应该在文件播放时设置。它的形式是 <code class="docutils literal notranslate"><span class="pre">opt1=value1,opt2=value2,..</span></code> 。当使用client API时，这可以是一个 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_MAP</span></code> （或一个Lua表），但当前的值本身必须是字符串。这些选项在播放过程中设置，并在播放结束时恢复到之前的值（参见 <a href="#id17"><span class="problematic" id="id18">`单文件选项`_</span></a> ）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">loadlist</span> <span class="pre">&lt;url&gt;</span> <span class="pre">[&lt;flags&gt;]</span></code></dt><dd><p>加载指定的列表文件或URL（类似 <code class="docutils literal notranslate"><span class="pre">--playlist</span></code> ）。</p>
 <p>第二个参数：</p>
@@ -455,8 +455,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-unshuffle</span></code></dt><dd><p>尝试恢复之前的 <code class="docutils literal notranslate"><span class="pre">playlist-shuffle</span></code> 命令。这只起一次作用（对多个连续的 <code class="docutils literal notranslate"><span class="pre">playlist-unshuffle</span></code> 命令无效）。如果在 <code class="docutils literal notranslate"><span class="pre">playlist-shuffle</span></code> 命令之后，有新的递归播放列表被打开，可能无法正常起效。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">&lt;command&gt;</span> <span class="pre">[&lt;arg1&gt;</span> <span class="pre">[&lt;arg2&gt;</span> <span class="pre">[...]]]</span></code></dt><dd><p>运行指定的命令。与MPlayer/mplayer2和mpv的早期版本（0.2.x和更早的版本）不同，这不会调用shell。相反，命令被直接运行，每个参数单独传递。每个参数都如 <a class="reference internal" href="#id12">属性扩展</a> 中那样被扩展。</p>
-<p>此命令具有可变数量的参数，也不能与named arguments一起使用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">&lt;command&gt;</span> <span class="pre">[&lt;arg1&gt;</span> <span class="pre">[&lt;arg2&gt;</span> <span class="pre">[...]]]</span></code></dt><dd><p>运行指定的命令。与MPlayer/mplayer2和mpv的早期版本（0.2.x和更早的版本）不同，这不会调用shell。相反，命令被直接运行，每个参数单独传递。每个参数都如 <a class="reference internal" href="#id15">属性扩展</a> 中那样被扩展。</p>
+<p>此命令具有可变数量的参数，也不能与命名参数一起使用。</p>
 <p>程序以分离的方式运行，mpv不会等待命令完成，但会在生成命令后立即继续播放。</p>
 <p>要获得旧版的行为，使用 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 作为前两个参数。</p>
 <div class="admonition- admonition">
@@ -465,55 +465,55 @@
 <p>这不是一个特别好的例子，因为它没有处理转义，而一个特别准备的文件可能允许攻击者执行任意的shell命令。建议编写一个小的shell脚本，然后用 <code class="docutils literal notranslate"><span class="pre">run</span></code> 来调用。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">subprocess</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">run</span></code> ，但给调用者更多关于进程执行的控制权，并且不分离进程。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">subprocess</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">run</span></code> ，但给予调用者更多关于进程执行的控制权，并且不分离进程。</p>
 <p>你可以通过异步运行这个命令来避免阻塞，直到进程终止（例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native_async()</span></code> ）。</p>
-<p>这个命令有以下命名的参数。它们的顺序是不保证的，所以你应该总是用命名的参数来调用它们，参见 <a class="reference internal" href="#named-arguments">Named arguments</a></p>
+<p>这个命令有以下命名参数。它们的顺序是不保证的，所以你应该始终用命名参数来调用它们，参见 <a class="reference internal" href="#id5">命名参数</a></p>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">args</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_ARRAY[MPV_FORMAT_STRING]</span></code>)</dt><dd><p>字符串的数组，命令是第一个参数，后面是后续的命令行参数。这就像 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令参数列表。</p>
-<p>第一个数组条目是可执行文件的绝对路径，或者是没有路径成分的文件名，在这种情况下，可执行文件会在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 环境变量的目录中搜索。在Unix上，这相当于 <code class="docutils literal notranslate"><span class="pre">posix_spawnp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">execvp</span></code> 行为。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">args</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_ARRAY[MPV_FORMAT_STRING]</span></code>)</dt><dd><p>字符串的数组，命令是第一个参数，后接的是后续的命令行参数。这就像 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令的参数列表。</p>
+<p>第一个数组条目是可执行文件的绝对路径，或者是没有路径成分的文件名，在这种情况下，可执行文件会在环境变量 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 的目录中搜索。在Unix上，这相当于 <code class="docutils literal notranslate"><span class="pre">posix_spawnp</span></code> 和 <code class="docutils literal notranslate"><span class="pre">execvp</span></code> 的行为。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playback_only</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>布尔值，表示当播放结束时，进程是否应该被终止（可选，默认： yes）。如果启用，停止播放将自动结束该进程，且你不能在播放之外启动它。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">capture_size</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_INT64</span></code>)</dt><dd><p>整数，设置可以捕获的最大stdout加stderr字节数（可选，默认： 64MB）。如果字节数超过这个数字，捕获将被停止。这个限制是针对每个捕获的流。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">capture_size</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_INT64</span></code>)</dt><dd><p>整数，设置可以捕获的最大stdout加stderr字节数（可选，默认： 64MB）。如果字节数超过该数，捕获将被停止。此限制是针对每个被捕获的流。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">capture_stdout</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>捕获进程输出到stdout的所有数据，并在进程结束后返回（可选，默认： no）。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">capture_stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">capture_stdout</span></code> 相同，但针对stderr。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">capture_stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">capture_stdout</span></code> 相同，但针对stderr 。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">detach</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>是否以分离模式运行进程（可选，默认： no）。在这种模式下，进程会在一个新的进程会话中运行，命令不会等待进程终止。如果 <code class="docutils literal notranslate"><span class="pre">capture_stdout</span></code> 和 <code class="docutils literal notranslate"><span class="pre">capture_stderr</span></code> 都没有设置为yes，命令在新进程启动后立即返回，否则，只要管道打开，命令就会读取。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">detach</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>是否以分离模式运行进程（可选，默认： no）。在这种模式下，进程会在一个新的进程会话中运行，命令不会等待进程终止。如果 <code class="docutils literal notranslate"><span class="pre">capture_stdout</span></code> 和 <code class="docutils literal notranslate"><span class="pre">capture_stderr</span></code> 都没有设置为 yes ，命令在新进程启动后立即返回，否则，只要管道开启，命令就会读取。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">env</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_ARRAY[MPV_FORMAT_STRING]</span></code>)</dt><dd><p>为新进程设置一个环境变量的列表（默认： 空）。如果传递了一个空列表，则使用mpv进程的环境来代替。(与底层操作系统机制不同，mpv命令不能以空环境启动一个进程。幸运的是，那是完全无用的）。列表的格式和 <code class="docutils literal notranslate"><span class="pre">execle()</span></code> 系统调用一样。每个字符串项都定义了一个环境变量，如 <code class="docutils literal notranslate"><span class="pre">NANME=VALUE</span></code></p>
-<p>在Lua上，你可以使用 <code class="docutils literal notranslate"><span class="pre">utils.get_env_list()</span></code> 来检索当前环境，如果你只是想添加一个新的变量。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">env</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_ARRAY[MPV_FORMAT_STRING]</span></code>)</dt><dd><p>为新进程设置一个环境变量的列表（默认为空）。如果传递了一个空列表，则使用mpv进程的环境来代替（不同于底层操作系统的机制，mpv命令不能以空环境启动一个进程。幸运的是那完全无用）。列表的格式和 <code class="docutils literal notranslate"><span class="pre">execle()</span></code> 系统调用中的一样。每个字符串项都定义了一个环境变量，比如 <code class="docutils literal notranslate"><span class="pre">NAME=VALUE</span></code></p>
+<p>在Lua上，你可以使用 <code class="docutils literal notranslate"><span class="pre">utils.get_env_list()</span></code> 来检索当前环境，比如假设你想添加一个新的变量。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">stdin_data</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_STRING</span></code>)</dt><dd><p>向新进程的stdin输入给定的字符串。由于这是一个字符串，你不能传递任意的二进制数据。如果进程在所有数据写入前终止或关闭管道，剩余的数据将被默默地丢弃。可能在win32上不工作。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">stdin_data</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_STRING</span></code>)</dt><dd><p>向新进程的stdin输入给定的字符串。由于这是一个字符串，你不能传递任意的二进制数据。如果进程在所有数据写入前终止或关闭管道，剩余的数据将被默默地丢弃。可能在win32上不起效。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">passthrough_stdin</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>如果启用，将新进程的stdin连接到mpv的stdin（默认： no）。在mpv 0.33.0之前，这个参数不存在，但其行为就像设置为 yes一样。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">passthrough_stdin</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>如果启用，将新进程的stdin连接到mpv的stdin（默认： no）。在mpv 0.33.0之前，这个参数不存在，但其行为类似于被设置为 yes 。</p>
 </dd>
 </dl>
 <p>该命令返回以下结果（作为 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_MAP</span></code> ）。</p>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">status</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_INT64</span></code>)</dt><dd><p>通常情况下，如果进程正常结束，这就是进程的退出代码（0或正数），如果出现其它错误（启动失败、被mpv中止等），这就是负数。负值的意义未被定义，除了意味着错误（不对应操作系统的低级别退出状态值）。</p>
-<p>在Windows上，即使进程优雅地退出，也可能会返回一个负的返回值，因为win32的 <code class="docutils literal notranslate"><span class="pre">UINT</span></code> 退出代码在被设置为结果图中的 <code class="docutils literal notranslate"><span class="pre">int64_t</span></code> 字段之前被分配给一个``int`` 变量。这个问题以后可能会被修复。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">status</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_INT64</span></code>)</dt><dd><p>通常情况下，如果进程正常结束，这就是进程的退出代码（0或正数），如果出现其它错误（启动失败、被mpv中止等），则为负数。负值的意义未被定义，除了表示错误（不对应操作系统的低级别退出状态值）。</p>
+<p>在Windows上，即使进程优雅地退出，也可能会返回一个负值，因为win32的 <code class="docutils literal notranslate"><span class="pre">UINT</span></code> 退出代码在被设置为结果集中的 <code class="docutils literal notranslate"><span class="pre">int64_t</span></code> 字段之前被分配给了一个``int`` 变量。这个问题以后可能会被修复。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">stdout</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_BYTE_ARRAY</span></code>)</dt><dd><p>捕获的stdout流，限制在 <code class="docutils literal notranslate"><span class="pre">capture_size</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">stdout</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_BYTE_ARRAY</span></code>)</dt><dd><p>被捕获的stdout流，受限于 <code class="docutils literal notranslate"><span class="pre">capture_size</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_BYTE_ARRAY</span></code>)</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">stdout</span></code> 相同，但用于stderr。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_BYTE_ARRAY</span></code>)</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">stdout</span></code> 相同，但用于stderr 。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">error_string</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_STRING</span></code>)</dt><dd><p>如果进程正常的退出，则为空字符串。如果进程以不寻常的方式终止，则为字符串 <code class="docutils literal notranslate"><span class="pre">killed</span></code> . 如果进程不能被启动，则为字符串  <code class="docutils literal notranslate"><span class="pre">init</span></code> 。</p>
-<p>在Windows系统中，只有当进程被mpv杀死时， <code class="docutils literal notranslate"><span class="pre">killed</span></code> 才会被返回，因为 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 被设置为yes</p>
+<dt><code class="docutils literal notranslate"><span class="pre">error_string</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_STRING</span></code>)</dt><dd><p>如果进程正常退出，则为空字符串。如果进程以不寻常的方式终止，则为字符串 <code class="docutils literal notranslate"><span class="pre">killed</span></code> . 如果进程不能被启动，则为字符串  <code class="docutils literal notranslate"><span class="pre">init</span></code> 。</p>
+<p>在Windows系统中，只有当进程被mpv杀死时， <code class="docutils literal notranslate"><span class="pre">killed</span></code> 才会被返回，因为 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 被设置为true</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">killed_by_us</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>进程是否被mpv杀死，例如，由于 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 被设置为true，中止命令（例如，通过 <code class="docutils literal notranslate"><span class="pre">mp.abort_async_command()</span></code> ），或者玩家即将退出。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">killed_by_us</span></code> (<code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_FLAG</span></code>)</dt><dd><p>进程是否被mpv杀死，例如由于 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 被设置为true，中止命令（比如通过 <code class="docutils literal notranslate"><span class="pre">mp.abort_async_command()</span></code> ），或者播放器即将退出。</p>
 </dd>
 </dl>
-<p>注意，只要参数正确，命令本身将总是返回成功。进程是否可以被生成，或者是否以某种方式被杀死或返回错误状态，必须从结果值中查询。</p>
-<p>这个命令可以通过API异步中止。另参见 <a class="reference internal" href="#id8">异步命令详情</a> 。只有 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令可以以真正脱离的方式启动进程。</p>
+<p>注意，只要参数正确，命令本身将总是返回success。进程是否可以被生成，或者是否以某种方式被杀死或返回错误状态，必须从结果值中查询。</p>
+<p>这个命令可以通过API异步中止。另参见 <a class="reference internal" href="#id10">异步命令详情</a> 。只有 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令可以以真正分离的方式启动进程。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>如果子进程不是以分离模式启动的，即使 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 为false，它也会在播放器退出时被中止。</p>
+<p>如果子进程不是以分离模式启动的，即使 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 为false，它也会在播放器退出时被终止。</p>
 </div>
 <div class="admonition- admonition">
 <p class="admonition-title">警告</p>
-<p>如果你想在播放器处于空闲状态时运行命令，或者你不想让播放结束时结束命令，不要忘记设置 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 字段为false</p>
+<p>如果你想在播放器处于空闲状态时运行命令，或者你不想让播放结束时终结命令，不要忘记设置 <code class="docutils literal notranslate"><span class="pre">playback_only</span></code> 的字段为false</p>
 </div>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -531,9 +531,9 @@
 <p>这是一个相当无用的Lua例子，它演示了如何以阻塞的方式运行一个进程，并检索其stdout输出。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">quit</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器。如果给了一个参数，它将作为进程的退出代码。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">quit</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器。如果给出了一个参数，它将作为进程的退出代码。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">quit-watch-later</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器，并存储当前的播放位置。以后播放该文件时，将跳转到先前的位置。参数（可选）与 <code class="docutils literal notranslate"><span class="pre">quit</span></code> 命令完全一样。参见 <a href="#id16"><span class="problematic" id="id17">`恢复播放`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">quit-watch-later</span> <span class="pre">[&lt;code&gt;]</span></code></dt><dd><p>退出播放器，并存储当前的播放位置。以后播放该文件时，将跳转到先前的位置。（可选的）参数与 <code class="docutils literal notranslate"><span class="pre">quit</span></code> 命令完全一样。参见 <a href="#id19"><span class="problematic" id="id20">`恢复播放`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-add</span> <span class="pre">&lt;url&gt;</span> <span class="pre">[&lt;flags&gt;</span> <span class="pre">[&lt;title&gt;</span> <span class="pre">[&lt;lang&gt;]]]</span></code></dt><dd><p>加载指定的字幕文件或流。默认情况下，加载后它被选为当前字幕。</p>
 <blockquote>
@@ -578,9 +578,9 @@
 </dl>
 <p>对于嵌入式字幕（如Matroska），这只适用于已经显示过的字幕事件，或在一个短的预取范围内。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">print-text</span> <span class="pre">&lt;text&gt;</span></code></dt><dd><p>输出文本到stdout。字符串可以包含属性（参见 <a class="reference internal" href="#id12">属性扩展</a> ）。注意把参数放在引号里。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">print-text</span> <span class="pre">&lt;text&gt;</span></code></dt><dd><p>输出文本到stdout。字符串可以包含属性（参见 <a class="reference internal" href="#id15">属性扩展</a> ）。注意把参数放在引号里。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">show-text</span> <span class="pre">&lt;text&gt;</span> <span class="pre">[&lt;duration&gt;|-1</span> <span class="pre">[&lt;level&gt;]]</span></code></dt><dd><p>在OSD上显示文本。字符串可以包含属性，如 <a class="reference internal" href="#id12">属性扩展</a> 中所述。这可以用来显示播放时间、文件名，等等。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">show-text</span> <span class="pre">&lt;text&gt;</span> <span class="pre">[&lt;duration&gt;|-1</span> <span class="pre">[&lt;level&gt;]]</span></code></dt><dd><p>在OSD上显示文本。字符串可以包含属性，如 <a class="reference internal" href="#id15">属性扩展</a> 中所述。这可以用来显示播放时间、文件名，等等。</p>
 <dl class="simple">
 <dt>&lt;duration&gt;</dt><dd><p>显示信息的时间，单位是ms。默认情况下，它使用与 <code class="docutils literal notranslate"><span class="pre">--osd-duration</span></code> 相同的值</p>
 </dd>
@@ -588,7 +588,7 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">expand-text</span> <span class="pre">&lt;string&gt;</span></code></dt><dd><p>对参数进行属性扩展，并返回扩展后的字符串。这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。（见 <a class="reference internal" href="#id12">属性扩展</a> ）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">expand-text</span> <span class="pre">&lt;string&gt;</span></code></dt><dd><p>对参数进行属性扩展，并返回扩展后的字符串。这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。（见 <a class="reference internal" href="#id15">属性扩展</a> ）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">expand-path</span> <span class="pre">"&lt;string&gt;"</span></code></dt><dd><p>将一个路径的double-tilde占位符扩展为一个特定平台的路径。与 <code class="docutils literal notranslate"><span class="pre">expand-text</span></code> 一样，这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。</p>
 <div class="admonition- admonition">
@@ -659,13 +659,13 @@
 </dd>
 </dl>
 </section>
-<section id="id5">
-<h2>可能变更的输入命令<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<section id="id7">
+<h2>可能变更的输入命令<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">af</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>变更音频滤镜链。参见 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 命令。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>变更视频滤镜链。</p>
-<p>其语义与选项解析完全相同（参见 <a href="#id18"><span class="problematic" id="id19">`视频滤镜`_</span></a> ）。因此，下面的文字是一个多余的、不完整的总结。</p>
+<p>其语义与选项解析完全相同（参见 <a href="#id21"><span class="problematic" id="id22">`视频滤镜`_</span></a> ）。因此，下面的文字是一个多余的、不完整的总结。</p>
 <p>第一个参数决定发生什么：</p>
 <dl>
 <dt>&lt;set&gt;</dt><dd><p>用新的滤镜链覆盖之前的滤镜链</p>
@@ -703,11 +703,11 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">cycle-values</span> <span class="pre">[&lt;"!reverse"&gt;]</span> <span class="pre">&lt;property&gt;</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">[&lt;value2&gt;</span> <span class="pre">[...]]</span></code></dt><dd><p>循环一系列值的列表。每次调用该命令将把指定的属性设置为列表中的下一个值。该命令将使用属性/选项的当前值，并利用它来确定当前在值列表中的位置。一旦找到它，将设置为列表中的下一个值（如果需要的话，将回到第一个项目）。</p>
-<p>这个命令的参数数量不定，不能与named arguments一起使用。</p>
+<p>这个命令的参数数量不定，不能与命名参数一起使用。</p>
 <p>特殊参数 <code class="docutils literal notranslate"><span class="pre">!reverse</span></code> 可以用来反向循环值列表。唯一的好处是，在添加第二个按键绑定的时候，你不需要自己反转值列表进行循环。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">enable-section</span> <span class="pre">&lt;name&gt;</span> <span class="pre">[&lt;flags&gt;]</span></code></dt><dd><p>此命令已过时，除了mpv内部使用。</p>
-<p>启用指定输入部分的所有键绑定。</p>
+<p>启用指定输入部分的所有按键绑定。</p>
 <p>启用的输入部分形成一个堆栈。在堆栈顶部的部分的绑定比下部的部分优先。这条命令将该部分放在堆栈的顶部。如果该部分已经在堆栈上，它将被事先隐含地删除。(一个部分不能在堆栈中出现多次)。</p>
 <p>参数 <code class="docutils literal notranslate"><span class="pre">flags</span></code> 可以是下列标志的组合（用 <code class="docutils literal notranslate"><span class="pre">+</span></code> 分隔）：</p>
 <dl class="simple">
@@ -738,7 +738,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">overlay-add</span> <span class="pre">&lt;id&gt;</span> <span class="pre">&lt;x&gt;</span> <span class="pre">&lt;y&gt;</span> <span class="pre">&lt;file&gt;</span> <span class="pre">&lt;offset&gt;</span> <span class="pre">&lt;fmt&gt;</span> <span class="pre">&lt;w&gt;</span> <span class="pre">&lt;h&gt;</span> <span class="pre">&lt;stride&gt;</span></code></dt><dd><p>添加一个来自原始数据的OSD叠加。这对控制mpv的脚本和应用程序可能很有用，它们想在视频窗口上面显示东西。</p>
 <p>覆盖物通常是以屏幕分辨率显示的，但对于某些VO来说，分辨率会降低到视频的分辨率。你可以阅读 <code class="docutils literal notranslate"><span class="pre">osd-width</span></code> 和 <code class="docutils literal notranslate"><span class="pre">osd-height</span></code> 属性。至少对于 <code class="docutils literal notranslate"><span class="pre">--vo-xv</span></code> 和变形视频（如DVD）， <code class="docutils literal notranslate"><span class="pre">osd-par</span></code> 也应该被读取，并且覆盖层应该是宽高比的。</p>
-<p>这有以下命名的参数。它们的顺序是不保证的，所以你应该总是用命名的参数来调用它们，见 <a class="reference internal" href="#named-arguments">Named arguments</a></p>
+<p>这有以下命名的参数。它们的顺序是不保证的，所以你应该总是用命名的参数来调用它们，见 <a class="reference internal" href="#id5">命名参数</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">id</span></code> 是一个介于0到63之间的整数，用于识别叠加元素。这个ID可以用来添加多个覆盖部分，通过使用这个命令更新一个已经存在的ID的部分，或者用 <code class="docutils literal notranslate"><span class="pre">overlay-remove</span></code> 来删除一个部分。使用一个先前未使用的ID将添加一个新的覆盖件，而重复使用一个ID将更新它。</p>
 <p><code class="docutils literal notranslate"><span class="pre">x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">y</span></code> 指定OSD应该显示的位置。</p>
 <p><code class="docutils literal notranslate"><span class="pre">file</span></code> 指定从原始图像数据读取的文件。它可以是以 <code class="docutils literal notranslate"><span class="pre">@</span></code> 为前缀的数字UNIX文件描述符（例如： <code class="docutils literal notranslate"><span class="pre">@4</span></code> ），也可以是文件名。文件将被 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 映射到内存中，被复制，并在命令返回前解除映射（在mpv 0.18.1中改变）。</p>
@@ -796,10 +796,10 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">script-message</span> <span class="pre">[&lt;arg1&gt;</span> <span class="pre">[&lt;arg2&gt;</span> <span class="pre">[...]]]</span></code></dt><dd><p>向所有clients发送一条消息，并把以下参数列表传递给它。这个消息是什么意思，它需要多少个参数，以及这些参数是什么意思，完全由接收方和发送方决定。每个client都会收到这个消息，所以要注意命名的冲突（或者使用 <code class="docutils literal notranslate"><span class="pre">script-message-to</span></code> ）。</p>
-<p>这个命令的参数数量不定，不能与named arguments一起使用。</p>
+<p>这个命令的参数数量不定，不能与命名参数一起使用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">script-message-to</span> <span class="pre">&lt;target&gt;</span> <span class="pre">[&lt;arg1&gt;</span> <span class="pre">[&lt;arg2&gt;</span> <span class="pre">[...]]]</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">script-message</span></code> 相同，但只发送给名为 <code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> 的client。每个client（脚本等）都有一个唯一的名字。例如，Lua脚本可以通过 <code class="docutils literal notranslate"><span class="pre">mp.get_script_name()</span></code> 获得其名称。注意，clients名只能由字母数字字符和 <code class="docutils literal notranslate"><span class="pre">_</span></code> 组成。</p>
-<p>这个命令的参数数量不定，不能与named arguments一起使用。</p>
+<p>这个命令的参数数量不定，不能与命名参数一起使用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">script-binding</span> <span class="pre">&lt;name&gt;</span></code></dt><dd><p>调用一个脚本提供的按键绑定。这可以用来重新映射由外部Lua脚本提供的按键绑定。</p>
 <p>参数是绑定的名称。</p>
@@ -838,14 +838,14 @@
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">default</span></code></dt><dd><p>应用该配置文件。如果省略该参数，则为默认。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">restore</span></code></dt><dd><p>恢复执行 <code class="docutils literal notranslate"><span class="pre">apply-profile</span></code> 命令应用该配置预设之前的选项。只有当配置预设的 <code class="docutils literal notranslate"><span class="pre">profile-restore</span></code> 设置为相关的模式时才有效。如果没有操作执行，则输出一个警告。详情参见 <a href="#id20"><span class="problematic" id="id21">`运行时的配置预设`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">restore</span></code></dt><dd><p>恢复执行 <code class="docutils literal notranslate"><span class="pre">apply-profile</span></code> 命令应用该配置预设之前的选项。只有当配置预设的 <code class="docutils literal notranslate"><span class="pre">profile-restore</span></code> 设置为相关的模式时才有效。如果没有操作执行，则输出一个警告。详情参见 <a href="#id23"><span class="problematic" id="id24">`运行时的配置预设`_</span></a></p>
 </dd>
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">load-script</span> <span class="pre">&lt;filename&gt;</span></code></dt><dd><p>加载一个脚本，类似于 <code class="docutils literal notranslate"><span class="pre">--script</span></code> 选项。这是否等待脚本完成初始化已被改变了多次，未来的行为未被定义。</p>
 <p>成功后，返回一个 <code class="docutils literal notranslate"><span class="pre">mpv_node</span></code> ，其 <code class="docutils literal notranslate"><span class="pre">client_id</span></code> 字段设置为新创建的脚本句柄的 <code class="docutils literal notranslate"><span class="pre">mpv_client_id()</span></code> API调用的返回值。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">change-list</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>该命令改变一系列的选项列表，如 <a href="#id22"><span class="problematic" id="id23">`列表选项`_</span></a> 中所述。 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 参数是普通的选项名称，而 <code class="docutils literal notranslate"><span class="pre">&lt;operation&gt;</span></code> 是选项的后缀或操作。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">change-list</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>该命令改变一系列的选项列表，如 <a href="#id25"><span class="problematic" id="id26">`列表选项`_</span></a> 中所述。 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> 参数是普通的选项名称，而 <code class="docutils literal notranslate"><span class="pre">&lt;operation&gt;</span></code> 是选项的后缀或操作。</p>
 <p>有些操作不取值，但命令仍然需要值参数。在这些情况下，值必须是一个空字符串。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -860,7 +860,7 @@
 <p>如果 <code class="docutils literal notranslate"><span class="pre">&lt;end&gt;</span></code> 是 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，则启用连续转储。然后，在转储现有的缓存部分后，从网络上读取的任何内容也会被追加到缓存中。这与 <code class="docutils literal notranslate"><span class="pre">--stream-record</span></code> 相似（尽管它与该选项不冲突，而且它们可以同时激活）。</p>
 <p>如果 <code class="docutils literal notranslate"><span class="pre">&lt;end&gt;</span></code> 时间在缓存之后，该命令将 _不_ 等待并将新收到的数据写入缓存。</p>
 <p>结果文件的结尾处可能会有轻微的损坏或不完整。(没有做出足够的努力来保证结尾的正常排布)。</p>
-<p>注意，这个命令只有在转储结束后才会结束。这意味着它的工作原理与 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 命令类似，只是它可以阻挡更长的时间。如果使用连续转储，该命令将不会结束，直到停止播放、发生错误、运行另一个 <code class="docutils literal notranslate"><span class="pre">dump-cache</span></code> 命令，或者调用 <code class="docutils literal notranslate"><span class="pre">mp.abort_async_command</span></code> 这样的API来明确停止该命令。请看 <a class="reference internal" href="#id7">同步与异步</a></p>
+<p>注意，这个命令只有在转储结束后才会结束。这意味着它的工作原理与 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 命令类似，只是它可以阻挡更长的时间。如果使用连续转储，该命令将不会结束，直到停止播放、发生错误、运行另一个 <code class="docutils literal notranslate"><span class="pre">dump-cache</span></code> 命令，或者调用 <code class="docutils literal notranslate"><span class="pre">mp.abort_async_command</span></code> 这样的API来明确停止该命令。请看 <a class="reference internal" href="#id9">同步与异步</a></p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>这主要是为网络流创建的。对于本地文件，可能有更好的方法来创建摘录之类的。有很多更友好的Lua脚本，通过催生一个单独的 <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> 实例来重新编码文件的一部分。对于网络流，这不是那么容易做到的，因为流必须再次被下载。即使使用 <code class="docutils literal notranslate"><span class="pre">--stream-record</span></code> 将流记录到本地文件系统，也可能会有问题，因为记录的文件仍然被写入。</p>
@@ -1014,8 +1014,8 @@
 </dl>
 </section>
 </section>
-<section id="id6">
-<h2>输入命令前缀<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<section id="id8">
+<h2>输入命令前缀<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
 <p>这些前缀放在按键名和实际命令之间。可以指定多个前缀。它们之间用空格隔开。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">osd-auto</span></code></dt><dd><p>使用该命令的默认行为。这是 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中命令的默认值。一些libmpv/scripting/IPC APIs不使用它作为默认，而是使用 <code class="docutils literal notranslate"><span class="pre">no-osd</span></code></p>
@@ -1030,19 +1030,19 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">raw</span></code></dt><dd><p>不在字符串参数中展开属性（如 <code class="docutils literal notranslate"><span class="pre">"${property-name}"</span></code> ）。这是一些libmpv/scripting/IPC APIs的默认设置。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">expand-properties</span></code></dt><dd><p>所有的字符串参数都按照 <a class="reference internal" href="#id12">属性扩展</a> 中的描述进行扩展。这是 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中命令的默认设置。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">expand-properties</span></code></dt><dd><p>所有的字符串参数都按照 <a class="reference internal" href="#id15">属性扩展</a> 中的描述进行扩展。这是 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中命令的默认设置。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">repeatable</span></code></dt><dd><p>对于某些命令来说，一直按着一个按键不会重复运行命令。这个前缀在任何情况下都强制启用按键重复。对于一个命令列表：第一个命令决定了整个列表的可重复性（到0.33版本为止 —— 一个列表总是可重复的）。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">async</span></code></dt><dd><p>允许异步执行（如果可能）。注意，只有少数命令会支持这一点（通常这一点有明确的记录）。有些命令默认是异步的（或者说，它们的效果可能会在命令完成后表现出来）。这个标志的语义在未来可能会改变。只有当你不依赖这个命令的效果在它返回时完全实现时才设置它。参见 <a class="reference internal" href="#id7">同步与异步</a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">async</span></code></dt><dd><p>允许异步执行（如果可能）。注意，只有少数命令会支持这一点（通常这一点有明确的记录）。有些命令默认是异步的（或者说，它们的效果可能会在命令完成后表现出来）。这个标志的语义在未来可能会改变。只有当你不依赖这个命令的效果在它返回时完全实现时才设置它。参见 <a class="reference internal" href="#id9">同步与异步</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sync</span></code></dt><dd><p>允许同步执行（如果可能）。通常情况下，所有的命令默认都是同步的，但有些命令默认是异步的，以便与旧版的行为兼容。</p>
 </dd>
 </dl>
 <p>所有的osd前缀仍然被全局的 <code class="docutils literal notranslate"><span class="pre">--osd-level</span></code> 设置所覆盖。</p>
 </section>
-<section id="id7">
-<h2>同步与异步<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
+<section id="id9">
+<h2>同步与异步<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">async</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 的前缀只关系到命令发出方如何等待命令的完成。通常情况下，它不会影响命令本身的表现方式。有以下几种情况：</p>
 <ul class="simple">
 <li><p>正常的input.conf命令总是以异步方式运行。慢速运行的命令排队或并行运行。</p></li>
@@ -1055,35 +1055,35 @@
 <p>在mpv 0.29.0之前， <code class="docutils literal notranslate"><span class="pre">async</span></code> 前缀只被截图命令使用，并使它们以分离的方式运行文件保存代码。现在这是默认的， <code class="docutils literal notranslate"><span class="pre">async</span></code> 只在上面提到的方面改变行为。</p>
 <p>目前，以下命令在同步与异步下有不同的等待特性：sub-add, audio-add, sub-reload, audio-reload, rescan-external-files, screenshot, screenshot-to-file, dump-cache, ab-loop-dump-cache</p>
 </section>
-<section id="id8">
-<h2>异步命令详情<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<section id="id10">
+<h2>异步命令详情<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
 <p>在API层面上，每个异步命令都与启动它的上下文绑定。例如，由 <code class="docutils literal notranslate"><span class="pre">mpv_command_async</span></code> 启动的异步命令被绑定到传递给函数的 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 。只有这个 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 能收到完成通知（ <code class="docutils literal notranslate"><span class="pre">MPV_EVENT_COMMAND_REPLY</span></code> ），而且只有这个句柄能直接中止仍在运行的命令。如果 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 被销毁，由它启动的任何仍在运行的异步命令都会被终止。</p>
 <p>脚本API和JSON IPC给每个脚本/连接提供了自己的隐式 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code></p>
 <p>如果播放器被关闭，核心可能会自行中止所有悬而未决的异步命令（就像代表API用户对每个悬而未决的命令强制调用 <code class="docutils literal notranslate"><span class="pre">mpv_abort_async_command()</span></code> 。这发生在发送 <code class="docutils literal notranslate"><span class="pre">MPV_EVENT_SHUTDOWN</span></code> 的同时，而且没有办法阻止它。</p>
 </section>
-<section id="input-sections">
-<h2>Input Sections<a class="headerlink" href="#input-sections" title="永久链接至标题">#</a></h2>
-<p>输入部分将一组绑定分组，并一次性启用或禁用它们。在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，每个键的绑定都被分配到一个输入区，而不是实际有明确的文本区。</p>
-<p>也请参见： <code class="docutils literal notranslate"><span class="pre">enable-section</span></code> 和 <code class="docutils literal notranslate"><span class="pre">disable-section</span></code> 命令。</p>
+<section id="id11">
+<h2>输入区<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<p>输入区将一套绑定分组，并一次性启用或禁用它们。在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，每个按键的绑定都被分配到一个输入区，而不是实际有明确的文本区。</p>
+<p>另参见： <code class="docutils literal notranslate"><span class="pre">enable-section</span></code> 和 <code class="docutils literal notranslate"><span class="pre">disable-section</span></code> 命令。</p>
 <p>预定义的绑定：</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">default</span></code></dt><dd><p>没有输入部分的绑定被隐含地分配给这个部分。它在正常播放时默认是启用的。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">default</span></code></dt><dd><p>没有输入区的绑定被隐含地分配给这个区。它在正常播放时默认是启用的。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">encode</span></code></dt><dd><p>在编码模式下激活的部分。它被专门启用，所以在 <code class="docutils literal notranslate"><span class="pre">default</span></code> 部分的绑定被忽略。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">encode</span></code></dt><dd><p>在编码模式下激活的区。它被独立启用，所以在 <code class="docutils literal notranslate"><span class="pre">default</span></code> 区的绑定被忽略。</p>
 </dd>
 </dl>
 </section>
-<section id="id9">
-<h2>属性<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h2>
-<p>属性被用于在运行时设置mpv选项，或者查询任意信息。它们可以用 <code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">cycle</span></code> 命令操作，用 <code class="docutils literal notranslate"><span class="pre">show-text</span></code> 检索，或者其它任何使用属性扩展的方法。(参见 <a class="reference internal" href="#id12">属性扩展</a> ）。</p>
+<section id="id12">
+<h2>属性<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h2>
+<p>属性被用于在运行时设置mpv选项，或者查询任意信息。它们可以用 <code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">cycle</span></code> 命令操作，用 <code class="docutils literal notranslate"><span class="pre">show-text</span></code> 检索，或者其它任何使用属性扩展的方法。(参见 <a class="reference internal" href="#id15">属性扩展</a> ）。</p>
 <p>属性名称用RW注释的，表示该属性通常是可写的。</p>
 <p>如果一个选项被引用，该属性通常会采取/返回与该选项完全相同的值。在这些情况下，属性只是一种在运行时改变选项的方法。</p>
 </section>
-<section id="id10">
-<h2>属性列表<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
+<section id="id13">
+<h2>属性列表<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>大多数选项也可以通过属性在运行时设置。只需从选项名称中移除前面的 <code class="docutils literal notranslate"><span class="pre">--</span></code> 。下面没有记录这些内容，参见 <a href="#id24"><span class="problematic" id="id25">`选项`_</span></a> 。只有那些不存在同名的选项的属性，或者与选项有非常不同的行为的属性才会在下面记录。</p>
+<p>大多数选项也可以通过属性在运行时设置。只需从选项名称中移除前面的 <code class="docutils literal notranslate"><span class="pre">--</span></code> 。下面没有记录这些内容，参见 <a href="#id27"><span class="problematic" id="id28">`选项`_</span></a> 。只有那些不存在同名的选项的属性，或者与选项有非常不同的行为的属性才会在下面记录。</p>
 <p>标记为(RW)的属性是可写的，而那些没有标记的是只读的。</p>
 </div>
 <dl>
@@ -1880,8 +1880,8 @@
 </dd>
 </dl>
 </section>
-<section id="id11">
-<h2>选项和属性之间的不一致处<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<section id="id14">
+<h2>选项和属性之间的不一致处<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h2>
 <p>你可以把（几乎）所有的选项作为属性来访问，尽管有些属性有一些注意事项（由于历史原因）。</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">vid</span></code>, <code class="docutils literal notranslate"><span class="pre">aid</span></code>, <code class="docutils literal notranslate"><span class="pre">sid</span></code></dt><dd><p>当播放处于激活状态时，这些属性返回实际激活的轨道。例如，如果你设置了 <code class="docutils literal notranslate"><span class="pre">aid=5</span></code> ，而当前播放的文件不包含ID为5的音轨， <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性将返回 <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
@@ -1898,8 +1898,8 @@
 </dd>
 </dl>
 </section>
-<section id="id12">
-<h2>属性扩展<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h2>
+<section id="id15">
+<h2>属性扩展<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h2>
 <p>所有输入命令的字符串参数以及某些选项（如 <code class="docutils literal notranslate"><span class="pre">--term-playing-msg</span></code> ）都要符合属性扩展。需要注意的是，属性扩展在一些地方不起作用，例如，数字参数是预期的（例如， <code class="docutils literal notranslate"><span class="pre">add</span></code> 命令不做属性扩展。 <code class="docutils literal notranslate"><span class="pre">set</span></code> 命令是一个例外，而非一般规则）。</p>
 <div class="admonition-input-conf admonition">
 <p class="admonition-title">input.conf示例</p>
@@ -1908,7 +1908,7 @@
 </dd>
 </dl>
 </div>
-<p>属性扩展是否默认启用取决于使用的哪种API（见 <a class="reference internal" href="#flat">Flat命令语法</a> <a class="reference internal" href="#commands-specified-as-arrays">Commands specified as arrays</a> <a class="reference internal" href="#named-arguments">Named arguments</a> ），但它总是可以用  <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀启用，或用 <code class="docutils literal notranslate"><span class="pre">raw</span></code> 前缀禁用，如 <a class="reference internal" href="#id6">输入命令前缀</a> 所述。</p>
+<p>属性扩展是否默认启用取决于使用的哪种API（参见 <a class="reference internal" href="#flat">Flat命令语法</a> <a class="reference internal" href="#id4">指定为数组的命令</a> <a class="reference internal" href="#id5">命名参数</a> ），但它总是可以用  <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀启用，或用 <code class="docutils literal notranslate"><span class="pre">raw</span></code> 前缀禁用，如 <a class="reference internal" href="#id8">输入命令前缀</a> 所述。</p>
 <p>支持以下扩展：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">${NAME}</span></code></dt><dd><p>展开到属性 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 的值。如果检索该属性失败，则扩展为错误字符串。（使用 <code class="docutils literal notranslate"><span class="pre">${NAME:}</span></code> 带尾巴的 <code class="docutils literal notranslate"><span class="pre">:</span></code> 来扩展到一个空字符串）。如果 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 前缀为 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，则展开为该属性的原始值（见下文）</p>
@@ -1938,8 +1938,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id13">
-<h2>原始和格式化的属性<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h2>
+<section id="id16">
+<h2>原始和格式化的属性<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h2>
 <p>通常情况下，属性被格式化为人性化的可读文本，旨在显示在OSD或终端上。通过在属性名称前加上 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，可以从一个属性中获取未格式化的（原始）值。这些原始值可以被其他程序解析，并遵循与属性相关的选项相同的惯例。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -1996,23 +1996,23 @@
 <li><a class="reference internal" href="#id2">input.conf语法</a></li>
 <li><a class="reference internal" href="#id3">按键名称</a></li>
 <li><a class="reference internal" href="#flat">Flat命令语法</a></li>
-<li><a class="reference internal" href="#commands-specified-as-arrays">Commands specified as arrays</a></li>
-<li><a class="reference internal" href="#named-arguments">Named arguments</a></li>
-<li><a class="reference internal" href="#id4">输入命令列表</a></li>
-<li><a class="reference internal" href="#id5">可能变更的输入命令</a><ul>
+<li><a class="reference internal" href="#id4">指定为数组的命令</a></li>
+<li><a class="reference internal" href="#id5">命名参数</a></li>
+<li><a class="reference internal" href="#id6">输入命令列表</a></li>
+<li><a class="reference internal" href="#id7">可能变更的输入命令</a><ul>
 <li><a class="reference internal" href="#list-of-events">List of events</a></li>
 <li><a class="reference internal" href="#hooks">Hooks</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6">输入命令前缀</a></li>
-<li><a class="reference internal" href="#id7">同步与异步</a></li>
-<li><a class="reference internal" href="#id8">异步命令详情</a></li>
-<li><a class="reference internal" href="#input-sections">Input Sections</a></li>
-<li><a class="reference internal" href="#id9">属性</a></li>
-<li><a class="reference internal" href="#id10">属性列表</a></li>
-<li><a class="reference internal" href="#id11">选项和属性之间的不一致处</a></li>
-<li><a class="reference internal" href="#id12">属性扩展</a></li>
-<li><a class="reference internal" href="#id13">原始和格式化的属性</a></li>
+<li><a class="reference internal" href="#id8">输入命令前缀</a></li>
+<li><a class="reference internal" href="#id9">同步与异步</a></li>
+<li><a class="reference internal" href="#id10">异步命令详情</a></li>
+<li><a class="reference internal" href="#id11">输入区</a></li>
+<li><a class="reference internal" href="#id12">属性</a></li>
+<li><a class="reference internal" href="#id13">属性列表</a></li>
+<li><a class="reference internal" href="#id14">选项和属性之间的不一致处</a></li>
+<li><a class="reference internal" href="#id15">属性扩展</a></li>
+<li><a class="reference internal" href="#id16">原始和格式化的属性</a></li>
 </ul>
 </li>
 </ul>

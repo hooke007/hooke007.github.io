@@ -498,6 +498,9 @@
 <dt><code class="docutils literal notranslate"><span class="pre">showfullscreen</span></code></dt><dd><p>默认： yes</p>
 <p>全屏时启用OSC</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">idlescreen</span></code></dt><dd><p>默认： yes</p>
+<p>空闲状态下显示mpv的logo和文字</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">scalewindowed</span></code></dt><dd><p>默认： 1.0</p>
 <p>窗口化时OSC的比例系数</p>
 </dd>
@@ -540,6 +543,9 @@
 <dt><code class="docutils literal notranslate"><span class="pre">timems</span></code></dt><dd><p>默认： no</p>
 <p>显示带毫秒的时间码</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tcspace</span></code></dt><dd><p>默认： 100 （允许的范围： 50-200 ）</p>
+<p>调整 <code class="docutils literal notranslate"><span class="pre">bottombar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">topbar</span></code> 布局中为时间码（当前时间和剩余时间）保留的空间。时间码的宽度取决于字体，对于某些字体，时间码附近的间距变得太小。使用高于100的值来增加间距，或低于100的值来减少间距。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">visibility</span></code></dt><dd><p>默认： auto （鼠标移动时自动隐藏/显示）</p>
 <p>也支持 <code class="docutils literal notranslate"><span class="pre">never</span></code> 和 <code class="docutils literal notranslate"><span class="pre">always</span></code></p>
 </dd>
@@ -573,6 +579,9 @@
 <dt><code class="docutils literal notranslate"><span class="pre">chapter_fmt</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">Chapter:</span> <span class="pre">%s</span></code></p>
 <p>当悬停在进度条上时，显示章节名称的模板。使用 <code class="docutils literal notranslate"><span class="pre">no</span></code> 来禁止悬停时的章节显示。否则，它是一个lua <code class="docutils literal notranslate"><span class="pre">string.format</span></code> 模板， <code class="docutils literal notranslate"><span class="pre">%s</span></code> 被替换成实际的名字。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">unicodeminus</span></code></dt><dd><p>默认： no</p>
+<p>在显示剩余播放时间时，使用Unicode减号而不是ASCII连字符。</p>
+</dd>
 </dl>
 </section>
 <section id="id8">
@@ -591,6 +600,8 @@
 </pre></div>
 </div>
 <dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">osc-idlescreen</span></code></dt><dd><p>控制空闲状态时mpv的logo可见性。有效的参数是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> ，也可用 <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 来切换。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">osc-playlist</span></code> <code class="docutils literal notranslate"><span class="pre">osc-chapterlist</span></code> <code class="docutils literal notranslate"><span class="pre">osc-tracklist</span></code></dt><dd><p>使用OSC显示各自类型的列表的有限视图。第一个参数是持续时间，单位是秒。</p>
 </dd>
 </dl>

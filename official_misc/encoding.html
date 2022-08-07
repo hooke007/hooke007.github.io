@@ -252,27 +252,27 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">avi</span> \
   <span class="o">--</span><span class="n">vf</span><span class="o">=</span><span class="n">fps</span><span class="o">=</span><span class="mi">25</span> \
   <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">mpeg4</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">4</span> \
-  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libmp3lame</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libmp3lame</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">b</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
 </pre></div>
 </div>
 <p>注意：AVI不支持可变帧率，所以必须使用fps滤镜。帧率最好与输入相匹配（PAL为25，NTSC为24000/1001或30000/1001）。</p>
 <p>压制典型的MPEG-4 Part 10 (“AVC”, “H.264”) ，Matroska (MKV) 容器:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
   <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libx264</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
-  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libvorbis</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libopus</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 <p>压制典型的MPEG-4 Part 10 (“AVC”, “H.264”) ，MPEG-4 (MP4) 容器:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mp4</span> \
   <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libx264</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">preset</span><span class="o">=</span><span class="n">medium</span><span class="p">,</span><span class="n">crf</span><span class="o">=</span><span class="mi">23</span><span class="p">,</span><span class="n">profile</span><span class="o">=</span><span class="n">baseline</span> \
-  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">aac</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">ab</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">aac</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">b</span><span class="o">=</span><span class="mi">128</span><span class="n">k</span>
 </pre></div>
 </div>
 <p>压制典型的VP8，WebM (受限制的Matroska) 容器:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="n">infile</span> <span class="o">--</span><span class="n">o</span><span class="o">=</span><span class="n">outfile</span><span class="o">.</span><span class="n">mkv</span> \
   <span class="o">--</span><span class="n">of</span><span class="o">=</span><span class="n">webm</span> \
   <span class="o">--</span><span class="n">ovc</span><span class="o">=</span><span class="n">libvpx</span> <span class="o">--</span><span class="n">ovcopts</span><span class="o">=</span><span class="n">qmin</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1000000</span><span class="n">k</span> \
-  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libvorbis</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
+  <span class="o">--</span><span class="n">oac</span><span class="o">=</span><span class="n">libopus</span> <span class="o">--</span><span class="n">oacopts</span><span class="o">=</span><span class="n">qscale</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 </section>
@@ -313,7 +313,7 @@
 <li><p>直接从DVD、网络流、网络摄像头或任何其它mpv支持的来源进行编码</p></li>
 <li><p>使用x264预设/调节/profiles（通过在 <code class="docutils literal notranslate"><span class="pre">--ovcopts</span></code> 中使用 profile=, tune=, preset= ）</p></li>
 <li><p>使用mpv的任何用于去隔行/反交错的滤镜</p></li>
-<li><p>音频文件转换： <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--o=outfile.mp3</span> <span class="pre">infile.flac</span> <span class="pre">--no-video</span> <span class="pre">--oac=libmp3lame</span> <span class="pre">--oacopts=ab=320k</span></code></p></li>
+<li><p>音频文件转换： <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--o=outfile.m4a</span> <span class="pre">infile.flac</span> <span class="pre">--no-video</span> <span class="pre">--oac=aac</span> <span class="pre">--oacopts=b=320k</span></code></p></li>
 </ul>
 </section>
 <section id="id6">
