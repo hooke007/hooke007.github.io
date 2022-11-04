@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>控制台 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,10 +217,10 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>控制台<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>控制台<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>控制台是mpv中可输入命令的交互式解释器。它显示在视频窗口上。它也显示日志信息。它可以通过 <code class="docutils literal notranslate"><span class="pre">--load-osd-console=no</span></code> 选项完全禁用。</p>
 <section id="id2">
-<h2>按键绑定<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>按键绑定<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <dl class="simple">
 <dt>`</dt><dd><p>显示控制台</p>
 </dd>
@@ -267,18 +277,18 @@
 </dl>
 </section>
 <section id="id3">
-<h2>命令<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<h2>命令<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&lt;text&gt;</span> <span class="pre">[&lt;cursor_pos&gt;]</span></code></dt><dd><p>显示控制台并预填充所提供的文本，可选择指定初始光标位置为从1开始的正整数。</p>
 <div class="admonition-input-conf admonition">
 <p class="admonition-title">input.conf示例</p>
-<p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">"seek</span>  <span class="pre">absolute-percent"</span> <span class="pre">6</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;seek</span>&#160; <span class="pre">absolute-percent&quot;</span> <span class="pre">6</span></code></p>
 </div>
 </dd>
 </dl>
 </section>
 <section id="id4">
-<h2>已知问题<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>已知问题<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
 <li><p>Windows系统粘贴文本的速度慢</p></li>
 <li><p>非ASCII键盘输入有限制</p></li>
@@ -286,11 +296,11 @@
 </ul>
 </section>
 <section id="id5">
-<h2>设置<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<h2>设置<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
 <p>这个脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/console.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id7"><span class="problematic" id="id8">`屏显式控制器`_</span></a> 中已描述。</p>
 <p>按键的绑定可以用标准的方式来改变，例如参见 stats.lua 文档。</p>
 <section id="id6">
-<h3>设置选项<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<h3>设置选项<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">scale</span></code></dt><dd><p>默认： 1</p>
 <p>所有的绘制都按该值缩放，包括文本边框和光标。</p>
@@ -301,6 +311,9 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 16</p>
 <p>设置用于交互式解释器和控制台的字体大小。这将和scale相乘。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
+<p>删除历史记录中的重复条目，只保留最新的一项。</p>
 </dd>
 </dl>
 </section>
@@ -340,7 +353,7 @@
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            目录
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
@@ -368,8 +381,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

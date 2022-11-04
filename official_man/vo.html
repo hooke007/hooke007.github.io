@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>视频输出驱动 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,7 +217,7 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>视频输出驱动<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>视频输出驱动<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>视频输出驱动是连接不同视频输出设备的接口。其语法是：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--vo=&lt;driver1,driver2,...[,]&gt;</span></code></dt><dd><p>指定一个要使用的视频输出驱动的优先级列表。</p>
@@ -327,7 +337,7 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">vaapi-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与VA API硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。目前该驱动是实验性的，只与 <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 视频输出驱动一起工作；OSD也不受支持。支持的合成器：Weston和Sway。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">dmabuf-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与 drm stateless 或 VA API 硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。目前该驱动是实验性的，只与 <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--hwdec=drm</span></code> 一起工作；OSD也不受支持。支持的合成器：Weston和Sway。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vaapi</span></code></dt><dd><p>Intel VA API视频输出驱动，支持硬件解码。请注意除了兼容性之外，绝对没有理由使用这个。这是低质量的，而且在OSD方面有问题。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 代替它。</p>
 <p>支持以下全局选项：</p>
@@ -494,7 +504,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">mediacodec_embed</span></code> （安卓）</dt><dd><p>将 <code class="docutils literal notranslate"><span class="pre">IMGFMT_MEDIACODEC</span></code> 帧直接渲染到 <code class="docutils literal notranslate"><span class="pre">android.view.Surface</span></code> 。需要 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> 的硬件解码，以及 <code class="docutils literal notranslate"><span class="pre">--vo=mediacodec_embed</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--wid=(intptr_t)(*android.view.Surface)</span></code></p>
 <p>由于这个视频输出使用原生解码和渲染程序，mpv的许多功能（字幕渲染、OSD/OSC、视频滤镜等）在这个驱动中是不可用的。</p>
-<p>要使用硬解码应使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> ，并一起使用 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec-copy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context=android</span></code></p>
+<p>要使用硬解码应使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> ，并一起使用 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec-copy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context=android</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">wlshm</span></code> （Wayland独占）</dt><dd><p>没有硬件加速的共享内存视频输出驱动，只要有Wayland就能工作。</p>
 <p>从mpv 0.30.0开始，你可能需要使用 <code class="docutils literal notranslate"><span class="pre">--profile=sw-fast</span></code> 来获得合格的性能。</p>
@@ -542,8 +552,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

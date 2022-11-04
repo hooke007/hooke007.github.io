@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>统计数据 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,16 +217,13 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>统计数据<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>统计数据<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>该内置脚本显示当前播放文件的信息和统计数据。如果mpv在编译时支持Lua，它就会默认启用。可以通过 <code class="docutils literal notranslate"><span class="pre">--load-stats-overlay=no</span></code> 选项完全禁用它。</p>
 <section id="id2">
-<h2>使用<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>使用<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>下面的按键绑定默认是激活的，除非有其他功能已经被绑定：</p>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 8%"/>
-<col style="width: 92%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>i</p></td>
 <td><p>只在一个固定的时间段内显示统计数据</p></td>
@@ -225,13 +232,11 @@
 <td><p>切换 显示/隐藏统计数据（再次切换前始终显示）</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 <p>当统计数据在屏幕上可见时，以下的按键绑定是激活的，无视之前已有的绑定。它们允许你在 <em>不同页面</em> 的统计数据之间切换：</p>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 14%"/>
-<col style="width: 86%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>1</p></td>
 <td><p>显示通用信息</p></td>
@@ -249,13 +254,11 @@
 <td><p>内部活动（可滚动）</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 <p>在支持滚动的页面上，这些按键的绑定也是激活的：</p>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 18%"/>
-<col style="width: 82%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>UP</p></td>
 <td><p>向上滚动一行</p></td>
@@ -264,17 +267,18 @@
 <td><p>向下滚动一行</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 <section id="id3">
-<h3>字体<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<h3>字体<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
 <p>为了获得最佳的视觉体验，建议使用支持多种字重和等宽的字体。默认情况下，使用开源字体 <a class="reference external" href="https://github.com/adobe-fonts/source-sans-pro">Source Sans Pro</a></p>
 </section>
 </section>
 <section id="id4">
-<h2>设置<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>设置<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>该脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/stats.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id9"><span class="problematic" id="id10">`屏显式控制器`_</span></a> 中已描述。</p>
 <section id="id5">
-<h3>设置选项<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<h3>设置选项<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">key_page_1</span></code></dt><dd><p>默认： 1</p>
 </dd>
@@ -348,7 +352,7 @@
 <p>注意：颜色为十六进制值，并使用ASS标签的顺序。BBGGRR（蓝绿红）。</p>
 </section>
 <section id="id6">
-<h3>不同的按键绑定<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<h3>不同的按键绑定<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p>可以在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中设置额外的按键来显示统计数据:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">stats</span>
 <span class="n">E</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">stats</span><span class="o">-</span><span class="n">toggle</span>
@@ -361,14 +365,14 @@
 </div>
 </section>
 <section id="id7">
-<h3>激活的按键绑定的页面<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<h3>激活的按键绑定的页面<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>列出激活的按键绑定和它们所绑定的命令，不包括统计数据脚本本身的交互键。也参见 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 以获得每个绑定的更详细信息。</p>
 <p>这些按键是通过对命令字符串的简单分析而自动分组的，不应该期望文件级别的分组精度，然而，它仍然应该是相当有用的。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">--idle</span> <span class="pre">--script-opts=stats-bindlist=yes</span></code> 会将列表输出到终端并立即退出。默认情况下，长行会被缩短到79个字符，并且终端转义序列被启用。通过将 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 改为数字（至少40）可以设置不同的长度限制，通过在数值前添加 <code class="docutils literal notranslate"><span class="pre">-</span></code> 可以禁用转义序列，例如 <code class="docutils literal notranslate"><span class="pre">...=-yes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">...=-120</span></code></p>
 <p>和 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 一样，列表中包括来自 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 和用户脚本的绑定。使用 <code class="docutils literal notranslate"><span class="pre">--no-config</span></code> 只列出内建的绑定。</p>
 </section>
 <section id="id8">
-<h3>内部活动的页面<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<h3>内部活动的页面<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>该页显示的大多数条目都有相当模糊的含义。可能这些东西对你无用。不要试图使用它。忘记它的存在。</p>
 <p>首次选择这个页面将开始收集一些内部性能数据。这意味着在播放器运行的其余时间里，性能会比正常情况下略低（即使统计数据页面被关闭）。注意，统计数据页面本身会使用大量的CPU甚至GPU资源，可能会对性能产生严重影响。</p>
 <p>显示的信息在redraw delay时积累（显示为 <code class="docutils literal notranslate"><span class="pre">poll-time</span></code> 字段）</p>
@@ -415,7 +419,7 @@
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            目录
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
@@ -447,8 +451,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

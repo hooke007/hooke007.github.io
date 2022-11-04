@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>屏显式控制器 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,14 +217,14 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>屏显式控制器<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>屏显式控制器<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>屏显式控制器（简称：OSC）是一个与mpv集成的最小GUI，提供基本的鼠标操控功能。它的目的是使新用户的交互更容易，并且能够精确和直接的进行进度查询。</p>
 <p>如果mpv在编译时支持Lua，那么OSC是默认启用的。它可以通过选项 <code class="docutils literal notranslate"><span class="pre">--osc=no</span></code> 完全禁用。</p>
 <section id="osc">
-<h2>使用OSC<a class="headerlink" href="#osc" title="永久链接至标题">#</a></h2>
+<h2>使用OSC<a class="headerlink" href="#osc" title="此标题的永久链接">#</a></h2>
 <p>默认情况下，只要光标在播放器窗口内移动，OSC就会显示；如果光标在OSC外超过0.5秒没有移动，或者光标离开窗口，OSC就会隐藏。</p>
 <section id="id2">
-<h3>界面<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h3>
+<h3>界面<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------+-------------+-------------------------------+-----------+</span>
 <span class="o">|</span> <span class="n">上一文件</span>  <span class="o">|</span>  <span class="n">下一文件</span>   <span class="o">|</span>  <span class="n">标题</span>                         <span class="o">|</span>  <span class="n">缓存指示</span> <span class="o">|</span>
 <span class="o">+----+------+------+------+--------------+------+----+----+------+----+</span>
@@ -224,11 +234,8 @@
 </pre></div>
 </div>
 <dl>
-<dt>上一文件</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>上一文件</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>播放列表中的上一个文件</p></td>
@@ -240,13 +247,11 @@
 <td><p>显示播放列表</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
-<dt>下一文件</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>下一文件</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>播放列表中的下一个文件</p></td>
@@ -258,16 +263,14 @@
 <td><p>显示播放列表</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>标题</dt><dd><div class="line-block">
 <div class="line">悬停在进度条时，显示当前的媒体标题、文件名、自定义标题或目标章节名称</div>
 </div>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>显示播放列表中的位置、长度和完整标题</p></td>
@@ -276,29 +279,25 @@
 <td><p>显示文件名</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>缓存指示</dt><dd><div class="line-block">
 <div class="line">显示当前的缓冲状态</div>
 </div>
 </dd>
-<dt>播放</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>播放</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>切换 播放/暂停</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
-<dt>上一章节</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>上一章节</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>跳转章节开头/上一章节</p></td>
@@ -310,13 +309,11 @@
 <td><p>显示章节列表</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
-<dt>下一章节</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>下一章节</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>跳转下一章节</p></td>
@@ -328,61 +325,53 @@
 <td><p>显示章节列表</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>已过时间</dt><dd><div class="line-block">
 <div class="line">显示当前播放位置的时间戳</div>
 </div>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>切换 显示带毫秒的时间码</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>进度条</dt><dd><div class="line-block">
 <div class="line">显示当前的播放位置和章节的位置</div>
 </div>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>跳转位置</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>剩余时间</dt><dd><div class="line-block">
 <div class="line">显示剩余播放时间的时间戳</div>
 </div>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>切换 总时间/剩余时间</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 <dt>音轨 字幕</dt><dd><div class="line-block">
 <div class="line">显示所选轨道的可用数量</div>
 </div>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>循环 音频/字幕轨 前进</p></td>
@@ -394,13 +383,11 @@
 <td><p>显示可用的音频/字幕轨列表</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
-<dt>音量</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>音量</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>切换 静音</p></td>
@@ -409,43 +396,40 @@
 <td><p>音量增大/减小</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
-<dt>全屏</dt><dd><div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<dt>全屏</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>左键单机</p></td>
 <td><p>切换 全屏</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </dd>
 </dl>
 </section>
 <section id="id3">
-<h3>按键绑定<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<h3>按键绑定<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
 <p>如果没有其他命令已经绑定在这些键上，这些键的绑定默认是激活的。在发生冲突的情况下，需要将该功能绑定到不同的按键上。参见 <a class="reference internal" href="#id8">脚本命令</a> 部分。</p>
-<div class="table-wrapper"><table class="docutils align-default">
-<colgroup>
-<col style="width: 21%"/>
-<col style="width: 79%"/>
-</colgroup>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>del</p></td>
 <td><p>循环 OSC可见性 始终隐藏/自动显示/始终显示</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </section>
 </section>
 <section id="id4">
-<h2>设置<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>设置<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>OSC通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/osc.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项提供有限的设置。通过命令行提供的选项将覆盖设置文件中的选项。</p>
 <section id="id5">
-<h3>设置语法<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<h3>设置语法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>设置文件必须严格遵循以下语法:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这是一个注释</span>
 <span class="n">optionA</span><span class="o">=</span><span class="n">value1</span>
@@ -455,7 +439,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">#</span></code> 只能用在一行的开头， <code class="docutils literal notranslate"><span class="pre">=</span></code> 周围或其它地方不能有空格。</p>
 </section>
 <section id="id6">
-<h3>命令行语法<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<h3>命令行语法<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p>为了避免与其他脚本发生冲突，所有选项都需要以 <code class="docutils literal notranslate"><span class="pre">osc-</span></code> 为前缀。</p>
 <p>示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">opts</span><span class="o">=</span><span class="n">osc</span><span class="o">-</span><span class="n">optionA</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span><span class="n">osc</span><span class="o">-</span><span class="n">optionB</span><span class="o">=</span><span class="n">value2</span>
@@ -463,7 +447,7 @@
 </div>
 </section>
 <section id="id7">
-<h3>设置选项<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<h3>设置选项<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">layout</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">bottombar</span></code></p>
 <p>OSC的布局。目前可用的有：box, slimbox, bottombar 和 topbar。0.21.0之前的默认值是 box</p>
@@ -585,7 +569,7 @@
 </dl>
 </section>
 <section id="id8">
-<h3>脚本命令<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<h3>脚本命令<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>OSC脚本会监听某些脚本命令。这些命令可以绑定在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，或者由其他脚本发送。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">osc-message</span></code></dt><dd><p>使用OSC在屏幕上显示一条信息。第一个参数是信息，第二个参数是持续时间（秒）。</p>
@@ -642,7 +626,7 @@
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            目录
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
@@ -675,8 +659,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

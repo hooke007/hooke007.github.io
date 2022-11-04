@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="着色器处理阶段" href="VO_shader_stages.html" /><link rel="prev" title="编码/压制的详细指南" href="encoding.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>插值技术 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,14 +217,14 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>插值技术<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>插值技术<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>本文将涵盖一些标准的视频帧时域插值(temporal interpolation)技术，尤其概述了SVP/MVtools（也称为基于运动的插值）等技术和诸如smoothmotion等算法之间的差异。你还可以在<a class="reference external" href="https://github.com/haasn/interpolation-samples">该资源库</a>中找到一组专门用于复制这些算法结果的测试片段，以及一些更多的解释。</p>
-<img align="right" src="_assets/Interpolation-original.png"/>
+<img align="right" src="_assets/Interpolation-original.png" />
 <p>为了演示差异，尝试当在60Hz的显示器上显示一个24Hz的视频文件时，我们将查看会发生什么。这就是我将使用的源文件。为了便于描述，每个视频帧将显示为图像的一条水平线。（因此纵轴是时间轴）</p>
 <p>我们现将探讨将其转换为60Hz视频流的不同技术（例如，适应在60Hz显示器上显示）。因此，纵轴将从100像素重新缩放到250像素。（60/24=2.5）</p>
 <section id="pulldown">
-<h2>3:2下拉(pulldown)<a class="headerlink" href="#pulldown" title="永久链接至标题">#</a></h2>
-<img align="right" src="_assets/Interpolation-pulldown.png"/>
+<h2>3:2下拉(pulldown)<a class="headerlink" href="#pulldown" title="此标题的永久链接">#</a></h2>
+<img align="right" src="_assets/Interpolation-pulldown.png" />
 <p>传统的技术，包括mpv的默认行为，是简单地保持源的每个帧，直到经过下一帧的相应时间戳。由于这个示例中的特殊比例（60/24=2.5），这表示第一帧将被显示3次，第二帧2次，第三帧3次，第四帧2次，以此类推。这个模式看起来像这样：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A A A B B C C C D D E E E F F
 </pre></div>
@@ -223,8 +233,8 @@
 <p>这种技术本质上就像最近邻(nearest neighbour)放大 —— 每一帧都简单的选择原始视频源中与之最接近的源帧（向下取整）。</p>
 </section>
 <section id="id2">
-<h2>基于运动的插值<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
-<img align="right" src="_assets/Interpolation-interpolated.png"/>
+<h2>基于运动的插值<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<img align="right" src="_assets/Interpolation-interpolated.png" />
 <p>基于运动的插值算法，诸如SVP、MVTools或各种电视设备内置的芯片(MEMC)，采用复杂的算法来尝试识别视频中的移动（运动向量），并根据需求填补缺失的空白信息。</p>
 <p>这极大地改变了结果 —— 它现在是一个连续的运动，类似于一个真正60Hz的剪辑。然而，这须要代价 —— 不仅所涉及的数学计算成本非常高昂，而且算法也不完美，还经常导致瑕疵(artifacts)（变形的图像、波浪化的线条等）。</p>
 <p>此外，这也是所谓的肥皂剧效应的来源，这只是指60Hz的运动看起来像它。这个名称是基于这样一个事实：像肥皂剧这样的廉价电视节目通常是以隔行扫描的60Hz拍摄的，而不是大多数电影感的内容使用的（更昂贵的）电影格式，后者通常是以24Hz拍摄的。因此许多人下意识的
@@ -232,8 +242,8 @@
 <p>这本质上类似于“智能的”放大滤镜，例如NEDI或NNEDI3 —— 它们也有很高的计算成本且产生的结果会极大的改变源图像。</p>
 </section>
 <section id="smoothmotion">
-<h2>Smoothmotion<a class="headerlink" href="#smoothmotion" title="永久链接至标题">#</a></h2>
-<img align="right" src="_assets/Interpolation-smoothmotion.png"/>
+<h2>Smoothmotion<a class="headerlink" href="#smoothmotion" title="此标题的永久链接">#</a></h2>
+<img align="right" src="_assets/Interpolation-smoothmotion.png" />
 <p>Smoothmotion的方法是将每一帧精确的显示2.5次，其中我们通过将两个相邻的帧混合(blending)在一起显示0.5次。就该模式而言，它的结果像这样：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A A A+B B B C C C+D D D E E E+F F F
 </pre></div>
@@ -244,8 +254,8 @@
 <p>本质上讲，smoothmotion就像使用最邻近算法调整大小，但对结果进行过采样(oversampling)（类似于电视游戏中的多重采样以减少锯齿(aliasing)）。由于该原因，它在mpv中的实现被称为”oversample”。</p>
 </section>
 <section id="id3">
-<h2>基于卷积的插值<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
-<img align="right" src="_assets/Interpolation-tscale.png"/>
+<h2>基于卷积的插值<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<img align="right" src="_assets/Interpolation-tscale.png" />
 <p>这种操作模式是基于将视频片段的时间维度视为另一个静态维度的想法，与分辨率相同 —— 本质上，我们将输入视为大小为Width×Height×Duration的一个大型3D信号，使用信号理论中的标准技术重建这一输入。基本上，我们不是用源图像中的离散像素对内核进行卷积，而是用离散帧中的相同像素对内核进行卷积。</p>
 <p>与smoothmotion的主要差异在于，它基本上是对时间轴进行低通处理，来确保没有高频失真被添加进来（这在smoothmotion算法中看起来可能是不规则的），并且它可以重建一些“中间的”像素值，这对慢动作尤其有效，但在某些情况下会增加额外的运动模糊度。</p>
 <p>正如你所观察到的，整体外观看起来与smoothmotion相似，但不是在锐利和混合之间进行帧变换，而是每一帧始终被混合进下一帧。</p>
@@ -265,10 +275,10 @@
                 </div>
                 <div class="title">着色器处理阶段</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
           <a class="prev-page" href="encoding.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
@@ -304,7 +314,7 @@
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            目录
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
@@ -329,8 +339,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

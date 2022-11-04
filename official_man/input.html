@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>命令接口 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,10 +217,10 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>命令接口<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>命令接口<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>mpv的核心可以用命令和属性来控制。许多与播放器交互的方式都使用它们：按键绑定（ <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> ），OSD（用属性显示信息），JSON IPC，客户端API（ <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> ），以及经典的slave mode 。</p>
 <section id="input-conf">
-<h2>input.conf<a class="headerlink" href="#input-conf" title="永久链接至标题">#</a></h2>
+<h2>input.conf<a class="headerlink" href="#input-conf" title="此标题的永久链接">#</a></h2>
 <p>input.conf文件由一系列按键绑定的列表组成，例如:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="n">screenshot</span>      <span class="c1"># 用s键截屏</span>
 <span class="n">LEFT</span> <span class="n">seek</span> <span class="mi">15</span>      <span class="c1"># 将向左键映射为向前搜寻15秒</span>
@@ -237,13 +247,13 @@
 <p>另参见 <a class="reference internal" href="#id3">按键名称</a></p>
 </section>
 <section id="id2">
-<h2>input.conf语法<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<h2>input.conf语法<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">[Shift+][Ctrl+][Alt+][Meta+]&lt;key&gt;</span> <span class="pre">[{&lt;section&gt;}]</span> <span class="pre">&lt;command&gt;</span> <span class="pre">(</span> <span class="pre">;</span> <span class="pre">&lt;command&gt;</span> <span class="pre">)*</span></code></p>
 <p>注意，默认情况下，右Alt键可以被创建为特殊字符，因此两个Alt不会注册为单个修饰键。选项 <code class="docutils literal notranslate"><span class="pre">--no-input-right-alt-gr</span></code> 可以改变这一行为。</p>
 <p>换行总是开始一个新的绑定。 <code class="docutils literal notranslate"><span class="pre">#</span></code> 开始一个注释（在被引用的字符串参数之外）。为了将命令与 <code class="docutils literal notranslate"><span class="pre">#</span></code> 键绑定，可以使用 <code class="docutils literal notranslate"><span class="pre">SHARP</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;key&gt;</span></code> 是该按键的字面字符（ASCII或Unicode字符），或者是一个符号名称（正如由 <code class="docutils literal notranslate"><span class="pre">--input-keylist</span></code> 输出的内容）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;section&gt;</span></code> （用 <code class="docutils literal notranslate"><span class="pre">{</span></code> 和 <code class="docutils literal notranslate"><span class="pre">}</span></code> 括起来）是这个命令的输入部分。</p>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> 是命令本身。它由命令名称和多个（或无）参数组成，所有参数都用空格隔开。字符串参数应被引用，一般用 <code class="docutils literal notranslate"><span class="pre">"</span></code> 。参见  <a class="reference internal" href="#flat">Flat命令语法</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> 是命令本身。它由命令名称和多个（或无）参数组成，所有参数都用空格隔开。字符串参数应被引用，一般用 <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 。参见  <a class="reference internal" href="#flat">Flat命令语法</a></p>
 <p>你可以绑定多个命令到一个按键上。例如：</p>
 <div class="line-block">
 <div class="line">a show-text “command 1” ; show-text “command 2”</div>
@@ -256,11 +266,11 @@
 <p>如果 <code class="docutils literal notranslate"><span class="pre">a</span></code> 或 <code class="docutils literal notranslate"><span class="pre">a-b</span></code> 或 <code class="docutils literal notranslate"><span class="pre">b</span></code> 已经被绑定，这将运行第一个匹配的命令，而多键命令将不会被调用。为了避免这个问题，可以将中间键重映射到 <code class="docutils literal notranslate"><span class="pre">ignore</span></code> 。多个键联合的最大数量（非修饰键）目前是4。</p>
 </section>
 <section id="id3">
-<h2>按键名称<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<h2>按键名称<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>所有的鼠标和键盘的输入都要转换为mpv指定的按键名称。键名要么是代表物理键的特殊符号标识，要么是文本键名，它是UTF-8编码的unicode码点。这些都是键盘输入通常会产生的，例如， <code class="docutils literal notranslate"><span class="pre">a</span></code> 代表A键。因此，mpv使用由当前操作系统键盘布局转译的输入，而不是物理扫描代码。</p>
 <p>目前有一个硬编码的假设，即每个文本键都可以表示为一个单一的unicode码点（NFKC形式）。</p>
 <p>所有的键名都可以与修饰键 <code class="docutils literal notranslate"><span class="pre">Shift</span></code> <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> <code class="docutils literal notranslate"><span class="pre">Alt</span></code> <code class="docutils literal notranslate"><span class="pre">Meta</span></code> 结合。它们必须以实际的键名为前缀，每个修饰键后面都有一个 <code class="docutils literal notranslate"><span class="pre">+</span></code> （例如 <code class="docutils literal notranslate"><span class="pre">ctrl+q</span></code> ）。</p>
-<p>需要注意一下 <code class="docutils literal notranslate"><span class="pre">Shift</span></code> 修饰键。例如， <code class="docutils literal notranslate"><span class="pre">Shift+2</span></code> 通常应该在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中指定为键名 <code class="docutils literal notranslate"><span class="pre">@</span></code> ，同样， <code class="docutils literal notranslate"><span class="pre">Alt+Shift+2</span></code> 的组合通常为 <code class="docutils literal notranslate"><span class="pre">Alt+@</span></code> ，等等。特殊的键名，如 <code class="docutils literal notranslate"><span class="pre">Shift+LEFT</span></code> ，也能如期工作。如果有疑问 —— 使用 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 来检查mpv是如何处理某个按键/组合的。</p>
+<p>需要注意一下 <code class="docutils literal notranslate"><span class="pre">Shift</span></code> 修饰键。例如， <code class="docutils literal notranslate"><span class="pre">Shift+2</span></code> 通常应该在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中指定为键名 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> ，同样， <code class="docutils literal notranslate"><span class="pre">Alt+Shift+2</span></code> 的组合通常为 <code class="docutils literal notranslate"><span class="pre">Alt+&#64;</span></code> ，等等。特殊的键名，如 <code class="docutils literal notranslate"><span class="pre">Shift+LEFT</span></code> ，也能如期工作。如果有疑问 —— 使用 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 来检查mpv是如何处理某个按键/组合的。</p>
 <p>符号键名和修饰键名不区分大小写。Unicode键名是区分大小写的，因为输入绑定通常遵循shift键。</p>
 <p>另一种类型的键名是十六进制键名，作为特殊键的后备键，既不是unicode，也没有特殊的mpv定义的名称。一旦mpv为它们添加了合适的名字，它们就会失效，但如果不这样做，你就可以使用一个键。</p>
 <p>所有的符号键名都由 <code class="docutils literal notranslate"><span class="pre">--input-keylist</span></code> 列出。 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 是一个特殊的模式，在OSD上输出出所有的输入。</p>
@@ -291,23 +301,23 @@
 </dl>
 </section>
 <section id="flat">
-<h2>Flat命令语法<a class="headerlink" href="#flat" title="永久链接至标题">#</a></h2>
+<h2>Flat命令语法<a class="headerlink" href="#flat" title="此标题的永久链接">#</a></h2>
 <p>这是在input.conf中使用的语法，并在其它的一些地方被“input.conf语法”提及。</p>
 <div class="line-block">
-<div class="line"><br/></div>
-<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span>  <span class="pre">::=</span> <span class="pre">[&lt;prefixes&gt;]</span> <span class="pre">&lt;command_name&gt;</span> <span class="pre">(&lt;argument&gt;)*</span></code></div>
-<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;argument&gt;</span> <span class="pre">::=</span> <span class="pre">(&lt;unquoted&gt;</span> <span class="pre">|</span> <span class="pre">"</span> <span class="pre">&lt;double_quoted&gt;</span> <span class="pre">"</span> <span class="pre">|</span> <span class="pre">'</span> <span class="pre">&lt;single_quoted&gt;</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">`X</span> <span class="pre">&lt;custom_quoted&gt;</span> <span class="pre">X`)</span></code></div>
+<div class="line"><br /></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span>&#160; <span class="pre">::=</span> <span class="pre">[&lt;prefixes&gt;]</span> <span class="pre">&lt;command_name&gt;</span> <span class="pre">(&lt;argument&gt;)*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;argument&gt;</span> <span class="pre">::=</span> <span class="pre">(&lt;unquoted&gt;</span> <span class="pre">|</span> <span class="pre">&quot;</span> <span class="pre">&lt;double_quoted&gt;</span> <span class="pre">&quot;</span> <span class="pre">|</span> <span class="pre">'</span> <span class="pre">&lt;single_quoted&gt;</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">`X</span> <span class="pre">&lt;custom_quoted&gt;</span> <span class="pre">X`)</span></code></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">command_name</span></code> 是一个不引用的包含命令名称本身的字符串。参见列表 <a class="reference internal" href="#id6">输入命令列表</a></p>
 <p>参数之间用空格隔开，即使命令只有一个参数。带有空格或其他特殊字符的参数必须引用，否则命令不能被正确解析。</p>
-<p>双引号引用解释JSON/C-style的转义，如 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\"</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\\</span></code> 。JSON根据RFC 8259进行转义，减去surrogate pair转义。这是唯一一种允许在值上加换行的形式 —— 如 <code class="docutils literal notranslate"><span class="pre">\n</span></code></p>
+<p>双引号引用解释JSON/C-style的转义，如 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> 或 <code class="docutils literal notranslate"><span class="pre">\\</span></code> 。JSON根据RFC 8259进行转义，减去surrogate pair转义。这是唯一一种允许在值上加换行的形式 —— 如 <code class="docutils literal notranslate"><span class="pre">\n</span></code></p>
 <p>单引号引用解释字面内容，并且不能在值中包含单引号的字符。</p>
 <p>自定义引用也是解释字面内容，但比单引号引用更灵活。它们以 <code class="docutils literal notranslate"><span class="pre">`</span></code> （反引号）开始，后面是任何ASCII字符，并以同一对的第一次出现为结束，顺序相反，例如： <code class="docutils literal notranslate"><span class="pre">`-foo-`</span></code> 或 <code class="docutils literal notranslate"><span class="pre">``bar``</span></code> 。最后一对序列不允许出现在值中 —— 例子分别是 <code class="docutils literal notranslate"><span class="pre">-`</span></code> 和 <code class="docutils literal notranslate"><span class="pre">``</span></code> 。在第二个例子中，值的最后一个字符也不能是反引号。</p>
-<p>不支持对同一个参数的进行混合引用，如 <code class="docutils literal notranslate"><span class="pre">'foo'"bar"</span></code> 。</p>
+<p>不支持对同一个参数的进行混合引用，如 <code class="docutils literal notranslate"><span class="pre">'foo'&quot;bar&quot;</span></code> 。</p>
 <p>请注意，参数解析和属性扩展发生在不同阶段。首先，参数如上所述被确定，然后，如果适用的话，属性被扩展 —— 无视参数的引用。然而，仍然可以用 <code class="docutils literal notranslate"><span class="pre">raw</span></code> 前缀或 <code class="docutils literal notranslate"><span class="pre">$&gt;</span></code> 防止被扩展。参见 <a class="reference internal" href="#id8">输入命令前缀</a> 和 <a class="reference internal" href="#id15">属性扩展</a></p>
 </section>
 <section id="id4">
-<h2>指定为数组的命令<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<h2>指定为数组的命令<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>这适用于部分API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.commandv()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （带有数组参数），或者C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （带有 MPV_FORMAT_NODE_ARRAY ）。</p>
 <p>命令以及所有的参数都以一个数组的形式传递。类似于 <a class="reference internal" href="#flat">Flat命令语法</a> ，你可以先把前缀作为字符串传递（每个都是单独的数组项），然后把命令名称作为字符串，然后把每个参数作为字符串或原生值。</p>
 <p>由于这些API将参数作为单独的字符串或原生值来传递，所以它们不需要引用，并且支持转义。技术上讲，有一个input.conf解析器，它首先将命令字符串分割成数个参数，然后为每个参数调用解析器。input.conf解析器通常处理引号和转义。上面提到的数组命令API直接将字符串传递给参数解析器，或者可以通过传递非字符串值的职能回避它们。</p>
@@ -316,7 +326,7 @@
 <p>对于复杂的命令，可以考虑使用 <a class="reference internal" href="#id5">命名参数</a> 来代替，这样应该会更具兼容性。不过有些命令不支持命名参数，而是采用数组参数。</p>
 </section>
 <section id="id5">
-<h2>命名参数<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<h2>命名参数<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
 <p>这适用于部分API，例如Lua脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native()</span></code> （有字符串键的表），或者C语言libmpv客户端API中的 <code class="docutils literal notranslate"><span class="pre">mpv_command_node()</span></code> （带有 MPV_FORMAT_NODE_MAP ）。</p>
 <p>命令的名称是由 <code class="docutils literal notranslate"><span class="pre">name</span></code> 字符串字段提供的。每个命令的名称在 <a class="reference internal" href="#id6">输入命令列表</a> 中的每个命令描述内都有定义。 <code class="docutils literal notranslate"><span class="pre">--input-cmdlist</span></code> 也可以列出它们。参见 <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> 命令为例。</p>
 <p>有些命令不支持命名参数（例如 <code class="docutils literal notranslate"><span class="pre">run</span></code> 命令）。你需要使用以数组形式传递参数的API。</p>
@@ -324,7 +334,7 @@
 <p>对于这些API，属性扩展默认是禁用的。这可以通过 <code class="docutils literal notranslate"><span class="pre">expand-properties</span></code> 前缀来改变。参见 <a class="reference internal" href="#id8">输入命令前缀</a></p>
 </section>
 <section id="id6">
-<h2>输入命令列表<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<h2>输入命令列表<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <p>带参数的命令中，参数名称用符号 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> / <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 括起来。不要在实际命令中加入这些符号。可选参数用 <code class="docutils literal notranslate"><span class="pre">[</span></code> / <code class="docutils literal notranslate"><span class="pre">]</span></code> 符号括起来。如果你不传递它们，它们将被设置为默认值。</p>
 <p>记住在input.conf中引用字符串参数（参见 <a class="reference internal" href="#flat">Flat命令语法</a> ）</p>
 <dl>
@@ -461,7 +471,7 @@
 <p>要获得旧版的行为，使用 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 作为前两个参数。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
-<p><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">"/bin/sh"</span> <span class="pre">"-c"</span> <span class="pre">"echo</span> <span class="pre">${title}</span> <span class="pre">&gt;</span> <span class="pre">/tmp/playing"</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">&quot;/bin/sh&quot;</span> <span class="pre">&quot;-c&quot;</span> <span class="pre">&quot;echo</span> <span class="pre">${title}</span> <span class="pre">&gt;</span> <span class="pre">/tmp/playing&quot;</span></code></p>
 <p>这不是一个特别好的例子，因为它没有处理转义，而一个特别准备的文件可能允许攻击者执行任意的shell命令。建议编写一个小的shell脚本，然后用 <code class="docutils literal notranslate"><span class="pre">run</span></code> 来调用。</p>
 </div>
 </dd>
@@ -518,13 +528,13 @@
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">command_native</span><span class="p">({</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">"subprocess"</span><span class="p">,</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;subprocess&quot;</span><span class="p">,</span>
     <span class="n">playback_only</span> <span class="o">=</span> <span class="n">false</span><span class="p">,</span>
     <span class="n">capture_stdout</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"/proc/cpuinfo"</span><span class="p">},</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;/proc/cpuinfo&quot;</span><span class="p">},</span>
 <span class="p">})</span>
 <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"result: "</span> <span class="o">..</span> <span class="n">r</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;result: &quot;</span> <span class="o">..</span> <span class="n">r</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="n">end</span>
 </pre></div>
 </div>
@@ -590,10 +600,10 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">expand-text</span> <span class="pre">&lt;string&gt;</span></code></dt><dd><p>对参数进行属性扩展，并返回扩展后的字符串。这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。（见 <a class="reference internal" href="#id15">属性扩展</a> ）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">expand-path</span> <span class="pre">"&lt;string&gt;"</span></code></dt><dd><p>将一个路径的double-tilde占位符扩展为一个特定平台的路径。与 <code class="docutils literal notranslate"><span class="pre">expand-text</span></code> 一样，这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">expand-path</span> <span class="pre">&quot;&lt;string&gt;&quot;</span></code></dt><dd><p>将一个路径的double-tilde占位符扩展为一个特定平台的路径。与 <code class="docutils literal notranslate"><span class="pre">expand-text</span></code> 一样，这只能通过client API或脚本中的 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 来使用。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
-<p><code class="docutils literal notranslate"><span class="pre">mp.osd_message(mp.command_native({"expand-path",</span> <span class="pre">"~~home/"}))</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">mp.osd_message(mp.command_native({&quot;expand-path&quot;,</span> <span class="pre">&quot;~~home/&quot;}))</span></code></p>
 <p>这一行Lua将在OSD上显示用户的mpv设置目录的位置。</p>
 </div>
 </dd>
@@ -660,7 +670,7 @@
 </dl>
 </section>
 <section id="id7">
-<h2>可能变更的输入命令<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
+<h2>可能变更的输入命令<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">af</span> <span class="pre">&lt;operation&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>变更音频滤镜链。参见 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 命令。</p>
 </dd>
@@ -673,7 +683,7 @@
 <dt>&lt;add&gt;</dt><dd><p>将新的滤镜链追加到之前的滤镜链后方</p>
 </dd>
 <dt>&lt;toggle&gt;</dt><dd><p>检查指定的滤镜（有准确的参数）是否已经存在视频滤镜链中。如果存在，移除该滤镜。如果不存在，则追加该滤镜（如果多个滤镜被传递到命令中，逐个滤镜执行）</p>
-<p>一个特殊的变量是把它和标签结合起来，用 <code class="docutils literal notranslate"><span class="pre">@name</span></code> 不带滤镜名称和参数作为滤镜条目。这样就可以切换启用/禁用标志。</p>
+<p>一个特殊的变量是把它和标签结合起来，用 <code class="docutils literal notranslate"><span class="pre">&#64;name</span></code> 不带滤镜名称和参数作为滤镜条目。这样就可以切换启用/禁用标志。</p>
 </dd>
 <dt>&lt;remove&gt;</dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">toggle</span></code> ，但始终移除滤镜链上的指定滤镜</p>
 </dd>
@@ -682,27 +692,27 @@
 <dt>&lt;clr&gt;</dt><dd><p>移除所有滤镜。注意，和其他子命令一样，这并不能控制自动插入的滤镜</p>
 </dd>
 </dl>
-<p>参数总是需要的。例如，如果 <code class="docutils literal notranslate"><span class="pre">clr</span></code> ，使用 <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">clr</span> <span class="pre">""</span></code></p>
-<p>你可以通过在滤镜前加上 <code class="docutils literal notranslate"><span class="pre">@name:</span></code> （其中 <code class="docutils literal notranslate"><span class="pre">name</span></code> 是用户选择的任意标识符）为滤镜指定标签。标签可以用来在所有的滤镜链修改命令中用名字来指代滤镜。对于 <code class="docutils literal notranslate"><span class="pre">add</span></code> 来说，使用一个已经使用过的标签将取代现有的滤镜。</p>
+<p>参数总是需要的。例如，如果 <code class="docutils literal notranslate"><span class="pre">clr</span></code> ，使用 <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">clr</span> <span class="pre">&quot;&quot;</span></code></p>
+<p>你可以通过在滤镜前加上 <code class="docutils literal notranslate"><span class="pre">&#64;name:</span></code> （其中 <code class="docutils literal notranslate"><span class="pre">name</span></code> 是用户选择的任意标识符）为滤镜指定标签。标签可以用来在所有的滤镜链修改命令中用名字来指代滤镜。对于 <code class="docutils literal notranslate"><span class="pre">add</span></code> 来说，使用一个已经使用过的标签将取代现有的滤镜。</p>
 <p><code class="docutils literal notranslate"><span class="pre">vf</span></code> 命令在修改滤镜链后在OSD上显示所请求的滤镜列表。这大致相当于 <code class="docutils literal notranslate"><span class="pre">show-text</span> <span class="pre">${vf}</span></code> 。注意，用于格式转换的自动插入的滤镜不显示在列表中，只显示用户请求的内容。</p>
 <p>通常情况下，命令会检查视频链是否重新创建成功，失败时将撤销操作。如果命令在视频设置之前运行（如果命令在打开文件后，在视频帧被解码之前立即运行，就可能发生），这个检查就不能运行。那么就可能发生创建视频链失败的情况。</p>
 <div class="admonition-input-conf admonition">
 <p class="admonition-title">input.conf的示例</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">vf</span> <span class="pre">set</span> <span class="pre">vflip</span></code> <code class="docutils literal notranslate"><span class="pre">a</span></code> 键把视频上下颠倒</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">vf</span> <span class="pre">set</span> <span class="pre">""</span></code> <code class="docutils literal notranslate"><span class="pre">b</span></code> 键移除所有视频滤镜</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">vf</span> <span class="pre">set</span> <span class="pre">&quot;&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">b</span></code> 键移除所有视频滤镜</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">vf</span> <span class="pre">toggle</span> <span class="pre">gradfun</span></code> <code class="docutils literal notranslate"><span class="pre">c</span></code> 键切换去色带</p></li>
 </ul>
 </div>
 <div class="admonition- admonition">
 <p class="admonition-title">如何在运行时切换禁用的滤镜的示例</p>
 <ul class="simple">
-<li><p>在 <code class="docutils literal notranslate"><span class="pre">mpv.conf</span></code> 中加入类似 <code class="docutils literal notranslate"><span class="pre">vf-add=@deband:!gradfun</span></code> 的内容。 <code class="docutils literal notranslate"><span class="pre">@deband:</span></code> 是标签，是用户为这个滤镜条目任意起的名字。滤镜名称前的 <code class="docutils literal notranslate"><span class="pre">!</span></code> 默认情况下禁用该过滤器。之后的内容是正常的滤镜名称和可能的滤镜参数，就像正常的 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 语法一样。</p></li>
-<li><p>在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中添加 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">vf</span> <span class="pre">toggle</span> <span class="pre">@deband</span></code> 。当按下 <code class="docutils literal notranslate"><span class="pre">a</span></code> 键时，这将切换标签为 <code class="docutils literal notranslate"><span class="pre">deband</span></code> 的过滤器的 “disable” 标志。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">mpv.conf</span></code> 中加入类似 <code class="docutils literal notranslate"><span class="pre">vf-add=&#64;deband:!gradfun</span></code> 的内容。 <code class="docutils literal notranslate"><span class="pre">&#64;deband:</span></code> 是标签，是用户为这个滤镜条目任意起的名字。滤镜名称前的 <code class="docutils literal notranslate"><span class="pre">!</span></code> 默认情况下禁用该过滤器。之后的内容是正常的滤镜名称和可能的滤镜参数，就像正常的 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 语法一样。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中添加 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">vf</span> <span class="pre">toggle</span> <span class="pre">&#64;deband</span></code> 。当按下 <code class="docutils literal notranslate"><span class="pre">a</span></code> 键时，这将切换标签为 <code class="docutils literal notranslate"><span class="pre">deband</span></code> 的过滤器的 “disable” 标志。</p></li>
 </ul>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">cycle-values</span> <span class="pre">[&lt;"!reverse"&gt;]</span> <span class="pre">&lt;property&gt;</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">[&lt;value2&gt;</span> <span class="pre">[...]]</span></code></dt><dd><p>循环一系列值的列表。每次调用该命令将把指定的属性设置为列表中的下一个值。该命令将使用属性/选项的当前值，并利用它来确定当前在值列表中的位置。一旦找到它，将设置为列表中的下一个值（如果需要的话，将回到第一个项目）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">cycle-values</span> <span class="pre">[&lt;&quot;!reverse&quot;&gt;]</span> <span class="pre">&lt;property&gt;</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">[&lt;value2&gt;</span> <span class="pre">[...]]</span></code></dt><dd><p>循环一系列值的列表。每次调用该命令将把指定的属性设置为列表中的下一个值。该命令将使用属性/选项的当前值，并利用它来确定当前在值列表中的位置。一旦找到它，将设置为列表中的下一个值（如果需要的话，将回到第一个项目）。</p>
 <p>这个命令的参数数量不定，不能与命名参数一起使用。</p>
 <p>特殊参数 <code class="docutils literal notranslate"><span class="pre">!reverse</span></code> 可以用来反向循环值列表。唯一的好处是，在添加第二个按键绑定的时候，你不需要自己反转值列表进行循环。</p>
 </dd>
@@ -741,7 +751,7 @@
 <p>这有以下命名的参数。它们的顺序是不保证的，所以你应该总是用命名的参数来调用它们，见 <a class="reference internal" href="#id5">命名参数</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">id</span></code> 是一个介于0到63之间的整数，用于识别叠加元素。这个ID可以用来添加多个覆盖部分，通过使用这个命令更新一个已经存在的ID的部分，或者用 <code class="docutils literal notranslate"><span class="pre">overlay-remove</span></code> 来删除一个部分。使用一个先前未使用的ID将添加一个新的覆盖件，而重复使用一个ID将更新它。</p>
 <p><code class="docutils literal notranslate"><span class="pre">x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">y</span></code> 指定OSD应该显示的位置。</p>
-<p><code class="docutils literal notranslate"><span class="pre">file</span></code> 指定从原始图像数据读取的文件。它可以是以 <code class="docutils literal notranslate"><span class="pre">@</span></code> 为前缀的数字UNIX文件描述符（例如： <code class="docutils literal notranslate"><span class="pre">@4</span></code> ），也可以是文件名。文件将被 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 映射到内存中，被复制，并在命令返回前解除映射（在mpv 0.18.1中改变）。</p>
+<p><code class="docutils literal notranslate"><span class="pre">file</span></code> 指定从原始图像数据读取的文件。它可以是以 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 为前缀的数字UNIX文件描述符（例如： <code class="docutils literal notranslate"><span class="pre">&#64;4</span></code> ），也可以是文件名。文件将被 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 映射到内存中，被复制，并在命令返回前解除映射（在mpv 0.18.1中改变）。</p>
 <p>也可以通过传递内存地址作为整数前缀的 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 字符来传递原始内存地址作为位图内存使用。在这里传递错误的东西会使玩家崩溃。这种模式在与libmpv一起使用时可能很有用。 <code class="docutils literal notranslate"><span class="pre">offset</span></code> 参数被简单地添加到内存地址中（从mpv 0.8.0开始，之前被忽略）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">offset</span></code> 是源文件中第一个像素的字节偏移。(目前的实现总是将整个文件从位置0到图像的末端进行mmap，所以应该避免大的偏移量。在mpv 0.8.0之前，偏移量实际上是直接传递给 <code class="docutils literal notranslate"><span class="pre">mmap</span></code> 的，但为了使使用更方便，它被改变了）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">fmt</span></code> 是一个标识图像格式的字符串。目前，只有 <code class="docutils literal notranslate"><span class="pre">bgra</span></code> 被定义。这种格式每个像素有4个字节，每个组件有8位。最不重要的8位是蓝色，最重要的8位是阿尔法（在小恩典中，组件是B-G-R-A，B是第一个字节）。这使用了预乘α：每个颜色分量都已经与α分量相乘。这意味着每个分量的数值都等于或小于alpha分量。(违反这个规则会导致不同的VO的不同结果：由于混合破碎的alpha值而导致的数值溢出被认为是不应该发生的事情，因此，在这种情况下，实现并不能确保你得到可预测的行为)。</p>
@@ -876,7 +886,7 @@
 </dl>
 <p>未记录的命令： <code class="docutils literal notranslate"><span class="pre">ao-reload</span></code> （实验性/内部）。</p>
 <section id="list-of-events">
-<h3>List of events<a class="headerlink" href="#list-of-events" title="永久链接至标题">#</a></h3>
+<h3>List of events<a class="headerlink" href="#list-of-events" title="此标题的永久链接">#</a></h3>
 <p>这是一个部分的事件列表。本节描述了 <code class="docutils literal notranslate"><span class="pre">mpv_event_to_node()</span></code> 返回的内容，也就是脚本API和JSON IPC看到的内容。注意，C语言API有单独的C语言级别的声明与 <code class="docutils literal notranslate"><span class="pre">mpv_event</span></code> ，可能略有不同。</p>
 <p>请注意，事件是异步的：当事件被传递给脚本和其他客户端时，播放器核心继续运行。在某些情况下，你可以用钩子来强制执行同步执行。</p>
 <p>所有的事件都可以有以下字段：</p>
@@ -988,7 +998,7 @@
 <p>以下事件也会发生，但已deprecated。 <code class="docutils literal notranslate"><span class="pre">idle</span></code>, <code class="docutils literal notranslate"><span class="pre">tick</span></code> 使用 <code class="docutils literal notranslate"><span class="pre">mpv_observe_property()</span></code>  (Lua:  <code class="docutils literal notranslate"><span class="pre">mp.observe_property()</span></code> ) 来代替。</p>
 </section>
 <section id="hooks">
-<h3>Hooks<a class="headerlink" href="#hooks" title="永久链接至标题">#</a></h3>
+<h3>Hooks<a class="headerlink" href="#hooks" title="此标题的永久链接">#</a></h3>
 <p>钩子是玩家核心和脚本或类似的东西之间的同步事件。这适用于客户端API（包括Lua脚本接口）。通常情况下，事件应该是异步的，而钩子API提供了一种笨拙而不明显的方式来处理需要更严格协调的事件。没有做出任何API稳定性的保证。不完全遵循协议会使玩家随机冻结。基本上，没有人应该使用这个API。</p>
 <p>C语言的API在头文件里有描述。Lua API在Lua部分有描述。</p>
 <p>在对API客户端实际调用钩子之前，它将尝试为所有在钩子之前被改变的观察到的属性返回新的值。这可能使应用程序更容易通过注册钩子在属性变化通知之间设置定义的 “障碍”。(这意味着这些钩子会有效果，即使你什么都不做，让它们立即继续。)</p>
@@ -1015,7 +1025,7 @@
 </section>
 </section>
 <section id="id8">
-<h2>输入命令前缀<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<h2>输入命令前缀<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
 <p>这些前缀放在按键名和实际命令之间。可以指定多个前缀。它们之间用空格隔开。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">osd-auto</span></code></dt><dd><p>使用该命令的默认行为。这是 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中命令的默认值。一些libmpv/scripting/IPC APIs不使用它作为默认，而是使用 <code class="docutils literal notranslate"><span class="pre">no-osd</span></code></p>
@@ -1028,7 +1038,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">osd-msg-bar</span></code></dt><dd><p>结合osd-bar和osd-msg。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">raw</span></code></dt><dd><p>不在字符串参数中展开属性（如 <code class="docutils literal notranslate"><span class="pre">"${property-name}"</span></code> ）。这是一些libmpv/scripting/IPC APIs的默认设置。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">raw</span></code></dt><dd><p>不在字符串参数中展开属性（如 <code class="docutils literal notranslate"><span class="pre">&quot;${property-name}&quot;</span></code> ）。这是一些libmpv/scripting/IPC APIs的默认设置。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">expand-properties</span></code></dt><dd><p>所有的字符串参数都按照 <a class="reference internal" href="#id15">属性扩展</a> 中的描述进行扩展。这是 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中命令的默认设置。</p>
 </dd>
@@ -1042,7 +1052,7 @@
 <p>所有的osd前缀仍然被全局的 <code class="docutils literal notranslate"><span class="pre">--osd-level</span></code> 设置所覆盖。</p>
 </section>
 <section id="id9">
-<h2>同步与异步<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h2>
+<h2>同步与异步<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">async</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 的前缀只关系到命令发出方如何等待命令的完成。通常情况下，它不会影响命令本身的表现方式。有以下几种情况：</p>
 <ul class="simple">
 <li><p>正常的input.conf命令总是以异步方式运行。慢速运行的命令排队或并行运行。</p></li>
@@ -1056,13 +1066,13 @@
 <p>目前，以下命令在同步与异步下有不同的等待特性：sub-add, audio-add, sub-reload, audio-reload, rescan-external-files, screenshot, screenshot-to-file, dump-cache, ab-loop-dump-cache</p>
 </section>
 <section id="id10">
-<h2>异步命令详情<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
+<h2>异步命令详情<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
 <p>在API层面上，每个异步命令都与启动它的上下文绑定。例如，由 <code class="docutils literal notranslate"><span class="pre">mpv_command_async</span></code> 启动的异步命令被绑定到传递给函数的 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 。只有这个 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 能收到完成通知（ <code class="docutils literal notranslate"><span class="pre">MPV_EVENT_COMMAND_REPLY</span></code> ），而且只有这个句柄能直接中止仍在运行的命令。如果 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code> 被销毁，由它启动的任何仍在运行的异步命令都会被终止。</p>
 <p>脚本API和JSON IPC给每个脚本/连接提供了自己的隐式 <code class="docutils literal notranslate"><span class="pre">mpv_handle</span></code></p>
 <p>如果播放器被关闭，核心可能会自行中止所有悬而未决的异步命令（就像代表API用户对每个悬而未决的命令强制调用 <code class="docutils literal notranslate"><span class="pre">mpv_abort_async_command()</span></code> 。这发生在发送 <code class="docutils literal notranslate"><span class="pre">MPV_EVENT_SHUTDOWN</span></code> 的同时，而且没有办法阻止它。</p>
 </section>
 <section id="id11">
-<h2>输入区<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<h2>输入区<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
 <p>输入区将一套绑定分组，并一次性启用或禁用它们。在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，每个按键的绑定都被分配到一个输入区，而不是实际有明确的文本区。</p>
 <p>另参见： <code class="docutils literal notranslate"><span class="pre">enable-section</span></code> 和 <code class="docutils literal notranslate"><span class="pre">disable-section</span></code> 命令。</p>
 <p>预定义的绑定：</p>
@@ -1074,13 +1084,13 @@
 </dl>
 </section>
 <section id="id12">
-<h2>属性<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h2>
+<h2>属性<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h2>
 <p>属性被用于在运行时设置mpv选项，或者查询任意信息。它们可以用 <code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">cycle</span></code> 命令操作，用 <code class="docutils literal notranslate"><span class="pre">show-text</span></code> 检索，或者其它任何使用属性扩展的方法。(参见 <a class="reference internal" href="#id15">属性扩展</a> ）。</p>
 <p>属性名称用RW注释的，表示该属性通常是可写的。</p>
 <p>如果一个选项被引用，该属性通常会采取/返回与该选项完全相同的值。在这些情况下，属性只是一种在运行时改变选项的方法。</p>
 </section>
 <section id="id13">
-<h2>属性列表<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h2>
+<h2>属性列表<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>大多数选项也可以通过属性在运行时设置。只需从选项名称中移除前面的 <code class="docutils literal notranslate"><span class="pre">--</span></code> 。下面没有记录这些内容，参见 <a href="#id27"><span class="problematic" id="id28">`选项`_</span></a> 。只有那些不存在同名的选项的属性，或者与选项有非常不同的行为的属性才会在下面记录。</p>
@@ -1192,9 +1202,9 @@
 <p>当用client API使用 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">edition</span><span class="p">)</span>
-        <span class="s2">"id"</span>                <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"title"</span>             <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"default"</span>           <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;id&quot;</span>                <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;title&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;default&quot;</span>           <span class="n">MPV_FORMAT_FLAG</span>
 </pre></div>
 </div>
 </dd>
@@ -1227,7 +1237,7 @@
 <p>每一章的元数据是非常罕见的。通常情况下，只有章节名称（ <code class="docutils literal notranslate"><span class="pre">title</span></code> ）被设置。</p>
 <p>为了访问其它信息，如章节的开始，参见 <code class="docutils literal notranslate"><span class="pre">chapter-list</span></code> 属性。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">vf-metadata/&lt;filter-label&gt;</span></code></dt><dd><p>由视频滤镜添加的元数据。通过滤镜标签获取，如果没有使用 <code class="docutils literal notranslate"><span class="pre">@filter-label:</span></code> 语法明确指定，将是 <code class="docutils literal notranslate"><span class="pre">&lt;filter-name&gt;NN</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">vf-metadata/&lt;filter-label&gt;</span></code></dt><dd><p>由视频滤镜添加的元数据。通过滤镜标签获取，如果没有使用 <code class="docutils literal notranslate"><span class="pre">&#64;filter-label:</span></code> 语法明确指定，将是 <code class="docutils literal notranslate"><span class="pre">&lt;filter-name&gt;NN</span></code></p>
 <p>工作原理类似于 <code class="docutils literal notranslate"><span class="pre">metadata</span></code> 属性。它允许同样的访问方法（使用子属性）。</p>
 <p>这种元数据的一个例子是由 <code class="docutils literal notranslate"><span class="pre">--vf=lavfi=cropdetect</span></code> 添加的剪裁参数。</p>
 </dd>
@@ -1259,18 +1269,18 @@
 <p><code class="docutils literal notranslate"><span class="pre">raw-input-rate</span></code> 是网络层（或任何其他层级向字节的输入层）的估计输入率，单位是字节每秒。可能不准确或丢失。</p>
 <p>当用client API用 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_MAP</span>
-    <span class="s2">"seekable-ranges"</span>   <span class="n">MPV_FORMAT_NODE_ARRAY</span>
+    <span class="s2">&quot;seekable-ranges&quot;</span>   <span class="n">MPV_FORMAT_NODE_ARRAY</span>
         <span class="n">MPV_FORMAT_NODE_MAP</span>
-            <span class="s2">"start"</span>             <span class="n">MPV_FORMAT_DOUBLE</span>
-            <span class="s2">"end"</span>               <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"bof-cached"</span>        <span class="n">MPV_FORMAT_FLAG</span>
-    <span class="s2">"eof-cached"</span>        <span class="n">MPV_FORMAT_FLAG</span>
-    <span class="s2">"fw-bytes"</span>          <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"file-cache-bytes"</span>  <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"cache-end"</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"reader-pts"</span>        <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"cache-duration"</span>    <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"raw-input-rate"</span>    <span class="n">MPV_FORMAT_INT64</span>
+            <span class="s2">&quot;start&quot;</span>             <span class="n">MPV_FORMAT_DOUBLE</span>
+            <span class="s2">&quot;end&quot;</span>               <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;bof-cached&quot;</span>        <span class="n">MPV_FORMAT_FLAG</span>
+    <span class="s2">&quot;eof-cached&quot;</span>        <span class="n">MPV_FORMAT_FLAG</span>
+    <span class="s2">&quot;fw-bytes&quot;</span>          <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;file-cache-bytes&quot;</span>  <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;cache-end&quot;</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;reader-pts&quot;</span>        <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;cache-duration&quot;</span>    <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;raw-input-rate&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
 </pre></div>
 </div>
 <p>其他字段（将来可能被改变或删除）：</p>
@@ -1323,11 +1333,11 @@
 </dl>
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_MAP</span>
-    <span class="s2">"format"</span>            <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"samplerate"</span>        <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"channels"</span>          <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"channel-count"</span>     <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"hr-channels"</span>       <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;format&quot;</span>            <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;samplerate&quot;</span>        <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;channels&quot;</span>          <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;channel-count&quot;</span>     <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;hr-channels&quot;</span>       <span class="n">MPV_FORMAT_STRING</span>
 </pre></div>
 </div>
 </dd>
@@ -1394,25 +1404,25 @@
 </dl>
 <p>当使用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或者用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_MAP</span>
-    <span class="s2">"pixelformat"</span>       <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"hw-pixelformat"</span>    <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"w"</span>                 <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"h"</span>                 <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"dw"</span>                <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"dh"</span>                <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"aspect"</span>            <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"par"</span>               <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"colormatrix"</span>       <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"colorlevels"</span>       <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"primaries"</span>         <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"gamma"</span>             <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"sig-peak"</span>          <span class="n">MPV_FORMAT_DOUBLE</span>
-    <span class="s2">"light"</span>             <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"chroma-location"</span>   <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"rotate"</span>            <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"stereo-in"</span>         <span class="n">MPV_FORMAT_STRING</span>
-    <span class="s2">"average-bpp"</span>       <span class="n">MPV_FORMAT_INT64</span>
-    <span class="s2">"alpha"</span>             <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;pixelformat&quot;</span>       <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;hw-pixelformat&quot;</span>    <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;w&quot;</span>                 <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;h&quot;</span>                 <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;dw&quot;</span>                <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;dh&quot;</span>                <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;aspect&quot;</span>            <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;par&quot;</span>               <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;colormatrix&quot;</span>       <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;colorlevels&quot;</span>       <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;primaries&quot;</span>         <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;gamma&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;sig-peak&quot;</span>          <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;light&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;chroma-location&quot;</span>   <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;rotate&quot;</span>            <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;stereo-in&quot;</span>         <span class="n">MPV_FORMAT_STRING</span>
+    <span class="s2">&quot;average-bpp&quot;</span>       <span class="n">MPV_FORMAT_INT64</span>
+    <span class="s2">&quot;alpha&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
 </pre></div>
 </div>
 </dd>
@@ -1552,11 +1562,11 @@
 <p>当client API使用 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或者用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">playlist</span> <span class="n">entry</span><span class="p">)</span>
-        <span class="s2">"filename"</span>  <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"current"</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">(</span><span class="n">might</span> <span class="n">be</span> <span class="n">missing</span><span class="p">;</span> <span class="n">since</span> <span class="n">mpv</span> <span class="mf">0.7.0</span><span class="p">)</span>
-        <span class="s2">"playing"</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">(</span><span class="n">same</span><span class="p">)</span>
-        <span class="s2">"title"</span>     <span class="n">MPV_FORMAT_STRING</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
-        <span class="s2">"id"</span>        <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;filename&quot;</span>  <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;current&quot;</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">(</span><span class="n">might</span> <span class="n">be</span> <span class="n">missing</span><span class="p">;</span> <span class="n">since</span> <span class="n">mpv</span> <span class="mf">0.7.0</span><span class="p">)</span>
+        <span class="s2">&quot;playing&quot;</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">(</span><span class="n">same</span><span class="p">)</span>
+        <span class="s2">&quot;title&quot;</span>     <span class="n">MPV_FORMAT_STRING</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+        <span class="s2">&quot;id&quot;</span>        <span class="n">MPV_FORMAT_INT64</span>
 </pre></div>
 </div>
 </dd>
@@ -1623,36 +1633,36 @@
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">track</span><span class="p">)</span>
-        <span class="s2">"id"</span>                <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"type"</span>              <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"src-id"</span>            <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"title"</span>             <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"lang"</span>              <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"image"</span>             <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"albumart"</span>          <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"default"</span>           <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"forced"</span>            <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"selected"</span>          <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"main-selection"</span>    <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"external"</span>          <span class="n">MPV_FORMAT_FLAG</span>
-        <span class="s2">"external-filename"</span> <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"codec"</span>             <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"ff-index"</span>          <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"decoder-desc"</span>      <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"demux-w"</span>           <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-h"</span>           <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-channel-count"</span> <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-channels"</span>    <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"demux-samplerate"</span>  <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-fps"</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
-        <span class="s2">"demux-bitrate"</span>     <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-rotation"</span>    <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"demux-par"</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
-        <span class="s2">"audio-channels"</span>    <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"replaygain-track-peak"</span> <span class="n">MPV_FORMAT_DOUBLE</span>
-        <span class="s2">"replaygain-track-gain"</span> <span class="n">MPV_FORMAT_DOUBLE</span>
-        <span class="s2">"replaygain-album-peak"</span> <span class="n">MPV_FORMAT_DOUBLE</span>
-        <span class="s2">"replaygain-album-gain"</span> <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;id&quot;</span>                <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;type&quot;</span>              <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;src-id&quot;</span>            <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;title&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;lang&quot;</span>              <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;image&quot;</span>             <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;albumart&quot;</span>          <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;default&quot;</span>           <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;forced&quot;</span>            <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;selected&quot;</span>          <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;main-selection&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;external&quot;</span>          <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;external-filename&quot;</span> <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;codec&quot;</span>             <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;ff-index&quot;</span>          <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;decoder-desc&quot;</span>      <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;demux-w&quot;</span>           <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-h&quot;</span>           <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-channel-count&quot;</span> <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-channels&quot;</span>    <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;demux-samplerate&quot;</span>  <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-fps&quot;</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;demux-bitrate&quot;</span>     <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-rotation&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-par&quot;</span>         <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;audio-channels&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;replaygain-track-peak&quot;</span> <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;replaygain-track-gain&quot;</span> <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;replaygain-album-peak&quot;</span> <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;replaygain-album-gain&quot;</span> <span class="n">MPV_FORMAT_DOUBLE</span>
 </pre></div>
 </div>
 </dd>
@@ -1674,8 +1684,8 @@
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性，或用Lua  <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">chapter</span><span class="p">)</span>
-        <span class="s2">"title"</span> <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"time"</span>  <span class="n">MPV_FORMAT_DOUBLE</span>
+        <span class="s2">&quot;title&quot;</span> <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;time&quot;</span>  <span class="n">MPV_FORMAT_DOUBLE</span>
 </pre></div>
 </div>
 </dd>
@@ -1683,12 +1693,12 @@
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="nb">filter</span> <span class="n">entry</span><span class="p">)</span>
-        <span class="s2">"name"</span>      <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"label"</span>     <span class="n">MPV_FORMAT_STRING</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
-        <span class="s2">"enabled"</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
-        <span class="s2">"params"</span>    <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
-            <span class="s2">"key"</span>   <span class="n">MPV_FORMAT_STRING</span>
-            <span class="s2">"value"</span> <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;name&quot;</span>      <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;label&quot;</span>     <span class="n">MPV_FORMAT_STRING</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
+        <span class="s2">&quot;enabled&quot;</span>   <span class="n">MPV_FORMAT_FLAG</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
+        <span class="s2">&quot;params&quot;</span>    <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">[</span><span class="n">optional</span><span class="p">]</span>
+            <span class="s2">&quot;key&quot;</span>   <span class="n">MPV_FORMAT_STRING</span>
+            <span class="s2">&quot;value&quot;</span> <span class="n">MPV_FORMAT_STRING</span>
 </pre></div>
 </div>
 <p>也可以用这种格式来写入属性。</p>
@@ -1709,7 +1719,7 @@
 <p class="admonition-title">示例</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--osd-msg3='This</span> <span class="pre">is</span> <span class="pre">${osd-ass-cc/0}{\\b1}bold</span> <span class="pre">text'</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">show-text</span> <span class="pre">"This</span> <span class="pre">is</span> <span class="pre">${osd-ass-cc/0}{\\b1}bold</span> <span class="pre">text"</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show-text</span> <span class="pre">&quot;This</span> <span class="pre">is</span> <span class="pre">${osd-ass-cc/0}{\\b1}bold</span> <span class="pre">text&quot;</span></code></p></li>
 </ul>
 </div>
 <p>任何由libass理解的ASS覆写标签都可以使用。</p>
@@ -1740,14 +1750,14 @@
 </dl>
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_MAP</span>
-<span class="s2">"TYPE"</span> <span class="n">MPV_FORMAT_NODE_ARRAY</span>
+<span class="s2">&quot;TYPE&quot;</span> <span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span>
-        <span class="s2">"desc"</span>    <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"last"</span>    <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"avg"</span>     <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"peak"</span>    <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"count"</span>   <span class="n">MPV_FORMAT_INT64</span>
-        <span class="s2">"samples"</span> <span class="n">MPV_FORMAT_NODE_ARRAY</span>
+        <span class="s2">&quot;desc&quot;</span>    <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;last&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;avg&quot;</span>     <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;peak&quot;</span>    <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;count&quot;</span>   <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;samples&quot;</span> <span class="n">MPV_FORMAT_NODE_ARRAY</span>
              <span class="n">MP_FORMAT_INT64</span>
 </pre></div>
 </div>
@@ -1768,8 +1778,8 @@
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询属性时，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">device</span> <span class="n">entry</span><span class="p">)</span>
-        <span class="s2">"name"</span>          <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"description"</span>   <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;name&quot;</span>          <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;description&quot;</span>   <span class="n">MPV_FORMAT_STRING</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">name</span></code> 是要传递给 <code class="docutils literal notranslate"><span class="pre">--audio-device</span></code> 选项的东西（通常是一个相当神秘的音频API特定ID），而 <code class="docutils literal notranslate"><span class="pre">description</span></code> 是人性化的可读的自由格式文本。如果没有描述，或者描述本来就是一个空字符串，那么描述将被设置为设备名称（减去mpv特有的 <code class="docutils literal notranslate"><span class="pre">&lt;driver&gt;/</span></code> 前缀）。</p>
@@ -1807,9 +1817,9 @@
 <p>当用client API的 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性，或用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，将返回一个mpv_node，内容如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
     <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">decoder</span> <span class="n">entry</span><span class="p">)</span>
-        <span class="s2">"codec"</span>         <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"driver"</span>        <span class="n">MPV_FORMAT_STRING</span>
-        <span class="s2">"description"</span>   <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;codec&quot;</span>         <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;driver&quot;</span>        <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;description&quot;</span>   <span class="n">MPV_FORMAT_STRING</span>
 </pre></div>
 </div>
 </dd>
@@ -1873,7 +1883,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">priority</span></code></dt><dd><p>一个数字。数值高的绑定比数值低的绑定优先。如果该值为负数，这个绑定是未激活的，不会被输入触发。注意，mpv内部不使用这个值，在某些情况下，绑定的匹配工作可能略有不同。此外，这个值是动态的，可以在运行时改变。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">comment</span></code></dt><dd><p>如果存在的话，在同一行的命令后面的注释（例如，input.conf条目 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">cycle</span> <span class="pre">bla</span> <span class="pre">#</span> <span class="pre">toggle</span> <span class="pre">bla</span></code> 会产生一个条目 <code class="docutils literal notranslate"><span class="pre">comment</span> <span class="pre">=</span> <span class="pre">"toggle</span> <span class="pre">bla",</span> <span class="pre">cmd</span> <span class="pre">=</span> <span class="pre">"cycle</span> <span class="pre">bla"</span></code> ）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">comment</span></code></dt><dd><p>如果存在的话，在同一行的命令后面的注释（例如，input.conf条目 <code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">cycle</span> <span class="pre">bla</span> <span class="pre">#</span> <span class="pre">toggle</span> <span class="pre">bla</span></code> 会产生一个条目 <code class="docutils literal notranslate"><span class="pre">comment</span> <span class="pre">=</span> <span class="pre">&quot;toggle</span> <span class="pre">bla&quot;,</span> <span class="pre">cmd</span> <span class="pre">=</span> <span class="pre">&quot;cycle</span> <span class="pre">bla&quot;</span></code> ）</p>
 </dd>
 </dl>
 <p>这个属性是只读的，不支持更改提醒。目前，除了脚本添加或删除自己的绑定外，没有任何机制可以在运行时改变按键绑定。</p>
@@ -1881,7 +1891,7 @@
 </dl>
 </section>
 <section id="id14">
-<h2>选项和属性之间的不一致处<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h2>
+<h2>选项和属性之间的不一致处<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h2>
 <p>你可以把（几乎）所有的选项作为属性来访问，尽管有些属性有一些注意事项（由于历史原因）。</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">vid</span></code>, <code class="docutils literal notranslate"><span class="pre">aid</span></code>, <code class="docutils literal notranslate"><span class="pre">sid</span></code></dt><dd><p>当播放处于激活状态时，这些属性返回实际激活的轨道。例如，如果你设置了 <code class="docutils literal notranslate"><span class="pre">aid=5</span></code> ，而当前播放的文件不包含ID为5的音轨， <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性将返回 <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
@@ -1899,12 +1909,12 @@
 </dl>
 </section>
 <section id="id15">
-<h2>属性扩展<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h2>
+<h2>属性扩展<a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h2>
 <p>所有输入命令的字符串参数以及某些选项（如 <code class="docutils literal notranslate"><span class="pre">--term-playing-msg</span></code> ）都要符合属性扩展。需要注意的是，属性扩展在一些地方不起作用，例如，数字参数是预期的（例如， <code class="docutils literal notranslate"><span class="pre">add</span></code> 命令不做属性扩展。 <code class="docutils literal notranslate"><span class="pre">set</span></code> 命令是一个例外，而非一般规则）。</p>
 <div class="admonition-input-conf admonition">
 <p class="admonition-title">input.conf示例</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">show-text</span> <span class="pre">"Filename:</span> <span class="pre">${filename}"</span></code></dt><dd><p>当按下 <code class="docutils literal notranslate"><span class="pre">i</span></code> 键时显示当前文件的文件名。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">show-text</span> <span class="pre">&quot;Filename:</span> <span class="pre">${filename}&quot;</span></code></dt><dd><p>当按下 <code class="docutils literal notranslate"><span class="pre">i</span></code> 键时显示当前文件的文件名。</p>
 </dd>
 </dl>
 </div>
@@ -1919,7 +1929,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">${!NAME:STR}</span></code></dt><dd><p>如果不能检索到 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 属性，则扩展为 <code class="docutils literal notranslate"><span class="pre">STR</span></code> （递归）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">${?NAME==VALUE:STR}</span></code></dt><dd><p>如果属性 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 扩展为等于 <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> 的字符串，则扩展为 <code class="docutils literal notranslate"><span class="pre">STR</span></code> （递归）。你可以在 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 前加上 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，以便比较一个属性的原始值（见下文）。如果该属性不可用，或者在检索时发生其他错误，该值永远不会被视为相等。注意， <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> 不能包含任何 <code class="docutils literal notranslate"><span class="pre">:</span></code> 或 <code class="docutils literal notranslate"><span class="pre">}</span></code> 字符。另外，如果有需要，将来可能会增加用 <code class="docutils literal notranslate"><span class="pre">"</span></code> 或 <code class="docutils literal notranslate"><span class="pre">%</span></code> 转义的功能</p>
+<dt><code class="docutils literal notranslate"><span class="pre">${?NAME==VALUE:STR}</span></code></dt><dd><p>如果属性 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 扩展为等于 <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> 的字符串，则扩展为 <code class="docutils literal notranslate"><span class="pre">STR</span></code> （递归）。你可以在 <code class="docutils literal notranslate"><span class="pre">NAME</span></code> 前加上 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，以便比较一个属性的原始值（见下文）。如果该属性不可用，或者在检索时发生其他错误，该值永远不会被视为相等。注意， <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> 不能包含任何 <code class="docutils literal notranslate"><span class="pre">:</span></code> 或 <code class="docutils literal notranslate"><span class="pre">}</span></code> 字符。另外，如果有需要，将来可能会增加用 <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 或 <code class="docutils literal notranslate"><span class="pre">%</span></code> 转义的功能</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">${!NAME==VALUE:STR}</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">?</span></code> 变体相同，但是如果值不相等， <code class="docutils literal notranslate"><span class="pre">STR</span></code> 将被展开（使用与 <code class="docutils literal notranslate"><span class="pre">?</span></code> 相同的语义）</p>
 </dd>
@@ -1939,7 +1949,7 @@
 </div></blockquote>
 </section>
 <section id="id16">
-<h2>原始和格式化的属性<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h2>
+<h2>原始和格式化的属性<a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h2>
 <p>通常情况下，属性被格式化为人性化的可读文本，旨在显示在OSD或终端上。通过在属性名称前加上 <code class="docutils literal notranslate"><span class="pre">=</span></code> ，可以从一个属性中获取未格式化的（原始）值。这些原始值可以被其他程序解析，并遵循与属性相关的选项相同的惯例。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -1985,7 +1995,7 @@
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            目录
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
@@ -2027,8 +2037,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>

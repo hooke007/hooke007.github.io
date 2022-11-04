@@ -1,15 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh_CN">
+<html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
         <title>音频滤镜 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
 
@@ -18,6 +19,10 @@
   body {
     --color-code-background: #f8f8f8;
   --color-code-foreground: black;
+  --color-background-primary: #FFFBE8;
+  --color-highlight-on-target: #007ACC;
+  --color-toc-background: #F5F5F5;
+  --color-toc-item-text: #646776;
   
   }
   @media not print {
@@ -36,10 +41,12 @@
   }
 </style></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -172,6 +179,7 @@
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +200,9 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,7 +217,7 @@
         </div>
         <article role="main">
           <section id="id1">
-<h1>音频滤镜<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<h1>音频滤镜<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
 <p>音频滤镜允许你修改音频流和它的属性。其语法是：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--af=...</span></code></dt><dd><p>设置一连串的音频滤镜。完整的语法参见 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> （ <a href="#id2"><span class="problematic" id="id3">`视频滤镜`_</span></a> ）</p>
@@ -231,22 +241,22 @@
 <p>有效值： 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640.</p>
 <p>特殊值 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 根据输入的声道数选择一个默认的比特率。</p>
 <dl class="field-list simple">
-<dt class="field-odd">1ch</dt>
+<dt class="field-odd">1ch<span class="colon">:</span></dt>
 <dd class="field-odd"><p>96</p>
 </dd>
-<dt class="field-even">2ch</dt>
+<dt class="field-even">2ch<span class="colon">:</span></dt>
 <dd class="field-even"><p>192</p>
 </dd>
-<dt class="field-odd">3ch</dt>
+<dt class="field-odd">3ch<span class="colon">:</span></dt>
 <dd class="field-odd"><p>224</p>
 </dd>
-<dt class="field-even">4ch</dt>
+<dt class="field-even">4ch<span class="colon">:</span></dt>
 <dd class="field-even"><p>384</p>
 </dd>
-<dt class="field-odd">5ch</dt>
+<dt class="field-odd">5ch<span class="colon">:</span></dt>
 <dd class="field-odd"><p>448</p>
 </dd>
-<dt class="field-even">6ch</dt>
+<dt class="field-even">6ch<span class="colon">:</span></dt>
 <dd class="field-even"><p>448</p>
 </dd>
 </dl>
@@ -335,7 +345,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code></dt><dd><p>设置音调比例系数。频率要乘以这个值。</p>
 </dd>
 </dl>
-<p>这个滤镜有许多额外的子选项。你可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=rubberband=help</span></code> 列出它们。这也会显示每个选项的默认值。这里没有记录这些选项，因为它们只是被传递给librubberband。参阅librubberband的文档以了解每个选项的作用： <a class="reference external" href="https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html">https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html</a> （mpv rubberband滤镜的子选项名称和值与librubberband的映射遵循一个简单的模式： <code class="docutils literal notranslate"><span class="pre">"Option"</span> <span class="pre">+</span> <span class="pre">Name</span> <span class="pre">+</span> <span class="pre">Value</span></code> ）</p>
+<p>这个滤镜有许多额外的子选项。你可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=rubberband=help</span></code> 列出它们。这也会显示每个选项的默认值。这里没有记录这些选项，因为它们只是被传递给librubberband。参阅librubberband的文档以了解每个选项的作用： <a class="reference external" href="https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html">https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html</a> （mpv rubberband滤镜的子选项名称和值与librubberband的映射遵循一个简单的模式： <code class="docutils literal notranslate"><span class="pre">&quot;Option&quot;</span> <span class="pre">+</span> <span class="pre">Name</span> <span class="pre">+</span> <span class="pre">Value</span></code> ）</p>
 <p>这个滤镜支持下列 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 命令：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">set-pitch</span></code></dt><dd><p>动态设置 <code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code> 参数。这可以用来在运行时改变播放的音调。注意，速度是用标准的 <code class="docutils literal notranslate"><span class="pre">speed</span></code> 属性控制的，而不是 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 。</p>
@@ -399,8 +409,12 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/translations.js"></script>
     </body>
 </html>
