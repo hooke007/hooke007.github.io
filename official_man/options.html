@@ -3109,6 +3109,8 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--glsl-shader=&lt;file&gt;</span></code></dt><dd><p>CLI/设置文件只是 <code class="docutils literal notranslate"><span class="pre">--glsl-shaders-append</span></code> 的别名。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--glsl-shader-opts=param1=value1,param2=value2,...</span></code></dt><dd><p>指定用于可调节着色器参数的选项。你可以通过在着色器名称前加上 <code class="docutils literal notranslate"><span class="pre">/</span></code> ，例如 <code class="docutils literal notranslate"><span class="pre">shader/param=value</span></code> ，来针对特定命名的着色器。如果没有前缀，参数会影响所有着色器。着色器名称是着色器文件名的基础部分，不带扩展名（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--deband</span></code></dt><dd><p>启用去色带算法。这大大减少了可见的色带、色块和其它量化伪影的数量，代价是使一些最细微的细节变得非常模糊。在实际中，它几乎总是一种改进 —— 禁用它的唯一原因是为了性能。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--deband-iterations=&lt;1..16&gt;</span></code></dt><dd><p>每个采样要执行去色带步骤的数量。每一步都会减少一点带状物，但需要时间来计算。注意，每一步的强度下降得很快，所以较高数字（&gt;4）实际上是无用的（默认： 1）。</p>
