@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
         <title>选项 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -157,7 +157,7 @@
   <span class="sidebar-brand-text">mpv_CFanStation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
-  <input class="sidebar-search" placeholder=搜索 name="q" aria-label="搜索">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -1859,6 +1859,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-rgba-osd-rendering</span></code></dt><dd><p>改变一些视频输出渲染OSD和文本字幕的方式。这并不改变字幕的外观，只对性能有影响。对于支持原生ASS渲染的视频输出（如 <code class="docutils literal notranslate"><span class="pre">gpu</span></code>, <code class="docutils literal notranslate"><span class="pre">vdpau</span></code>, <code class="docutils literal notranslate"><span class="pre">direct3d</span></code> ），这可能会稍快或稍慢，取决于GPU驱动和硬件。对于其它视频输出，这只会使渲染变慢。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--force-render</span></code></dt><dd><p>不论窗口的可见性，强制mpv始终渲染帧。目前只影响X11和Wayland视频输出驱动，因为只有它们具有这种优化（即其它的输出都是不考虑可见性进行渲染）。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-window-position</span></code></dt><dd><p>每当视频参数、视频流或文件有变化时，强制将mpv的视频输出窗口移到默认位置。这曾经是默认行为。目前只影响到X11视频输出驱动。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--no-keepaspect</span></code>, <code class="docutils literal notranslate"><span class="pre">--keepaspect</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">--no-keepaspect</span></code> 会始终将视频拉伸到窗口大小，并禁用窗口管理器的提示的窗口强制长宽比。（在全屏模式下被忽略）</p>
@@ -2972,6 +2974,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wayland-configure-bounds=&lt;yes|no&gt;</span></code></dt><dd><p>控制mpv是否选择进入由合成器发送的configure bounds事件（默认： yes）。这将限制mpv窗口的初始大小，使其达到合成器所期望的最大尺寸。在大多数情况下，这只是为了防止mpv窗口在第一次渲染时大于显示器的尺寸。如果使用configure bounds，这个选项将优先于任何 <code class="docutils literal notranslate"><span class="pre">--autofit</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--geometry</span></code> 类的设置。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--wayland-content-type=&lt;auto|none|photo|video|game&gt;</span></code></dt><dd><p>如果合成器支持，mpv将使用内容类型协议发送一个提示，告诉合成器正在显示什么类型的内容。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> （默认）将自动切换，告诉合成器内容是照片、视频或可能不是，这取决于内部启发式的方法。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wayland-disable-vsync=&lt;yes|no&gt;</span></code></dt><dd><p>为基于Wayland的视频输出禁用mpv的内部垂直同步（默认： no）。当与 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-desync</span></code> <code class="docutils literal notranslate"><span class="pre">--no-audio</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--untimed=yes</span></code> 结合使用时，这对wayland视频输出的基准测试非常有用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wayland-edge-pixels-pointer=&lt;value&gt;</span></code></dt><dd><p>定义边缘边框的大小（默认： 10），以便使用鼠标在wayland上下文中启动client调整大小的events。仅当合成器中没有服务器端装饰时，此选项才能激活。</p>
@@ -3489,7 +3493,7 @@ vec4 hook() {
 </dd>
 <dt>hybrid</dt><dd><p>一种混合方法，对中间色调使用线性色调映射，对高光使用每通道色调映射</p>
 </dd>
-<dt>luma</dt><dd><p>基于亮度的方法，来自ITU-R BT.2446a，包括固定的色域减少，来考量与亮度有关的感知不均匀性（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占）</p>
+<dt>luma</dt><dd><p>基于亮度的方法，来自ITU-R BT.2446a，包括固定的色域减少，来考量与亮度有关的感知不均匀性（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 </dl>
 </dd>
@@ -3503,13 +3507,13 @@ vec4 hook() {
 </dd>
 <dt>desaturate</dt><dd><p>将色域外的颜色向白色去饱和</p>
 </dd>
-<dt>darken</dt><dd><p>线性地使整个图像变暗，然后裁切到颜色体积。与 <code class="docutils literal notranslate"><span class="pre">clip</span></code> 不同，这不会破坏饱和区域的细节，但代价是有时会大大降低输出亮度（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占）</p>
+<dt>darken</dt><dd><p>线性地使整个图像变暗，然后裁切到颜色体积。与 <code class="docutils literal notranslate"><span class="pre">clip</span></code> 不同，这不会破坏饱和区域的细节，但代价是有时会大大降低输出亮度（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--hdr-compute-peak=&lt;auto|yes|no&gt;</span></code></dt><dd><p>计算每一帧HDR峰值和帧平均亮度，而不是依赖标记的元数据。这些值是局部区域以及几帧的平均值，以防止数值抖动太大。这个选项基本上为你提供了动态的、每个场景的色调映射。需要计算着色器，这是一个相当新的OpenGL特性，而且在某些驱动上可能会表现得很糟糕，所以启用时要自己承担风险。如果支持计算着色器和SSBO，特殊值 <code class="docutils literal notranslate"><span class="pre">auto</span></code> （默认）将自动启用HDR峰值计算。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--allow-delayed-peak-detect</span></code></dt><dd><p>当使用 <code class="docutils literal notranslate"><span class="pre">--hdr-compute-peak</span></code> 时，如果对性能有利，允许将检测到的峰值延迟一帧。特别是，当不需要高级渲染时，需要这样做以避免不必要的FBO介入。如果已经有一个indirect传递，例如启用高级缩放时，则没有影响。默认为开。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占，注意 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 始终延迟峰值。）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--allow-delayed-peak-detect</span></code></dt><dd><p>当使用 <code class="docutils literal notranslate"><span class="pre">--hdr-compute-peak</span></code> 时，如果对性能有利，允许将检测到的峰值延迟一帧。特别是，当不需要高级渲染时，需要这样做以避免不必要的FBO介入。如果已经有一个indirect传递，例如启用高级缩放时，则没有影响。默认为开。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占，注意 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 始终延迟峰值。）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--hdr-peak-decay-rate=&lt;1.0..1000.0&gt;</span></code></dt><dd><p>用于HDR峰值检测算法的衰减率（默认： 100.0）。这只与 <code class="docutils literal notranslate"><span class="pre">--hdr-compute-peak</span></code> 启用时有关。更高的值使峰值衰减得更慢，导致更稳定的数值，但代价是更多类似”eye adaptation”的效果（尽管这在一定程度上被 <code class="docutils literal notranslate"><span class="pre">--hdr-scene-threshold</span></code> 缓解）。1.0的值（可能的最低值）可以禁止所有的平均化，这意味着每一帧的值都直接作为测量值使用，但是对于”noisy”源不推荐这样做，因为它可能导致过度的闪烁。（在信号理论方面，这控制了IIR低通滤波器的时间常数”tau”。）</p>
 </dd>
@@ -3785,9 +3789,7 @@ vec4 hook() {
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
