@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="音视频滤镜" href="mpv_filters.html" /><link rel="prev" title="配置预设" href="mpv_profiles.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>快捷键自定义与控制台<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20221124</em></p>
+<p><em>ver.20230212</em></p>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>阅读本文前默认已基本熟悉 mpv.conf 内各参数的用途及含义。<br />
@@ -240,7 +240,7 @@
 </section>
 <section id="id4">
 <h2>1.语法简述<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">&lt;键位绑定（按键名）&gt;   &lt;具体命令&gt;   # 支持行后注释</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">&lt;键位绑定（按键名）&gt;   &lt;具体命令&gt;   # 支持行后注释</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">键位绑定</span></code> 前添加注释符 <code class="docutils literal notranslate"><span class="pre">#</span></code> 即屏蔽该行内容<br />
@@ -253,7 +253,7 @@
 <p>普通按键和一般功能键可单独作为键位绑定</p>
 <p><kbd>a</kbd> <kbd>1</kbd> <kbd>F1</kbd> <kbd>SPACE</kbd><br />
 示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">SPACE   cycle pause   # 切换暂停</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">SPACE   cycle pause   # 切换暂停</span>
 </pre></div>
 </div>
 <p>🔺 编辑键值名时，输入符号时应注意中文输入法的全半角（即用英文字符）</p>
@@ -262,7 +262,7 @@
 <h3>1.1.2.组合键<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p><kbd>Shift</kbd> <kbd>Ctrl</kbd> <kbd>Alt</kbd><br />
 示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+a   set aid no   # 禁用音轨</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+a   set aid no   # 禁用音轨</span>
 </pre></div>
 </div>
 <p>🔺 但是这几个键自身不可以作为键位触发</p>
@@ -271,35 +271,35 @@
 <h3>1.1.3.大写和上档<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>不支持 <code class="docutils literal notranslate"><span class="pre">Shift+字母/数字</span></code> 这种写法，解决方案是 ——</p>
 <p>示例1：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">A   cycle mute   # 切换静音</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">A   cycle mute   # 切换静音</span>
 </pre></div>
 </div>
 <p>在mpv中对应的操作即 <kbd>Shift</kbd> + <kbd>a</kbd><br />
 当然你也可以在激活 <kbd>CAPS</kbd>（大写锁定键） 的情况下直接按 <kbd>a</kbd> 触发</p>
 <p>示例2：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">!   cycle mute   # 切换静音</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">!   cycle mute   # 切换静音</span>
 </pre></div>
 </div>
 <p>如果你使用的是美式键盘布局，则实际对应的是 <kbd>Shift</kbd> + <kbd>1</kbd></p>
-<p>🔺 由于 注释符 与 按键 <kbd>#</kbd> 重名，所以如果你要绑定这个键位，用 <code class="docutils literal notranslate"><span class="pre">SHARP</span></code> 作为按键名</p>
+<p>🔺 由于 注释符 <code class="docutils literal notranslate"><span class="pre">#</span></code> 与 按键 <kbd>#</kbd> 重名，如果你要绑定这个键位，应用 <code class="docutils literal notranslate"><span class="pre">SHARP</span></code> 作为按键名</p>
 </section>
 <section id="id9">
 <h3>1.1.4.连键<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
 <p>连键不是双击，两次按键之间没有限制触发时间间隔。</p>
 <p>示例1：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">q-q   quit     # 退出</span><span class="w"></span>
-<span class="na">q     ignore</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">q-q   quit     # 退出</span>
+<span class="na">q     ignore</span>
 </pre></div>
 </div>
 <p>即按两次 <kbd>q</kbd> 退出mpv<br />
 此处屏蔽 <code class="docutils literal notranslate"><span class="pre">q</span></code> 的目的是防止触发上一行时先触发该键的动作</p>
 <p>示例2：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">q-a-z   quit     # 退出</span><span class="w"></span>
-<span class="na">q       ignore</span><span class="w"></span>
-<span class="na">q-a     ignore</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">q-a-z   quit     # 退出</span>
+<span class="na">q       ignore</span>
+<span class="na">q-a     ignore</span>
 </pre></div>
 </div>
-<p>连键不仅支持不同按键，更支持串联多个不同按键<br />
+<p>连键不仅支持同个按键，更支持串联多个不同按键<br />
 同上，安全起见，屏蔽中间键的动作</p>
 </section>
 <section id="id10">
@@ -309,20 +309,20 @@
 <h4>1.2.1.属性相关<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h4>
 <p>在mpv运行时可以通过操作属性，来达成动态修改mpv.conf中的选项值的效果。<br />
 mpv中可用的属性列表参见 <a class="reference external" href="https://mpv.io/manual/master/#property-list">此处</a><br />
-<em>部分 属性名 与 mpv.conf 用的 选项名 重名，未全部列出</em></p>
+<em>部分 <strong>属性名</strong> 与 mpv.conf 用的 <strong>选项名</strong> 重名，未全部列出</em></p>
 <p>设置某个属性为某个值，用 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">&lt;属性名&gt;</span> <span class="pre">&lt;值&gt;</span></code><br />
 增减某个属性的数值，用 <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">&lt;属性名&gt;</span> <span class="pre">&lt;数值&gt;</span></code><br />
 乘以某个属性的数值，用 <code class="docutils literal notranslate"><span class="pre">multiply</span> <span class="pre">&lt;属性名&gt;</span> <span class="pre">&lt;数值&gt;</span></code><br />
 使某属性在可变的多个值中切换，用 <code class="docutils literal notranslate"><span class="pre">cycle</span> <span class="pre">&lt;属性名&gt;</span></code><br />
 使某属性在你指定的多个值中切换，用 <code class="docutils literal notranslate"><span class="pre">cycle-values</span> <span class="pre">&lt;属性名&gt;</span> <span class="pre">&lt;必要值1&gt;</span> <span class="pre">&lt;必要值2&gt;</span> <span class="pre">[可选值3]</span> <span class="pre">...</span></code></p>
 <p>以上用途的汇总示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">w   set volume 100                        # 设定音量为100</span><span class="w"></span>
-<span class="na">e   add saturation 1                      # 增加饱和度 1</span><span class="w"></span>
-<span class="na">r   add hue -2                            # 减少色相 2</span><span class="w"></span>
-<span class="na">t   multiply speed 1/1.1                  # 减速</span><span class="w"></span>
-<span class="na">y   multiply speed 2                      # 倍速</span><span class="w"></span>
-<span class="na">u   cycle fullscreen                      # 切换 全屏</span><span class="w"></span>
-<span class="na">i   cycle-values hwdec yes no auto-copy   # 切换解码模式</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">w   set volume 100                        # 设定音量为100</span>
+<span class="na">e   add saturation 1                      # 增加饱和度 1</span>
+<span class="na">r   add hue -2                            # 减少色相 2</span>
+<span class="na">t   multiply speed 1/1.1                  # 减速</span>
+<span class="na">y   multiply speed 2                      # 倍速</span>
+<span class="na">u   cycle fullscreen                      # 切换 全屏</span>
+<span class="na">i   cycle-values hwdec yes no auto-copy   # 切换解码模式</span>
 </pre></div>
 </div>
 <p>🔺 并非所有属性都可以在运行时变更</p>
@@ -338,7 +338,7 @@ mpv中可用的属性列表参见 <a class="reference external" href="https://mp
 <section id="id13">
 <h4>1.2.2.直接命令<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h4>
 <p>即指不触碰属性，直接执行动作，示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">s   stop   # 停止</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">s   stop   # 停止</span>
 </pre></div>
 </div>
 <p>其中 <code class="docutils literal notranslate"><span class="pre">ignore</span></code> 为特殊命令，用来屏蔽键位的操作（ 小节 “键位绑定” 部分已有示例）</p>
@@ -351,8 +351,8 @@ mpv中可用的属性列表参见 <a class="reference external" href="https://mp
 <code class="docutils literal notranslate"><span class="pre">script-message</span> <span class="pre">&lt;脚本命令名&gt;</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">script-message-to</span> <span class="pre">&lt;对象名&gt;</span> <span class="pre">&lt;脚本命令名&gt;</span></code></p>
 <p>以内建脚本 <strong>stats.lua</strong> 为例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">I   script-binding stats/display-stats-toggle   # 开/关 常驻显示统计信息</span><span class="w"></span>
-<span class="na">i   script-binding display-stats-toggle</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">I   script-binding stats/display-stats-toggle   # 开/关 常驻显示统计信息</span>
+<span class="na">i   script-binding display-stats-toggle</span>
 </pre></div>
 </div>
 </section>
@@ -361,12 +361,12 @@ mpv中可用的属性列表参见 <a class="reference external" href="https://mp
 <h4>1.2.3.静默与串联<a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h4>
 <p>大多数命令执行时会显示OSD信息，可以通过 <code class="docutils literal notranslate"><span class="pre">no-osd</span></code> 作为命令的前缀来禁止其显示。<br />
 示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">RIGHT   no-osd seek 5   # 前进 5 秒</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">RIGHT   no-osd seek 5   # 前进 5 秒</span>
 </pre></div>
 </div>
 <p>一个键位可以执行多个命令，可以用 <code class="docutils literal notranslate"><span class="pre">;</span></code> （半角的分号）作为分隔标志<br />
 示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">RIGHT   seek 5 ; show-text &quot;向前 5 秒&quot;   # 前进 5 秒并显示OSD文本消息</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">RIGHT   seek 5 ; show-text &quot;向前 5 秒&quot;   # 前进 5 秒并显示OSD文本消息</span>
 </pre></div>
 </div>
 </section>
@@ -388,13 +388,13 @@ mpv中可用的属性列表参见 <a class="reference external" href="https://mp
 <h2>3.控制台<a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h2>
 <p>mpv的内建脚本 <strong>console.lua</strong> 提供了控制台的功能。这是另一种在运行时动态修改“选项值”的解决方案。</p>
 <p>默认为 <kbd>`</kbd> 打开控制台（注意观察画面左下角），打开后按 <kbd>ESC</kbd> 即可退出控制台。你可以在 <strong>input.conf</strong> 中重新绑定控制台的启用按键：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">TAB   script-binding console/enable # 进入控制台</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">TAB   script-binding console/enable # 进入控制台</span>
 </pre></div>
 </div>
 <p>可在控制台中直接输入命令（它的语法等同 <strong>input.conf</strong> 中的 <code class="docutils literal notranslate"><span class="pre">&lt;具体命令&gt;</span></code> ），按 <kbd>ENTER</kbd> 立即执行。<br />
 示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输入以下这行并执行，立即截屏</span><span class="w"></span>
-<span class="na">screenshot</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输入以下这行并执行，立即截屏</span>
+<span class="na">screenshot</span>
 </pre></div>
 </div>
 </section>

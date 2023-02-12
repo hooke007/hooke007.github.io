@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="prev" title="快捷键自定义与控制台" href="mpv_input.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>音视频滤镜<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20221125</em></p>
+<p><em>ver.20230212</em></p>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>本文是 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_start.html#id15">mpv进阶的小节4</a> &amp; <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_input.html">《快捷键自定义与控制台》</a> 的拓展内容。</p>
@@ -285,38 +285,38 @@
 <section id="mpv-conf">
 <h3>1.1.mpv.conf<a class="headerlink" href="#mpv-conf" title="此标题的永久链接">#</a></h3>
 <p>在主设置文件中使用时通常是为了伴随mpv启动时自动应用某些滤镜，例如：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">vflip,hflip   # 垂直翻转 → 水平翻转</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">vflip,hflip</span><span class="w">   </span><span class="c1"># 垂直翻转 → 水平翻转</span>
 </pre></div>
 </div>
 <p>如果你的滤镜链比较复杂，推荐拆开写（带append后缀的选项不会相互覆盖）：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">vflip</span><span class="w"></span>
-<span class="na">vf-append</span><span class="o">=</span><span class="s">hflip</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">vflip</span>
+<span class="na">vf-append</span><span class="o">=</span><span class="s">hflip</span>
 </pre></div>
 </div>
 <p>或者：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">vflip</span><span class="w"></span>
-<span class="na">vf-append</span><span class="o">=</span><span class="s">hflip</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">vflip</span>
+<span class="na">vf-append</span><span class="o">=</span><span class="s">hflip</span>
 </pre></div>
 </div>
 <p>可能有面对不同的分辨率进行自动处理的需要，可以在profile中操作，此处只简单举例，实际应用时自行举一反三：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[4k_fast]</span><span class="w"></span>
-<span class="na">profile-cond</span><span class="o">=</span><span class="s">height&gt;2000 and width&gt;3000</span><span class="w"></span>
-<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span><span class="w"></span>
-<span class="na">vf-clr</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[4k_fast]</span>
+<span class="na">profile-cond</span><span class="o">=</span><span class="s">height&gt;2000 and width&gt;3000</span>
+<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span>
+<span class="na">vf-clr</span>
 </pre></div>
 </div>
 </section>
 <section id="input-conf">
 <h3>1.2.input.conf &amp; 控制台<a class="headerlink" href="#input-conf" title="此标题的永久链接">#</a></h3>
 <p>滤镜在快捷键与控制台中有独特的语法，简单讲就是参考上方的表格中的后缀，但移除连接符 <code class="docutils literal notranslate"><span class="pre">-</span></code> 且 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 提前，示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">a   vf set vflip,hflip</span><span class="w"></span>
-<span class="na">s   vf append vflip</span><span class="w"></span>
-<span class="na">d   vf add vflip,hflip</span><span class="w"></span>
-<span class="na">f   vf pre vflip,hflip</span><span class="w"></span>
-<span class="na">g   vf clr &quot;&quot;</span><span class="w"></span>
-<span class="na">h   vf remove vflip</span><span class="w"></span>
-<span class="na">j   vf del vflip,hflip</span><span class="w"></span>
-<span class="na">k   vf toggle vflip</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">a   vf set vflip,hflip</span>
+<span class="na">s   vf append vflip</span>
+<span class="na">d   vf add vflip,hflip</span>
+<span class="na">f   vf pre vflip,hflip</span>
+<span class="na">g   vf clr &quot;&quot;</span>
+<span class="na">h   vf remove vflip</span>
+<span class="na">j   vf del vflip,hflip</span>
+<span class="na">k   vf toggle vflip</span>
 </pre></div>
 </div>
 <p>🔺 根据input语法中的“操作属性”的用法， <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">set</span> <span class="pre">vflip,hflip</span></code> 亦等效 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">vf</span> <span class="pre">vflip,hflip</span></code><br />
@@ -327,7 +327,7 @@
 <h2>2.滤镜分类<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <p>mpv所能使用的滤镜大体分为两类 ——</p>
 <p>mpv自己实现的滤镜：<br />
-<a class="reference external" href="https://mpv.io/manual/master/#video-filters-format">format</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-sub">sub</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vapoursynth">vapoursynth</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vavpp">vavpp</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vdpaupp">vdpaupp</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-d3d11vpp">d3d11vpp</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-fingerprint">fingerprint</a> <a class="reference external" href="https://mpv.io/manual/master/#video-filters-gpu">gpu</a></p>
+<a class="reference external" href="https://mpv.io/manual/master/#video-filters-format">format</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-sub">sub</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vapoursynth">vapoursynth</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vavpp">vavpp</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-vdpaupp">vdpaupp</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-d3d11vpp">d3d11vpp</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-fingerprint">fingerprint</a> &amp; <a class="reference external" href="https://mpv.io/manual/master/#video-filters-gpu">gpu</a></p>
 <p>来自ffmpeg的滤镜：<br />
 <a class="reference external" href="https://mpv.io/manual/master/#video-filters-lavfi">lavfi</a></p>
 <p>根据版本、平台和编译选项的不同，你所能实际使用滤镜类型和个数并不恒定，可通过如下方式查看：<br />
@@ -346,7 +346,7 @@ ffmpeg滤镜有自己的 <a class="reference external" href="https://ffmpeg.org/
 <h3>2.1.原生滤镜<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>即“mpv自己实现的滤镜”</p>
 <p>使用时注意它们的滤镜名（一般情况下）需要写完整（不能跳过中间的项），示例：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">format=fmt=brga   # 转换为brga格式输出</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">format=fmt=brga</span><span class="w">   </span><span class="c1"># 转换为brga格式输出</span>
 </pre></div>
 </div>
 <p>其中 <code class="docutils literal notranslate"><span class="pre">format=fmt</span></code> 为完整滤镜名（ <code class="docutils literal notranslate"><span class="pre">fmt</span></code> 不可省略），而 <code class="docutils literal notranslate"><span class="pre">brga</span></code> 为参数值。</p>
@@ -355,10 +355,10 @@ ffmpeg滤镜有自己的 <a class="reference external" href="https://ffmpeg.org/
 <h3>2.2.非原生滤镜<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p>即“来自ffmpeg的滤镜”</p>
 <p>使用时可接受多种语法，因为原始语法较为复杂易于出错，参考如下示例（以下写法皆正确）：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">lavfi=[fps=60]</span><span class="w"></span>
-<span class="na">vf</span><span class="o">=</span><span class="s">lavfi=&quot;fps=60&quot;</span><span class="w"></span>
-<span class="na">vf</span><span class="o">=</span><span class="s">lavfi=graph=&quot;fps=60&quot;</span><span class="w"></span>
-<span class="na">vf</span><span class="o">=</span><span class="s">fps=60</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">lavfi=[fps=60]</span>
+<span class="na">vf</span><span class="o">=</span><span class="s">lavfi=&quot;fps=60&quot;</span>
+<span class="na">vf</span><span class="o">=</span><span class="s">lavfi=graph=&quot;fps=60&quot;</span>
+<span class="na">vf</span><span class="o">=</span><span class="s">fps=60</span>
 </pre></div>
 </div>
 <p>出于简化原因，因此通常使用简化语法 <code class="docutils literal notranslate"><span class="pre">vf=fps=60</span></code> ；<br />
@@ -372,15 +372,15 @@ ffmpeg滤镜有自己的 <a class="reference external" href="https://ffmpeg.org/
 <p>假设已下载 <code class="docutils literal notranslate"><span class="pre">xxx.cube</span></code> 文件到路径 <code class="docutils literal notranslate"><span class="pre">D:/luts</span> <span class="pre">test/</span></code><br />
 🔺 非原生滤镜不支持诸如 <code class="docutils literal notranslate"><span class="pre">~~/</span></code> 之类的相对路径</p>
 <p>如果只在 mpv.conf 中使用，十分简单</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">lut3d=file=&quot;D:/luts test/pinkgirl.cube&quot;:interp=trilinear</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">lut3d=file=&quot;D:/luts test/pinkgirl.cube&quot;:interp=trilinear</span>
 </pre></div>
 </div>
 <p>但是若用在 input.conf 中，存在语法上的暗病，需要处理其中的特殊字符</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+l   vf toggle &quot;lut3d</span><span class="o">=</span><span class="s">file=\&quot;D:/luts test/pinkgirl.cube\&quot;:interp=trilinear&quot;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+l   vf toggle &quot;lut3d</span><span class="o">=</span><span class="s">file=\&quot;D:/luts test/pinkgirl.cube\&quot;:interp=trilinear&quot;</span>
 </pre></div>
 </div>
 <p>或者简单粗暴的使用 <a class="reference external" href="https://mpv.io/manual/master/#flat-command-syntax">自定义引用</a></p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+l vf toggle ``lut3d</span><span class="o">=</span><span class="s">file=&quot;D:/luts test/pinkgirl.cube&quot;:interp=trilinear``</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Ctrl+l vf toggle ``lut3d</span><span class="o">=</span><span class="s">file=&quot;D:/luts test/pinkgirl.cube&quot;:interp=trilinear``</span>
 </pre></div>
 </div>
 </section>

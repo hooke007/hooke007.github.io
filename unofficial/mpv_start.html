@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="第三方用户着色器" href="mpv_shaders.html" /><link rel="prev" title="非官方" href="index.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -221,7 +221,7 @@
         <article role="main">
           <section id="mpv">
 <h1>mpv播放器的使用引导<a class="headerlink" href="#mpv" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20221112</em></p>
+<p><em>ver.20230212</em></p>
 <ul class="simple">
 <li><p>极短的介绍</p></li>
 </ul>
@@ -230,17 +230,17 @@
 <ul class="simple">
 <li><p>…</p></li>
 </ul>
-<p>本文的假定使用环境 win11-x64 Intel-CPU Nvidia-GPU<br />
-本教程独立，不从属于懒人包的文档，基于shinchiro编译并打包发布的版本撰写。</p>
+<p>本文的假定使用环境 win10/11-x64 &amp; AMD/Intel-CPU &amp; Nvidia-GPU<br />
+本教程独立，不从属于懒人包的文档，基于shinchiro的工具链编译并打包发布的版本撰写。</p>
 <p>推荐使用的高级文本编辑器，完全可替代系统自带的记事本 <a class="reference external" href="https://www.rizonesoft.com/downloads/notepad3/">Notepad3</a></p>
 <section id="id1">
 <h2>mpv 播放器的使用【入门】<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
 <blockquote>
-<div><p>既是入门，也是最省心的用法。</p>
+<div><p>既是入门，也是省心的用法。</p>
 </div></blockquote>
 <section id="id2">
 <h3>1.下载安装<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
-<p>mpv目前没有官方编译的版本，第三方shinchiro编译的算公认的半官方版，在 <a class="reference external" href="https://sourceforge.net/projects/mpv-player-windows/files/64bit/">SOURCEGORGE</a> 或 <a class="reference external" href="https://github.com/shinchiro/mpv-winbuild-cmake/releases">他的仓库</a> 获取64位最新版本：<br />
+<p>mpv目前不发行官方编译的版本，第三方shinchiro编译的算认可度高的半官方版，在 <a class="reference external" href="https://sourceforge.net/projects/mpv-player-windows/files/64bit/">SOURCEGORGE</a> 或 <a class="reference external" href="https://github.com/shinchiro/mpv-winbuild-cmake/releases">他的仓库</a> 获取64位最新版本（Excavator/Haswell架构之后的处理器可选择v3版）。<br />
 全部解压至自定义目录，点击运行 <strong>mpv.exe</strong> ，拖入任意视频播放以快速测试兼容性。</p>
 <p>如果需要注册成可选的默认播放器，以管理员权限运行 <font color=green><strong>installer</strong></font> 文件夹内的 <strong>mpv-install.bat</strong> ，此后不要更改 <strong>mpv.exe</strong> 所在文件夹的路径或名称，否则需要重新执行该文件重新注册到系统。</p>
 <p>🔺 出于兼容考虑，安置的路径里不要存在中文，最好为纯英文数字<br />
@@ -255,9 +255,9 @@
 </section>
 <section id="id4">
 <h3>3.选项设置<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
-<p>因为mpv本身不具有图形化前端，绝大多数的设置选项都是靠在<strong>主设置文件</strong> <font color=blue><strong>mpv.conf</strong></font> 中输入参数实现的。</p>
-<p>mpv的默认设置目录为 <font color=green><strong>C:/Users/你的用户名/AppData/Roaming/mpv/</strong></font><br />
-强烈建议你在 <strong>mpv.exe</strong> 的旁边新建一个 <font color=green><strong>portable_config</strong></font> 的文件夹，该目录具有最高级的优先级，一旦存在此文件夹，其它所有的设置目录都会被忽略。<br />
+<p>因为mpv本身不具有图形化前端，绝大多数的设置选项都是靠在<strong>主设置文件</strong> <font color=blue><strong>mpv.conf</strong></font> 中预写入参数实现的。</p>
+<p>mpv的默认读取的高优先级的设置目录为 <font color=green><strong>C:/Users/你的用户名/AppData/Roaming/mpv/</strong></font></p>
+<p>但我强烈建议你在 <strong>mpv.exe</strong> 的旁边新建一个 <font color=green><strong>portable_config</strong></font> 的文件夹。该目录具有最高级的优先级，一旦存在此文件夹，其它所有的设置目录都会被忽略。<br />
 因此在 <font color=green><strong>/portable_config/</strong></font> 内新建一个 <font color=blue><strong>mpv.conf</strong></font> 的空文本，先确保文本编码为 <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code><br />
 即 <font color=green><strong>X:/xxxxx/你的MPV文件夹/portable_config/mpv.conf</strong></font><br />
 <img src="_assets/mpv_start-03.webp" style="zoom: 40%;" /></p>
@@ -266,48 +266,44 @@
 <li><p>以 <font color=green><strong>C:/Users/你的用户名/AppData/Roaming/mpv/</strong></font> 为设置目录，相当于这是“全局设置目录”，不管你使用电脑里存放的多少个不同版本的mpv，都会自动读取这个设置目录</p></li>
 <li><p>以 <font color=green><strong>X:/xxxxx/你的MPV文件夹/portable_config/</strong></font> 为设置目录，除去其具有最高优先级（会让其忽略“全局设置”）的特性，还赋予了软件绿色化的特性（查看 <strong>【进阶】</strong> 章可知大部分文件都可放在设置目录），非常适合便携党。</p></li>
 </ul>
-<p>在 <font color=blue><strong>mpv.conf</strong></font> 中输入以下必要参数：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="na">hwdec</span><span class="o">=</span><span class="s">d3d11va                           # 使用d3d11va硬解（原生模式）</span><span class="w"></span>
-<span class="w"> </span><span class="na">hwdec-codecs</span><span class="o">=</span><span class="s">all                        # 尽可能所有格式先尝试硬解</span><span class="w"></span>
-<span class="c1">#log-file=&quot;~~desktop/mpv.log&quot;            # 输出log日志在桌面</span><span class="w"></span>
-<span class="w"> </span><span class="na">keep-open</span><span class="o">=</span><span class="s">yes                           # 播放完毕后不自动退出</span><span class="w"></span>
-<span class="w"> </span><span class="na">save-position-on-quit</span><span class="o">=</span><span class="s">yes               # 退出时保存当前播放状态</span><span class="w"></span>
-<span class="w"> </span><span class="na">audio-file-auto</span><span class="o">=</span><span class="s">fuzzy                   # 自动加载同名外置音轨</span><span class="w"></span>
-<span class="c1">#icc-profile-auto                        # 应用系统icc文件进行色彩修正</span><span class="w"></span>
-<span class="w"> </span><span class="na">icc-cache-dir</span><span class="o">=</span><span class="s">&quot;~~/icc_cache&quot;            # 存储icc缓存以加速二次启动</span><span class="w"></span>
-<span class="c1">#profile=gpu-hq                          # 使用内置的预设的较高画质方案</span><span class="w"></span>
-<span class="w"> </span><span class="na">gpu-shader-cache-dir</span><span class="o">=</span><span class="s">&quot;~~/shaders_cache&quot; # 存储着色器缓存以加速二次启动</span><span class="w"></span>
-<span class="w"> </span><span class="na">sub-auto</span><span class="o">=</span><span class="s">fuzzy                          # 自动加载同名外置字幕</span><span class="w"></span>
-<span class="w"> </span><span class="na">screenshot-directory</span><span class="o">=</span><span class="s">&quot;~~desktop/&quot;       # 截图的输出路径在桌面</span><span class="w"></span>
+<p>在 <font color=blue><strong>mpv.conf</strong></font> 中写入以下基本参数：</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="na">hwdec</span><span class="o">=</span><span class="s">auto</span><span class="w">                              </span><span class="c1"># 优先使用硬解（原生模式）</span>
+<span class="c1">#log-file=&quot;~~desktop/mpv.log&quot;            # 输出log日志在桌面</span>
+<span class="w"> </span><span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span><span class="w">                           </span><span class="c1"># 播放列表中的最后一个条目播放完毕后暂停</span>
+<span class="w"> </span><span class="na">save-position-on-quit</span><span class="o">=</span><span class="s">yes</span><span class="w">               </span><span class="c1"># 退出时保存当前的播放状态</span>
+<span class="w"> </span><span class="na">watch-later-options</span><span class="o">=</span><span class="s">start,vid,aid,sid</span><span class="w">   </span><span class="c1"># 限制保存播放状态的属性列表（示例表示：播放位置、视频 音频 字幕轨号）</span>
+<span class="w"> </span><span class="na">audio-file-auto</span><span class="o">=</span><span class="s">fuzzy</span><span class="w">                   </span><span class="c1"># 自动加载近似名的外置音轨</span>
+<span class="w"> </span><span class="na">sub-auto</span><span class="o">=</span><span class="s">fuzzy</span><span class="w">                          </span><span class="c1"># 自动加载近似名的外置字幕</span>
+<span class="c1">#profile=gpu-hq                          # 使用一个内置的画质方案预设</span>
+<span class="w"> </span><span class="na">screenshot-directory</span><span class="o">=</span><span class="s">&quot;~~desktop/&quot;</span><span class="w">       </span><span class="c1"># 截图的输出路径在桌面</span>
 </pre></div>
 </div>
 <p>辅助理解：<br />
 如何理解这样写的目的，某一行参数中如果有注释符号”<strong>#</strong>”，意味着该行 <code class="docutils literal notranslate"><span class="pre">#</span></code> 所在位置以后的内容为无效。<br />
-如果将这一行一行参数看作一个一个可以打勾的选项。则 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va</span></code> 类似于 “☑使用d3d11va硬解” 激活该参数，反之 <code class="docutils literal notranslate"><span class="pre">#hwdec=d3d11va</span></code> 对应 “☐使用d3d11va硬解” 未勾选该选项（使用默认值）。</p>
+如果将这一行一行参数看作一个一个可以打勾的选项。则 <code class="docutils literal notranslate"><span class="pre">hwdec=auto</span></code> 类似于 “☑使用硬解” 激活该参数，反之 <code class="docutils literal notranslate"><span class="pre">#hwdec=auto</span></code> 对应 “☐使用硬解” 未勾选该选项（使用默认值）。</p>
 <p>部分被注释掉的参数：<br />
 <code class="docutils literal notranslate"><span class="pre">--log-file</span></code> 用于输出日志查错，一般人用不到也看不懂<br />
-<code class="docutils literal notranslate"><span class="pre">--icc-profile-auto</span></code> 对于已经校色的用户应当开启，未校色的用户开启会产生色彩错误<br />
-<code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 如果你的显卡不太差，可以使用这个内建的方案</p>
+<code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 如果你的显卡不太差，可以使用这个内建的方案（不要被名字里所谓的hq迷惑）</p>
 <p>🔺 由于主设置文件的书写规范最为宽松：<br />
-===你可以在参数后直接注释中文解释 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va</span> <span class="pre">#</span> <span class="pre">使用d3d11va硬解（原生模式）</span></code> ；<br />
-===也可以加大量空格美化参数的排版 <code class="docutils literal notranslate"><span class="pre">hwdec</span>&#160; <span class="pre">=</span>&#160; <span class="pre">d3d11va</span>&#160; <span class="pre">#</span>&#160; <span class="pre">使用d3d11va硬解（原生模式）</span></code> ；<br />
-===还可以用 <code class="docutils literal notranslate"><span class="pre">--hwdec=d3d11va</span></code> 这种（不合规的）替代写法表示激活的参数；<br />
-===甚至其中 <code class="docutils literal notranslate"><span class="pre">no-osd-bar</span></code> 这类no-开头的参数可改成为 <code class="docutils literal notranslate"><span class="pre">osd-bar=no</span></code>；<br />
+===你可以在参数后直接注释中文解释 <code class="docutils literal notranslate"><span class="pre">hwdec=auto</span> <span class="pre">#</span> <span class="pre">优先使用硬解（原生模式）</span></code> ；<br />
+===也可以加大量空格美化参数的排版 <code class="docutils literal notranslate"><span class="pre">hwdec</span>&#160; <span class="pre">=</span>&#160; <span class="pre">auto</span>&#160; <span class="pre">#</span>&#160; <span class="pre">优先使用硬解（原生模式）</span></code> ；<br />
+===还可以用 <code class="docutils literal notranslate"><span class="pre">--hwdec=auto</span></code> 这种命令行写法表示激活的参数；<br />
+===其中例如 <code class="docutils literal notranslate"><span class="pre">no-osd-bar</span></code> 这类 <code class="docutils literal notranslate"><span class="pre">no-</span></code> 开头的参数可改成为 <code class="docutils literal notranslate"><span class="pre">osd-bar=no</span></code> ；<br />
 ===以及官方手册中没有赋值的参数比如 <code class="docutils literal notranslate"><span class="pre">deband</span></code> 可以写成 <code class="docutils literal notranslate"><span class="pre">deband=yes</span></code> （等效）。</p>
 </section>
 <section id="id5">
 <h3>4.高频快捷键<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
-<p>上方必要参数输入完保存退出。再记住常用快捷键和界面控件作用：<br />
+<p>上方的基本参数输入完保存退出。再记住常用快捷键和界面控件作用：<br />
 <img src="_assets/mpv_start-osc.png" style="zoom: 40%;" /><br />
-<code class="docutils literal notranslate"><span class="pre">1</span></code>  <code class="docutils literal notranslate"><span class="pre">2</span></code> 调整对比度<br />
-<code class="docutils literal notranslate"><span class="pre">3</span></code>  <code class="docutils literal notranslate"><span class="pre">4</span></code> 调整亮度<br />
-<code class="docutils literal notranslate"><span class="pre">5</span></code>  <code class="docutils literal notranslate"><span class="pre">6</span></code> 调整伽玛<br />
-<code class="docutils literal notranslate"><span class="pre">7</span></code>  <code class="docutils literal notranslate"><span class="pre">8</span></code> 调整饱和度<br />
-<code class="docutils literal notranslate"><span class="pre">9</span></code>  <code class="docutils literal notranslate"><span class="pre">0</span></code> 调整音量<br />
-<code class="docutils literal notranslate"><span class="pre">[</span></code>  <code class="docutils literal notranslate"><span class="pre">]</span></code> 调整播放速度<br />
-<code class="docutils literal notranslate"><span class="pre">Backspace</span></code> 重置播放速度<br />
-<code class="docutils literal notranslate"><span class="pre">s</span></code> 快速截屏<br />
-<code class="docutils literal notranslate"><span class="pre">i</span></code> 显示有关当前播放文件的统计信息<br />
+<kbd>1</kbd>  <kbd>2</kbd> 调整对比度<br />
+<kbd>3</kbd>  <kbd>4</kbd> 调整亮度<br />
+<kbd>5</kbd>  <kbd>6</kbd> 调整伽玛<br />
+<kbd>7</kbd>  <kbd>8</kbd> 调整饱和度<br />
+<kbd>9</kbd>  <kbd>0</kbd> 调整音量<br />
+<kbd>[</kbd>  <kbd>]</kbd> 调整播放速度<br />
+<kbd>Backspace</kbd> 重置播放速度<br />
+<kbd>s</kbd> 按源分辨率截屏<br />
+<kbd>i</kbd> 显示有关当前播放文件的统计信息<br />
 还有其它的 <a class="reference external" href="https://mpv.io/manual/master/#interactive-control">常用快捷键</a></p>
 <p><font color=purple>入门教程到此结束。</font></p>
 </section>
@@ -355,9 +351,9 @@
 脚本的部分功能可由主设置文件控制，比如 <code class="docutils literal notranslate"><span class="pre">--no-osc</span></code> 。但是绝大多数功能依旧是由各自的设置文件控制。<br />
 因此在 <code class="docutils literal notranslate"><span class="pre">mpv.conf</span></code> 的所在位置新建 <code class="docutils literal notranslate"><span class="pre">script-opts</span></code> 文件夹，这里面将放置所有脚本的设置文件，mpv会自动读取。<br />
 脚本的对应设置文件名为 <font color=green><strong>同脚本名.conf</strong></font></p>
-<p>🔺 此处开始往后，应该注释掉这个参数 <code class="docutils literal notranslate"><span class="pre">--save-position-on-quit=yes</span></code><br />
-===目前为止，这个参数除了保存了播放进度外，还储存了许多 <a class="reference external" href="https://github.com/mpv-player/mpv/issues/4641">额外的状态</a> ，个人偏好不使用；<br />
-===如果你希望保留<strong>退出时记录播放进度</strong>的功能，可以不禁用该功能，同时用另一个参数 <code class="docutils literal notranslate"><span class="pre">watch-later-options=vid,aid,sid</span></code> 限制其额外记录的属性（示例对应的是：视频轨、音轨、字幕轨序号）</p>
+<p>🔺 此处开始往后，如果你在使用参数 <code class="docutils literal notranslate"><span class="pre">--save-position-on-quit=yes</span></code> ，应注意：<br />
+===目前为止，这个参数除了保存了播放进度外，还储存了许多 <a class="reference external" href="https://github.com/mpv-player/mpv/issues/4641">额外的状态</a> ，个人倾向不单独使用它；<br />
+===如果你希望保留<strong>退出时记录播放进度</strong>的功能，可以不禁用该功能，同时用另一个参数 <code class="docutils literal notranslate"><span class="pre">watch-later-options=start,vid,aid,sid</span></code> 限制其记录的属性（示例对应的是：播放位置、视频轨、音轨、字幕轨序号）</p>
 <section id="id10">
 <h4>3.1内置脚本<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h4>
 <p>内置脚本由于已集成，直接创建/编辑对应的设置文件即可，你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/tree/master/player/lua">此处</a> 查看内置脚本的更新历史。</p>
@@ -372,14 +368,19 @@
 <h5>3.1.1.控制台<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h5>
 <p>mpv集成的 <strong>console.lua</strong> 脚本带来了控制台功能，一般用于便于快速查错/临时变更属性或选项。<br />
 官方手册 <a class="reference external" href="https://mpv.io/manual/master/#console">定位</a><br />
-打开播放器后，按快捷键 ` 唤起控制台查看控制台信息，此时再按 Esc 关闭控制台。</p>
+打开播放器后，按快捷键 <kbd>`</kbd> 唤起控制台查看控制台信息，此时再按 <kbd>Esc</kbd> 关闭控制台。</p>
 <img src="_assets/mpv_start-06.webp" style="zoom:40%;" />
 <p>控制台指令的语法同上文快捷键的语法，例如输入 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fullscreen</span> <span class="pre">yes</span></code> 回车即执行“进入全屏”。</p>
 </section>
 <section id="id12">
 <h5>3.1.2.数据统计<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h5>
 <p>mpv集成的 <strong>stats.lua</strong> 脚本带来了类似 Mediainfo 的功能，可用于查看各项状态信息。<br />
-官方手册 <a class="reference external" href="https://mpv.io/manual/master/#stats">定位</a></p>
+官方手册 <a class="reference external" href="https://mpv.io/manual/master/#stats">定位</a><br />
+默认按键如下：<br />
+<kbd>i</kbd> 临时显示，再次按下更新 （<kbd>Shift</kbd> + <kbd>i</kbd> 常驻显示，再次按下隐藏）<br />
+===在显示时，部分按键的原始功能变更：<br />
+<kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>0</kbd> 翻到不同页面以展示不同类型的信息<br />
+其中部分页面支持 <kbd>↑</kbd> <kbd>↓</kbd> 按键翻页</p>
 </section>
 <section id="id13">
 <h5>3.1.3.条件配置预设<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h5>
@@ -395,7 +396,7 @@
 <p>该脚本兼容ytdl的热门分支yt-dlp<br />
 需要 <strong>mpv.exe</strong> 所在目录存在 <strong>yt-dlp.exe</strong> <a class="reference external" href="https://github.com/yt-dlp/yt-dlp/releases">官方发布地址</a></p>
 <p>如何指定使用的程序可参考 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/script-opts/ytdl_hook.conf">此处</a><br />
-（注意mpv0.34.0及之后的版本默认优先使用yt-dlp，而youtube-dl项目已转入维护阶段，无非特殊情况应使用yt-dlp）</p>
+（注意mpv0.34.0及之后的版本默认优先使用yt-dlp，且youtube-dl项目已转入维护阶段，无非特殊情况应使用yt-dlp）</p>
 </section>
 </section>
 <section id="id14">
@@ -407,9 +408,9 @@
 具体的可用选项/参数遵循你所使用的脚本的作者说明。同上，你依然可以参考我仓库内的示例。</p>
 <p>示范：<br />
 ===这里以许多人都会用的一个脚本 “<strong>autoload.lua</strong>” <a class="reference external" href="https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua">源链接</a>（自动导入同目录所有文件到播放列表）为例<br />
-===对应的设置文件： <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/7124c926533771c9dc3c8208a79abe93251ffe59/portable_config/script-opts/autoload.conf">参考链接</a><br />
+===对应的设置文件： <a class="reference external" href="https://gist.github.com/hooke007/f6bb6f28e8b05738eb60a370494974ed">参考链接</a><br />
 ===分别下载两个文件或手动复制源码（注意文本规范）创建到指定位置。<br />
-===在含有多个视频文件的目录随意打开某个视频，按 F8 查看播放列表，预期情况是已正确载入所有视频文件。</p>
+===在含有多个视频文件的目录随意打开某个视频，默认可按 <kbd>F8</kbd> 查看播放列表，预期情况是已正确载入所有视频文件。</p>
 <p>🔺 此处为了避免识别问题，严格文本规范：内容同上。<br />
 🔺 一种略罕见的脚本的包装形式表现为多个文件群组。它的文件结构为：必有一个名为 <strong>main.lua</strong> 的脚本文件位于某个文件夹中，且同路径下附带有多个其它文件（不限lua）。它的使用方法与单文件的lua脚本略不同，你至少需要把整个文件夹塞进 <font color=green><strong>scripts</strong></font> 目录中（绝对不能直接把 <strong>main.lua</strong> 放在此处），其它进一步的安装步骤遵作者本人的使用说明。</p>
 </section>
@@ -419,22 +420,22 @@
 <p>官方手册定位：<br />
 <a class="reference external" href="https://mpv.io/manual/master/#audio-filters">音频滤镜</a><br />
 <a class="reference external" href="https://mpv.io/manual/master/#video-filters">视频滤镜</a></p>
-<p>🔺 此处往后，为了避免原生硬解模式不支持，在主设置文件中应使用 <code class="docutils literal notranslate"><span class="pre">hwdec=d3d11va-copy</span></code> 或 <code class="docutils literal notranslate"><span class="pre">hwdec=no</span></code><br />
-<em><code class="docutils literal notranslate"><span class="pre">dxva2-copy</span></code> 不见得一定比 <code class="docutils literal notranslate"><span class="pre">d3d11va-copy</span></code> 实际性能表现差，根据你的实际情况选择。高端N卡用户应高优先使用 <code class="docutils literal notranslate"><span class="pre">nvdec-copy</span></code></em></p>
+<p>🔺 此处往后，为了避免原生硬解模式不受支持，在主设置文件中应使用 <code class="docutils literal notranslate"><span class="pre">hwdec=auto-copy</span></code> 或 <code class="docutils literal notranslate"><span class="pre">hwdec=no</span></code><br />
+<em>如果你想要手动指定为具体的模式 <code class="docutils literal notranslate"><span class="pre">dxva2-copy</span></code> 不见得一定比 <code class="docutils literal notranslate"><span class="pre">d3d11va-copy</span></code> 实际性能表现差，根据你的实际测试情况选择。高端N卡用户应高优先使用 <code class="docutils literal notranslate"><span class="pre">nvdec-copy</span></code></em></p>
 <section id="id16">
 <h4>4.1.常规用法<a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h4>
 <p>这里导入实例讲解：<br />
-===如果你使用 <code class="docutils literal notranslate"><span class="pre">--icc-profile-auto</span></code> 这个参数对视频进行了3dlut色彩映射操作，你可能会发觉mpv的视频色彩偏亮（如果你使用madvr的3dlut对比过）。<br />
-===根本原因在于mpv遵循的是BT.1886曲线，因此，你需要在 <font color=blue><strong>mpv.conf</strong></font> 中使用如下参数进行GAMMA修正以符合标准SRGB。</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">format=gamma=gamma2.2</span><span class="w"></span>
+===如果你在主设置文件中使用了参数 <code class="docutils literal notranslate"><span class="pre">--icc-profile-auto</span></code> 对视频进行了3dlut色彩映射操作，你可能会发觉mpv的视频色彩偏亮（对比madvr的3dlut）。<br />
+===原因在于mpv遵循的是BT.1886曲线，因此你可在 <font color=blue><strong>mpv.conf</strong></font> 中使用如下参数进行GAMMA修正以贴合SRGB标准。</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">format=gamma=gamma2.2</span>
 </pre></div>
 </div>
 <p>vf参数的标准写法为 <code class="docutils literal notranslate"><span class="pre">vf=xxxxx</span></code> ，但是mpv只能存在一条这样的参数，尽管你可以使用下方参数设置初始一起插入多个滤镜。</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">滤镜①=参数❶=值:参数❷=值,滤镜②...   # 不同滤镜间用&quot;,&quot;隔开；同一滤镜的不同参数间用&quot;:&quot;隔开</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf</span><span class="o">=</span><span class="s">滤镜①=参数❶=值:参数❷=值,滤镜②...</span><span class="w">   </span><span class="c1"># 不同滤镜间用&quot;,&quot;隔开；同一滤镜的不同参数间用&quot;:&quot;隔开</span>
 </pre></div>
 </div>
 <p>但是为了避免运行时被覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀，意为追加视频滤镜。可以存在多个 <code class="docutils literal notranslate"><span class="pre">vf-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">vf=xxxxx</span></code> 指定的滤镜</p>
-<p>🔺 此处往后，带 <code class="docutils literal notranslate"><span class="pre">-append</span></code> <code class="docutils literal notranslate"><span class="pre">-del</span></code> 之类后缀的参数只能一条带一个滤镜/着色器</p>
+<p>🔺 带 <code class="docutils literal notranslate"><span class="pre">-append</span></code> <code class="docutils literal notranslate"><span class="pre">-del</span></code> 之类后缀的参数只能一条带一个滤镜/着色器</p>
 </section>
 <section id="id17">
 <h4>4.2.运行时启用<a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h4>
@@ -443,12 +444,12 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span><span class="o">+</span><span class="n">UP</span>  <span class="n">vf</span> <span class="n">toggle</span> <span class="n">vflip</span>
 </pre></div>
 </div>
-<p>结构很容易理解—— “快捷键 参数”，和主设置文件不同的是，后缀 <code class="docutils literal notranslate"><span class="pre">toggle</span></code> 和 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 之间不要用 <code class="docutils literal notranslate"><span class="pre">-</span></code> 进行连接。<br />
+<p>结构很容易理解—— <code class="docutils literal notranslate"><span class="pre">按键名</span>&#160;&#160; <span class="pre">命令</span></code>，和主设置文件不同的是，后缀 <code class="docutils literal notranslate"><span class="pre">toggle</span></code> 和 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 之间不要用 <code class="docutils literal notranslate"><span class="pre">-</span></code> 进行连接。<br />
 保存后在mpv中播放视频测试，你可以先按下 shift+i 常驻统计信息，观察留意下方。</p>
 <img src="_assets/mpv_start-07.webp" style="zoom:40%;" />
-<p>第一次按下 Ctrl+↑ 将插入垂直翻转滤镜，第二次按下将撤销该滤镜。</p>
-<p>滤镜类的全部 <a class="reference external" href="https://mpv.io/manual/master/#filter-options">可用后缀</a> 。</p>
-<p>🔺 关于该部分内容，重写的 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_filters.html">文档</a> 中记录的更具体和完善。</p>
+<p>首次按下 <kbd>Ctrl</kbd> + <kbd>↑</kbd> 将插入垂直翻转滤镜，再次按下将撤销该滤镜。</p>
+<p>关于滤镜类的全部可用后缀，参见 <a class="reference external" href="https://mpv.io/manual/master/#filter-options">此处</a> 。</p>
+<p>🔺 关于该部分内容，重写的 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_filters.html">快捷键文档</a> 中记录的更具体和完善。</p>
 </section>
 </section>
 <section id="id18">
@@ -456,24 +457,24 @@
 <p>你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/wiki/User-Scripts#user-shaders">此处</a> 获取一些公开的第三方着色器<br />
 下载的着色器文件扩展名通常为 <strong>.glsl</strong> 或 <strong>.hook</strong> ，mpv并没有规定这些文件的默认加载路径。<br />
 如果你有很多着色器的使用需求，我建议你在主设置文件路径下建立一个 <font color=green><strong>shaders</strong></font> 文件夹放置所有第三方着色器。<br />
-以我的推荐用法为例，下载你想要的着色器， <code class="docutils literal notranslate"><span class="pre">xxx.glsl</span></code> 放置在 <font color=green><strong>X:/xxxxx/你的MPV文件夹/portable_config/shaders/</strong></font> 内</p>
+以我的推荐用法为例，下载你想要的着色器 <code class="docutils literal notranslate"><span class="pre">xxx.glsl</span></code> 放置在 <font color=green><strong>X:/xxxxx/你的MPV文件夹/portable_config/shaders/</strong></font> 内</p>
 <section id="id19">
 <h4>5.1.常规用法<a class="headerlink" href="#id19" title="此标题的永久链接">#</a></h4>
 <p>在主设置文件中，使用参数 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=&lt;file-list&gt;</span></code> 设置初始加载的多个着色器。<br />
-同样为了避免运行时被覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀，意为追加着色器。可以存在多个 <code class="docutils literal notranslate"><span class="pre">glsl-shaders-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 指定的滤镜。<br />
+同样为了避免读取时被同名参数覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀（意为追加着色器）。可以存在多个 <code class="docutils literal notranslate"><span class="pre">glsl-shaders-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 指定的滤镜。<br />
 注意<strong>不要混淆</strong>，近似参数 <code class="docutils literal notranslate"><span class="pre">glsl-shader=&lt;file&gt;</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">glsl-shaders-append</span></code></p>
 <p>加载着色器的路径写法，官方手册 <a class="reference external" href="https://mpv.io/manual/master/#paths">定位</a><br />
 可以使用绝对路径，比如：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">&quot;X:/xxxxx/你的MPV文件夹/portable_config/shaders/xxx.glsl&quot;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">&quot;X:/xxxxx/你的MPV文件夹/portable_config/shaders/xxx.glsl&quot;</span>
 </pre></div>
 </div>
 <p>也可以使用相对路径节省字数，比如：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">&quot;~~/shaders/xxx.glsl&quot;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">glsl-shaders-append</span><span class="o">=</span><span class="s">&quot;~~/shaders/xxx.glsl&quot;</span>
 </pre></div>
 </div>
-<p>🔺 其中 <code class="docutils literal notranslate"><span class="pre">~~/</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">~~home/</span></code> ，指代的是 设置目录**（高优先级）**<br />
-===使用 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 加载多个着色器时用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 分隔<br />
-===尽量避免windows的路径下 <code class="docutils literal notranslate"><span class="pre">/</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\</span></code> 的混用，统一使用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 避免可能的错误</p>
+<p>🔺 其中 <code class="docutils literal notranslate"><span class="pre">~~/</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">~~home/</span></code> ，指代的是 设置目录 <strong>（高优先级）</strong><br />
+===使用 <code class="docutils literal notranslate"><span class="pre">glsl-shaders=</span></code> 一次性加载多个着色器时用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 分隔<br />
+===尽量避免Windows的路径符 <code class="docutils literal notranslate"><span class="pre">/</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\</span></code> 的混用，统一使用 <code class="docutils literal notranslate"><span class="pre">/</span></code> 避免可能的错误</p>
 </section>
 <section id="id20">
 <h4>5.2.运行时启用<a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h4>
@@ -483,14 +484,14 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CTRL</span><span class="o">+</span><span class="mi">1</span> <span class="n">change</span><span class="o">-</span><span class="nb">list</span> <span class="n">glsl</span><span class="o">-</span><span class="n">shaders</span> <span class="n">toggle</span> <span class="s2">&quot;~~/shaders/adaptive-sharpen.glsl&quot;</span>
 </pre></div>
 </div>
-<p>保存后在mpv中播放视频测试，你可以先按下 “shift+i” 常驻统计信息，再按 “2” 翻到第二页，观察留意着色器列表。</p>
+<p>保存后在mpv中播放视频测试，你可以先按下 <kbd>Shift</kbd> + <kbd>i</kbd> 常驻显示统计信息，再按 <kbd>2</kbd> 切换到第二页，观察留意着色器列表。</p>
 <img src="_assets/mpv_start-08.webp" style="zoom:40%;" />
-<p>第一次按下 “Ctrl+↑” 将出现 <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">shader:</span> <span class="pre">...</span></code> ，第二次按下将撤销。</p>
-<p>着色器类的 <a class="reference external" href="https://mpv.io/manual/master/#string-list-and-path-list-options">可用后缀</a> 。</p>
+<p>首次按下 <kbd>Ctrl</kbd> + <kbd>↑</kbd> 将出现 <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">shader:</span> <span class="pre">...</span></code> ，再次按下将撤销。</p>
+<p>关于着色器类的可用后缀，参考 <a class="reference external" href="https://mpv.io/manual/master/#string-list-and-path-list-options">此处</a> 。</p>
 </section>
 <section id="id21">
 <h4>5.3.第三方着色器介绍<a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h4>
-<p>参考 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_shaders.html">此文档</a></p>
+<p>参见 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_shaders.html">着色器文档</a> ，不再重复记录同内容。</p>
 </section>
 </section>
 <section id="vapoursynth">
@@ -505,16 +506,16 @@ mpv未集成该部分，需要手动安装（以下步骤出于绿色化考虑�
 <img src="_assets/mpv_start-10.webp" style="zoom:40%;" />
 <p>解压两个压缩包的全部文件到 <strong>mpv.exe</strong> 所在路径</p>
 <img src="_assets/mpv_start-11.webp" style="zoom:40%;" />
-<p>🔺 官方的VapourSyhth版本需要使用匹配的Python版本才能正常工作，例如 R53-R57 对应 3.8.x 或 3.9.x</p>
+<p>🔺 官方的VapourSyhth版本需要使用匹配的Python版本才能正常工作，例如 R53-R57 对应 3.8.x 或 3.9.x ，R58-R60 对应 3.8.x 或 3.10.x ，如果使用最新版本则查询 <a class="reference external" href="http://vapoursynth.com/doc/installation.html#prerequisites">vs的文档</a>。</p>
 </section>
 <section id="mvtools">
 <h4>6.2.mvtools 补帧法<a class="headerlink" href="#mvtools" title="此标题的永久链接">#</a></h4>
 <p>你可以在 <a class="reference external" href="https://github.com/mpv-player/mpv/wiki/User-Scripts#vapoursynth-scripts">此处</a> 获取公开的VS脚本<br />
 VS滤镜参与mpv的播放流程至少需要三个部分： <em><strong>dll库 + 对应的vpy脚本 + mpv/input.conf中触发条件的参数</strong></em></p>
+<p>“使用mvtools对视频进行补帧”作为较常见的一种用法，此处将它作为示例：</p>
 <section id="id23">
 <h5>6.2.1.库的下载<a class="headerlink" href="#id23" title="此标题的永久链接">#</a></h5>
-<p>“使用mvtools对视频进行补帧”作为较常见的一种用法，此处将它作为示例：<br />
-获取mvtools所需的 <a class="reference external" href="https://github.com/dubhater/vapoursynth-mvtools/releases">库</a></p>
+<p>获取mvtools所需的 <a class="reference external" href="https://github.com/dubhater/vapoursynth-mvtools/releases">插件库</a></p>
 <img src="_assets/mpv_start-12.webp" style="zoom:40%;" />
 <p>解压放置 <strong>libmvtools.dll</strong> 在 <font color=green><strong>X:/xxxxx/你的MPV文件夹/vapoursynth64/plugins/</strong></font> 内</p>
 </section>
@@ -528,7 +529,7 @@ VS滤镜参与mpv的播放流程至少需要三个部分： <em><strong>dll库 +
 <section id="id25">
 <h5>6.2.3.设置调用<a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h5>
 <p>一种方法是<strong>主设置文件</strong> <font color=blue><strong>mpv.conf</strong></font> 中使用伴随mpv启动时激活</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">vapoursynth=&quot;~~/xxxxx.vpy&quot;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">vf-append</span><span class="o">=</span><span class="s">vapoursynth=&quot;~~/xxxxx.vpy&quot;</span>
 </pre></div>
 </div>
 <p>另一种是 <font color=blue><strong>input.conf</strong></font> 中使用如下的示例，灵活开启关闭</p>
@@ -575,13 +576,12 @@ VS工作状态的检验可多方结合，例如在统计信息中的滤镜列表
 <ul class="simple">
 <li><p><strong>有无可用的第三方前端？</strong></p></li>
 </ul>
-<p>windows:<br />
-<a class="reference external" href="https://KikoPlayProject.github.io">KikoPlay</a> 支持弹幕，简易库管理<br />
-<a class="reference external" href="https://github.com/stax76/mpv.net">mpv.net</a> 近乎原生体验，右键提供快捷多功能<br />
-<a class="reference external" href="https://github.com/hooke007/mpv.net_CM">mpv.net_CM</a> 因为好用于是做了汉化，并依个人需求的定制化成了单独的模组</p>
-<p>mac:<br />
+<p>Windows:<br />
+<a class="reference external" href="https://KikoPlayProject.github.io">KikoPlay</a> 特殊功能用途（弹幕），简易库管理<br />
+<a class="reference external" href="https://github.com/hooke007/mpv.net_CM">mpv.net_CM（中止更新）</a> 因较为好用（近原生体验，右键提供快捷多功能）而做了汉化，并依个人的需求定制成了独立的模组</p>
+<p>Mac:<br />
 <a class="reference external" href="https://github.com/iina/iina">IINA</a></p>
-<p>linux:<br />
+<p>Linux:<br />
 很多，但我不熟，而且似乎没必要（</p>
 </section>
 </section>

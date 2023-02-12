@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -300,6 +300,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--pipewire-buffer=&lt;1-2000|native&gt;</span></code></dt><dd><p>设置音频缓冲区，以毫秒为单位。越高的值缓存更多的数据，且具有较低的缓冲区不足概率。值越小，音频流的反应越快，例如对播放速度变化的反应。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--pipewire-remote=&lt;remote&gt;</span></code></dt><dd><p>指定通过本地UNIX套接字连接的PipeWire远程守护进程名称。一个空的 &lt;remote&gt; 字符串使用默认的名为``pipewire-0`` 的远程。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--pipewire-volume-mode=&lt;channel|global&gt;</span></code></dt><dd><p>指定 <code class="docutils literal notranslate"><span class="pre">ao-volume</span></code> 属性是否应该应用于声道音量或全局音量。默认为全局音量。</p>
 </dd>
 </dl>
 </dd>

@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -379,6 +379,8 @@
 <p>这对纯音频播放无效。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;</span></code></dt><dd><p>将指定的属性或选项设置为指定的值。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">&lt;name&gt;</span></code></dt><dd><p>删除指定的属性。大多数属性不能被删除。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">&lt;name&gt;</span> <span class="pre">[&lt;value&gt;]</span></code></dt><dd><p>向属性或选项添加指定的值。在上溢或下溢时，将属性钳制为最大值。如果省略了 <code class="docutils literal notranslate"><span class="pre">&lt;value&gt;</span></code> ，则假定为 <code class="docutils literal notranslate"><span class="pre">1</span></code> 。</p>
 </dd>
@@ -1515,11 +1517,9 @@
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-text</span></code></dt><dd><p>当前的字幕文本，不管字幕是否可见。格式被剥离。如果字幕不是基于文本的（例如DVD/BD字幕），将返回一个空字符串。</p>
-<p>这个属性是实验性的，将来可能被移除。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-text-ass</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">sub-text</span></code> ，但返回ASS格式的文本。其他格式的文本字幕会被转换。对于原生ASS字幕，不包含任何文本（但是矢量图等）的事件不会被过滤掉。如果多个事件与当前播放时间相匹配，它们会用换行符连接起来。只包含事件的“文本”部分。</p>
 <p>这个属性不足以正确渲染ASS字幕，因为ASS header和每个事件的元数据没有被返回。你可能需要对返回的字符串做进一步的过滤以使其有用。</p>
-<p>这个属性是实验性的，将来可能会被移除。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">secondary-sub-text</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">sub-text</span></code> 相同，但用于次字幕。</p>
 </dd>
@@ -1805,6 +1805,12 @@
 <p>Lua脚本有以 <code class="docutils literal notranslate"><span class="pre">utils.shared_script_property_</span></code> 开头的辅助工具。它们是没有文档的，因为你不应该使用这个属性。如果你仍然认为你必须使用，你应该使用辅助工具而不是直接使用这个属性。</p>
 <p>你应该使用 <code class="docutils literal notranslate"><span class="pre">change-list</span></code> 命令来修改内容。如果两个脚本同时更新不同的按键，由于缺乏同步性，手动读取、修改和写入属性可能会造成数据丢失。Lua辅助工具可以解决这个问题。</p>
 <p>（如果两个脚本试图同时更新同一个按键，则没有办法确保同步性）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">user-data</span></code> (RW)</dt><dd><p>这是一个在客户端之间共享的任意节点的递归按键/值图表，以供一般使用（即脚本、IPC客户端、主机应用程序等）。播放器自身不使用其中的任何数据（尽管一些内置脚本可能使用）。该属性在播放器重新启动后不会被保留。</p>
+<p>这是比 <code class="docutils literal notranslate"><span class="pre">shared-script-properties</span></code> 更强大的替代品。</p>
+<p>子路径可以被直接访问；例如， <code class="docutils literal notranslate"><span class="pre">user-data/my-script/state/a</span></code> 可被读取、写入或观测。</p>
+<p>top-level 对象本身不能被直接写入；而是写入到子路径。</p>
+<p>将此属性或其子属性转换为字符串，这将得到一个JSON的呈现。如果转换一个 leaf-level 对象（即不是图表或数组）并且不使用 raw 模式，将给出底层内容（例如，字符串将被直接输出，而没有引号或JSON转义）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">working-directory</span></code></dt><dd><p>mpv进程的工作目录。对JSON IPC用户可能有用，因为命令行播放器通常使用相对路径。</p>
 </dd>

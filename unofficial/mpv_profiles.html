@@ -2,7 +2,7 @@
 <html class="no-js" lang="zh-CN">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="快捷键自定义与控制台" href="mpv_input.html" /><link rel="prev" title="第三方用户着色器" href="mpv_shaders.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>配置预设<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20221122</em></p>
+<p><em>ver.20230212</em></p>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>阅读本文前默认已基本熟悉 mpv.conf 内各参数的用途及含义。</p>
@@ -230,27 +230,27 @@
 <section id="id3">
 <h3>示例配置<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
 <p>首先，从如下的例子开始，逐步解析 profile ——</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### mpv.conf 内容</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### mpv.conf 内容</span>
 
-<span class="na">vo</span><span class="o">=</span><span class="s">gpu</span><span class="w"></span>
-<span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">profile</span><span class="o">=</span><span class="s">gpu-hq</span><span class="w"></span>
-<span class="na">deband</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
-<span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">profile</span><span class="o">=</span><span class="s">srt_style</span><span class="w"></span>
-
-
-<span class="k">[srt_style]</span><span class="w"></span>
-<span class="na">sub-scale-with-window</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
-<span class="na">sub-font-size</span><span class="o">=</span><span class="s">58</span><span class="w"></span>
-<span class="na">sub-border-size</span><span class="o">=</span><span class="s">4</span><span class="w"></span>
+<span class="na">vo</span><span class="o">=</span><span class="s">gpu</span>
+<span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">profile</span><span class="o">=</span><span class="s">gpu-hq</span>
+<span class="na">deband</span><span class="o">=</span><span class="s">no</span>
+<span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">profile</span><span class="o">=</span><span class="s">srt_style</span>
 
 
-<span class="k">[playing_ontop]</span><span class="w"></span>
-<span class="na">profile-desc</span><span class="o">=</span><span class="s">播放时置顶</span><span class="w"></span>
-<span class="na">profile-cond</span><span class="o">=</span><span class="s">not pause</span><span class="w"></span>
-<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span><span class="w"></span>
-<span class="na">ontop</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
+<span class="k">[srt_style]</span>
+<span class="na">sub-scale-with-window</span><span class="o">=</span><span class="s">no</span>
+<span class="na">sub-font-size</span><span class="o">=</span><span class="s">58</span>
+<span class="na">sub-border-size</span><span class="o">=</span><span class="s">4</span>
+
+
+<span class="k">[playing_ontop]</span>
+<span class="na">profile-desc</span><span class="o">=</span><span class="s">播放时置顶</span>
+<span class="na">profile-cond</span><span class="o">=</span><span class="s">not pause</span>
+<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span>
+<span class="na">ontop</span><span class="o">=</span><span class="s">yes</span>
 </pre></div>
 </div>
 </section>
@@ -261,36 +261,36 @@
 依照整体逻辑，从上往下读取。对于一般选项，如果存在重名的则后者覆盖前者成为实际被应用的参数。<br />
 其中 <code class="docutils literal notranslate"><span class="pre">profile=xxx</span></code> 是一个特殊选项，当它被读取时，会被解析为它的赋值对象中的实际参数集。</p>
 <p><code class="docutils literal notranslate"><span class="pre">[xxxxx]</span></code> 是一个profile的头部标志，两个profile之间 —— 即 <code class="docutils literal notranslate"><span class="pre">[srt_style]</span></code> 到 <code class="docutils literal notranslate"><span class="pre">[playing_ontop]</span></code> 所有中间行的参数都属于 <code class="docutils literal notranslate"><span class="pre">[srt_style]</span></code> 。<br />
-一旦你在 mpv.conf 自己建立了profile，就不要把常驻参数（即启动时就应用的项）写在profile的后方，因为profile没有明确的结束标志，在上方示例中，任何写在最后的参数都会被mpv认定为属于 <code class="docutils literal notranslate"><span class="pre">[srt_style]</span></code></p>
+一旦你在 mpv.conf 自己建立了profile，就不要把常驻参数（即启动时就应用的项）写在profile的后方，因为profile没有明确的结束标志，在上方示例中，任何写在最后的参数都会被mpv认定为属于 <code class="docutils literal notranslate"><span class="pre">[playing_ontop]</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">gpu-hq</span></code> 是mpv内建（自带）的一个profile，它具体包含以下参数：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span><span class="w"></span>
-<span class="na">cscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span><span class="w"></span>
-<span class="na">dscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mitchell</span><span class="w"></span>
-<span class="na">dither-depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">auto</span><span class="w"></span>
-<span class="na">correct-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
-<span class="na">linear-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
-<span class="na">sigmoid-upscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
-<span class="na">deband</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span>
+<span class="na">cscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span>
+<span class="na">dscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mitchell</span>
+<span class="na">dither-depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">auto</span>
+<span class="na">correct-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">linear-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">sigmoid-upscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">deband</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
 </pre></div>
 </div>
 <p>P.S. mpv还有其它内建profile，详见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/42">《profiles_补充内容》</a></p>
 <p>因此，上方示例实际被解析为如下常驻参数列表 ——</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常驻参数</span><span class="w"></span>
-<span class="na">vo</span><span class="o">=</span><span class="s">gpu</span><span class="w"></span>
-<span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">scale</span><span class="o">=</span><span class="s">spline36</span><span class="w"></span>
-<span class="na">cscale</span><span class="o">=</span><span class="s">spline36</span><span class="w"></span>
-<span class="na">dscale</span><span class="o">=</span><span class="s">mitchell</span><span class="w"></span>
-<span class="na">dither-depth</span><span class="o">=</span><span class="s">auto</span><span class="w"></span>
-<span class="na">correct-downscaling</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">linear-downscaling</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">sigmoid-upscaling</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">deband</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">deband</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
-<span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">sub-scale-with-window</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
-<span class="na">sub-font-size</span><span class="o">=</span><span class="s">58</span><span class="w"></span>
-<span class="na">sub-border-size</span><span class="o">=</span><span class="s">4</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常驻参数</span>
+<span class="na">vo</span><span class="o">=</span><span class="s">gpu</span>
+<span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">scale</span><span class="o">=</span><span class="s">spline36</span>
+<span class="na">cscale</span><span class="o">=</span><span class="s">spline36</span>
+<span class="na">dscale</span><span class="o">=</span><span class="s">mitchell</span>
+<span class="na">dither-depth</span><span class="o">=</span><span class="s">auto</span>
+<span class="na">correct-downscaling</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">linear-downscaling</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">sigmoid-upscaling</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">deband</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">deband</span><span class="o">=</span><span class="s">no</span>
+<span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">sub-scale-with-window</span><span class="o">=</span><span class="s">no</span>
+<span class="na">sub-font-size</span><span class="o">=</span><span class="s">58</span>
+<span class="na">sub-border-size</span><span class="o">=</span><span class="s">4</span>
 </pre></div>
 </div>
 <p>P.S. 在此示例中，把 <code class="docutils literal notranslate"><span class="pre">deband=no</span></code> 放在 <code class="docutils literal notranslate"><span class="pre">profile=gpu-hq</span></code> 之后，也是因为目的是要禁用去色带，否则如果顺序相反只会产生相反的结果。</p>
@@ -300,20 +300,20 @@
 <p>profile可大致分为 常规/普通profile 和 条件/自动profile<br />
 简单概括特性即 条件profile 会根据内部设定的触发条件，满足情况时自动启用</p>
 <p>区分的依据是内部的构成 ——</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常规profile的结构</span><span class="w"></span>
-<span class="na">[ass_vsfilter_cmpt]                  # profile的名称，自定义</span><span class="w"></span>
-<span class="na">profile-desc</span><span class="o">=</span><span class="s">ass的vsfilter兼容测试   # [非必要参数] profile的描述，自定义</span><span class="w"></span>
-<span class="na">sub-ass-vsfilter-aspect-compat</span><span class="o">=</span><span class="s">no    # 此行往后填写要你要应用的参数，自定义</span><span class="w"></span>
-<span class="na">sub-ass-vsfilter-blur-compat</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
-<span class="na">sub-ass-vsfilter-color-compat</span><span class="o">=</span><span class="s">no</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常规profile的结构</span>
+<span class="na">[ass_vsfilter_cmpt]                  # profile的名称，自定义</span>
+<span class="na">profile-desc</span><span class="o">=</span><span class="s">ass的vsfilter兼容测试</span><span class="w">   </span><span class="c1"># [非必要参数] profile的描述，自定义</span>
+<span class="na">sub-ass-vsfilter-aspect-compat</span><span class="o">=</span><span class="s">no</span><span class="w">    </span><span class="c1"># 此行往后填写要你要应用的参数，自定义</span>
+<span class="na">sub-ass-vsfilter-blur-compat</span><span class="o">=</span><span class="s">no</span>
+<span class="na">sub-ass-vsfilter-color-compat</span><span class="o">=</span><span class="s">no</span>
 </pre></div>
 </div>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 条件profile的结构</span><span class="w"></span>
-<span class="na">[idle_border]                     # profile的名称，自定义</span><span class="w"></span>
-<span class="na">profile-desc</span><span class="o">=</span><span class="s">非空闲时使用无边框   # [非必要参数] profile的描述，自定义</span><span class="w"></span>
-<span class="na">profile-cond</span><span class="o">=</span><span class="s">not p.idle_active    # profile的触发判定条件</span><span class="w"></span>
-<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy              # 不满足时的回退方式</span><span class="w"></span>
-<span class="na">border</span><span class="o">=</span><span class="s">no                         # 此行往后填写要你要应用的参数，自定义</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 条件profile的结构</span>
+<span class="na">[idle_border]                     # profile的名称，自定义</span>
+<span class="na">profile-desc</span><span class="o">=</span><span class="s">非空闲时使用无边框</span><span class="w">   </span><span class="c1"># [非必要参数] profile的描述，自定义</span>
+<span class="na">profile-cond</span><span class="o">=</span><span class="s">not p.idle_active</span><span class="w">    </span><span class="c1"># profile的触发判定条件</span>
+<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span><span class="w">              </span><span class="c1"># 不满足时的回退方式</span>
+<span class="na">border</span><span class="o">=</span><span class="s">no</span><span class="w">                         </span><span class="c1"># 此行往后填写要你要应用的参数，自定义</span>
 </pre></div>
 </div>
 <section id="profile">
@@ -347,10 +347,10 @@
 <section id="id7">
 <h3>3.1.旧版的自动profile<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>mpv遗留了一种旧版的 自动profile ，如下所示</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### Legacy auto profiles的结构</span><span class="w"></span>
-<span class="na">[extension.mp4]                    # profile的名称，亦是profile的触发判定条件（回退方式类似 copy）</span><span class="w"></span>
-<span class="na">profile-desc</span><span class="o">=</span><span class="s">mp4扩展名文件的处理   # [非必要参数] profile的描述，自定义</span><span class="w"></span>
-<span class="na">hwdec</span><span class="o">=</span><span class="s">auto                         # 此行往后填写要你要应用的参数，自定义</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### Legacy auto profiles的结构</span>
+<span class="na">[extension.mp4]                    # profile的名称，亦是profile的触发判定条件（回退方式类似 copy）</span>
+<span class="na">profile-desc</span><span class="o">=</span><span class="s">mp4扩展名文件的处理</span><span class="w">   </span><span class="c1"># [非必要参数] profile的描述，自定义</span>
+<span class="na">hwdec</span><span class="o">=</span><span class="s">auto</span><span class="w">                         </span><span class="c1"># 此行往后填写要你要应用的参数，自定义</span>
 </pre></div>
 </div>
 <p>它的功能有限，通常没有使用的必要而且可以转换为当前的 条件profile ，这在之前的 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/42">《profiles_补充内容》</a> 有记录。</p>
@@ -358,23 +358,23 @@
 <section id="id8">
 <h3>3.2.profile嵌套<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
 <p>如图所示，注意书写顺序，确保后方的profile所调用的profile已被读取到。</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[deband_base]</span><span class="w"></span>
-<span class="na">deband</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
-<span class="na">deband-iterations</span><span class="o">=</span><span class="s">2</span><span class="w"></span>
-<span class="na">deband-threshold</span><span class="o">=</span><span class="s">48</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[deband_base]</span>
+<span class="na">deband</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">deband-iterations</span><span class="o">=</span><span class="s">2</span>
+<span class="na">deband-threshold</span><span class="o">=</span><span class="s">48</span>
 
-<span class="k">[deband_plus]</span><span class="w"></span>
-<span class="na">profile</span><span class="o">=</span><span class="s">deband_base</span><span class="w"></span>
-<span class="na">deband-range</span><span class="o">=</span><span class="s">10</span><span class="w"></span>
-<span class="na">deband-grain</span><span class="o">=</span><span class="s">24</span><span class="w"></span>
+<span class="k">[deband_plus]</span>
+<span class="na">profile</span><span class="o">=</span><span class="s">deband_base</span>
+<span class="na">deband-range</span><span class="o">=</span><span class="s">10</span>
+<span class="na">deband-grain</span><span class="o">=</span><span class="s">24</span>
 
-<span class="k">[deband_auto]</span><span class="w"></span>
-<span class="na">profile-cond</span><span class="o">=</span><span class="s">fullscreen</span><span class="w"></span>
-<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span><span class="w"></span>
-<span class="na">profile</span><span class="o">=</span><span class="s">deband_plus</span><span class="w"></span>
+<span class="k">[deband_auto]</span>
+<span class="na">profile-cond</span><span class="o">=</span><span class="s">fullscreen</span>
+<span class="na">profile-restore</span><span class="o">=</span><span class="s">copy</span>
+<span class="na">profile</span><span class="o">=</span><span class="s">deband_plus</span>
 </pre></div>
 </div>
-<p>注意：不要在 条件profile 里嵌套 条件profile</p>
+<p>🔺 注意：不要在 条件profile 里嵌套 条件profile</p>
 </section>
 <section id="id9">
 <h3>3.3.隔离profile<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
@@ -385,26 +385,27 @@
 <section id="id10">
 <h3>3.4.穿插常驻参数<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
 <p>如果你执意要在两个profile之间穿插 常驻参数 ，官方亦提供了一种解决方案，见下方示例 ——</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### “常驻参数” 区</span><span class="w"></span>
-<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span><span class="w"></span>
-<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span><span class="w"></span>
-<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### “常驻参数” 区</span>
+<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span>
+<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span>
+<span class="na">xxxx</span><span class="o">=</span><span class="s">xxxx</span>
 
-<span class="c1">### “profile参数” 区</span><span class="w"></span>
-<span class="k">[profile_1]</span><span class="w"></span>
-<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span><span class="w"></span>
-<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span><span class="w"></span>
-<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span><span class="w"></span>
+<span class="c1">### “profile参数” 区</span>
+<span class="k">[profile_1]</span>
+<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span>
+<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span>
+<span class="na">aaaa</span><span class="o">=</span><span class="s">aaaa</span>
 
-<span class="na">[default]   # 使用名为 &quot;default&quot; 的profile即可让这部分的参数被归为 “常驻参数”</span><span class="w"></span>
-<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span><span class="w"></span>
-<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span><span class="w"></span>
-<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span><span class="w"></span>
+<span class="c1"># 使用名为 &quot;default&quot; 的profile即可让这部分的参数被归为 “常驻参数”</span>
+<span class="k">[default]</span>
+<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span>
+<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span>
+<span class="na">yyyy</span><span class="o">=</span><span class="s">yyyy</span>
 
-<span class="k">[profile_2]</span><span class="w"></span>
-<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span><span class="w"></span>
-<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span><span class="w"></span>
-<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span><span class="w"></span>
+<span class="k">[profile_2]</span>
+<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span>
+<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span>
+<span class="na">bbbb</span><span class="o">=</span><span class="s">bbbb</span>
 </pre></div>
 </div>
 <p>这种方案带来了附属影响，即 <code class="docutils literal notranslate"><span class="pre">profile=default</span></code> 原本是空的，而此时被赋予了 <code class="docutils literal notranslate"><span class="pre">yyy...</span></code> 这部分参数。</p>
