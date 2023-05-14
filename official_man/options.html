@@ -225,7 +225,7 @@
 <h2>轨道选择<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">--alang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>指定一个音频的优先使用语言的列表。不同的容器格式采用不同的语言代码。DVD使用ISO 639-1二字母的语言代码，Matroska、MPEG-TS和NUT使用ISO 639-2三字母的语言代码，而OGM使用自由格式的标识符。另参见 <code class="docutils literal notranslate"><span class="pre">--aid</span></code></p>
-<p>这是一个字符串列表选项。详见 <a href="#id23"><span class="problematic" id="id24">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id22"><span class="problematic" id="id23">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -235,7 +235,7 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--slang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>指定一个字幕的优先使用语言的列表。不同的容器格式采用不同的语言代码。DVD使用ISO 639-1二字母的语言代码，Matroska使用ISO 639-2三字母的语言代码，而OGM使用自由格式的标识符。另参见 <code class="docutils literal notranslate"><span class="pre">--sid</span></code></p>
-<p>这是一个字符串列表选项。详见 <a href="#id25"><span class="problematic" id="id26">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id24"><span class="problematic" id="id25">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -245,7 +245,7 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vlang=&lt;...&gt;</span></code></dt><dd><p>相当于 <code class="docutils literal notranslate"><span class="pre">--alang</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--slang</span></code> ，用于视频轨道。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id27"><span class="problematic" id="id28">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id26"><span class="problematic" id="id27">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--aid=&lt;ID|auto|no&gt;</span></code></dt><dd><p>选择音轨。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 选择默认轨， <code class="docutils literal notranslate"><span class="pre">no</span></code> 禁用音频。另参见 <code class="docutils literal notranslate"><span class="pre">--alang</span></code> 。mpv通常在开始播放文件时在终端输出可用的音轨。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--audio</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--aid</span></code> 的别名。</p>
@@ -531,10 +531,10 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--load-scripts=&lt;yes|no&gt;</span></code></dt><dd><p>如果设置为 “no”，则不自动加载设置子目录 <code class="docutils literal notranslate"><span class="pre">scripts</span></code> （通常是 <code class="docutils literal notranslate"><span class="pre">~/.config/mpv/scripts/</span></code> ）中的脚本。（默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code> ）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--script=&lt;filename&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--scripts=file1.lua:file2.lua:...</span></code></dt><dd><p>加载一个Lua脚本。第二个选项允许你加载多个脚本，用路径分隔符（Unix下为 <code class="docutils literal notranslate"><span class="pre">:</span></code> ，Windows下为 <code class="docutils literal notranslate"><span class="pre">;</span></code> ）将它们分开。</p>
-<p><code class="docutils literal notranslate"><span class="pre">--scripts</span></code> 是一个路径列表选项。详见 <a href="#id29"><span class="problematic" id="id30">`列表选项`_</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">--scripts</span></code> 是一个路径列表选项。详见 <a href="#id28"><span class="problematic" id="id29">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--script-opts=key1=value1,key2=value2,...</span></code></dt><dd><p>为脚本设置选项。脚本可以通过按键来查询一个选项。如果一个选项被使用，以及该选项值具有什么样的语义，完全取决于所加载的脚本。没有被任何脚本声明的值会被忽略。</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id31"><span class="problematic" id="id32">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id30"><span class="problematic" id="id31">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--merge-files</span></code></dt><dd><p>假装所有传递给mpv的文件都被串联成一个单一的大文件。这使用内部的时间轴/EDL支持。</p>
 </dd>
@@ -545,7 +545,7 @@
 <p>这可以通过这个选项来改变。它接受一个选项列表，mpv将在播放开始时把这些选项的值重置为初始值。初始值要么是默认值，要么是由设置文件或命令行设置的。</p>
 <p>在某些情况下，这可能不会入预期的那样工作。例如， <code class="docutils literal notranslate"><span class="pre">--volume</span></code> 只有在设置文件或命令行中明确设置时才会被重置。</p>
 <p>特殊名称 <code class="docutils literal notranslate"><span class="pre">all</span></code> 会重置尽可能多的选项。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id33"><span class="problematic" id="id34">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id32"><span class="problematic" id="id33">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -560,7 +560,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--show-profile=&lt;profile&gt;</span></code></dt><dd><p>显示一个配置预设的描述和内容。如果没有提供参数，则列出所有的配置预设。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--use-filedir-conf</span></code></dt><dd><p>在将要播放的文件的同一目录下查找针对该文件的设置文件。参见 <a href="#id35"><span class="problematic" id="id36">`特定文件的设置文件`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--use-filedir-conf</span></code></dt><dd><p>在将要播放的文件的同一目录下查找针对该文件的设置文件。参见 <a href="#id34"><span class="problematic" id="id35">`特定文件的设置文件`_</span></a></p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>如果从不受信任的媒体中播放可能会有风险。</p>
@@ -620,7 +620,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--ytdl-raw-options=&lt;key&gt;=&lt;value&gt;[,&lt;key&gt;=&lt;value&gt;[,...]]</span></code></dt><dd><p>传递任意的选项给youtube-dl。参数应该以按键-值成对的形式传递。没有参数的选项必须包括 <code class="docutils literal notranslate"><span class="pre">=</span></code> 。</p>
 <p>没有安全检查，所以有可能破坏某些事情（例如，将无效的参数传递给youtube-dl）。</p>
 <p>可以传递一个代理URL，让youtube-dl在解析网站时使用它。这对于有地理限制的URL很有用。在youtube-dl解析后，一些URL也需要代理来播放，所以这可以把代理信息传递给mpv。请注意，SOCKS代理不被支持，https的URL也会绕过代理。这是FFmpeg的一个限制。</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id37"><span class="problematic" id="id38">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id36"><span class="problematic" id="id37">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -635,9 +635,9 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--load-osd-console=&lt;yes|no&gt;</span></code></dt><dd><p>启用内置脚本，在一个按键绑定上显示控制台，可让你输入命令（默认： yes）。在默认情况下， <code class="docutils literal notranslate"><span class="pre">`</span></code> 键用于显示控制台， <code class="docutils literal notranslate"><span class="pre">ESC</span></code> 键用于再次隐藏它。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--load-auto-profiles=&lt;yes|no|auto&gt;</span></code></dt><dd><p>启用内置脚本，进行自动配置预设（默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code> ）。详见 <a href="#id39"><span class="problematic" id="id40">`附带条件的自动配置预设`_</span></a> 。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 将加载脚本，但如果不存在附带条件的自动配置预设，则立即卸载它。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--load-auto-profiles=&lt;yes|no|auto&gt;</span></code></dt><dd><p>启用内置脚本，进行自动配置预设（默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code> ）。详见 <a href="#id38"><span class="problematic" id="id39">`附带条件的自动配置预设`_</span></a> 。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 将加载脚本，但如果不存在附带条件的自动配置预设，则立即卸载它。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--player-operation-mode=&lt;cplayer|pseudo-gui&gt;</span></code></dt><dd><p>用于启用“伪GUI模式”，这表示一些选项的默认值被改变。这个选项通常不应该直接使用，而应该由mpv内部使用，或者由mpv提供的脚本、设置文件或.desktop文件。详见 <a href="#id41"><span class="problematic" id="id42">`伪GUI模式`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--player-operation-mode=&lt;cplayer|pseudo-gui&gt;</span></code></dt><dd><p>用于启用“伪GUI模式”，这表示一些选项的默认值被改变。这个选项通常不应该直接使用，而应该由mpv内部使用，或者由mpv提供的脚本、设置文件或.desktop文件。详见 <a href="#id40"><span class="problematic" id="id41">`伪GUI模式`_</span></a></p>
 </dd>
 </dl>
 </section>
@@ -648,7 +648,7 @@
 <p>这种行为默认是禁用的，但当用Shift+Q退出播放器时，总是可用的。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--watch-later-directory=&lt;path&gt;</span></code></dt><dd><p>存储“稍后观看”临时文件的目录。</p>
-<p>默认是在设置目录下的一个名为 “watch_later” 的子目录（通常是 <code class="docutils literal notranslate"><span class="pre">~/.config/mpv/</span></code> ）。</p>
+<p>如果不设置该选项，临时文件将被存储在本地的状态目录（通常是 <code class="docutils literal notranslate"><span class="pre">~/.local/state/mpv/</span></code> ）下的一个名为 “watch_later “的子文件夹中。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--no-resume-playback</span></code></dt><dd><p>不要从设置子目录 <code class="docutils literal notranslate"><span class="pre">watch_later</span></code> （通常是 <code class="docutils literal notranslate"><span class="pre">~/.config/mpv/watch_later/</span></code> ）恢复播放位置。参见 <code class="docutils literal notranslate"><span class="pre">quit-watch-later</span></code> 输入命令。</p>
 </dd>
@@ -656,7 +656,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--watch-later-options=option1,option2,...</span></code></dt><dd><p>如果选项在mpv启动后被改变，它们将被保存在 “watch_later” 里的文件中。这些值将在下次播放文件时被恢复。注意，播放位置是通过 <code class="docutils literal notranslate"><span class="pre">start</span></code> 项保存的。</p>
 <p>当移除选项时，已有的稍后观看的数据不会被修改，仍然会被完全应用，但是新的稍后观看的数据将不包含这些选项。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id43"><span class="problematic" id="id44">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id42"><span class="problematic" id="id43">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -683,7 +683,7 @@
 <section id="id6">
 <h2>视频<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo=&lt;driver&gt;</span></code></dt><dd><p>指定要使用的视频输出后端。详见 <a href="#id45"><span class="problematic" id="id46">`视频输出驱动`_</span></a> 以了解可用驱动程序的描述。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--vo=&lt;driver&gt;</span></code></dt><dd><p>指定要使用的视频输出后端。详见 <a href="#id44"><span class="problematic" id="id45">`视频输出驱动`_</span></a> 以了解可用驱动程序的描述。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vd=&lt;...&gt;</span></code></dt><dd><p>根据视频解码器的族和名称，指定要使用的视频解码器的优先列表。详见 <code class="docutils literal notranslate"><span class="pre">--ad</span></code> 。这两个选项使用相同的语法和语义；唯一的区别是它们对不同的解码列表进行操作。</p>
 <div class="admonition note">
@@ -691,7 +691,7 @@
 <p>参见 <code class="docutils literal notranslate"><span class="pre">--vd=help</span></code> 了解可用解码器的完整列表。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vf=&lt;filter1[=parameter1:parameter2:...],filter2,...&gt;</span></code></dt><dd><p>指定一个视频滤镜的列表，应用于视频流。详见 <a href="#id47"><span class="problematic" id="id48">`视频滤镜`_</span></a> 了解可用滤镜的描述。选项变体 <code class="docutils literal notranslate"><span class="pre">--vf-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--vf-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--vf-del</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--vf-clr</span></code> 的存在是为了修改先前指定的列表，但在典型使用中应该不需要这些。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--vf=&lt;filter1[=parameter1:parameter2:...],filter2,...&gt;</span></code></dt><dd><p>指定一个视频滤镜的列表，应用于视频流。详见 <a href="#id46"><span class="problematic" id="id47">`视频滤镜`_</span></a> 了解可用滤镜的描述。选项变体 <code class="docutils literal notranslate"><span class="pre">--vf-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--vf-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--vf-del</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--vf-clr</span></code> 的存在是为了修改先前指定的列表，但在典型使用中应该不需要这些。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--untimed</span></code></dt><dd><p>在输出视频帧时不休眠。当与 <code class="docutils literal notranslate"><span class="pre">--no-audio</span></code> 一起使用时，对基准测试有用。</p>
 </dd>
@@ -1029,7 +1029,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vd-lavc-o=&lt;key&gt;=&lt;value&gt;[,&lt;key&gt;=&lt;value&gt;[,...]]</span></code></dt><dd><p>向libavcodec解码器传递AVOptions。注意，欢迎打一个补丁，使 <code class="docutils literal notranslate"><span class="pre">o=</span></code> 不需要通过AVOption系统传递所有未知的选项。AVOptions的完整列表可以在FFmpeg手册中找到。</p>
 <p>一些曾经是直接选项的选项可以通过这个机制来设置，比如 <code class="docutils literal notranslate"><span class="pre">bug</span></code>, <code class="docutils literal notranslate"><span class="pre">gray</span></code>, <code class="docutils literal notranslate"><span class="pre">idct</span></code>, <code class="docutils literal notranslate"><span class="pre">ec</span></code>, <code class="docutils literal notranslate"><span class="pre">vismv</span></code>, <code class="docutils literal notranslate"><span class="pre">skip_top</span></code> （原 <code class="docutils literal notranslate"><span class="pre">st</span></code> ）, <code class="docutils literal notranslate"><span class="pre">skip_bottom</span></code> （原 <code class="docutils literal notranslate"><span class="pre">sb</span></code> ）, <code class="docutils literal notranslate"><span class="pre">debug</span></code></p>
-<p>这是一个按键/值列表选项。详见 <a href="#id49"><span class="problematic" id="id50">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id48"><span class="problematic" id="id49">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <p><code class="docutils literal notranslate"><span class="pre">--vd-lavc-o=debug=pict</span></code></p>
@@ -1099,9 +1099,9 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-fallback-to-null=&lt;yes|no&gt;</span></code></dt><dd><p>如果没有音频设备被打开，它的行为就像给出了 <code class="docutils literal notranslate"><span class="pre">--ao=null</span></code> 一样。这和 <code class="docutils literal notranslate"><span class="pre">--audio-device</span></code> 结合起来很有用：如果选择的设备不存在，client API用户（或Lua脚本）可以让播放正常进行，并检查 <code class="docutils literal notranslate"><span class="pre">current-ao</span></code> 和 <code class="docutils literal notranslate"><span class="pre">audio-device-list</span></code> 属性，来做出关于如何继续的高级决策。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--ao=&lt;driver&gt;</span></code></dt><dd><p>指定要使用的音频输出驱动。详见 <a href="#id51"><span class="problematic" id="id52">`音频输出驱动`_</span></a> 以了解可用驱动的描述。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--ao=&lt;driver&gt;</span></code></dt><dd><p>指定要使用的音频输出驱动。详见 <a href="#id50"><span class="problematic" id="id51">`音频输出驱动`_</span></a> 以了解可用驱动的描述。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--af=&lt;filter1[=parameter1:parameter2:...],filter2,...&gt;</span></code></dt><dd><p>指定一个应用于音频流的音频滤镜列表。详见 <a href="#id53"><span class="problematic" id="id54">`音频滤镜`_</span></a> 以了解可用滤镜的描述。选项变体 <code class="docutils literal notranslate"><span class="pre">--af-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-del</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--af-clr</span></code> 的存在可用于修改先前指定的列表，但在典型使用中不需要这些。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--af=&lt;filter1[=parameter1:parameter2:...],filter2,...&gt;</span></code></dt><dd><p>指定一个应用于音频流的音频滤镜列表。详见 <a href="#id52"><span class="problematic" id="id53">`音频滤镜`_</span></a> 以了解可用滤镜的描述。选项变体 <code class="docutils literal notranslate"><span class="pre">--af-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-del</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--af-clr</span></code> 的存在可用于修改先前指定的列表，但在典型使用中不需要这些。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-spdif=&lt;codecs&gt;</span></code></dt><dd><p>应该使用的压缩音频直通的编解码器的列表。这对传统的S/PDIF和HDMI都有效。</p>
 <p>可能的编码有 <code class="docutils literal notranslate"><span class="pre">ac3</span></code>, <code class="docutils literal notranslate"><span class="pre">dts</span></code>, <code class="docutils literal notranslate"><span class="pre">dts-hd</span></code>, <code class="docutils literal notranslate"><span class="pre">eac3</span></code>, <code class="docutils literal notranslate"><span class="pre">truehd</span></code> 。可以用 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔多个编码来指定。 <code class="docutils literal notranslate"><span class="pre">dts</span></code> 指的是低码率的DTS core，而 <code class="docutils literal notranslate"><span class="pre">dts-hd</span></code> 指的是DTS MA（接收器和操作系统支持的不同）。如果同时指定 <code class="docutils literal notranslate"><span class="pre">dts</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dts-hd</span></code> ，它的作用等同于只指定 <code class="docutils literal notranslate"><span class="pre">dts-hd</span></code></p>
@@ -1158,7 +1158,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--ad-lavc-threads=&lt;0-16&gt;</span></code></dt><dd><p>解码时使用的线程数量。线程是否真正支持取决于编码。截至撰写本文时，它只支持一些无损编码。0表示自动检测机器的核心数，并使用该数，最大为16（默认： 1）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--ad-lavc-o=&lt;key&gt;=&lt;value&gt;[,&lt;key&gt;=&lt;value&gt;[,...]]</span></code></dt><dd><p>将AVOptions传递给libavcodec解码器。注意，欢迎打一个补丁，使o=不需要，并通过AVOption系统传递所有未知的选项。AVOptions的完整列表可以在FFmpeg手册中找到。</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id55"><span class="problematic" id="id56">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id54"><span class="problematic" id="id55">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--ad-spdif-dtshd=&lt;yes|no&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--dtshd</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-dtshd</span></code></dt><dd><p>如果DTS是直通的，则使用DTS-HD。</p>
 <div class="admonition- admonition">
@@ -1216,7 +1216,7 @@
 <p>这个选项对一般的有视频轨道的文件没有影响。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-files=&lt;files&gt;</span></code></dt><dd><p>在观看视频时播放外部文件的音频。</p>
-<p>这是一个路径列表选项。详见 <a href="#id57"><span class="problematic" id="id58">`列表选项`_</span></a></p>
+<p>这是一个路径列表选项。详见 <a href="#id56"><span class="problematic" id="id57">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-file=&lt;file&gt;</span></code></dt><dd><p>CLI/设置文件只是 <code class="docutils literal notranslate"><span class="pre">--audio-files-append</span></code> 的别名。每次使用这个选项将添加一个新的音轨。细节类似于 <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 的工作方式。</p>
 </dd>
@@ -1263,7 +1263,7 @@
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-file-paths=&lt;path1:path2:...&gt;</span></code></dt><dd><p>相当于 <code class="docutils literal notranslate"><span class="pre">--sub-file-paths</span></code> 选项，但用于自动加载的音频文件。</p>
-<p>这是一个路径列表选项。详见 <a href="#id59"><span class="problematic" id="id60">`列表选项`_</span></a></p>
+<p>这是一个路径列表选项。详见 <a href="#id58"><span class="problematic" id="id59">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-client-name=&lt;name&gt;</span></code></dt><dd><p>播放器报告给音频API的应用程序名称。如果你想强制使用不同的音频profile（例如使用PulseAudio），或者在使用libmpv时设置你自己的应用程序名称，就很有用。</p>
 </dd>
@@ -1298,7 +1298,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-files=&lt;file-list&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--sub-file=&lt;filename&gt;</span></code></dt><dd><p>添加一个字幕文件到外部字幕列表中。</p>
 <p>如果你只使用一次 <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> ，该字幕文件就会默认显示。</p>
 <p>如果 <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 被多次使用，可以在运行时通过循环字幕轨道来切换到要使用的字幕。可以同时显示两个字幕：使用 <code class="docutils literal notranslate"><span class="pre">--sid</span></code> 选择第一个字幕索引， <code class="docutils literal notranslate"><span class="pre">--secondary-sid</span></code> 选择第二个索引（索引输出在终端输出的流列表里的 <code class="docutils literal notranslate"><span class="pre">--sid=</span></code> 之后）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">--sub-files</span></code> 是一个路径列表选项（详见 <a href="#id61"><span class="problematic" id="id62">`列表选项`_</span></a> ），可以接受多个文件名，用 <code class="docutils literal notranslate"><span class="pre">:</span></code> (Unix) 或 <code class="docutils literal notranslate"><span class="pre">;</span></code> (Windows)分隔，而 <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 只接受一个文件名，但可以多次使用来添加多个文件。技术上， <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--sub-files-append</span></code> 的CLI/设置文件的别名。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--sub-files</span></code> 是一个路径列表选项（详见 <a href="#id60"><span class="problematic" id="id61">`列表选项`_</span></a> ），可以接受多个文件名，用 <code class="docutils literal notranslate"><span class="pre">:</span></code> (Unix) 或 <code class="docutils literal notranslate"><span class="pre">;</span></code> (Windows)分隔，而 <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 只接受一个文件名，但可以多次使用来添加多个文件。技术上， <code class="docutils literal notranslate"><span class="pre">--sub-file</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--sub-files-append</span></code> 的CLI/设置文件的别名。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--secondary-sid=&lt;ID|auto|no&gt;</span></code></dt><dd><p>选择一个次级字幕流。这与 <code class="docutils literal notranslate"><span class="pre">--sid</span></code> 相似。如果选择了次字幕，它将作为顶部字幕（即在屏幕的顶部）与普通字幕一起呈现，并提供一种同时呈现双字幕的方法。</p>
 <p>这个功能有一些相关的注意事项。例如，位图字幕将总是在其通常的位置呈现，所以选择位图字幕作为次字幕将导致字幕重叠。如果视频被禁用，次字幕永远不会在终端上显示。</p>
@@ -1345,7 +1345,7 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-ass-force-style=&lt;[Style.]Param=Value[,...]&gt;</span></code></dt><dd><p>覆盖一些样式或脚本信息参数。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id63"><span class="problematic" id="id64">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id62"><span class="problematic" id="id63">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
@@ -1545,7 +1545,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">sub</span></code> 设置子目录（通常是 <code class="docutils literal notranslate"><span class="pre">~/.config/mpv/sub/</span></code> ）</p></li>
 </ul>
 </div>
-<p>这是一个路径列表选项。详见 <a href="#id65"><span class="problematic" id="id66">`列表选项`_</span></a></p>
+<p>这是一个路径列表选项。详见 <a href="#id64"><span class="problematic" id="id65">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-visibility</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-sub-visibility</span></code></dt><dd><p>可用于禁用字幕显示，但仍可选中和解码它。</p>
 </dd>
@@ -1643,7 +1643,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-filter-sdh-harder=&lt;yes|no&gt;</span></code></dt><dd><p>做更难的SDH过滤（如果由 <code class="docutils literal notranslate"><span class="pre">--sub-filter-sdh</span></code> 启用）。也将移除speaker labels和圆括号内使用小写和大写字母的文本。</p>
 <p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--sub-filter-regex-...=...</span></code></dt><dd><p>设置一个正则表达式列表来匹配文本字幕，并移除任何匹配的行（默认：空）。这是一个字符串列表选项。详见 <a href="#id67"><span class="problematic" id="id68">`列表选项`_</span></a> 。通常，你应该使用 <code class="docutils literal notranslate"><span class="pre">--sub-filter-regex-append=&lt;regex&gt;</span></code> ，每一个选项的使用都会附加一个新的正则表达式，而不需要对抗转义问题。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-filter-regex-...=...</span></code></dt><dd><p>设置一个正则表达式列表来匹配文本字幕，并移除任何匹配的行（默认：空）。这是一个字符串列表选项。详见 <a href="#id66"><span class="problematic" id="id67">`列表选项`_</span></a> 。通常，你应该使用 <code class="docutils literal notranslate"><span class="pre">--sub-filter-regex-append=&lt;regex&gt;</span></code> ，每一个选项的使用都会附加一个新的正则表达式，而不需要对抗转义问题。</p>
 <p>列表的项目是按顺序匹配的。如果一个正则表达式匹配，这个过程就会停止，该字幕行会被丢弃。默认情况下，匹配的文本是ASS event的 <code class="docutils literal notranslate"><span class="pre">Text</span></code> 字段（如果字幕格式不同，它总是被转换）。这可能包括格式化的tags。匹配是不分大小写的，但如何做到这一点取决于libc，而且很可能只在ASCII中工作。它对位图/图像字幕不起作用。在劣质操作系统上不可用（需要POSIX regex的支持）。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -1669,13 +1669,16 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-font-provider=&lt;auto|none|fontconfig&gt;</span></code></dt><dd><p>使用哪种libass的font provider后端（默认： auto）。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 将尝试使用原生font provider：Linux上的fontconfig，macOS上的CoreText，Windows上的DirectWrite。 <code class="docutils literal notranslate"><span class="pre">fontconfig</span></code> 会强制使用fontconfig，如果libass在构建时支持的话（如果不支持，它的行为与 <code class="docutils literal notranslate"><span class="pre">none</span></code> 相似）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">none</span></code> font provider有效地禁用了系统字体。它仍然会试图使用内嵌的字体（除非设置了 <code class="docutils literal notranslate"><span class="pre">--embeddedfonts=no</span></code> ；这与所有其它font provider的行为相同），和 <code class="docutils literal notranslate"><span class="pre">subfont.ttf</span></code> （如果提供），和 <code class="docutils literal notranslate"><span class="pre">fonts</span></code> 子目录中的字体（如果提供）。（回退比其它font provider更严格，如果一个字体名称不匹配，它可能宁愿不渲染任何使用缺失字体的文本。）</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-fonts-dir=&lt;path&gt;</span></code></dt><dd><p>这个目录中的字体文件将被mpv/libass用来渲染字幕。如果你不想在系统中安装字体的话，该目录很有用。注意，此目录中的文件在被mpv使用之前会被加载到内存中。如果你有很多字体，考虑使用 fonts.conf（参见 <a href="#id68"><span class="problematic" id="id69">`文件`_</span></a> 部分）来涵盖额外的mpv用户设置。</p>
+<p>If this option is not specified, <code class="docutils literal notranslate"><span class="pre">~~/fonts</span></code> will be used by default.</p>
+</dd>
 </dl>
 </section>
 <section id="id9">
 <h2>窗口<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">--title=&lt;string&gt;</span></code></dt><dd><p>设置窗口的标题。这用于视频窗口，如果可能，也设置音频流标题。</p>
-<p>属性被扩展。（参见 <a href="#id69"><span class="problematic" id="id70">`属性扩展`_</span></a> ）</p>
+<p>属性被扩展。（参见 <a href="#id70"><span class="problematic" id="id71">`属性扩展`_</span></a> ）</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>有可能导致显著的CPU占用，这取决于使用的属性。变更窗口的标题通常是一个缓慢的操作，如果标题每一帧都在变化，播放可能会被损坏。</p>
@@ -1852,7 +1855,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--window-maximized=&lt;yes|no&gt;</span></code></dt><dd><p>视频窗口是否被最大化。如果当前视频输出驱动支持的话，设置这个将最大化或取消最大化视频窗口。更多详见 <code class="docutils literal notranslate"><span class="pre">--window-minimized</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--cursor-autohide=&lt;number|no|always&gt;</span></code></dt><dd><p>使鼠标指针在给定的毫秒数后自动隐藏。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 将禁用光标自动隐藏功能。 <code class="docutils literal notranslate"><span class="pre">always</span></code> 表示光标将保持隐藏。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--cursor-autohide=&lt;number|no|always&gt;</span></code></dt><dd><p>使鼠标指针在指定的毫秒数后自动隐藏（默认： 1000 ）。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 将禁用光标自动隐藏功能。 <code class="docutils literal notranslate"><span class="pre">always</span></code> 表示光标将保持隐藏。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--cursor-autohide-fs-only</span></code></dt><dd><p>如果给出这个选项，光标在窗口模式下总是可见的。在全屏模式下，光标会根据 <code class="docutils literal notranslate"><span class="pre">--cursor-autohide</span></code> 显示或隐藏。</p>
 </dd>
@@ -1863,6 +1866,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--force-render</span></code></dt><dd><p>不论窗口的可见性，强制mpv始终渲染帧。目前只影响X11和Wayland视频输出驱动，因为只有它们具有这种优化（即其它的输出都是不考虑可见性进行渲染）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-window-position</span></code></dt><dd><p>每当视频参数、视频流或文件有变化时，强制将mpv的视频输出窗口移到默认位置。这曾经是默认行为。目前只影响到X11视频输出驱动。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--auto-window-resize=&lt;yes|no&gt;</span></code></dt><dd><p>(Wayland, Win32 或 X11) 默认情况下，如果视频的大小发生变化，mpv会自动调整自己的大小（例如，在播放列表中向前跳转）。把这个选项设置为 <code class="docutils literal notranslate"><span class="pre">no</span></code> 就可以阻止该行为，因此窗口的大小不会自动改变。这个选项对 <code class="docutils literal notranslate"><span class="pre">--autofit</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--geometry</span></code> 选项没有任何影响。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--no-keepaspect</span></code>, <code class="docutils literal notranslate"><span class="pre">--keepaspect</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">--no-keepaspect</span></code> 会始终将视频拉伸到窗口大小，并禁用窗口管理器的提示的窗口强制长宽比。（在全屏模式下被忽略）</p>
 </dd>
@@ -1878,14 +1883,14 @@
 </ul>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--hidpi-window-scale</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-hidpi-window-scale</span></code></dt><dd><p>（macOS, Windows, X11, 和Wayland独占） 根据支持的比例系数来缩放窗口大小（默认： yes）。在常规的HiDPI分辨率下，窗口以双倍的尺寸打开，但在非HiDPI分辨率下看起来有相同的尺寸。这在macOS上是默认启用的。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--hidpi-window-scale</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-hidpi-window-scale</span></code></dt><dd><p>（macOS, Windows, X11, 和Wayland独占） 根据支持的比例系数来缩放窗口大小（默认： yes）。在常规的HiDPI分辨率下，窗口以双倍的尺寸打开，但在非HiDPI分辨率下看起来有相同的尺寸。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--native-fs</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-native-fs</span></code></dt><dd><p>（macOS独占）使用操作系统的原生全屏机制（默认： yes）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--monitorpixelaspect=&lt;ratio&gt;</span></code></dt><dd><p>设置你的显示器或电视屏幕的单个像素的长宽比（默认： 1）。值1表示方形像素（对（几乎？）所有LCD都是正确的）。另参见 <code class="docutils literal notranslate"><span class="pre">--monitoraspect</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--video-aspect-override</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--stop-screensaver=&lt;yes|no|always&gt;</span></code></dt><dd><p>在启动时关闭屏幕保护程序（或屏幕blanker和类似机制），在退出时再次打开（默认： yes）。当使用 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 时，屏幕保护程序将在播放不激活时被重新启用。 <code class="docutils literal notranslate"><span class="pre">always</span></code> 将始终禁用屏幕保护程序。注意只能在有视频输出的情况下才能停止屏保（例如，有一个打开的mpv窗口）。</p>
-<p>这不在所有的视频输出或平台上都受支持。有时它被实现了，但并不工作（特别是在Linux“桌面”上）。请仔细阅读 <a href="#id71"><span class="problematic" id="id72">`禁用屏保`_</span></a> 部分。</p>
+<p>这不在所有的视频输出或平台上都受支持。有时它被实现了，但并不工作（特别是在Linux“桌面”上）。请仔细阅读 <a href="#id72"><span class="problematic" id="id73">`禁用屏保`_</span></a> 部分。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wid=&lt;ID&gt;</span></code></dt><dd><p>这告知mpv附加到一个现有的窗口。如果选择了支持该选项的视频输出驱动，它将使用该窗口进行视频输出。mpv将根据该窗口的大小缩放视频，如果视频的长宽比不同，将添加黑条来补偿。</p>
 <p>在X11上，该ID被解释为X11上的一个 <code class="docutils literal notranslate"><span class="pre">Window</span></code> 。与MPlayer/mplayer2不同，mpv始终创建自己的窗口，并将wid窗口设置为父窗口。该窗口将始终重新调整大小来完全覆盖父窗口。值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 被特别解释，mpv将直接在根窗口上绘制。</p>
@@ -1895,7 +1900,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--no-window-dragging</span></code></dt><dd><p>当鼠标点击在窗口上并移动指针时，不移动窗口。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--x11-name</span></code></dt><dd><p>为基于X11的视频输出方法设置窗口类名称。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--x11-name=&lt;string&gt;</span></code></dt><dd><p>为基于X11的视频输出方法设置窗口类名称。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--x11-netwm=&lt;yes|no|auto&gt;</span></code></dt><dd><p>（X11独占）控制NetWM协议功能的使用。</p>
 <p>这可能对损坏的窗口管理器有帮助，也可能没有。这提供了一些现已被移除的 <code class="docutils literal notranslate"><span class="pre">--fstype</span></code> 选项实现的功能。实际上，开发人员并不知道这个选项被需要到什么程度，所以欢迎反馈。</p>
@@ -2008,7 +2013,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--demuxer-lavf-o=&lt;key&gt;=&lt;value&gt;[,&lt;key&gt;=&lt;value&gt;[,...]]</span></code></dt><dd><p>将AVOptions传递给libavformat解复用器。</p>
 <p>注意，欢迎打补丁，使 <em>o=</em> 不需要，并通过AVOption系统传递所有未知的选项。AVOptions的完整列表可以在FFmpeg手册中找到。注意，一些选项可能与mpv的选项冲突。</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id73"><span class="problematic" id="id74">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id74"><span class="problematic" id="id75">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <p><code class="docutils literal notranslate"><span class="pre">--demuxer-lavf-o=fflags=+ignidx</span></code></p>
@@ -2144,13 +2149,13 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--input-key-fifo-size=&lt;2-65000&gt;</span></code></dt><dd><p>指定缓冲按键events的FIFO的大小（默认： 7）。如果它太小，一些events可能会丢失。设置为一个非常大的值的主要缺点是，如果你按住一个按键触发了一些特别慢的命令，那么播放器在处理所有排队的命令时可能无法响应。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--input-test</span></code></dt><dd><p>输入测试模式。mpv不会在按键时执行命令，而是在OSD上显示按键和绑定的命令。必须和一个虚拟视频一起使用，一般的退出播放器的方法将不起作用（通常退出的按键绑定将只显示在OSD上，就像其它的绑定一样）。参见 <a href="#id75"><span class="problematic" id="id76">`INPUT.CONF`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--input-test</span></code></dt><dd><p>输入测试模式。mpv不会在按键时执行命令，而是在OSD上显示按键和绑定的命令。必须和一个虚拟视频一起使用，一般的退出播放器的方法将不起作用（通常退出的按键绑定将只显示在OSD上，就像其它的绑定一样）。参见 <a href="#id76"><span class="problematic" id="id77">`INPUT.CONF`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--input-terminal</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-input-terminal</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">--no-input-terminal</span></code> 阻止播放器从标准输入读取按键events。在从标准输入读取数据时很有用。当在命令行中发现 <code class="docutils literal notranslate"><span class="pre">-</span></code> 时，这将自动启用。有些情况下，你必须手动设置，例如，如果你打开 <code class="docutils literal notranslate"><span class="pre">/dev/stdin</span></code> （或你系统中的等价物），在播放列表中使用stdin或打算以后通过loadfile或loadlist输入命令从stdin读取数据。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--input-ipc-server=&lt;filename&gt;</span></code></dt><dd><p>启用IPC支持并在给定的路径上创建监听套接字。</p>
 <p>在Linux和Unix上，给定的路径是一个常规的文件系统路径。在Windows上，使用命名的pipes，所以路径指的是pipe namespace（ <code class="docutils literal notranslate"><span class="pre">\\.\pipe\&lt;name&gt;</span></code> ）。如果缺少 <code class="docutils literal notranslate"><span class="pre">\\.\pipe\</span></code> 前缀，mpv会在创建pipe前自动添加，所以 <code class="docutils literal notranslate"><span class="pre">--input-ipc-server=/tmp/mpv-socket</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--input-ipc-server=\\.\pipe\tmp\mpv-socket</span></code> 对于Windows上的IPC是等效的。</p>
-<p>详见 <a href="#id77"><span class="problematic" id="id78">`JSON IPC`_</span></a></p>
+<p>详见 <a href="#id78"><span class="problematic" id="id79">`JSON IPC`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--input-ipc-client=fd://&lt;N&gt;</span></code></dt><dd><p>连接单个IPC client到给定的FD。这与 <code class="docutils literal notranslate"><span class="pre">--input-ipc-server</span></code> 有点相似，只是没有创建套接字，而传递的FD被当作从 <code class="docutils literal notranslate"><span class="pre">accept()</span></code> 收到的套接字连接。在实践中，你可以传递一个由 <code class="docutils literal notranslate"><span class="pre">socketpair()</span></code> 创建的FD，或者一个pipe。在这两种情况下，你必须确保FD实际上是由mpv继承的（不要设置POSIX的 <code class="docutils literal notranslate"><span class="pre">CLOEXEC</span></code> 标志）。</p>
 <p>当连接被关闭时，播放器就会退出。</p>
@@ -2210,7 +2215,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-font-size=&lt;size&gt;</span></code></dt><dd><p>指定OSD的字体大小。详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code></p>
 <p>默认： 55</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--osd-msg1=&lt;string&gt;</span></code></dt><dd><p>在OSD等级1（默认可见）的OSD上显示这个字符串作为信息。该信息默认是可见的，只要没有其它信息挡住它，并且OSD等级无改变（参见 <code class="docutils literal notranslate"><span class="pre">--osd-level</span></code> ）。扩展属性；参见 <a href="#id79"><span class="problematic" id="id80">`属性扩展`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-msg1=&lt;string&gt;</span></code></dt><dd><p>在OSD等级1（默认可见）的OSD上显示这个字符串作为信息。该信息默认是可见的，只要没有其它信息挡住它，并且OSD等级无改变（参见 <code class="docutils literal notranslate"><span class="pre">--osd-level</span></code> ）。扩展属性；参见 <a href="#id80"><span class="problematic" id="id81">`属性扩展`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-msg2=&lt;string&gt;</span></code></dt><dd><p>类似于 <code class="docutils literal notranslate"><span class="pre">--osd-msg1</span></code> ，但用于OSD等级2。如果这是一个空字符串（默认），那么将显示播放时间。</p>
 </dd>
@@ -2218,11 +2223,11 @@
 <p>当使用 <code class="docutils literal notranslate"><span class="pre">show-progress</span></code> 命令时（默认映射到 <code class="docutils literal notranslate"><span class="pre">P</span></code> ），以及在input.conf中使用 <code class="docutils literal notranslate"><span class="pre">--osd-on-seek</span></code> 或 <code class="docutils literal notranslate"><span class="pre">osd-</span></code> 前缀（参见 <code class="docutils literal notranslate"><span class="pre">输入命令前缀</span></code> ）进行跳转时，这将覆盖 <code class="docutils literal notranslate"><span class="pre">--osd-level=3</span></code> 的状态文本。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--osd-status-msg</span></code> 是一个遗留的等效选项（但有一个微小差异）。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--osd-status-msg=&lt;string&gt;</span></code></dt><dd><p>在播放过程中显示一个自定义的字符串而不是标准的状态文本。当使用 <code class="docutils literal notranslate"><span class="pre">show-progress</span></code> 命令时（默认映射到 <code class="docutils literal notranslate"><span class="pre">P</span></code> ），以及在input.conf中使用 <code class="docutils literal notranslate"><span class="pre">--osd-on-seek</span></code> 或 <code class="docutils literal notranslate"><span class="pre">osd-</span></code> 前缀（参见 <code class="docutils literal notranslate"><span class="pre">输入命令前缀</span></code> ）进行跳转时，这将覆盖 <code class="docutils literal notranslate"><span class="pre">--osd-level=3</span></code> 的状态文本。扩展属性。参见 <a href="#id81"><span class="problematic" id="id82">`属性扩展`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-status-msg=&lt;string&gt;</span></code></dt><dd><p>在播放过程中显示一个自定义的字符串而不是标准的状态文本。当使用 <code class="docutils literal notranslate"><span class="pre">show-progress</span></code> 命令时（默认映射到 <code class="docutils literal notranslate"><span class="pre">P</span></code> ），以及在input.conf中使用 <code class="docutils literal notranslate"><span class="pre">--osd-on-seek</span></code> 或 <code class="docutils literal notranslate"><span class="pre">osd-</span></code> 前缀（参见 <code class="docutils literal notranslate"><span class="pre">输入命令前缀</span></code> ）进行跳转时，这将覆盖 <code class="docutils literal notranslate"><span class="pre">--osd-level=3</span></code> 的状态文本。扩展属性。参见 <a href="#id82"><span class="problematic" id="id83">`属性扩展`_</span></a></p>
 <p>这个选项已经被 <code class="docutils literal notranslate"><span class="pre">--osd-msg3</span></code> 取代。唯一的区别是该选项隐含了 <code class="docutils literal notranslate"><span class="pre">${osd-sym-cc}</span></code> 。如果 <code class="docutils literal notranslate"><span class="pre">--osd-msg3</span></code> 不是空的，这个选项将被忽略。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-playing-msg=&lt;string&gt;</span></code></dt><dd><p>当播放开始时在OSD上显示一条信息。字符串被扩展为属性，例如： <code class="docutils literal notranslate"><span class="pre">--osd-playing-msg='file:</span> <span class="pre">${filename}'</span></code> 将显示信息 <code class="docutils literal notranslate"><span class="pre">file:</span></code> ，后方接的是一个空格和当前播放的文件名。</p>
-<p>参见 <a href="#id83"><span class="problematic" id="id84">`属性扩展`_</span></a></p>
+<p>参见 <a href="#id84"><span class="problematic" id="id85">`属性扩展`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-playing-msg-duration=&lt;time&gt;</span></code></dt><dd><p>设置 <code class="docutils literal notranslate"><span class="pre">osd-playing-msg</span></code> 的持续时间，以毫秒为单位。如果不设置， <code class="docutils literal notranslate"><span class="pre">osd-playing-msg</span></code> 将在以 <code class="docutils literal notranslate"><span class="pre">osd-duration</span></code> 设置的时间内停留在屏幕上。</p>
 </dd>
@@ -2300,6 +2305,8 @@
 <p>这个选项在某种程度上是实验性的，将来可能会被另一种机制所取代。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-font-provider=&lt;...&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-font-provider</span></code> 了解可接受的值。注意，不同于字幕，OSD从不使用来自媒体文件的内嵌字体。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-fonts-dir=&lt;path&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-fonts-dir</span></code> 了解详情。默认为 <code class="docutils literal notranslate"><span class="pre">~~/fonts</span></code></p>
 </dd>
 </dl>
 </section>
@@ -2388,7 +2395,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--screenshot-directory=&lt;path&gt;</span></code></dt><dd><p>存储屏幕截图在此目录中。该路径与 <code class="docutils literal notranslate"><span class="pre">--screenshot-template</span></code> 生成的文件名结合。如果模板文件名已经是绝对的，该目录将被忽略。</p>
 <p>如果该目录不存在，它将在首张截图时被创建。如果它不是一个目录，在尝试写入截图时将产生一个错误。</p>
-<p>这个选项在默认情况下没有设置，因此将写入截图到mpv启动的目录中。在伪GUI模式下（参见 <a href="#id85"><span class="problematic" id="id86">`伪GUI模式`_</span></a> ），这被设置为桌面。</p>
+<p>这个选项在默认情况下没有设置，因此将写入截图到mpv启动的目录中。在伪GUI模式下（参见 <a href="#id86"><span class="problematic" id="id87">`伪GUI模式`_</span></a> ），这被设置为桌面。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--screenshot-jpeg-quality=&lt;0-100&gt;</span></code></dt><dd><p>设置JPEG的质量等级。越高表示质量越好。默认： 90</p>
 </dd>
@@ -2406,7 +2413,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--screenshot-jxl-distance=&lt;0-15&gt;</span></code></dt><dd><p>设置JPEG XL的Butteraugli距离。更低意味着更好的质量。无损是 0.0 ，而 1.0 大约相当于摄影内容的JPEG质量90。对于“视觉无损”的屏幕截图，使用 0.1 。默认： 1.0</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--screenshot-jxl-effort=&lt;1-9&gt;</span></code></dt><dd><p>设置JPEG XL的压缩力度。更高的力度（通常）意味着更好的压缩度，但需要更多的CPU时间。默认： 3</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--screenshot-jxl-effort=&lt;1-9&gt;</span></code></dt><dd><p>设置JPEG XL的压缩力度。更高的力度（通常）意味着更好的压缩度，但需要更多的CPU时间。默认： 4</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--screenshot-sw=&lt;yes|no&gt;</span></code></dt><dd><p>是否对屏幕截图使用软件渲染（默认： no）。</p>
 <p>如果设置为no，如果可能的话（目前vo_gpu独占），屏幕截图将由当前的视频输出驱动渲染。这样做的好处是，这将（可能）始终像在视频窗口中显示的那样，因为渲染时使用的是相同的代码。但是由于渲染器需要重新初始化，这可能会很慢，而且可能打断播放（除非 <code class="docutils literal notranslate"><span class="pre">window</span></code> 模式与 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 命令一起使用）。</p>
@@ -2491,7 +2498,7 @@
 <p>仅用于测试/调试。可能在任何时候被移除或更改。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-swresample-o=&lt;string&gt;</span></code></dt><dd><p>在SwrContext或AVAudioResampleContext上设置AVOptions。这些应该记录在FFmpeg或Libav中。</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id87"><span class="problematic" id="id88">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id88"><span class="problematic" id="id89">`列表选项`_</span></a></p>
 </dd>
 </dl>
 </section>
@@ -2513,7 +2520,7 @@
 <p>这也会影响 <code class="docutils literal notranslate"><span class="pre">--log-file</span></code> ，并在某些情况下也会影响到libmpv API的日志记录。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>有些信息在命令行被解析之前就已被输出，因此不受 <code class="docutils literal notranslate"><span class="pre">--msg-level</span></code> 的影响。要控制这些信息，你必须使用 <code class="docutils literal notranslate"><span class="pre">MPV_VERBOSE</span></code> 环境变量；详见 <a href="#id89"><span class="problematic" id="id90">`环境变量`_</span></a></p>
+<p>有些信息在命令行被解析之前就已被输出，因此不受 <code class="docutils literal notranslate"><span class="pre">--msg-level</span></code> 的影响。要控制这些信息，你必须使用 <code class="docutils literal notranslate"><span class="pre">MPV_VERBOSE</span></code> 环境变量；详见 <a href="#id90"><span class="problematic" id="id91">`环境变量`_</span></a></p>
 </div>
 <p>可用的级别：</p>
 <blockquote>
@@ -2579,12 +2586,12 @@
 <p>默认： <code class="docutils literal notranslate"><span class="pre">[-+-]</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--term-playing-msg=&lt;string&gt;</span></code></dt><dd><p>开始播放后输出一个字符串。该字符串可被扩展为属性，例如： <code class="docutils literal notranslate"><span class="pre">--term-playing-msg='file:</span> <span class="pre">${filename}'</span></code> 将输出字符串 <code class="docutils literal notranslate"><span class="pre">file:</span></code> 后接空格和当前播放的文件名。</p>
-<p>参见 <a href="#id91"><span class="problematic" id="id92">`属性`_</span></a></p>
+<p>参见 <a href="#id92"><span class="problematic" id="id93">`属性`_</span></a></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--term-status-msg=&lt;string&gt;</span></code></dt><dd><p>在播放过程中输出一个自定义的字符串，而不是标准的状态行。可扩展属性。参见 <a href="#id93"><span class="problematic" id="id94">`属性扩展`_</span></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--term-status-msg=&lt;string&gt;</span></code></dt><dd><p>在播放过程中输出一个自定义的字符串，而不是标准的状态行。可扩展属性。参见 <a href="#id94"><span class="problematic" id="id95">`属性扩展`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--term-title=&lt;string&gt;</span></code></dt><dd><p>设置终端的标题。目前，这只是将设置窗口标题的转义序列与提供的（属性扩展）字符串简单连接起来。如果扩展的字符串包含结束转义序列的字节，或者终端不理解该序列，这将会造成混乱。后者可能包括令人遗憾的win32.</p>
-<p>可扩展属性。参见 <a href="#id95"><span class="problematic" id="id96">`属性扩展`_</span></a></p>
+<p>可扩展属性。参见 <a href="#id96"><span class="problematic" id="id97">`属性扩展`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--msg-module</span></code></dt><dd><p>在每个控制台信息前加上模块名称。</p>
 </dd>
@@ -2605,13 +2612,12 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--cache-secs=&lt;seconds&gt;</span></code></dt><dd><p>如果缓存被激活，要预读取多少秒的音频/视频。如果且仅当缓存被启用且数值较大时，这将覆盖``–demuxer-readahead-secs`` 选项。默认值被设置的非常高，所以实际达到的预读取通常会受到 <code class="docutils literal notranslate"><span class="pre">--demuxer-max-bytes</span></code> 选项的限制。设置这个选项通常只对限制预读取有用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--cache-on-disk=&lt;yes|no&gt;</span></code></dt><dd><p>将packet数据写入到一个临时文件，而不是将它们保存在内存中。这只有和 <code class="docutils literal notranslate"><span class="pre">--cache</span></code> 一起使用才有意义。如果一般的缓存被禁用，这个选项将被忽略。</p>
-<p>你需要设置 <code class="docutils literal notranslate"><span class="pre">--cache-dir</span></code> 来使用它。</p>
 <p>缓存文件只是附加的。即使播放器出现裁剪数据，它所释放的文件空间也不会被重新使用。缓存文件在播放结束时被删除。</p>
 <p>注意，packet元数据仍然保留在内存中。 <code class="docutils literal notranslate"><span class="pre">--demuxer-max-bytes</span></code> 和相关选项 <em>只</em> 适用于元数据。这种元数据的大小不尽相同，但每小时50MB的媒体是典型的。缓存统计将报告这个元数据的大小，而不是缓存文件的大小。如果元数据触顶了大小限制，元数据就会被裁剪（但不会切掉缓存文件）。</p>
 <p>当媒体被关闭时，缓存文件被删除。缓存文件在媒体关闭后一般是没有价值的，而且很难从中检索到任何媒体数据（设计上不支持）。</p>
 <p>如果该选项在运行时被启用，缓存文件会被创建，但旧的数据会保留在内存缓存中。如果该选项在运行时被禁用，旧的数据将保留在硬盘缓存中，并且缓存文件在媒体关闭之前不会被关闭。如果该选项被禁用并再次启用，将继续使用首先打开的缓存文件。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--cache-dir=&lt;path&gt;</span></code></dt><dd><p>创建临时文件的目录（默认： none）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--cache-dir=&lt;path&gt;</span></code></dt><dd><p>创建临时文件的目录。如果未设置，缓存将被存储在系统的缓存目录下（通常是 <code class="docutils literal notranslate"><span class="pre">~/.cache/mpv</span></code> ）。</p>
 <p>目前，这只用于 <code class="docutils literal notranslate"><span class="pre">--cache-on-disk</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--cache-pause=&lt;yes|no&gt;</span></code></dt><dd><p>当缓存中的数据用完后，播放器是否应该自动暂停，并中止解码/播放（默认： yes）。如果启用，它会暂停，一旦有更多的数据可用，又名“缓冲”，就解除暂停。</p>
@@ -2673,7 +2679,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--cookies-file=&lt;filename&gt;</span></code></dt><dd><p>从 <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code> 读取HTTP cookies。假设该文件是 Netscape 格式。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--http-header-fields=&lt;field1,field2&gt;</span></code></dt><dd><p>设置当访问HTTP流时自定义HTTP字段。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id97"><span class="problematic" id="id98">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id98"><span class="problematic" id="id99">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpv</span> <span class="o">--</span><span class="n">http</span><span class="o">-</span><span class="n">header</span><span class="o">-</span><span class="n">fields</span><span class="o">=</span><span class="s1">&#39;Field1: value1&#39;</span><span class="p">,</span><span class="s1">&#39;Field2: value2&#39;</span> \
@@ -2985,7 +2991,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wayland-disable-vsync=&lt;yes|no&gt;</span></code></dt><dd><p>为基于Wayland的视频输出禁用mpv的内部垂直同步（默认： no）。当与 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-desync</span></code> <code class="docutils literal notranslate"><span class="pre">--no-audio</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--untimed=yes</span></code> 结合使用时，这对wayland视频输出的基准测试非常有用。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--wayland-edge-pixels-pointer=&lt;value&gt;</span></code></dt><dd><p>定义边缘边框的大小（默认： 10），以便使用鼠标在wayland上下文中启动client调整大小的events。仅当合成器中没有服务器端装饰时，此选项才能激活。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--wayland-edge-pixels-pointer=&lt;value&gt;</span></code></dt><dd><p>定义边缘边框的大小（默认： 16），以便使用鼠标在wayland上下文中启动client调整大小的events。仅当合成器中没有服务器端装饰时，此选项才能激活。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--wayland-edge-pixels-touch=&lt;value&gt;</span></code></dt><dd><p>定义边缘边框的大小（默认： 32），以便使用鼠标在wayland上下文中启动client调整大小的events。</p>
 </dd>
@@ -3002,7 +3008,7 @@
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--glsl-shader=&lt;file&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--glsl-shaders=&lt;file-list&gt;</span></code></dt><dd><p>自定义GLSL hooks。这些是一种灵活的来添加自定义片段着色器的方式，可以在渲染管线中几乎任意的点注入，并访问所有先前的中间纹理。</p>
-<p>每次使用 <code class="docutils literal notranslate"><span class="pre">--glsl-shader</span></code> 选项都会在内部着色器列表中添加另一个文件，而 <code class="docutils literal notranslate"><span class="pre">--glsl-shaders</span></code> 则是一个文件列表，并用它覆盖内部列表。后者是一个路径列表选项（详见 <a href="#id99"><span class="problematic" id="id100">`列表选项`_</span></a> ）。</p>
+<p>每次使用 <code class="docutils literal notranslate"><span class="pre">--glsl-shader</span></code> 选项都会在内部着色器列表中添加另一个文件，而 <code class="docutils literal notranslate"><span class="pre">--glsl-shaders</span></code> 则是一个文件列表，并用它覆盖内部列表。后者是一个路径列表选项（详见 <a href="#id100"><span class="problematic" id="id101">`列表选项`_</span></a> ）。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">警告</p>
 <p>语法还不稳定且可能随时会改变。</p>
@@ -3296,7 +3302,7 @@ vec4 hook() {
 </dd>
 <dt>d3d11</dt><dd><p>Win32，使用原生Direct3D 11渲染</p>
 </dd>
-<dt>x11</dt><dd><p>X11/GLX</p>
+<dt>x11</dt><dd><p>X11/GLX（已过时/遗留，现在优选EGL）</p>
 </dd>
 <dt>x11vk</dt><dd><p>VK_KHR_xlib_surface</p>
 </dd>
@@ -3464,6 +3470,10 @@ vec4 hook() {
 </dd>
 <dt>bt.2446a</dt><dd><p>在ITU-R报告BT.2446中指定的HDR&lt;-&gt;SDR映射，方法A。这推荐用于精心制作的内容（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
+<dt>st2094-40</dt><dd><p>SMPTE ST2094-40 附件B中规定的动态HDR10+色调映射方法。在没有元数据的情况下，回退到与输入/输出平均亮度特性相匹配的固定spline（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt>st2094-10</dt><dd><p>SMPTE ST2094-10 附件B.2中规定的动态色调映射方法。在概念上比ST2094-40简单，但通常产生的结果更差（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping-param=&lt;value&gt;</span></code></dt><dd><p>设置色调映射参数。默认情况下，它被设置为特殊的字符串 <code class="docutils literal notranslate"><span class="pre">default</span></code> ，它映射到一个特定算法的默认值。如果色调映射算法不可调则忽略。这影响到下列色调映射算法：</p>
@@ -3481,6 +3491,8 @@ vec4 hook() {
 <dt>linear</dt><dd><p>指定拉伸时使用的缩放系数。默认： 1.0</p>
 </dd>
 <dt>spline</dt><dd><p>指定knee点（在PQ空间中）。默认： 0.30</p>
+</dd>
+<dt>st2094-10</dt><dd><p>指定knee点的对比度（斜率）。默认： 1.0</p>
 </dd>
 </dl>
 </dd>
@@ -3503,6 +3515,8 @@ vec4 hook() {
 <dt>luma</dt><dd><p>基于亮度的方法，来自ITU-R BT.2446a，包括固定的色域减少，来考量与亮度有关的感知不均匀性（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 </dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping-visualize</span></code></dt><dd><p>显示色调映射LUT（PQ-PQ）的活动图。仅用于调试目的。X轴显示PQ输入值，Y轴显示PQ输出值。色调映射曲线显示为绿色/黄色。黄色意味着亮度从源头上被提高了，深蓝色区域显示亮度被降低的地方。额外的彩色区域和线条表示各种显示器限制，以及参考对角线（中性色调映射）和源场景平均亮度信息（如果有的话）。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--gamut-mapping-mode</span></code></dt><dd><p>在完成任何色调映射后，指定用于降低目标显示的图像色域的算法。</p>
 <dl class="simple">
@@ -3534,8 +3548,10 @@ vec4 hook() {
 <p>注意：在Windows上，默认profile必须是一个ICC profile。不支持WCS profiles。</p>
 <p>使用libmpv和渲染API的应用程序需要通过 <code class="docutils literal notranslate"><span class="pre">MPV_RENDER_PARAM_ICC_PROFILE</span></code> 提供ICC profile。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--icc-cache-dir=&lt;dirname&gt;</span></code></dt><dd><p>在这个目录中存储和加载从ICC profile中创建的3D LUTs。这可以用来加快加载速度，因为LittleCMS 2创建一个3D LUT可能需要一段时间。请注意，这些文件包含了未压缩的LUTs。它们的大小取决于 <code class="docutils literal notranslate"><span class="pre">--icc-3dlut-size</span></code> ，而且可能非常大。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--icc-cache</span></code></dt><dd><p>是否存储和加载从ICC profile中创建的3D LUTs缓存。这可以用来加快加载速度，因为LittleCMS 2创建一个3D LUT可能需要一段时间。请注意，这些文件包含了未压缩的LUTs。它们的大小取决于 <code class="docutils literal notranslate"><span class="pre">--icc-3dlut-size</span></code> ，而且可能非常大。</p>
 <p>注意：这不是自动清理的，所以旧的、未使用的缓存文件可能会无限期地存在。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--icc-cache-dir</span></code></dt><dd><p>储存icc缓存的目录。如果未设置，缓存将被存储在系统的缓存目录下（通常是 <code class="docutils literal notranslate"><span class="pre">~/.cache/mpv</span></code> ）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--icc-intent=&lt;value&gt;</span></code></dt><dd><p>指定用于颜色转换的ICC意图（当使用 <code class="docutils literal notranslate"><span class="pre">--icc-profile</span></code> 时）。</p>
 <dl class="simple">
@@ -3552,6 +3568,8 @@ vec4 hook() {
 <dt><code class="docutils literal notranslate"><span class="pre">--icc-3dlut-size=&lt;r&gt;x&lt;g&gt;x&lt;b&gt;</span></code></dt><dd><p>从ICC profile生成的3D LUT在每个维度的大小。默认是64x64x64。大小范围从2到512。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--icc-force-contrast=&lt;no|0-1000000|inf&gt;</span></code></dt><dd><p>用一个特定的值覆盖目标设备的检测对比度。如果可能的话，这是从profile中自动检测出来的，但对于某些profile来说，它可能会丢失，导致对比度被认为是无限的。因此，视频可能看起来比预期的更暗。如果是这种情况，设置这个选项可能有帮助。这只影响BT.1886内容。默认的 <code class="docutils literal notranslate"><span class="pre">no</span></code> 表示使用profile的值。特殊值 <code class="docutils literal notranslate"><span class="pre">inf</span></code> 会使BT.1886曲线被当作纯功率的伽玛2.4函数处理。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--icc-use-luma</span></code></dt><dd><p>使用ICC配置文件内的亮度值。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--lut=&lt;file&gt;</span></code></dt><dd><p>指定一个自定义的LUT（Adobe .cube格式），作为颜色转换的一部分应用到颜色上。具体解释取决于 <code class="docutils literal notranslate"><span class="pre">--lut-type</span></code> 的值。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
@@ -3601,8 +3619,10 @@ vec4 hook() {
 <p>如果有需要的话，这个模式会自动强制执行，这个选项在调试时非常有用。如果没有使用需要FBO的功能，默认的 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 会自动启用它。</p>
 <p>这个选项在未来可能会被默默移除。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--gpu-shader-cache-dir=&lt;dirname&gt;</span></code></dt><dd><p>在这个目录中存储和加载已编译的GLSL着色器。通常情况下，着色器的编译速度非常快，所以一般不需要这样做。对于需要在内部重新编译着色器到其他语言的GPU API来说，这一点非常重要，例如任何基于ANGLE或Vulkan的语言。启用它可以提高这些平台的启动性能。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--gpu-shader-cache</span></code></dt><dd><p>是否存储和加载已编译的GLSL着色器。通常情况下，着色器的编译速度非常快，所以一般不需要这样做。对于需要在内部重新编译着色器到其他语言的GPU API来说，这一点非常重要，例如任何基于ANGLE或Vulkan的语言。启用它可以提高这些平台的启动性能。</p>
 <p>注意：这不是自动清理的，所以旧的、未使用的缓存文件可能会无限期的存在。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--gpu-shader-cache-dir</span></code></dt><dd><p>存储gpu着色器缓存的目录。如果未设置，缓存将被存储在系统的缓存目录（通常是 <code class="docutils literal notranslate"><span class="pre">~/.cache/mpv</span></code> ）。</p>
 </dd>
 </dl>
 </section>
@@ -3611,7 +3631,7 @@ vec4 hook() {
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">--display-tags=tag1,tags2,...</span></code></dt><dd><p>设置应在终端上显示的标签列表。列表中但播放文件中不存在的标签将不会显示。如果一个值以 <code class="docutils literal notranslate"><span class="pre">*</span></code> 结尾，所有的标签都按前缀匹配（尽管没有通用的globbing）。仅仅传递 <code class="docutils literal notranslate"><span class="pre">*</span></code> 本质上是过滤。</p>
 <p>默认包括一个通用的标签列表，用 <code class="docutils literal notranslate"><span class="pre">--list-options</span></code> 调用mpv来查看它。</p>
-<p>这是一个字符串列表选项。详见 <a href="#id101"><span class="problematic" id="id102">`列表选项`_</span></a></p>
+<p>这是一个字符串列表选项。详见 <a href="#id102"><span class="problematic" id="id103">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--mc=&lt;seconds/frame&gt;</span></code></dt><dd><p>每一帧的最大A-V同步修正（以秒为单位）</p>
 </dd>
@@ -3643,7 +3663,7 @@ vec4 hook() {
 <dd class="field-even"><p>与之前的模式一样，但没有A/V补偿。</p>
 </dd>
 <dt class="field-odd">display-tempo<span class="colon">:</span></dt>
-<dd class="field-odd"><p>类似于 <code class="docutils literal notranslate"><span class="pre">display-resample</span></code> ，但是将音频速度变化应用到音频滤镜而不是重采样，以避免音调的变化。注意，一些音频滤镜在速度接近1时表现不佳。建议使用一个附带条件的自动配置预设，当速度过于接近1时，自动切换到 <code class="docutils literal notranslate"><span class="pre">display-resample</span></code> ，以适应你的滤镜设定。使用 (speed * video_speed_correction) 来获得该条件下的实际播放速度。详见 <a href="#id103"><span class="problematic" id="id104">`附带条件的自动配置预设`_</span></a></p>
+<dd class="field-odd"><p>类似于 <code class="docutils literal notranslate"><span class="pre">display-resample</span></code> ，但是将音频速度变化应用到音频滤镜而不是重采样，以避免音调的变化。注意，一些音频滤镜在速度接近1时表现不佳。建议使用一个附带条件的自动配置预设，当速度过于接近1时，自动切换到 <code class="docutils literal notranslate"><span class="pre">display-resample</span></code> ，以适应你的滤镜设定。使用 (speed * video_speed_correction) 来获得该条件下的实际播放速度。详见 <a href="#id104"><span class="problematic" id="id105">`附带条件的自动配置预设`_</span></a></p>
 </dd>
 <dt class="field-even">display-vdrop<span class="colon">:</span></dt>
 <dd class="field-even"><p>丢弃或重复视频帧，以补偿不同步的视频（虽然它应该有与 <code class="docutils literal notranslate"><span class="pre">audio</span></code> 相同的效果，但实现却非常不同）。</p>
@@ -3677,7 +3697,7 @@ vec4 hook() {
 <dt><code class="docutils literal notranslate"><span class="pre">--stream-dump=&lt;destination-filename&gt;</span></code></dt><dd><p>读取文件的字节流并将其写入给定的目标文件，而不是播放。目标文件被覆盖。对测试网络相关的行为可能很有用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--stream-lavf-o=opt1=value1,opt2=value2,...</span></code></dt><dd><p>在用libavformat打开的流上设置AVOptions。未知或拼写错误的选项会被默默地忽略。（它们会在终端输出的verbose模式下被提及，即 <code class="docutils literal notranslate"><span class="pre">--v</span></code> 。一般而言，我们因为其它的选项，比如用户代理并不是所有的协议都可以使用的，不能输出错误 ，而输出未知选项的错误最终会显得过于嘈杂。）</p>
-<p>这是一个按键/值列表选项。详见 <a href="#id105"><span class="problematic" id="id106">`列表选项`_</span></a></p>
+<p>这是一个按键/值列表选项。详见 <a href="#id106"><span class="problematic" id="id107">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vo-mmcss-profile=&lt;name&gt;</span></code></dt><dd><p>（Windows独占）为视频渲染器线程设置MMCSS profile（默认： <code class="docutils literal notranslate"><span class="pre">Playback</span></code> ）。</p>
 </dd>
@@ -3692,13 +3712,13 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--external-files=&lt;file-list&gt;</span></code></dt><dd><p>加载一个文件并添加其所有的轨道。这对一起播放不同的文件很有用（例如来自一个文件的音频与来自另一个文件的视频），或用于高级的 <code class="docutils literal notranslate"><span class="pre">--lavfi-complex</span></code> （就像同时播放两个视频文件）。</p>
 <p>与 <code class="docutils literal notranslate"><span class="pre">--sub-files</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--audio-files</span></code> 不同，它包括所有轨道，不会导致默认流选择在“正确的”文件上。这使得它稍微不那么具有侵入性。（在mpv0.28.0及以前，这一点并没有严格执行。）</p>
-<p>这是一个路径列表选项。详见 <a href="#id107"><span class="problematic" id="id108">`列表选项`_</span></a></p>
+<p>这是一个路径列表选项。详见 <a href="#id108"><span class="problematic" id="id109">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--external-file=&lt;file&gt;</span></code></dt><dd><p>CLI/设置文件中的 <code class="docutils literal notranslate"><span class="pre">--external-files-append</span></code> 的专用别名。每次使用该选项将添加一个新的外部文件。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--cover-art-files=&lt;file-list&gt;</span></code></dt><dd><p>在播放音频时使用一个外部文件作为封面图。这使得它出现在轨道列表上，并受制于自动轨道选择。像 <code class="docutils literal notranslate"><span class="pre">--audio-display</span></code> 这样的选项控制是否应该选择这样的轨道。</p>
 <p>（与用 <code class="docutils literal notranslate"><span class="pre">--external-files</span></code> 加载文件的区别是，视频轨将被标记为图片，这影响了自动选择的方式。如果传递的文件是视频，只有第一帧会被解码和显示。如果源文件是视频，在播放过程中启用封面图轨道可能会显示一个随机帧。通常情况下，你不应该把视频传递给这个选项，因此本段描述了由实现细节巧合导致的行为。）</p>
-<p>这是一个路径列表选项。详见 <a href="#id109"><span class="problematic" id="id110">`列表选项`_</span></a></p>
+<p>这是一个路径列表选项。详见 <a href="#id110"><span class="problematic" id="id111">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--cover-art-file=&lt;file&gt;</span></code></dt><dd><p>CLI/设置文件中的 <code class="docutils literal notranslate"><span class="pre">--cover-art-files-append</span></code> 的专用别名。每次使用该选项将添加一个新的外部文件。</p>
 </dd>
@@ -3768,16 +3788,6 @@ vec4 hook() {
 </dd>
 </dl>
 </section>
-<section id="id22">
-<h2>调试<a class="headerlink" href="#id22" title="此标题的永久链接">#</a></h2>
-<dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--unittest=&lt;name&gt;</span></code></dt><dd><p>运行一个内部单元测试。有多个，名称指定哪个。</p>
-<p>特殊值 <code class="docutils literal notranslate"><span class="pre">all-simple</span></code> 运行所有不需要进一步设置的测试（其它参数之类的）。一些测试可能需要额外的参数来做一些有用的事情。</p>
-<p>成功时，播放器二进制文件以退出状态0退出，否则以未定义的非0退出状态返回（测试失败时可能崩溃或中止）。</p>
-<p>只有在使用 <code class="docutils literal notranslate"><span class="pre">--enable-tests</span></code> 构建的情况下才会启用，通常只应由开发人员启用和使用。</p>
-</dd>
-</dl>
-</section>
 </section>
 
         </article>
@@ -3841,7 +3851,6 @@ vec4 hook() {
 <li><a class="reference internal" href="#alsa">ALSA音频输出选项</a></li>
 <li><a class="reference internal" href="#gpu">GPU渲染选项</a></li>
 <li><a class="reference internal" href="#id21">杂项</a></li>
-<li><a class="reference internal" href="#id22">调试</a></li>
 </ul>
 </li>
 </ul>

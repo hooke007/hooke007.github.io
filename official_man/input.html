@@ -403,6 +403,7 @@
 </dl>
 <p>旧版本mpv需要把 <code class="docutils literal notranslate"><span class="pre">single</span></code> 和 <code class="docutils literal notranslate"><span class="pre">each-frame</span></code> 作为第二个参数传递（且无标志）。这种语法仍然可以被解析，但已经过时，将来可能会被移除。</p>
 <p>如果你使用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 把这个命令和另一个命令结合起来，你可以使用 <code class="docutils literal notranslate"><span class="pre">async</span></code> 标志来使编码/写入图像文件成为异步的。对于普通的独立命令，它总是异步的，这个标志没有影响。（该行为在mpv0.29.0中被更改）</p>
+<p>成功后，将返回一个带有 <code class="docutils literal notranslate"><span class="pre">filename</span></code> 字段，设为保存的屏幕截图位置的 <code class="docutils literal notranslate"><span class="pre">mpv_node</span></code> 。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">screenshot-to-file</span> <span class="pre">&lt;filename&gt;</span> <span class="pre">&lt;flags&gt;</span></code></dt><dd><p>截图并保存到一个指定的文件。文件的格式将由扩展名来猜测（并且 <code class="docutils literal notranslate"><span class="pre">--screenshot-format</span></code> 被忽略 —— 当扩展名丢失或未知时，行为是随机的）。</p>
 <p>第二个参数和 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 的第一个参数一样，支持 <code class="docutils literal notranslate"><span class="pre">subtitles</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">window</span></code></p>
@@ -1559,7 +1560,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist/N/current</span></code></dt><dd><p>如果 <code class="docutils literal notranslate"><span class="pre">playlist-current-pos</span></code> 属性指向此条目，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">playlist/N/title</span></code></dt><dd><p>第N个条目的名称。只有当播放列表文件包含这样的字段时才可用，并且只有当mpv的解析器支持指定的播放列表格式时才可用</p>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist/N/title</span></code></dt><dd><p>第N个条目的名称。如果播放列表文件包含这样的字段，并且是受mpv解析器支持的播放列表格式，或者如果播放列表条目之前已被打开，并且已经获得了一个与文件名不同的媒体标题，则可用</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist/N/id</span></code></dt><dd><p>这个条目的唯一ID。这是一个自动分配的整数ID，在当前mpv核心实例的整个生命周期中是唯一的。其他命令、事件等使用它作为 <code class="docutils literal notranslate"><span class="pre">playlist_entry_id</span></code> 字段</p>
 </dd>
@@ -1842,11 +1843,13 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">mpv-version</span></code></dt><dd><p>mpv版本/版权字符串。根据二进制文件的构建方式，它可能包含一个发布版本号，或者只是一个git哈希值。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">mpv-configuration</span></code></dt><dd><p>传递给构建系统的配置参数（通常是调用 <code class="docutils literal notranslate"><span class="pre">./waf</span> <span class="pre">configure</span> <span class="pre">...</span></code> 的方式）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">mpv-configuration</span></code></dt><dd><p>传递给构建系统的配置参数。如果用于编译mpv的meson版本低于1.1.0，那么就会显示一条由多个任意选项组成的硬编码字符串。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">ffmpeg-version</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">av_version_info()</span></code> API调用的内容。这是一个以某种方式标识构建的字符串，可以是发布版本号，也可以是git哈希值。这也适用于Libav（这个属性的名字还是一样的）。如果mpv与较早的FFmpeg和Libav版本链接，这个属性就不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">libass-version</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ass_library_version()</span></code> 的值。这是一个整数，以有点奇怪的形式编码（显然是 “hex BCD”），表示链接到mpv的libass库的发布版本。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">platform</span></code></dt><dd><p>返回一个描述mpv的目标构建平台的字符串。该值取决于底层构建系统检测到的内容。一些最常见的值是： <code class="docutils literal notranslate"><span class="pre">windows</span></code> , <code class="docutils literal notranslate"><span class="pre">darwin</span></code> （macos或ios）, <code class="docutils literal notranslate"><span class="pre">linux</span></code> , <code class="docutils literal notranslate"><span class="pre">android</span></code> 和 <code class="docutils literal notranslate"><span class="pre">freebsd</span></code> 。请注意，这不是一个完整的列表。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">options/&lt;name&gt;</span></code> (RW)</dt><dd><p>选项 <code class="docutils literal notranslate"><span class="pre">--&lt;name&gt;</span></code> 的值。大多数选项可以在运行时通过写到这个属性来改变。请注意，许多选项需要重新加载文件以使更改生效。如果有同等的属性，最好设置该属性。</p>
 <p>应该没有任何理由访问 <code class="docutils literal notranslate"><span class="pre">options/&lt;name&gt;</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> ，除非这些属性有不同的行为或冲突的语义。</p>
