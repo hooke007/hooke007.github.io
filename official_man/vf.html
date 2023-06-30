@@ -293,12 +293,17 @@
 <p class="admonition-title">备注</p>
 <p>为获取可用的格式列表，使用 <code class="docutils literal notranslate"><span class="pre">--vf=format=fmt=help</span></code></p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>在某些情况下支持硬件格式之间的转换。例如： 从 <code class="docutils literal notranslate"><span class="pre">cuda</span></code> 到 <code class="docutils literal notranslate"><span class="pre">vulkan</span></code> ，或 <code class="docutils literal notranslate"><span class="pre">vaapi</span></code> 到 <code class="docutils literal notranslate"><span class="pre">vulkan</span></code>.</p>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&lt;convert=yes|no&gt;</span></code></dt><dd><p>强制颜色参数的转换（默认： no）。</p>
 <p>如果禁用（默认），可能进行的唯一转换是格式转换，如果 <code class="docutils literal notranslate"><span class="pre">&lt;fmt&gt;</span></code> 被设置。所有其它参数（如 <code class="docutils literal notranslate"><span class="pre">&lt;colormatrix&gt;</span></code> ）都是强制的，而没有转换。这种模式通常在文件被错误地标记时很有用。</p>
 <p>如果启用了这个功能，如果有任何参数不匹配，就会使用libswscale或zimg。如果mpv的zimg wrapper支持输入/输出图像格式，并且使用了 <code class="docutils literal notranslate"><span class="pre">--sws-allow-zimg=yes</span></code> ，就会使用zimg。这两种库可能不支持所有种类的转换。这通常会导致无声的错误转换。zimg在许多情况下有更好的机会正确执行转换。</p>
 <p>在这两种情况下，颜色参数都是在图像格式转换的输出阶段设置的（如果 <code class="docutils literal notranslate"><span class="pre">fmt</span></code> 被设置）。不同的是，在 <code class="docutils literal notranslate"><span class="pre">convert=no</span></code> 时，颜色参数不会传递给转换器。</p>
 <p>如果输入和输出的视频参数相同，转换总是会被跳过。</p>
+<p>在硬件格式之间转换时，该参数没有影响，唯一进行转换的是格式转换。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <dl>

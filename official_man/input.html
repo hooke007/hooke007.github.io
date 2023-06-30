@@ -1532,6 +1532,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">secondary-sub-end</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">sub-end</span></code> 相同，但用于次字幕。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sub-forced-only-cur</span></code></dt><dd><p>只读 - 当前字幕轨是否以 forced-only 模式显示。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-pos</span></code> (RW)</dt><dd><p>当前在播放列表中的位置。第一个条目是在0的位置。写入这个属性将在新位置开始播放。</p>
 <p>在某些情况下，这不必是当前播放的文件。参见  <code class="docutils literal notranslate"><span class="pre">playlist</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">current</span></code> 和 <code class="docutils literal notranslate"><span class="pre">playing</span></code>  标志的解释。</p>
 <p>如果播放列表是空的，或者如果它不是空的，但没有条目是 “current” 的，这个属性就会返回-1。同样，写入-1将使播放器进入空闲模式（如果没有启用空闲模式则退出播放）。（在mpv0.33.0之前，如果没有播放列表条目是“当前的”，这个属性就不可用）</p>
@@ -1598,6 +1600,9 @@
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/default</span></code></dt><dd><p>如果该轨道在文件中设置了默认标志，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/forced</span></code></dt><dd><p>如果文件中设置了force标志，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">track-list/N/auto-forced-only</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">yes</span></code>/true if the track was autoselected in forced-only mode, <code class="docutils literal notranslate"><span class="pre">no</span></code>/false or unavailable otherwise.
+如果该轨道是在强制模式下自动选择的，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/codec</span></code></dt><dd><p>该轨道使用的编解码器名称，例如 <code class="docutils literal notranslate"><span class="pre">h264</span></code> 。在某些罕见情况下不可用</p>
 </dd>

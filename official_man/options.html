@@ -224,7 +224,8 @@
 <section id="id2">
 <h2>轨道选择<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--alang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>指定一个音频的优先使用语言的列表。不同的容器格式采用不同的语言代码。DVD使用ISO 639-1二字母的语言代码，Matroska、MPEG-TS和NUT使用ISO 639-2三字母的语言代码，而OGM使用自由格式的标识符。另参见 <code class="docutils literal notranslate"><span class="pre">--aid</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--alang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>指定一个优先使用的音频语言列表，作为IETF语言标签。ISO 639-1的两个字母和ISO 639-2的三个字母代码被相似同等的对待。列表中第一个语言与文件中的音轨相匹配的标签将被使用。匹配较多子标签的轨道将比匹配较少的轨道优先，靠前的子标签比靠后的子标签优先。另参见 <code class="docutils literal notranslate"><span class="pre">--aid</span></code></p>
+<p>特殊值 “auto” 可以包含在列表内，相当于用户的操作系统级的首选语言列表。</p>
 <p>这是一个字符串列表选项。详见 <a href="#id22"><span class="problematic" id="id23">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -234,13 +235,14 @@
 </ul>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--slang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>指定一个字幕的优先使用语言的列表。不同的容器格式采用不同的语言代码。DVD使用ISO 639-1二字母的语言代码，Matroska使用ISO 639-2三字母的语言代码，而OGM使用自由格式的标识符。另参见 <code class="docutils literal notranslate"><span class="pre">--sid</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--slang=&lt;languagecode[,languagecode,...]&gt;</span></code></dt><dd><p>近似 <code class="docutils literal notranslate"><span class="pre">--alang</span></code>，但用于字幕轨（默认值： auto ）。</p>
 <p>这是一个字符串列表选项。详见 <a href="#id24"><span class="problematic" id="id25">`列表选项`_</span></a></p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">dvd://1</span> <span class="pre">--slang=hu,en</span></code> 选择DVD上选择匈牙利文字幕轨，如不可获取该语言，则回退到英文</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--slang=jpn</span> <span class="pre">example.mkv</span></code> 播放带有日文字幕的Matroska文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--slang=pt-BR</span> <span class="pre">example.mkv</span></code> 播放带有巴西葡萄牙语字幕（如果可用）的Matroska文件，否则播放任何葡萄牙语字幕</p></li>
 </ul>
 </div>
 </dd>
@@ -276,7 +278,11 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--track-auto-selection=&lt;yes|no&gt;</span></code></dt><dd><p>启用默认轨道的自动选择（默认： yes）。启用它将使播放器根据 <code class="docutils literal notranslate"><span class="pre">--aid</span></code>, <code class="docutils literal notranslate"><span class="pre">--alang</span></code> 和其它项目来选择流。如果禁用，则不选择任何轨道。此外，如果没有选择轨道，播放器将不会退出，而是等待（这种等待模式类似暂停，但实际没有设置pause选项）。</p>
 <p>这对 <code class="docutils literal notranslate"><span class="pre">--lavfi-complex</span></code> 很有用：你可以在该模式下开始播放，然后在运行时通过设置graph滤镜来设置选择轨道。注意，如果 <code class="docutils literal notranslate"><span class="pre">--lavfi-complex</span></code> 在播放开始前被设置，被引入的轨道始终会被选中。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--subs-with-matching-audio=&lt;yes|no&gt;</span></code></dt><dd><p>当自动选择字幕轨时，即使所选的音频流与优先的字幕语言相匹配，也会选择一个非强制的字幕轨（默认： yes）。如果想只为外语音频或屏幕上的文本显示字幕，请禁用此功能。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--subs-with-matching-audio=&lt;yes|no&gt;</span></code></dt><dd><p>当自动选择字幕轨时，即使所选的音频流与优先的字幕语言相匹配，也会选择一个完全/非强制的字幕轨（默认： no）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--subs-fallback=&lt;yes|default|no&gt;</span></code></dt><dd><p>当自动选择字幕轨道时，如果没有轨道符合你的优先语言，则选择一个完整的轨道，即使它不符合你的优先字幕语言（默认： no）。将此设置为 <code class="docutils literal notranslate"><span class="pre">default</span></code> 表示只有标记为 <code class="docutils literal notranslate"><span class="pre">default</span></code> 的流才会被选中。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--subs-fallback-forced=&lt;yes|no&gt;</span></code></dt><dd><p>当自动选择字幕轨道时，如果没有轨道符合你的优先语言，则选择一个匹配你当前音轨语言的强制轨道（默认： yes）。</p>
 </dd>
 </dl>
 </section>
@@ -730,7 +736,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--display-fps=&lt;fps&gt;</span></code></dt><dd><p>过时的 <code class="docutils literal notranslate"><span class="pre">--overrid-display-fps</span></code> 的别名。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--hwdec=&lt;api&gt;</span></code></dt><dd><p>如果可能的话，指定应该使用的视频硬件解码API。硬解码是否实际完成取决于视频编码。如果硬件解码不可能，mpv将回退到软件解码。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--hwdec=&lt;api1,api2,...|no|auto|auto-safe|auto-copy&gt;</span></code></dt><dd><p>如果可能的话，指定应该使用的视频硬件解码API。硬解码是否实际完成取决于视频编码。如果硬件解码不可能，mpv将回退到软件解码。</p>
 <p>硬件解码在默认情况下是不启用的，目的是保持开箱即用的设置尽可能的可靠。然而，当使用现代硬件时，硬解码应该能正常工作，提供更低的CPU使用率，并可能减少功耗。在老旧系统上，由于CPU资源不足，可能有必要使用硬解码；即使在现代系统上，足够复杂的内容（例如4K60 AV1）也可能需要它。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
@@ -753,7 +759,7 @@
 <li><p>如果你是一个开发者，或者想进行详细的测试，可能需要其它任何可能的选项值。</p></li>
 </ul>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;api&gt;</span></code> 可以是下列之一：</p>
+<p>该选项接受一个以逗号分隔的 <code class="docutils literal notranslate"><span class="pre">api</span></code> 类型的列表，以及某些特殊值：</p>
 <dl class="field-list simple">
 <dt class="field-odd">no<span class="colon">:</span></dt>
 <dd class="field-odd"><p>始终使用软件解码（默认）</p>
@@ -771,7 +777,11 @@
 <dd class="field-odd"><p>启用最佳的带copy-back的hw解码器（见下文）</p>
 </dd>
 </dl>
-<p>积极支持的hwdec：</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>特殊值可以与api名称混合。例如： <code class="docutils literal notranslate"><span class="pre">vaapi,auto</span></code> 将尝试使用 <code class="docutils literal notranslate"><span class="pre">vaapi</span></code> ，如果失败，再运行一般的 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 逻辑。</p>
+</div>
+<p>受到积极支持的hwdec：</p>
 <dl class="field-list simple">
 <dt class="field-odd">d3d11va<span class="colon">:</span></dt>
 <dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 与 <code class="docutils literal notranslate"><span class="pre">--gpu-context=d3d11</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--gpu-context=angle</span></code> （Windows 8以上独占）</p>
@@ -802,6 +812,12 @@
 </dd>
 <dt class="field-even">drm-copy<span class="colon">:</span></dt>
 <dd class="field-even"><p>将视频复制回到系统RAM（Linux独占）</p>
+</dd>
+<dt class="field-odd">vulkan<span class="colon">:</span></dt>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> （任何带有Vulkan视频解码的平台）</p>
+</dd>
+<dt class="field-even">vulkan-copy<span class="colon">:</span></dt>
+<dd class="field-even"><p>将视频复制回到系统RAM（任何带有Vulkan视频解码的平台）</p>
 </dd>
 </dl>
 <p>其它的hwdec（只有当你了解不得不做时才使用）：</p>
@@ -1747,6 +1763,9 @@
 <p>默认启用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--snap-window</span></code></dt><dd><p>（Windows独占）将播放器窗口固定在屏幕边缘。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--drag-and-drop=&lt;auto|replace|append&gt;</span></code></dt><dd><p>(X11和Wayland独占)
+控制拖放在支持该功能的平台上的默认行为。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 将服从底层操作系统/平台给mpv的指示。通常情况下，在拖放过程中按住shift会将项目追加到播放列表中，否则新文件将完全取代旧文件。 <code class="docutils literal notranslate"><span class="pre">replace</span></code> 和 <code class="docutils literal notranslate"><span class="pre">append</span></code> 总是分别强制替换和追加到播放列表中。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--ontop</span></code></dt><dd><p>使播放器窗口停留在其他窗口的顶部。</p>
 <p>在Windows上，如果与全屏模式相结合，这将导致mpv被视为绕过DWM的独占全屏窗口。</p>
@@ -3142,6 +3161,8 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--deband-grain=&lt;0..4096&gt;</span></code></dt><dd><p>给图像添加一些额外的噪点。这大大有助于掩盖剩余的量化伪影。更高的数字会增加更多的噪点（默认： 48）。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--corner-rounding=&lt;0..1&gt;</span></code></dt><dd><p>如果将值设置为大于 0.0 ，则输出将呈现带有圆角的效果，就好像应用了一个alpha透明度遮罩一样。该值表示要圆角的边长的相对比例 - 值为 1.0 时尽可能圆角化（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占）。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sharpen=&lt;value&gt;</span></code></dt><dd><p>如果设置为0以外的值，则启用一个unsharp masking滤镜。正值将锐化图像（但增加更多的振铃和锯齿）。负值会使图像变得模糊。如果你的GPU足够强大，可以考虑使用 <code class="docutils literal notranslate"><span class="pre">ewa_lanczossharp</span></code> 缩放filter或 <code class="docutils literal notranslate"><span class="pre">--scale-blur</span></code> 选项取代（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--opengl-glfinish</span></code></dt><dd><p>在交换缓冲区之前调用 <code class="docutils literal notranslate"><span class="pre">glFinish()</span></code> （默认： no）。速度较慢，但在进行framedropping时可能会改善结果。可能完全损坏性能。细节完全取决于OpenGL驱动。</p>
@@ -3498,8 +3519,6 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--inverse-tone-mapping</span></code></dt><dd><p>如果设置，允许反转色调映射（将SDR扩展到HDR）。不是所有的色调映射曲线都支持。请谨慎使用。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping-crosstalk=&lt;0.0..0.30&gt;</span></code></dt><dd><p>如果不为零，在色调映射前应用一个额外的crosstalk矩阵。可以帮助改善过饱和的单色高光的外观。（默认： 0.04, <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping-max-boost=&lt;1.0..10.0&gt;</span></code></dt><dd><p>允许色调映射算法通过过曝提高图像平均亮度的上限。默认： 1.0，不允许额外提高亮度。2.0的值允许过曝2倍，以此类推。提高这个设置可以帮助揭示黑暗场景中隐藏的细节，但提高得太高会使黑暗场景显得不自然地明亮。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping-mode</span></code></dt><dd><p>控制色调映射函数如何应用到颜色上。</p>
@@ -3522,13 +3541,23 @@ vec4 hook() {
 <dl class="simple">
 <dt>auto</dt><dd><p>自动选择最佳模式（默认）</p>
 </dd>
-<dt>clip</dt><dd><p>硬性裁切到色域（每个通道）</p>
+<dt>clip</dt><dd><p>硬性裁切到色域（每个通道）。非常低质量，但极低性能损耗</p>
 </dd>
-<dt>warn</dt><dd><p>简单地高亮显示超出色域的像素</p>
+<dt>perceptual</dt><dd><p>使用软拐点函数来进行平衡感知的色域映射，以消除裁切区域，并使用色调变换函数来保持饱和度（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
-<dt>desaturate</dt><dd><p>将色域外的颜色向白色去饱和</p>
+<dt>relative</dt><dd><p>执行相对比色法，同时保持亮度和色度之间的指数关系（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
-<dt>darken</dt><dd><p>线性地使整个图像变暗，然后裁切到颜色体积。与 <code class="docutils literal notranslate"><span class="pre">clip</span></code> 不同，这不会破坏饱和区域的细节，但代价是有时会大大降低输出亮度（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+<dt>saturation</dt><dd><p>执行简单的RGB-&gt;RGB饱和度映射。输入的R/G/B通道被直接映射到输出的R/G/B通道。不会出现裁切，但会扭曲所有的色调且/或导致褪色的观感（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt>absolute</dt><dd><p>执行绝对色度剪裁。与 <code class="docutils literal notranslate"><span class="pre">relative</span></code> 类似，但不适应白点（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt>desaturate</dt><dd><p>执行恒定亮度比色法，使颜色向白色褪色，直到它们在色域范围内</p>
+</dd>
+<dt>darken</dt><dd><p>均匀地使输入略微变暗，以防止高光部分被削掉，然后将色度钳制在输入色域边界，略微偏向于保留色度而不是亮度（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt>warn</dt><dd><p>不进行色域映射，而只是高亮色域外的像素</p>
+</dd>
+<dt>linear</dt><dd><p>线性/均匀地使图像去饱和，以使整个图像进入目标色域（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 </dl>
 </dd>
