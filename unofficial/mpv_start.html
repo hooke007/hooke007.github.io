@@ -221,7 +221,7 @@
         <article role="main">
           <section id="mpv">
 <h1>mpv播放器的使用引导<a class="headerlink" href="#mpv" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20230212</em></p>
+<p><em>ver.20231101</em></p>
 <ul class="simple">
 <li><p>极短的介绍</p></li>
 </ul>
@@ -271,11 +271,11 @@
 <span class="c1">#log-file=&quot;~~desktop/mpv.log&quot;            # 输出log日志在桌面</span>
 <span class="w"> </span><span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span><span class="w">                           </span><span class="c1"># 播放列表中的最后一个条目播放完毕后暂停</span>
 <span class="w"> </span><span class="na">save-position-on-quit</span><span class="o">=</span><span class="s">yes</span><span class="w">               </span><span class="c1"># 退出时保存当前的播放状态</span>
-<span class="w"> </span><span class="na">watch-later-options</span><span class="o">=</span><span class="s">start,vid,aid,sid</span><span class="w">   </span><span class="c1"># 限制保存播放状态的属性列表（示例表示：播放位置、视频 音频 字幕轨号）</span>
+<span class="w"> </span><span class="na">watch-later-options</span><span class="o">=</span><span class="s">start,vid,aid,sid</span><span class="w">   </span><span class="c1"># 指定保存播放状态的属性列表（示例表示：播放位置、视频 音频 字幕轨号）</span>
 <span class="w"> </span><span class="na">audio-file-auto</span><span class="o">=</span><span class="s">fuzzy</span><span class="w">                   </span><span class="c1"># 自动加载近似名的外置音轨</span>
 <span class="w"> </span><span class="na">sub-auto</span><span class="o">=</span><span class="s">fuzzy</span><span class="w">                          </span><span class="c1"># 自动加载近似名的外置字幕</span>
-<span class="c1">#profile=gpu-hq                          # 使用一个内置的画质方案预设</span>
-<span class="w"> </span><span class="na">screenshot-directory</span><span class="o">=</span><span class="s">&quot;~~desktop/&quot;</span><span class="w">       </span><span class="c1"># 截图的输出路径在桌面</span>
+<span class="c1">#profile=high-quality                    # 使用一个内置的画质方案预设</span>
+<span class="w"> </span><span class="na">screenshot-dir</span><span class="o">=</span><span class="s">&quot;~~desktop/&quot;</span><span class="w">             </span><span class="c1"># 截图的输出路径在桌面</span>
 </pre></div>
 </div>
 <p>辅助理解：<br />
@@ -283,7 +283,7 @@
 如果将这一行一行参数看作一个一个可以打勾的选项。则 <code class="docutils literal notranslate"><span class="pre">hwdec=auto</span></code> 类似于 “☑使用硬解” 激活该参数，反之 <code class="docutils literal notranslate"><span class="pre">#hwdec=auto</span></code> 对应 “☐使用硬解” 未勾选该选项（使用默认值）。</p>
 <p>部分被注释掉的参数：<br />
 <code class="docutils literal notranslate"><span class="pre">--log-file</span></code> 用于输出日志查错，一般人用不到也看不懂<br />
-<code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 如果你的显卡不太差，可以使用这个内建的方案（不要被名字里所谓的hq迷惑）</p>
+<code class="docutils literal notranslate"><span class="pre">--profile=high-quality</span></code> 如果你的显卡不太差，可以使用这个内建的方案（不要被名字里所谓的HQ迷惑）</p>
 <p>🔺 由于主设置文件的书写规范最为宽松：<br />
 ===你可以在参数后直接注释中文解释 <code class="docutils literal notranslate"><span class="pre">hwdec=auto</span> <span class="pre">#</span> <span class="pre">优先使用硬解（原生模式）</span></code> ；<br />
 ===也可以加大量空格美化参数的排版 <code class="docutils literal notranslate"><span class="pre">hwdec</span>&#160; <span class="pre">=</span>&#160; <span class="pre">auto</span>&#160; <span class="pre">#</span>&#160; <span class="pre">优先使用硬解（原生模式）</span></code> ；<br />
@@ -306,6 +306,16 @@
 <kbd>i</kbd> 显示有关当前播放文件的统计信息<br />
 还有其它的 <a class="reference external" href="https://mpv.io/manual/master/#interactive-control">常用快捷键</a></p>
 <p><font color=purple>入门教程到此结束。</font></p>
+<p>O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O</p>
 </section>
 </section>
 <section id="id6">
@@ -395,8 +405,8 @@
 官方手册 <a class="reference external" href="https://mpv.io/manual/master/#options-ytdl">定位</a></p>
 <p>该脚本兼容ytdl的热门分支yt-dlp<br />
 需要 <strong>mpv.exe</strong> 所在目录存在 <strong>yt-dlp.exe</strong> <a class="reference external" href="https://github.com/yt-dlp/yt-dlp/releases">官方发布地址</a></p>
-<p>如何指定使用的程序可参考 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/script-opts/ytdl_hook.conf">此处</a><br />
-（注意mpv0.34.0及之后的版本默认优先使用yt-dlp，且youtube-dl项目已转入维护阶段，无非特殊情况应使用yt-dlp）</p>
+<p>如何指定使用的程序可参考 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/script-opts/ytdl_hook.conf">此处</a></p>
+<p>🔺 注意： mpv0.34.0及之后的版本默认优先使用yt-dlp，且youtube-dl项目已转入维护阶段，非特殊情况应始终使用yt-dlp</p>
 </section>
 </section>
 <section id="id14">
@@ -435,7 +445,8 @@
 </pre></div>
 </div>
 <p>但是为了避免运行时被覆盖，使用 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 后缀，意为追加视频滤镜。可以存在多个 <code class="docutils literal notranslate"><span class="pre">vf-append</span></code> 且不影响 <code class="docutils literal notranslate"><span class="pre">vf=xxxxx</span></code> 指定的滤镜</p>
-<p>🔺 带 <code class="docutils literal notranslate"><span class="pre">-append</span></code> <code class="docutils literal notranslate"><span class="pre">-del</span></code> 之类后缀的参数只能一条带一个滤镜/着色器</p>
+<p>🔺 带 <code class="docutils literal notranslate"><span class="pre">-append</span></code> 之类后缀的参数只能一条带一个滤镜/着色器</p>
+<p>🔺 关于该部分内容，重写的 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_filters.html">快捷键文档</a> 中记录的更具体和完善。</p>
 </section>
 <section id="id17">
 <h4>4.2.运行时启用<a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h4>
@@ -449,7 +460,6 @@
 <img src="_assets/mpv_start-07.webp" style="zoom:40%;" />
 <p>首次按下 <kbd>Ctrl</kbd> + <kbd>↑</kbd> 将插入垂直翻转滤镜，再次按下将撤销该滤镜。</p>
 <p>关于滤镜类的全部可用后缀，参见 <a class="reference external" href="https://mpv.io/manual/master/#filter-options">此处</a> 。</p>
-<p>🔺 关于该部分内容，重写的 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_filters.html">快捷键文档</a> 中记录的更具体和完善。</p>
 </section>
 </section>
 <section id="id18">
@@ -506,7 +516,7 @@ mpv未集成该部分，需要手动安装（以下步骤出于绿色化考虑�
 <img src="_assets/mpv_start-10.webp" style="zoom:40%;" />
 <p>解压两个压缩包的全部文件到 <strong>mpv.exe</strong> 所在路径</p>
 <img src="_assets/mpv_start-11.webp" style="zoom:40%;" />
-<p>🔺 官方的VapourSyhth版本需要使用匹配的Python版本才能正常工作，例如 R53-R57 对应 3.8.x 或 3.9.x ，R58-R60 对应 3.8.x 或 3.10.x ，如果使用最新版本则查询 <a class="reference external" href="http://vapoursynth.com/doc/installation.html#prerequisites">vs的文档</a>。</p>
+<p>🔺 官方的VapourSyhth版本需要使用匹配的Python版本才能正常工作，例如 R53-R57 对应 3.8.x 或 3.9.x ，R58-R61 对应 3.8.x 或 3.10.x ，R62-R65 对应 3.8.x 或 3.11.x ，如果使用最新版本则查询 <a class="reference external" href="http://vapoursynth.com/doc/installation.html#prerequisites">vs的文档</a>。</p>
 </section>
 <section id="mvtools">
 <h4>6.2.mvtools 补帧法<a class="headerlink" href="#mvtools" title="此标题的永久链接">#</a></h4>
@@ -523,7 +533,7 @@ VS滤镜参与mpv的播放流程至少需要三个部分： <em><strong>dll库 +
 <h5>6.2.2.脚本安置<a class="headerlink" href="#id24" title="此标题的永久链接">#</a></h5>
 <p>获取对应的vpy脚本，无所谓扩展名是 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">.vpy</span></code> ，脚本也无命名要求规范</p>
 <p><a class="reference external" href="https://gist.github.com/KCCat/1b3a7b7f085a066af3719859f88ded02">这里</a> 是KCCat大佬的版本<br />
-或者选择我在懒人包 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/vs/mvtools_2x.vpy">使用的版本</a></p>
+或者选择我在懒人包 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/a8c9413fb3c352851ebf87d34a97d428c0d63100/portable_config/vs/mvtools_2x.vpy">使用的旧版本</a> （懒人包的新版本使用了k7sfunc包装器，属于进阶用法，因此不作为示例推荐给用户）</p>
 <p>放置位置也随意，按照前文的推荐放在 <font color=green><strong>X:/xxxxx/你的MPV文件夹/portable_config/</strong></font> 内便于调用</p>
 </section>
 <section id="id25">
@@ -539,6 +549,23 @@ VS滤镜参与mpv的播放流程至少需要三个部分： <em><strong>dll库 +
 <p>因为是以滤镜形式参与播放流程，所以可参考上文 <strong>插入滤镜</strong> 部分，此处不再赘述。<br />
 VS工作状态的检验可多方结合，例如在统计信息中的滤镜列表、控制台有无报错信息、实际画面有无符合预期的变化。</p>
 </section>
+</section>
+<section id="k7sfunc">
+<h4>6.3.K7sFunc<a class="headerlink" href="#k7sfunc" title="此标题的永久链接">#</a></h4>
+<blockquote>
+<div><p>此节为 mpv-VapourSynth 滤镜进阶</p>
+</div></blockquote>
+<p>k7sfunc 是为简化mpv中vs工具链部署而产生的方案，提供模块化的接近开箱即用的多个滤镜组，更多详细说明参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/wiki/3_K7sfunc">它的维基</a> 。</p>
+<p>O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O<br />
+O</p>
 </section>
 </section>
 </section>
@@ -574,7 +601,7 @@ VS工作状态的检验可多方结合，例如在统计信息中的滤镜列表
 </ul>
 <p>因为它没有设计官方的前端（GUI）。</p>
 <ul class="simple">
-<li><p><strong>有无可用的第三方前端？</strong></p></li>
+<li><p><strong>有无可用的第三方中文前端？</strong></p></li>
 </ul>
 <p>Windows:<br />
 <a class="reference external" href="https://KikoPlayProject.github.io">KikoPlay</a> 特殊功能用途（弹幕），简易库管理<br />
@@ -685,6 +712,7 @@ VS工作状态的检验可多方结合，例如在统计信息中的滤镜列表
 <li><a class="reference internal" href="#id25">6.2.3.设置调用</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#k7sfunc">6.3.K7sFunc</a></li>
 </ul>
 </li>
 </ul>

@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>音视频滤镜<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20230212</em></p>
+<p><em>ver.20231101</em></p>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>本文是 <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_start.html#id15">mpv进阶的小节4</a> &amp; <a class="reference external" href="https://hooke007.github.io/unofficial/mpv_input.html">《快捷键自定义与控制台》</a> 的拓展内容。</p>
@@ -262,13 +262,10 @@
 <tr class="row-odd"><td class="text-left"><p>remove</p></td>
 <td class="text-left"><p>移除指定的滤镜</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>del</p></td>
-<td class="text-left"><p>移除单个或多个滤镜</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>toggle</p></td>
+<tr class="row-even"><td class="text-left"><p>toggle</p></td>
 <td class="text-left"><p>追加指定的滤镜（在后方），但如果已经存在则移除该滤镜</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>help</p></td>
+<tr class="row-odd"><td class="text-left"><p>help</p></td>
 <td class="text-left"><p>仅支持在终端使用，用于输出该滤镜的更多信息</p></td>
 </tr>
 </tbody>
@@ -315,8 +312,7 @@
 <span class="na">f   vf pre vflip,hflip</span>
 <span class="na">g   vf clr &quot;&quot;</span>
 <span class="na">h   vf remove vflip</span>
-<span class="na">j   vf del vflip,hflip</span>
-<span class="na">k   vf toggle vflip</span>
+<span class="na">j   vf toggle vflip</span>
 </pre></div>
 </div>
 <p>🔺 根据input语法中的“操作属性”的用法， <code class="docutils literal notranslate"><span class="pre">vf</span> <span class="pre">set</span> <span class="pre">vflip,hflip</span></code> 亦等效 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">vf</span> <span class="pre">vflip,hflip</span></code><br />
@@ -366,6 +362,8 @@ ffmpeg滤镜有自己的 <a class="reference external" href="https://ffmpeg.org/
 由此体现了非原生滤镜的另外的语法特性是可以进一步精简，即 <code class="docutils literal notranslate"><span class="pre">vf=fps=60</span></code> 等效 <code class="docutils literal notranslate"><span class="pre">vf=fps=fps=60</span></code></p>
 <p><em>我推荐尽可能把子参数名写上，如果不写子参数名，mpv会尝试自动打上标签。</em></p>
 <p>🔺 原生与非原生滤镜中可能存在重名的条目，例如通常当使用 <code class="docutils literal notranslate"><span class="pre">vf=format=...</span></code> 时首选mpv滤镜，最简的解决方案是显式指定为ffmpeg滤镜，即 <code class="docutils literal notranslate"><span class="pre">--vf=lavfi-format=...</span></code></p>
+<p>🔺 性能提速小技巧：<br />
+当只使用多个非原生滤镜时，建议合并进一个filtergraph处理，示例 优先用 <code class="docutils literal notranslate"><span class="pre">vf=&quot;lavfi=[vflip,hflip]&quot;</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">vf=vflip,hflip</span></code></p>
 <section id="id7">
 <h4>2.2.1.字符串处理<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h4>
 <p>非原生滤镜中的很多滤镜支持引入外部文件参与处理，例如 <code class="docutils literal notranslate"><span class="pre">lut3d</span></code> <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#lut3d-1">文档</a></p>

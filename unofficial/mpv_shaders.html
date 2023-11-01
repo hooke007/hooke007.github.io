@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>第三方用户着色器<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20230212</em></p>
+<p><em>ver.20231101</em></p>
 <section id="id2">
 <h2>起<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>我选择主设置文件夹下新建的 <strong>shaders</strong> 目录下放置第三方着色器，常见后缀名为 .glsl .hook<br />
@@ -237,7 +237,8 @@
 <section id="id3">
 <h2>…<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
 <p>🔺 如果下方列出的着色器未在整合包中找到，前往 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders"><strong>此处</strong></a> 搜寻获取。<br />
-🔺 我对部分2x放大类的着色器进行了最小缩放倍率限制的统一修改(1.2)，因此下方的涉及该部分说明已过时。</p>
+🔺 我统一修改了2x 3x 4x放大类着色器的最小缩放倍率限制，与上游的原始版本不同。
+🔺 名字中含有 next 的变体，指仅能在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 的条件下( mpv.conf )使用</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 <section id="anime4k-v3-2-v4-x">
 <h3>Anime4K v3.2-v4.x<a class="headerlink" href="#anime4k-v3-2-v4-x" title="此标题的永久链接">#</a></h3>
@@ -364,13 +365,45 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 </div>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
+<section id="chroma-from-luma-cfl-prediction">
+<h3>Chroma from Luma (CfL) Prediction<a class="headerlink" href="#chroma-from-luma-cfl-prediction" title="此标题的永久链接">#</a></h3>
+<p>由现代视频编码方式启发的色度还原算法</p>
+<p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法</p>
+</section>
+<section id="joint-bilateral">
+<h3>joint-bilateral<a class="headerlink" href="#joint-bilateral" title="此标题的永久链接">#</a></h3>
+<p>简化的双边滤波色度还原算法，利用亮度信息为引导。</p>
+<p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法</p>
+</section>
+<section id="pixel-clipper">
+<h3>pixel-clipper<a class="headerlink" href="#pixel-clipper" title="此标题的永久链接">#</a></h3>
+<p>简易像素裁切，用于通用的后处理抗振铃。</p>
+<p>以上三项由同一开发者移植，在项目中提供了更多说明。</p>
+<p>🔺 Lite 变体支持了 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code></p>
+<p>相关列表： <a class="reference external" href="https://github.com/Artoriuz/glsl-chroma-from-luma-prediction">Artoriuz-cfl</a> + <a class="reference external" href="https://github.com/Artoriuz/glsl-joint-bilateral">Artoriuz-bilateral</a> + <a class="reference external" href="https://github.com/Artoriuz/glsl-pixel-clipper">Artoriuz-pixelclipper</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CfL_Prediction</span><span class="o">.</span><span class="n">glsl</span>
+
+<span class="n">FastBilateral_next</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">JointBilateral_next</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">MemeBilateral_next</span><span class="o">.</span><span class="n">glsl</span>
+
+<span class="n">PixelClipper</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+<p>相关列表（MOD）： <a class="reference external" href="https://github.com/deus0ww/mpv-conf/tree/master/shaders/bilateral">deus0ww-bilateral</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CfL_Prediction_Lite</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">MemeBilateral_Lite</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+<p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
+</section>
 <section id="fsrcnnx">
 <h3>FSRCNNX<a class="headerlink" href="#fsrcnnx" title="此标题的永久链接">#</a></h3>
 <p>由原始SRCNN发展而来，是FSRCNN的变体，较快速的通用型AI放大算法。</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法<br />
-🔺 最小缩放触发倍率为1.3</p>
-<p>LineArt 和 anime 变体更适合2d动画 enhance 变体在去除伪影强度上更大</p>
-<p>副作用： 16-0-4-1 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</p>
+🔺 最小缩放触发倍率为1.2</p>
+<p>LineArt 和 anime 变体更适合2d动画； enhance 变体在去除伪影强度上更大； 1x 变体不执行放大</p>
+<p>副作用： <code class="docutils literal notranslate"><span class="pre">16_0_4_1</span></code> 变体用更多的能耗（更慢）换取更好的质量，但感知较弱。</p>
 <p>相关列表：<a class="reference external" href="https://github.com/igv/FSRCNN-TensorFlow">igv-FSRCNN</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FSRCNNX_x2_8_0_4_1</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">FSRCNNX_x2_8_0_4_1_LineArt</span><span class="o">.</span><span class="n">glsl</span>
@@ -378,8 +411,10 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 </pre></div>
 </div>
 <p>相关列表：<a class="reference external" href="https://github.com/HelpSeeker/FSRCNN-TensorFlow">HelpSeeker-FSRCNN</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FSRCNNX_x2_16_0_4_1_anime_enhance</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">FSRCNNX_x2_16_0_4_1_enhance</span><span class="o">.</span><span class="n">glsl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FSRCNNX_x1_16_0_4_1_anime_distort</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">FSRCNNX_x1_16_0_4_1_distort</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">FSRCNNX_x2_16_0_4_1_anime_distort</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">FSRCNNX_x2_16_0_4_1_distort</span><span class="o">.</span><span class="n">glsl</span>
 </pre></div>
 </div>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
@@ -392,7 +427,7 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 性能需求上 Fast2x 介于 FSRCNNX8 和 FSRCNNX16 之间， 但是 Medium2x 远高于 FSRCNNX16， 变体 HQ 因速度极慢而难以用于高质量片源<br />
 LineArt 适合2D画面而 Photo 适合现实类画面</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法<br />
-🔺 不同倍率对应的最小缩放触发倍率分别为1.4  2.4  3.4</p>
+🔺 不同倍率对应的最小缩放触发倍率分别为1.2  2.2  3.2</p>
 <p>相关列表：（已省略3x和4x的类似名变体）<a class="reference external" href="https://github.com/Alexkral/AviSynthAiUpscale">Alexkral-hooks</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AiUpscale_Fast_2x_LineArt</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">AiUpscale_Fast_2x_Photo</span><span class="o">.</span><span class="n">glsl</span>
@@ -430,7 +465,6 @@ mpv目前最好的色度升频着色器，可以与其他缩放（ <code class="
 <section id="ssimdownscaler">
 <h3>SSimDownscaler<a class="headerlink" href="#ssimdownscaler" title="此标题的永久链接">#</a></h3>
 <p>基于感知的对mpv内置 <code class="docutils literal notranslate"><span class="pre">--dscale=xxxxx</span></code> 缩小算法进行增强校正。（例如抗振铃）</p>
-<p>🔺 仅当 <strong>mpv.conf</strong> 中设定 <code class="docutils literal notranslate"><span class="pre">--linear-downscaling=no</span></code> 时正常工作</p>
 <p>以上四项及FSRCNNX皆由同一开发者移植</p>
 <p>相关列表：<a class="reference external" href="https://gist.github.com/igv">igv-hooks</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adaptive_sharpen</span><span class="o">.</span><span class="n">glsl</span>
@@ -465,18 +499,18 @@ nnedi3版速度较快（即便如此相比其它算法，依旧速度极慢且�
 nns16 → nns32 → nns64 → nns128 → nns256；<br />
 win8x4 → win8x6<br />
 质量更好但性能大增</p>
-<p>开发者仓库的 <strong>compute</strong> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 <strong>gather</strong> 目录内的（OpenGL≥4.0）更快，后者比 <strong>主目录下的 master</strong> 的更快。
-<strong>vulkan</strong> 内的需要 <strong>mpv.conf</strong> 内设置为 <code class="docutils literal notranslate"><span class="pre">--gpu-api=d3d11/vulkan</span></code> <code class="docutils literal notranslate"><span class="pre">--fbo-format=rgba16hf</span></code></p>
-<p>3x 变体直接放大三倍，适用于超低清源。<br />
+<p>开发者仓库的 <strong>compute</strong> 文件夹内（需要的显卡支持的OpenGL版本≥4.3）的版本比 <strong>gather</strong> 目录内的（OpenGL≥4.0）更快，后者比 <strong>主目录下的 master</strong> 的更快。</p>
+<p>3x 变体直接放大三倍，适用于超低清源； ar 变体自带抗振铃处理。<br />
 无其它后缀的和 3x 变体的训练模型为动漫， lite 和 zoom 变体为通用模型。</p>
-<p>🔺 除了 chroma 变体（启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法），其它只处理(YUV)luma通道（启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法）<br />
+<p>🔺 变体 ddx 专用于 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span> <span class="pre">--gpu-context=d3d11</span></code> （但不支持 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span> <span class="pre">--gpu-context=win</span></code> ），其它变体可在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 下任意后端使用。<br />
+🔺 除了 chroma 变体（启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法），其它只处理(YUV)luma通道（启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法）<br />
 🔺 lite 变体最快最锐利但无半像素偏移，可能产生锯齿和晕轮/振铃。 rgb 和 yuv 变体在 <code class="docutils literal notranslate"><span class="pre">--cscale</span></code> 执行完之后开始作用，但 yuv 变体无法处理RGB的源（例如PNG图片）<br />
 🔺 关于半像素偏移，除了 lite 和 chroma 变体，其它ravu和nnedi3和sxbr中都存在。可以用 <strong>mpv.conf</strong> 中的 <code class="docutils literal notranslate"><span class="pre">--scaler-resizes-only=no</span></code> 修正它，但是没必要（感知不强）</p>
 <p>🔺 sxbr没有触发倍率限制；<br />
-无其它后缀的和 lite 变体的最小缩放触发倍率约为1.414， 3x 变体最小缩放触发倍率约为2.121。 zoom 变体直接放大到目标分辨率，触发倍率＞1；<br />
-nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载可能导致假死）， nns128 级别以上的因速度极慢而很难即时观看时使用。</p>
+无其它后缀的和 lite 变体的最小缩放触发倍率约为1.2， 3x 变体最小缩放触发倍率约为2.2。 zoom 变体直接放大到目标分辨率，触发倍率＞1；<br />
+nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载可能导致假死）， nns128 级别以上的因速度很慢而很难即时观看时使用。</p>
 <p>仓库主分支内精简并保留的部分列表（已统一修改后缀格式名为glsl）：<br />
-来自 vulkan/compute</p>
+来自 compute 目录</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ravu_3x_r2</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_3x_r2_rgb</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_3x_r2_yuv</span><span class="o">.</span><span class="n">glsl</span>
@@ -489,6 +523,9 @@ nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载
 <span class="n">ravu_lite_r2</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_lite_r3</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_lite_r4</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r2</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r3</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r4</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_r2</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_r2_rgb</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_r2_yuv</span><span class="o">.</span><span class="n">glsl</span>
@@ -498,18 +535,22 @@ nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载
 <span class="n">ravu_r4</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_r4_rgb</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">ravu_r4_yuv</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r2</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r2_chroma</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r2_rgb</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r2_yuv</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r3</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r3_chroma</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r3_rgb</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">ravu</span><span class="o">-</span><span class="n">zoom_r3_yuv</span><span class="o">.</span><span class="n">glsl</span>
-</pre></div>
-</div>
-<p>来自 compute</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nnedi3_nns16_win8x4</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_chroma</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_rgb</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_yuv</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_chroma</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_rgb</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_yuv</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2_rgb</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2_yuv</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3_rgb</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3_yuv</span><span class="o">.</span><span class="n">glsl</span>
+
+<span class="n">nnedi3_nns16_win8x4</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">nnedi3_nns16_win8x6</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">nnedi3_nns32_win8x4</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">nnedi3_nns32_win8x6</span><span class="o">.</span><span class="n">glsl</span>
@@ -525,6 +566,47 @@ nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">superxbr</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">superxbr_rgb</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">superxbr_yuv</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+<p>来自 rgba16hf 分支</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ravu_3x_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r2_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r2_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r3_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r3_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r4_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r4_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_3x_r4_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_r4_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_lite_ar_r4_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r2_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r2_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r3_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r3_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r4_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r4_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_r4_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_chroma_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r2_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_chroma_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_r3_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r2_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3_rgb_ddx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">ravu_zoom_ar_r3_yuv_ddx</span><span class="o">.</span><span class="n">glsl</span>
 </pre></div>
 </div>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
@@ -584,42 +666,51 @@ nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载
 <p>🔺无后缀名的版本都只作用于亮度通道（预处理）</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
+<section id="guided">
+<h3>guided<a class="headerlink" href="#guided" title="此标题的永久链接">#</a></h3>
+<p>快速降噪。</p>
+<p>相关列表（精简）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guided</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">guided_fast</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">guided_s</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+</section>
+<section id="hdeband">
+<h3>hdeband<a class="headerlink" href="#hdeband" title="此标题的永久链接">#</a></h3>
+<p>高质量去色带。</p>
+<p>相关列表（精简）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdeband</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+</section>
 <section id="nl-means">
 <h3>NL Means<a class="headerlink" href="#nl-means" title="此标题的永久链接">#</a></h3>
 <p>移植自FFmpeg的nlmeans滤镜。非局部均值降噪</p>
-<p>相关列表：<a class="reference external" href="https://github.com/AN3223/dotfiles/tree/master/.config/mpv/shaders">AN3223-nlmeans</a></p>
+<p>以上三项由同一开发者移植，在项目中提供了更多说明<a class="reference external" href="https://github.com/AN3223/dotfiles/tree/master/.config/mpv/shaders">AN3223-nlmeans</a></p>
+<p>相关列表（精简）：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nlmeans</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_anime</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_anime_hq</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_anime_hq_medium</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_anime_medium</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_heavy</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hq</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hq_heavy</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hq_medium</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hq_sharpen_denoise</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hq_sharpen_only</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_hqx</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">nlmeans_lq</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_luma</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_medium</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_sharpen_denoise</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_sharpen_only</span><span class="o">.</span><span class="n">glsl</span>
 <span class="n">nlmeans_temporal</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_temporal_sharpen_denoise</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">nlmeans_temporal_sharpen_only</span><span class="o">.</span><span class="n">glsl</span>
 </pre></div>
 </div>
-<p>🔺变体 temporal 只能在 –vo=gpu-next 下使用（可利用时域信息进行处理）</p>
+<p>相关列表：MOD （变体 dx 用于避免 <code class="docutils literal notranslate"><span class="pre">--gpu-context=d3d11</span></code> 下运行时的冻结问题）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nlmeans_dx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">nlmeans_lq_dx</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">nlmeans_temporal_dx</span><span class="o">.</span><span class="n">glsl</span>
+</pre></div>
+</div>
+<p>作者仓库存在大量其它变体，但几乎只是预设参数不同的区别。</p>
+<p>🔺变体 temporal 只能在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 下使用（可利用时域信息进行处理）</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="noise-static">
 <h3>Noise Static<a class="headerlink" href="#noise-static" title="此标题的永久链接">#</a></h3>
-<p>优化静态的亮度/色度噪点。</p>
+<p>优化静态的色度/亮度噪点。</p>
 <p>🔺 需要 <strong>mpv.conf</strong> 中设置为 <code class="docutils literal notranslate"><span class="pre">--deband-grain=0</span></code> 的前提下使用</p>
 <p>相关列表：<a class="reference external" href="https://pastebin.com/yacMe6EZ">pastebin-hook1</a> &amp; <a class="reference external" href="https://pastebin.com/15ZTaaUC">pastebin-hook2</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_static_luma</span><span class="o">.</span><span class="n">glsl</span>
-<span class="n">noise_static_chroma</span><span class="o">.</span><span class="n">glsl</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_static_chroma</span><span class="o">.</span><span class="n">glsl</span>
+<span class="n">noise_static_luma</span><span class="o">.</span><span class="n">glsl</span>
 </pre></div>
 </div>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
@@ -628,24 +719,39 @@ nnedi3最小缩放触发倍率约为1.414，对性能要求极高（临时加载
 <h3>其它<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <p>相关列表：<br />
 <em>来源非全部可查</em><br />
+<a class="reference external" href="https://github.com/garamond13/Unsharp-mask-and-Gaussian-blur">garamond13-hooks</a><br />
 <a class="reference external" href="https://github.com/Tsubajashi/mpv-settings/tree/master/shaders">Tsubajashi-hooks</a><br />
 <a class="reference external" href="https://gist.github.com/voltmtr/8b4404b4e23129b226b9e64863d3e28b">voltmtr-lumasharpen</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>color_alt_luma.glsl                  -- 色彩黑白翻转（亮度通道）
+color_alt_rgb.glsl                   -- 色彩黑白翻转
 colorlevel_expand.glsl               -- 色彩范围扩展
 colorlevel_expand_chroma.glsl        -- 色彩范围扩展（色度通道）
 colorlevel_expand_luma.glsl          -- 色彩范围扩展（亮度通道）
 colorlevel_shrink.glsl               -- 色彩范围收缩
 colorlevel_shrink_chroma.glsl        -- 色彩范围收缩（色度通道）
 colorlevel_shrink_luma.glsl          -- 色彩范围收缩（亮度通道）
+eq_rgb.glsl                          -- 色彩偏移
+eq_rgb_next.glsl
+flip_h.glsl                          -- 水平翻转
+flip_v.glsl                          -- 垂直翻转
+gray_chroma.glsl                     -- 灰度化（色度通道）
+gray_rgb_601.glsl                    -- 灰度化（bt601）
+gray_rgb_709.glsl 
+gray_rgb_2020.glsl
+gray_rgb_dp3.glsl
+rotate_180.glsl
+
 fake_hdr.glsl                        -- 伪HDR，过饱和
 faux_hdr.glsl                        -- 伪HDR，过饱和
+fast_gaussian_blur_next.glsl         -- 快速高斯模糊
 LumaSharpen.glsl                     -- 亮度通道的锐化
+gaussianBlur_next.glsl               -- 通用高斯模糊
+unsharpMask_next.glsl                -- 通用锐化
 minblur_usm.glsl                     -- 通用锐化，程度细微
 saturate.glsl                        -- 通用过饱和
-TsubaDS.glsl                         -- 基于SSIMDS
 TsubaUP.glsl                         -- 基于FSRCNNX
 unsharp.glsl                         -- 通用锐化，程度轻微
-unsharp_masking_next.glsl            -- 通用锐/糊化（ --vo=gpu-next 专用）
+unsharp_masking_next.glsl            -- 通用锐/糊化
 YIQ_converter.glsl                   -- YIQ转换，过饱和
 </pre></div>
 </div>
@@ -706,10 +812,7 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 <tr class="row-odd"><td><p>-remove</p></td>
 <td><p>移除一个列表中已存在的着色器</p></td>
 </tr>
-<tr class="row-even"><td><p>-del</p></td>
-<td><p>移除一个或多个列表中已存在的着色器（不推荐）</p></td>
-</tr>
-<tr class="row-odd"><td><p>-toggle</p></td>
+<tr class="row-even"><td><p>-toggle</p></td>
 <td><p>追加一个着色器到着色器列表的后方，如果已存在则移除它</p></td>
 </tr>
 </tbody>
@@ -724,7 +827,7 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 </section>
 <section id="id8">
 <h2>速度的对比参考<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
-<p>🔺 （此节的信息可能已过时。我对部分着色器的跑分测试参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/255#discussioncomment-4685344">此处</a>）</p>
+<p>🔺 （此节的信息已过时。我对部分着色器的跑分测试参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/255#discussioncomment-4685344">此处</a>）</p>
 <p>使用个别着色器进行两倍放大，计算每秒所能生成的最大帧数。数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。<br />
 实际速度<strong>极大</strong>取决于视频的质量、缩放倍率和你的显卡性能，因此两表中同一个 fsrcnnx16 的性能结果差异不符合常理也不奇怪，数据仅供大概参考。</p>
 <p><em>数据来源 GitHub&#64;Alexkral(NVIDIA GTX 1080)</em></p>
@@ -984,6 +1087,9 @@ CNN 虽然质量好但速度较慢。 CNN_M 和 CNN_L 变体的问题参考同�
 <li><a class="reference internal" href="#anime4k-v3-2-v4-x">Anime4K v3.2-v4.x</a></li>
 <li><a class="reference internal" href="#anime4k-legacy">Anime4k-legacy</a></li>
 <li><a class="reference internal" href="#acnet">ACNet</a></li>
+<li><a class="reference internal" href="#chroma-from-luma-cfl-prediction">Chroma from Luma (CfL) Prediction</a></li>
+<li><a class="reference internal" href="#joint-bilateral">joint-bilateral</a></li>
+<li><a class="reference internal" href="#pixel-clipper">pixel-clipper</a></li>
 <li><a class="reference internal" href="#fsrcnnx">FSRCNNX</a></li>
 <li><a class="reference internal" href="#avisynth-aiupscale">AviSynth AiUpscale</a></li>
 <li><a class="reference internal" href="#adaptive-sharpen">Adaptive Sharpen</a></li>
@@ -997,6 +1103,8 @@ CNN 虽然质量好但速度较慢。 CNN_M 和 CNN_L 变体的问题参考同�
 <li><a class="reference internal" href="#amd-fsr">AMD-FSR</a></li>
 <li><a class="reference internal" href="#nv-nis">NV-NIS</a></li>
 <li><a class="reference internal" href="#nv-nvsharpen">NV-NVSharpen</a></li>
+<li><a class="reference internal" href="#guided">guided</a></li>
+<li><a class="reference internal" href="#hdeband">hdeband</a></li>
 <li><a class="reference internal" href="#nl-means">NL Means</a></li>
 <li><a class="reference internal" href="#noise-static">Noise Static</a></li>
 <li><a class="reference internal" href="#id4">其它</a></li>

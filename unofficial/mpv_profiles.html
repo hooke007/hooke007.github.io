@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>配置预设<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p><em>ver.20230212</em></p>
+<p><em>ver.20231101</em></p>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <p>阅读本文前默认已基本熟悉 mpv.conf 内各参数的用途及含义。</p>
@@ -234,7 +234,7 @@
 
 <span class="na">vo</span><span class="o">=</span><span class="s">gpu</span>
 <span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">profile</span><span class="o">=</span><span class="s">gpu-hq</span>
+<span class="na">profile</span><span class="o">=</span><span class="s">high-quality</span>
 <span class="na">deband</span><span class="o">=</span><span class="s">no</span>
 <span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span>
 <span class="na">profile</span><span class="o">=</span><span class="s">srt_style</span>
@@ -262,15 +262,11 @@
 其中 <code class="docutils literal notranslate"><span class="pre">profile=xxx</span></code> 是一个特殊选项，当它被读取时，会被解析为它的赋值对象中的实际参数集。</p>
 <p><code class="docutils literal notranslate"><span class="pre">[xxxxx]</span></code> 是一个profile的头部标志，两个profile之间 —— 即 <code class="docutils literal notranslate"><span class="pre">[srt_style]</span></code> 到 <code class="docutils literal notranslate"><span class="pre">[playing_ontop]</span></code> 所有中间行的参数都属于 <code class="docutils literal notranslate"><span class="pre">[srt_style]</span></code> 。<br />
 一旦你在 mpv.conf 自己建立了profile，就不要把常驻参数（即启动时就应用的项）写在profile的后方，因为profile没有明确的结束标志，在上方示例中，任何写在最后的参数都会被mpv认定为属于 <code class="docutils literal notranslate"><span class="pre">[playing_ontop]</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">gpu-hq</span></code> 是mpv内建（自带）的一个profile，它具体包含以下参数：</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span>
-<span class="na">cscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">spline36</span>
-<span class="na">dscale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mitchell</span>
-<span class="na">dither-depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">auto</span>
-<span class="na">correct-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
-<span class="na">linear-downscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
-<span class="na">sigmoid-upscaling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
-<span class="na">deband</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<p><code class="docutils literal notranslate"><span class="pre">high-quality</span></code> 是mpv内建（自带）的一个profile（旧版mpv中是 <code class="docutils literal notranslate"><span class="pre">gpu-hq</span></code> ），它具体包含以下参数：</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ewa_lanczossharp</span>
+<span class="na">hdr-peak-percentile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">99.995</span>
+<span class="na">hdr-contrast-recovery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.30</span>
+<span class="na">deband</span><span class="o">=</span><span class="s">yes</span>
 </pre></div>
 </div>
 <p>P.S. mpv还有其它内建profile，详见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/42">《profiles_补充内容》</a></p>
@@ -278,14 +274,12 @@
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常驻参数</span>
 <span class="na">vo</span><span class="o">=</span><span class="s">gpu</span>
 <span class="na">hwdec</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">scale</span><span class="o">=</span><span class="s">spline36</span>
-<span class="na">cscale</span><span class="o">=</span><span class="s">spline36</span>
-<span class="na">dscale</span><span class="o">=</span><span class="s">mitchell</span>
-<span class="na">dither-depth</span><span class="o">=</span><span class="s">auto</span>
-<span class="na">correct-downscaling</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">linear-downscaling</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">sigmoid-upscaling</span><span class="o">=</span><span class="s">yes</span>
+
+<span class="na">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ewa_lanczossharp</span>
+<span class="na">hdr-peak-percentile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">99.995</span>
+<span class="na">hdr-contrast-recovery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.30</span>
 <span class="na">deband</span><span class="o">=</span><span class="s">yes</span>
+
 <span class="na">deband</span><span class="o">=</span><span class="s">no</span>
 <span class="na">keep-open</span><span class="o">=</span><span class="s">yes</span>
 <span class="na">sub-scale-with-window</span><span class="o">=</span><span class="s">no</span>
@@ -293,7 +287,7 @@
 <span class="na">sub-border-size</span><span class="o">=</span><span class="s">4</span>
 </pre></div>
 </div>
-<p>P.S. 在此示例中，把 <code class="docutils literal notranslate"><span class="pre">deband=no</span></code> 放在 <code class="docutils literal notranslate"><span class="pre">profile=gpu-hq</span></code> 之后，也是因为目的是要禁用去色带，否则如果顺序相反只会产生相反的结果。</p>
+<p>P.S. 在此示例中，把 <code class="docutils literal notranslate"><span class="pre">deband=no</span></code> 放在 <code class="docutils literal notranslate"><span class="pre">profile=high-qualit</span></code> 之后，也是因为目的是要禁用去色带，否则如果顺序相反只会产生相反的结果。</p>
 </section>
 <section id="id5">
 <h2>2.分类<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
