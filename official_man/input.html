@@ -396,7 +396,7 @@
 </dd>
 <dt>&lt;video&gt;</dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">subtitles</span></code> ，但通常没有OSD或字幕。具体行为取决于所选的视频输出。</p>
 </dd>
-<dt>&lt;window&gt;</dt><dd><p>保存mpv窗口的内容。通常视频是缩放过的，有OSD和字幕。具体行为取决于所选的视频输出，如果不支持，表现和 <code class="docutils literal notranslate"><span class="pre">video</span></code> 一样。</p>
+<dt>&lt;window&gt;</dt><dd><p>保存mpv窗口的内容。通常视频是缩放过的，有OSD和字幕。具体行为取决于所选的视频输出。</p>
 </dd>
 <dt>&lt;each-frame&gt;</dt><dd><p>每一帧截一次屏。再次发出这个命令可以停止截图。注意，使用这种模式时，你应该禁用frame-dropping功能 —— 否则在丢帧的情况下，你可能会收到重复的图像。这个标志可以和其他标志结合使用，例如 <code class="docutils literal notranslate"><span class="pre">video+each-frame</span></code></p>
 </dd>
@@ -427,6 +427,10 @@
 <dt>force</dt><dd><p>如果第一个文件正在播放，就终止播放</p>
 </dd>
 </dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist-next-playlist</span></code></dt><dd><p>以不同的 <code class="docutils literal notranslate"><span class="pre">playlist-path</span></code> 转到播放列表上的下一个条目。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist-prev-playlist</span></code></dt><dd><p>以不同的 <code class="docutils literal notranslate"><span class="pre">playlist-path</span></code> 转到播放列表上的上一个条目。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-play-index</span> <span class="pre">&lt;integer|current|none&gt;</span></code></dt><dd><p>开始（或重新开始）播放指定的播放列表索引。除了基于0的播放列表条目索引外，它还支持以下值：</p>
 <dl class="simple">
@@ -844,10 +848,12 @@
 <p><code class="docutils literal notranslate"><span class="pre">stride</span></code> 是指从 <code class="docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">y0)</span></code> 的像素到 <code class="docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">y0</span> <span class="pre">+</span> <span class="pre">1)</span></code> 的像素的字节数。如果图像被裁剪，或者有边距，这个数字可以大于 <code class="docutils literal notranslate"><span class="pre">w</span> <span class="pre">*</span> <span class="pre">4</span></code> 。这个数字也可以是负数。你可以用 <code class="docutils literal notranslate"><span class="pre">byte_index</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">stride</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">4</span></code> 访问一个像素（假设是 <code class="docutils literal notranslate"><span class="pre">bgr0</span></code> 格式）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">flags</span></code> 参数与 <code class="docutils literal notranslate"><span class="pre">screenshot</span></code> 的第一个参数一样，支持 <code class="docutils literal notranslate"><span class="pre">subtitles</span></code>, <code class="docutils literal notranslate"><span class="pre">video</span></code>, <code class="docutils literal notranslate"><span class="pre">window</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">vf-command</span> <span class="pre">&lt;label&gt;</span> <span class="pre">&lt;command&gt;</span> <span class="pre">&lt;argument&gt;</span></code></dt><dd><p>向滤镜发送一个命令，带有指定的 <code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code> 。使用 <code class="docutils literal notranslate"><span class="pre">all</span></code> 可以一次性发送给所有滤镜。命令和参数字符串是针对滤镜的。目前，这只适用于 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> 滤镜 —— 参见libavfilter文档，了解滤镜支持的命令。</p>
-<p>注意， <code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code> 是mpv滤镜的标签，不是libavfilter滤镜的名称。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">vf-command</span> <span class="pre">&lt;label&gt;</span> <span class="pre">&lt;command&gt;</span> <span class="pre">&lt;argument&gt;</span> <span class="pre">[&lt;target&gt;]</span></code></dt><dd><p>向滤镜发送命令。请注意，目前这只适用于 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> 滤镜。有关每个滤镜支持的命令列表，请参阅 libavfilter 文档。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;label&gt;</span></code> 是 mpv 滤镜的标签，使用 <code class="docutils literal notranslate"><span class="pre">all</span></code> 一次发送到所有滤镜。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;command&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;argument&gt;</span></code> 是滤镜指定的字符串。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;target&gt;</span></code> 是滤镜或滤镜实例名称，默认为 <code class="docutils literal notranslate"><span class="pre">all</span></code> 。请注意，对于支持目标的过滤器（如复杂的 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> 过滤器链），目标是一个额外的指定符。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">af-command</span> <span class="pre">&lt;label&gt;</span> <span class="pre">&lt;command&gt;</span> <span class="pre">&lt;argument&gt;</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">vf-command</span></code> 相同，但用于音频滤镜。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">af-command</span> <span class="pre">&lt;label&gt;</span> <span class="pre">&lt;command&gt;</span> <span class="pre">&lt;argument&gt;</span> <span class="pre">[&lt;target&gt;]</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">vf-command</span></code> 相同，但用于音频滤镜。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">apply-profile</span> <span class="pre">&lt;name&gt;</span> <span class="pre">[&lt;mode&gt;]</span></code></dt><dd><p>应用一个已命名的配置预设的内容。这就像在设置文件中使用 <code class="docutils literal notranslate"><span class="pre">profile=name</span></code> ，你除了可以把它映射到一个按键绑定，也可在运行时更改它。</p>
 <p>模式参数：</p>
@@ -1151,16 +1157,19 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">duration</span></code></dt><dd><p>当前文件的持续时间，以秒为单位。如果持续时间未知，该属性不可用。注意，文件的持续时间并不总是准确的，所以这是一个估计值。</p>
 <p>它取代了 <code class="docutils literal notranslate"><span class="pre">length</span></code> 属性，该属性在mpv0.9发布后已过时。（语义是一样的）</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">duration/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">duration</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">avsync</span></code></dt><dd><p>最近的A/V同步差异。如果音频或视频被禁用，则不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">total-avsync-change</span></code></dt><dd><p>已完成的总A-V同步校正。如果音频或视频被禁用，则不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">decoder-frame-drop-count</span></code></dt><dd><p>解码器的丢帧数，由于视频进度远落后于音频（当使用 <code class="docutils literal notranslate"><span class="pre">--framedrop=decoder</span></code> 时）。有时，在其它情况下，例如视频封装损坏，或解码器不遵循通常的规则，这可能会增加丢帧数。如果视频被禁用，则不可用。</p>
-<p><code class="docutils literal notranslate"><span class="pre">drop-frame-count</span></code> 是一个已过时的别名</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">frame-drop-count</span></code></dt><dd><p>视频输出驱动的丢帧数（当使用 <code class="docutils literal notranslate"><span class="pre">--framedrop=vo</span></code> 时）。</p>
-<p><code class="docutils literal notranslate"><span class="pre">vo-drop-frame-count</span></code> 是一个已过时的别名</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">mistimed-frame-count</span></code></dt><dd><p>为了保持A/V同步，在显示同步模式下没有正确计时的视频帧数。这不包括外部情况，例如视频渲染太慢或图形驱动程序以某种方式跳过垂直同步。它也不包括取整的错误（特别是在源时间戳不正常的情况下可能发生）。例如，使用 <code class="docutils literal notranslate"><span class="pre">display-desync</span></code> 模式时，不应该把这个值从0改变。</p>
 </dd>
@@ -1171,16 +1180,41 @@
 <dt><code class="docutils literal notranslate"><span class="pre">percent-pos</span></code> (RW)</dt><dd><p>当前文件中的位置（0-100）。使用它而不是从其它属性中计算的好处是，如果文件的持续时间未知，它可以正确地退回从字节位置到估计的播放位置。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">time-pos</span></code> (RW)</dt><dd><p>当前文件中的位置，以秒为单位。</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">time-pos/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">time-pos</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">time-start</span></code></dt><dd><p>已过时。在mpv0.14之前，它用于返回文件的开始时间（可能影响例如传输流）。参见 <code class="docutils literal notranslate"><span class="pre">--rebase-start-time</span></code> 选项。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">time-remaining</span></code></dt><dd><p>文件的剩余长度，以秒为单位。注意，文件的持续时间并不总是准确已知的，所以这是一个估计值。</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">time-remaining/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">time-remaining</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">audio-pts</span></code></dt><dd><p>当前文件中的音频播放位置（秒）。与time-pos不同，它的更新频率高于每帧一次。对于纯音频文件，它几乎等同于时间位置，而对于纯视频文件，这个属性不可用。</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">audio-pts/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">audio-pts</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playtime-remaining</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">time-remaining</span></code> 与当前的 <code class="docutils literal notranslate"><span class="pre">speed</span></code> 相乘。</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">playtime-remaining/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">playtime-remaining</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playback-time</span></code> (RW)</dt><dd><p>在当前文件中的位置，以秒为单位。与 <code class="docutils literal notranslate"><span class="pre">time-pos</span></code> 不同，时间被钳制在文件的范围内。（不准确的文件持续时间等可能使它超出范围。在尝试跳转到文件范围以外时很有用，因为跳转的目标时间被认为是跳转过程中的当前位置）。</p>
+<p>它有一个子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">playback-time/full</span></code></dt><dd><p>即 <code class="docutils literal notranslate"><span class="pre">playback-time</span></code> 附带毫秒数</p>
+</dd>
+</dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">chapter</span></code> (RW)</dt><dd><p>当前的章节编号。第一章的编号是0。</p>
 </dd>
@@ -1383,7 +1417,13 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">video-params/dw</span></code>, <code class="docutils literal notranslate"><span class="pre">video-params/dh</span></code></dt><dd><p>视频尺寸为整数，按正确的长宽比进行缩放</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">video-params/crop-x</span></code>, <code class="docutils literal notranslate"><span class="pre">video-params/crop-y</span></code></dt><dd><p>源视频帧的裁切偏移量</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">video-params/crop-w</span></code>, <code class="docutils literal notranslate"><span class="pre">video-params/crop-h</span></code></dt><dd><p>视频裁切后的尺寸</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">video-params/aspect</span></code></dt><dd><p>显示长宽比为浮点数</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">video-params/aspect-name</span></code></dt><dd><p>以字符串形式显示宽高比名称。该名称与特定宽高比的电影胶片格式名相对应。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">video-params/par</span></code></dt><dd><p>像素长宽比</p>
 </dd>
@@ -1432,6 +1472,41 @@
 </pre></div>
 </div>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata</span></code></dt><dd><p>视频每帧的 HDR 元数据，包括峰值亮度检测的结果。它有许多子属性：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/min-luma</span></code></dt><dd><p>HDR10 元数据报告的最小亮度（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/max-luma</span></code></dt><dd><p>HDR10 元数据报告的最大亮度（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/max-cll</span></code></dt><dd><p>HDR10 元数据报告的最大内容光照度（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/max-fall</span></code></dt><dd><p>HDR10 元数据报告的最大帧平均光亮度（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/scene-max-r</span></code></dt><dd><p>HDR10+ 元数据报告的场景中R分量的最大RGB值（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/scene-max-g</span></code></dt><dd><p>HDR10+ 元数据报告的场景中G分量的最大RGB值（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/scene-max-b</span></code></dt><dd><p>HDR10+ 元数据报告的场景中B分量的最大RGB值（单位 cd/m²）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/max-pq-y</span></code></dt><dd><p>峰值检测报告的帧的最大PQ亮度（以PQ单位，0-1表示）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hdr-metadata/avg-pq-y</span></code></dt><dd><p>由峰值检测报告的帧的平均PQ亮度（以PQ单位，0-1表示）</p>
+</dd>
+</dl>
+<p>当使用客户端API使用 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询属性，或者使用 Lua 的 <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> 查询属性时，将返回一个包含以下内容的 mpv_node ：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_MAP</span>
+    <span class="s2">&quot;min-luma&quot;</span>     <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;max-luma&quot;</span>     <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;max-cll&quot;</span>      <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;max-fall&quot;</span>     <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;scene-max-r&quot;</span>  <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;scene-max-g&quot;</span>  <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;scene-max-b&quot;</span>  <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;max-pq-y&quot;</span>     <span class="n">MPV_FORMAT_DOUBLE</span>
+    <span class="s2">&quot;avg-pq-y&quot;</span>     <span class="n">MPV_FORMAT_DOUBLE</span>
+</pre></div>
+</div>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">dwidth</span></code>, <code class="docutils literal notranslate"><span class="pre">dheight</span></code></dt><dd><p>视频显示尺寸。这是应用了滤镜和长宽比缩放之后的视频尺寸。实际的视频窗口大小仍可能与此不同，例如，如果用户手动调整视频窗口的大小。</p>
 <p>这些值与 <code class="docutils literal notranslate"><span class="pre">video-out-params/dw</span></code> 和 <code class="docutils literal notranslate"><span class="pre">video-out-params/dh</span></code> 相同。</p>
 </dd>
@@ -1471,7 +1546,6 @@
 <dt><code class="docutils literal notranslate"><span class="pre">display-names</span></code></dt><dd><p>mpv窗口所包含的显示器的名称。在X11上，这些是xrandr名称（LVDS1, HDMI1, DP1, VGA1, 等等）。在Windows上，这些是GDI名称（\.DISPLAY1，\.DISPLAY2，等等），列表中的第一个显示器将是Windows认为与该窗口相关的（由MonitorFromWindow API决定）。 在macOS上，这些是系统信息中使用的显示产品名称，只有一个显示名称被返回，因为一个窗口只能在一个屏幕上。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">display-fps</span></code></dt><dd><p>当前显示器的刷新率。目前，这是视频涵盖的任何显示器的最低FPS，由底层系统API检索（例如X11的xrandr）。它不是测量的FPS。它不一定在所有平台上都可用。注意，任何列出的事实都可能在没有警告的情况下随时改变。</p>
-<p>写入此属性已过时。它与写入 <code class="docutils literal notranslate"><span class="pre">overrid-display-fps</span></code> 的效果相同。从mpv0.31.0开始，如果没有显示器FPS的报告，这个属性就不可用（例如，如果没有视频被激活），而在旧版本中，它返回 <code class="docutils literal notranslate"><span class="pre">--display-fps</span></code> 选项的值。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">estimated-display-fps</span></code></dt><dd><p>显示器刷新的实际速度，由系统时间测量。只有在display-sync模式（由 <code class="docutils literal notranslate"><span class="pre">--video-sync</span></code> 选择）激活时才可用。</p>
 </dd>
@@ -1480,9 +1554,6 @@
 <dt><code class="docutils literal notranslate"><span class="pre">display-width</span></code>, <code class="docutils literal notranslate"><span class="pre">display-height</span></code></dt><dd><p>当前显示器的水平和垂直分辨率，以像素为单位。这些值是否在mpv窗口改变显示时更新，取决于窗口化后端。它并非在所有平台上都可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">display-hidpi-scale</span></code></dt><dd><p>由窗口后端报告的HiDPI比例系数。如果没有视频输出程序被激活，或者视频输出没有报告一个值，这个属性是不可用的。报告一个绝对的DPI可能更合理，然而，这是大多数操作系统API实现HiDPI支持的方式。另参见 <code class="docutils literal notranslate"><span class="pre">--hidpi-window-scale</span></code></p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">video-aspect</span></code> (RW)</dt><dd><p>已废弃。该选项与 <code class="docutils literal notranslate"><span class="pre">--video-aspect-override</span></code> 相关，但如果视频处于激活状态，则总是报告当前的视频长宽比。</p>
-<p>这个选项的读和写部分可分别拆为 <code class="docutils literal notranslate"><span class="pre">--video-params/aspect</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--video-aspect-override</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">osd-width</span></code>, <code class="docutils literal notranslate"><span class="pre">osd-height</span></code></dt><dd><p>最近的已知的OSD宽度（可以是0）。如果你想使用 <code class="docutils literal notranslate"><span class="pre">overlay-add</span></code> 命令，就需要这个。它给你实际的OSD/窗口尺寸（不包括操作系统窗口管理器绘制的装饰）。</p>
 <p>是 <code class="docutils literal notranslate"><span class="pre">osd-dimensions/w</span></code> 和 <code class="docutils literal notranslate"><span class="pre">osd-dimensions/h</span></code> 的别名</p>
@@ -1517,6 +1588,8 @@
 </dd>
 </dl>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sub-ass-extradata</span></code></dt><dd><p>当前 ASS 字幕轨道的额外数据。不进行格式化。额外数据将以字符串形式按原样返回。此属性不适用于非 ASS 类的字幕轨。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-text</span></code></dt><dd><p>当前的字幕文本，不管字幕是否可见。格式被剥离。如果字幕不是基于文本的（例如DVD/BD字幕），将返回一个空字符串。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">sub-text-ass</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">sub-text</span></code> ，但返回ASS格式的文本。其他格式的文本字幕会被转换。对于原生ASS字幕，不包含任何文本（但是矢量图等）的事件不会被过滤掉。如果多个事件与当前播放时间相匹配，它们会用换行符连接起来。只包含事件的“文本”部分。</p>
@@ -1532,12 +1605,10 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">secondary-sub-end</span></code></dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">sub-end</span></code> 相同，但用于次字幕。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sub-forced-only-cur</span></code></dt><dd><p>只读 - 当前字幕轨是否以 forced-only 模式显示。</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-pos</span></code> (RW)</dt><dd><p>当前在播放列表中的位置。第一个条目是在0的位置。写入这个属性将在新位置开始播放。</p>
 <p>在某些情况下，这不必是当前播放的文件。参见  <code class="docutils literal notranslate"><span class="pre">playlist</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">current</span></code> 和 <code class="docutils literal notranslate"><span class="pre">playing</span></code>  标志的解释。</p>
 <p>如果播放列表是空的，或者如果它不是空的，但没有条目是 “current” 的，这个属性就会返回-1。同样，写入-1将使播放器进入空闲模式（如果没有启用空闲模式则退出播放）。（在mpv0.33.0之前，如果没有播放列表条目是“当前的”，这个属性就不可用）</p>
-<p>将当前值写入回该属性是有可能改变的。目前，它将重新启动播放列表条目的播放。但在未来，写入回当前值将被忽略。使用 <code class="docutils literal notranslate"><span class="pre">playlist-play-index</span></code> 命令来获得保证的行为。</p>
+<p>将当前值写回属性不会有任何影响。如果需要，可使用 <code class="docutils literal notranslate"><span class="pre">playlist-play-index</span></code> 重启当前条目的播放。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-pos-1</span></code> (RW)</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">playlist-pos</span></code> 相同，但基于1。</p>
 </dd>
@@ -1550,6 +1621,8 @@
 <p>在“正在播放”状态下，这通常与 <code class="docutils literal notranslate"><span class="pre">playlist-pos</span></code> 相同，除了在状态转换时，或者如果 <code class="docutils literal notranslate"><span class="pre">playlist-current-pos</span></code> 被明确写入。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-count</span></code></dt><dd><p>总共的播放列表条目的数量。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist-path</span></code></dt><dd><p>mpv展开条目之前，当前条目的原始播放列表路径。如果文件最初没有以某种方式与播放列表相关联，则不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist</span></code></dt><dd><p>播放列表，当前标记的条目。目前，原始属性值是无用的。</p>
 <p>这有一系列子属性。用基于0代替 <code class="docutils literal notranslate"><span class="pre">N</span></code> 的播放列表条目索引</p>
@@ -1565,6 +1638,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">playlist/N/title</span></code></dt><dd><p>第N个条目的名称。如果播放列表文件包含这样的字段，并且是受mpv解析器支持的播放列表格式，或者如果播放列表条目之前已被打开，并且已经获得了一个与文件名不同的媒体标题，则可用</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist/N/id</span></code></dt><dd><p>这个条目的唯一ID。这是一个自动分配的整数ID，在当前mpv核心实例的整个生命周期中是唯一的。其他命令、事件等使用它作为 <code class="docutils literal notranslate"><span class="pre">playlist_entry_id</span></code> 字段</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist/N/playlist-path</span></code></dt><dd><p>mpv展开此条目之前的播放列表的原始路径。如果文件最初没有以某种方式与播放列表相关联，则不可用</p>
 </dd>
 </dl>
 <p>当client API使用 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询该属性时，或者用Lua <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> ，这将返回一个mpv_node，内容如下：</p>
@@ -1601,9 +1676,6 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/forced</span></code></dt><dd><p>如果文件中设置了force标志，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">track-list/N/auto-forced-only</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">yes</span></code>/true if the track was autoselected in forced-only mode, <code class="docutils literal notranslate"><span class="pre">no</span></code>/false or unavailable otherwise.
-如果该轨道是在强制模式下自动选择的，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/codec</span></code></dt><dd><p>该轨道使用的编解码器名称，例如 <code class="docutils literal notranslate"><span class="pre">h264</span></code> 。在某些罕见情况下不可用</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/external</span></code></dt><dd><p>如果该轨道是一个外部文件，则为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true，否则为 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false或不可用。这是为独立的字幕文件设置的</p>
@@ -1619,6 +1691,10 @@
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/decoder-desc</span></code></dt><dd><p>如果这个轨道正在被解码，则是人性化的可读的解码器名称</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/demux-w</span></code>, <code class="docutils literal notranslate"><span class="pre">track-list/N/demux-h</span></code></dt><dd><p>容器显示的视频尺寸提示（不总是准确）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">track-list/N/demux-crop-x</span></code>, <code class="docutils literal notranslate"><span class="pre">track-list/N/demux-crop-y</span></code></dt><dd><p>源视频帧的裁切偏移量</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">track-list/N/demux-crop-w</span></code>, <code class="docutils literal notranslate"><span class="pre">track-list/N/demux-crop-h</span></code></dt><dd><p>裁切后的视频尺寸</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">track-list/N/demux-channel-count</span></code></dt><dd><p>容器显示的音频声道数量（并不总是准确 —— 特别是音轨可能被解码为不同数量）</p>
 </dd>
@@ -1662,6 +1738,10 @@
         <span class="s2">&quot;decoder-desc&quot;</span>      <span class="n">MPV_FORMAT_STRING</span>
         <span class="s2">&quot;demux-w&quot;</span>           <span class="n">MPV_FORMAT_INT64</span>
         <span class="s2">&quot;demux-h&quot;</span>           <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-crop-x&quot;</span>      <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-crop-y&quot;</span>      <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-crop-w&quot;</span>      <span class="n">MPV_FORMAT_INT64</span>
+        <span class="s2">&quot;demux-crop-h&quot;</span>      <span class="n">MPV_FORMAT_INT64</span>
         <span class="s2">&quot;demux-channel-count&quot;</span> <span class="n">MPV_FORMAT_INT64</span>
         <span class="s2">&quot;demux-channels&quot;</span>    <span class="n">MPV_FORMAT_STRING</span>
         <span class="s2">&quot;demux-samplerate&quot;</span>  <span class="n">MPV_FORMAT_INT64</span>
@@ -1736,7 +1816,7 @@
 <p>任何由libass理解的ASS覆写标签都可以使用。</p>
 <p>注意，你需要转义 <code class="docutils literal notranslate"><span class="pre">\</span></code> 字符，因为字符串在传递给OSD代码之前会被处理为C转义序列。详见 <a class="reference internal" href="#flat">Flat命令语法</a></p>
 <p>标签的列表可以在这里找到：
-<a class="reference external" href="https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/">https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/</a></p>
+<a class="reference external" href="https://aegisub.org/docs/latest/ass_tags/">https://aegisub.org/docs/latest/ass_tags/</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vo-configured</span></code></dt><dd><p>当前视频输出驱动是否被配置了。通常这与视频窗口是否可见相对应。如果使用了 <code class="docutils literal notranslate"><span class="pre">--force-window</span></code> 选项，通常总是返回``yes`` /true。</p>
 </dd>

@@ -227,7 +227,7 @@
 <dl class="simple">
 <dt>`</dt><dd><p>显示控制台</p>
 </dd>
-<dt>ESC</dt><dd><p>隐藏控制台</p>
+<dt>ESC, Ctrl+[</dt><dd><p>隐藏控制台</p>
 </dd>
 <dt>ENTER, Ctrl+J, Ctrl+M</dt><dd><p>运行输入的命令</p>
 </dd>
@@ -310,7 +310,7 @@
 <p>如果使用的视频输出驱动后端有HiDPI比例报告的比例，则选项值将采用HiDPI比例。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： 未设置（根据检测到的平台选择一个硬编码的字体）</p>
-<p>设置用于交互式解释器和控制台的字体。不一定要是等宽字体。</p>
+<p>设置用于交互式解释器和控制台的字体。必需是等宽字体才能正确对齐代码补全辅助。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 16</p>
 <p>设置用于交互式解释器和控制台的字体大小。这将和scale相乘。</p>
@@ -320,6 +320,9 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
 <p>删除历史记录中的重复条目，只保留最新的一项。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">font_hw_ratio</span></code></dt><dd><p>默认： 2.0</p>
+<p>字体高度与字体宽度的比例。调节代码补全辅助的表格宽度。</p>
 </dd>
 </dl>
 </section>

@@ -236,7 +236,7 @@
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">gpu</span></code></dt><dd><p>通用的可定制的、GPU加速的视频输出驱动。它支持扩展缩放方式、抖动、色彩管理、自定义着色器、HDR等。</p>
 <p>参见 <a href="#id2"><span class="problematic" id="id3">`GPU渲染选项`_</span></a> ，了解该视频输出的特定选项。</p>
-<p>默认情况下，它尝试使用快速和低故障的安全设置。使用配置预设 <code class="docutils literal notranslate"><span class="pre">gpu-hq</span></code> 来使初始设置为高质量渲染。这个配置预设可以通过 <code class="docutils literal notranslate"><span class="pre">--profile=gpu-hq</span></code> 来应用，其内容可以用 <code class="docutils literal notranslate"><span class="pre">--show-profile=gpu-hq</span></code> 来查看。</p>
+<p>默认情况下，mpv使用平衡质量和性能的设置。此外，还有两个预定义的配置文件可用： <code class="docutils literal notranslate"><span class="pre">fast</span></code> 用于最大性能， <code class="docutils literal notranslate"><span class="pre">high-quality</span></code> 用于优越的渲染质量。您可以使用 <code class="docutils literal notranslate"><span class="pre">--profile=&lt;name&gt;</span></code> 选项应用特定的配置文件，并使用 <code class="docutils literal notranslate"><span class="pre">--show-profile=&lt;name&gt;</span></code> 来查看其内容。</p>
 <p>这个视频输出虚拟了几个可能的图形API和窗口环境，可以用 <code class="docutils literal notranslate"><span class="pre">--gpu-api</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context</span></code> 选项来影响它们。</p>
 <p>OpenGL-interop的硬件解码在一定程度上受支持。请注意在这种模式下，一些边缘情况可能无法被良好处理，并且色彩空间转换和色度还原通常由硬解码API负责。</p>
 <p><code class="docutils literal notranslate"><span class="pre">gpu</span></code> 默认使用FBOs。有时你可以通过改变选项 <code class="docutils literal notranslate"><span class="pre">--fbo-format</span></code> 为 <code class="docutils literal notranslate"><span class="pre">rgb16f</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb32f</span></code> 或 <code class="docutils literal notranslate"><span class="pre">rgb</span></code> 来达到更好的质量或性能。已知的问题包括Mesa/Intel不接受 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> ，Mesa有时不支持浮点纹理，以及一些macOS的设置在使用 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> 时非常慢，但使用``rgb32f``时非常快。如果你存在运行问题，也可以尝试启用 <code class="docutils literal notranslate"><span class="pre">--gpu-dumb-mode=yes</span></code> 选项。</p>
@@ -340,11 +340,11 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">dmabuf-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与 drm stateless 或 VA API 硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。目前该驱动是实验性的，只与 <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--hwdec=drm</span></code> 一起工作；OSD也不受支持。支持的合成器：Weston和Sway。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">dmabuf-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与 drm stateless 或 VA API 硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。强烈建议使用适当的 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> 选项（如 <code class="docutils literal notranslate"><span class="pre">auto-safe</span></code> ）来配合使用此VO。虽然在某些情况下可以不使用 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> ，因为mpv的内部转换滤镜，但不建议这样做，因为这是一个不必要的额外步骤。正确的输出取决于您的GPU、驱动程序和合成器的支持。已知Weston和基于wlroots的合成器（如Sway）以及英特尔GPU通常可以正常工作。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vaapi</span></code></dt><dd><p>Intel VA API视频输出驱动，支持硬件解码。请注意除了兼容性之外，绝对没有理由使用这个。这是低质量的，而且在OSD方面有问题。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 代替它。</p>
 <p>支持以下全局选项：</p>
-<dl>
+<dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--vo-vaapi-scaling=&lt;algorithm&gt;</span></code></dt><dd><dl class="simple">
 <dt>default</dt><dd><p>驱动程序的默认值（默认）</p>
 </dd>
@@ -353,17 +353,6 @@
 <dt>hq</dt><dd><p>未指定的依赖驱动程序的高质量缩放，但速度慢</p>
 </dd>
 <dt>nla</dt><dd><p><code class="docutils literal notranslate"><span class="pre">non-linear</span> <span class="pre">anamorphic</span> <span class="pre">scaling</span></code></p>
-</dd>
-</dl>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vo-vaapi-deint-mode=&lt;mode&gt;</span></code></dt><dd><p>选择去隔行扫描算法。注意默认情况下，去隔行扫描最初总是关闭的，需要用 <code class="docutils literal notranslate"><span class="pre">d</span></code> 键来启用（ <code class="docutils literal notranslate"><span class="pre">cycle</span> <span class="pre">deinterlace</span></code> 的默认按键绑定）。</p>
-<p>如果libva支持视频后处理（vpp），这个选项就不适用。在这种情况下， <code class="docutils literal notranslate"><span class="pre">deint-mode</span></code> 的默认值是 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，通过用户交互使用上述方法启用去交错，实际上是插入了 <code class="docutils literal notranslate"><span class="pre">vavpp</span></code> 视频滤镜。如果使用的libva后端实际上不支持vpp，你可以使用这个选项强行启用基于视频输出的去隔行扫描。</p>
-<dl class="simple">
-<dt>no</dt><dd><p>不允许去隔行扫描（较新的libva的默认值）</p>
-</dd>
-<dt>first-field</dt><dd><p>只显示第一个场</p>
-</dd>
-<dt>bob</dt><dd><p>bob去隔行扫描（较早的libva的默认值）</p>
 </dd>
 </dl>
 </dd>
@@ -514,8 +503,7 @@
 <p>这也支持许多 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> 视频输出的选项，取决于后端。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">rpi</span></code> （树莓派）</dt><dd><p>在树莓派上使用MMAL API进行原生视频输出。</p>
-<p>这已过时。使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 代替，这是默认的且提供相同的功能。 <code class="docutils literal notranslate"><span class="pre">rpi</span></code> 视频输出将在mpv 0.23.0中被删除。它的功能被折叠到–vo=gpu中，现在通过把它当作硬件overlay来使用RPI硬件解码（不应用GL filtering）。在0.23.0中还将改变：–fs标志在默认情况下将被重置为 “no”（就像在其他平台上）。</p>
-<p>支持以下过时的全局选项：</p>
+<p>支持以下的全局选项：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--rpi-display=&lt;number&gt;</span></code></dt><dd><p>选择视频overlay应显示的显示器号码（默认： 0）</p>
 </dd>

@@ -238,8 +238,6 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--oac=&lt;codec&gt;</span></code></dt><dd><p>指定输出的音频编码。参见 <code class="docutils literal notranslate"><span class="pre">--oac=help</span></code> 以获取受支持的编码的完整列表。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--oaoffset=&lt;value&gt;</span></code></dt><dd><p>通过在开始时添加/移除采样，将音频数据按给定的时间偏移，以秒为单位。已过时。</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--oacopts=&lt;options&gt;</span></code></dt><dd><p>指定libavcodec的输出音频编码选项。参见 <code class="docutils literal notranslate"><span class="pre">--oacopts=help</span></code> 以获取受支持的选项的完整列表。</p>
 <div class="admonition- admonition">
 <p class="admonition-title">示例</p>
@@ -256,11 +254,7 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--oafirst</span></code></dt><dd><p>强制音频流成为输出中的第一个流。默认情况下，顺序是未指定的。已过时。</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--ovc=&lt;codec&gt;</span></code></dt><dd><p>指定输出的视频编码。参见 <code class="docutils literal notranslate"><span class="pre">--ovc=help</span></code> 以获取受支持的编码的完整列表。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--ovoffset=&lt;value&gt;</span></code></dt><dd><p>通过移位pts值将视频数据偏移到给定的时间，以秒为单位。已过时。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--ovcopts=&lt;options&gt;</span></code></dt><dd><p>指定libavcodec的输出视频编码选项。参见 –ovcopts=help 以获取受支持的选项的完整列表。</p>
 <div class="admonition- admonition">
@@ -279,8 +273,6 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--ovcopts=&quot;&quot;</span></code></dt><dd><p>完全清空选项列表</p>
 </dd>
 </dl>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--ovfirst</span></code></dt><dd><p>强制视频流成为输出中的第一个流。默认情况下，顺序是未指定的。已过时。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--orawts</span></code></dt><dd><p>将输入pts复制到输出视频中（不受某些输出容器格式的支持，例如AVI）。在这种模式下，不连续点不被固定，所有的点都是被原样传递过去。在这种模式下，千万不要向前跳转或使用多个输入文件！</p>
 </dd>

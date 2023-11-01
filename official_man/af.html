@@ -232,7 +232,7 @@
 <p>另外，请记住，大多数实际的滤镜是通过 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> wrapper获得的，它使你可以使用libavfilter的大多数滤镜。这包括所有从MPlayer移植到libavfilter的滤镜。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--vf</span></code> 的描述阐述了如何使用libavfilter以及如何解决已过时的mpv滤镜。</p>
 </div>
-<p>参见 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 的选项组，了解 <code class="docutils literal notranslate"><span class="pre">--af-defaults</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-add</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-pre</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-del</span></code>, <code class="docutils literal notranslate"><span class="pre">--af-clr</span></code> 以及其它可能的工作方式。</p>
+<p>参见 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 的选项组，了解 <code class="docutils literal notranslate"><span class="pre">--af-add</span></code> , <code class="docutils literal notranslate"><span class="pre">--af-pre</span></code> , <code class="docutils literal notranslate"><span class="pre">--af-clr</span></code> 以及其它可能的工作方式。</p>
 <p>可用的滤镜有：</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">lavcac3enc[=options]</span></code></dt><dd><p>使用libavcodec在运行时将多声道音频编码为AC-3。支持16-bit native-endian输入格式，最多6个声道。当输出原始AC-3流时，输出是big-endian，当输出到S/PDIF时是native-endian。如果输入的采样率不是48kHz、44.1kHz或32kHz，它将被重采样为48kHz。</p>
@@ -284,14 +284,14 @@
 <p><code class="docutils literal notranslate"><span class="pre">&lt;out-channels&gt;</span></code></p>
 <p><em>注意</em> ：这个滤镜曾经被命名为 <code class="docutils literal notranslate"><span class="pre">force</span></code> 。旧的 <code class="docutils literal notranslate"><span class="pre">format</span></code> 滤镜曾经自行转换，不像这个滤镜让滤镜系统处理转换。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">scaletempo[=option1:option2:...]</span></code></dt><dd><p>在不改变音调的情况下缩放音频节奏，可选与播放速度同步（默认）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">scaletempo[=option1:option2:...]</span></code></dt><dd><p>在不改变音调的情况下缩放音频节奏，可选与播放速度同步。</p>
 <p>它的工作原理是以正常速度播放 ‘stride’ 毫秒的音频，然后消耗 ‘stride*scale’ 毫秒的输入音频。它通过将 ‘overlap’% 的步长与前一个步长之后的音频混合在一起。它可选对下一个 ‘search’ 毫秒的音频进行简短的数据分析，以确定最佳重叠位置。</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">scale=&lt;amount&gt;</span></code></dt><dd><p>名义上的缩放节奏的数量。除了速度之外，还对这个量进行缩放（默认： 1.0）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">stride=&lt;amount&gt;</span></code></dt><dd><p>输出每个步幅的长度，单位是毫秒。太高的值会在高音阶量时产生明显的跳动，在低音阶量时产生回声。非常低的值会反转音调。增加会改善性能（默认：60）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">overlap=&lt;percent&gt;</span></code></dt><dd><p>重叠步长的百分比。减少会改善性能（默认： 20）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">overlap=&lt;factor&gt;</span></code></dt><dd><p>重叠步长的系数。减少会改善性能（默认： 20）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">search=&lt;amount&gt;</span></code></dt><dd><p>搜索最佳重叠位置的长度，以毫秒为单位。减少会明显改善性能。在慢速系统上，你可能想把它设置得很低（默认： 14）</p>
 </dd>
@@ -330,25 +330,35 @@
 </dl>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">scaletempo2[=option1:option2:...]</span></code></dt><dd><p>缩放音频节奏而不改变音调。这个算法是从chromium移植过来的，使用了波形相似度叠加（WSOLA）方法。它似乎比scaletempo和rubberband实现了更高的音频质量。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">scaletempo2[=option1:option2:...]</span></code></dt><dd><p>缩放音频节奏而不改变音调。这个算法是从chromium移植过来的，使用了波形相似度叠加（WSOLA）方法。与 scaletempo 和 rubberband R2 引擎或 <code class="docutils literal notranslate"><span class="pre">engine=faster</span></code> 相比，它似乎能获得更高的音频质量。如果使用了 <code class="docutils literal notranslate"><span class="pre">audio-pitch-correction</span></code> 选项（默认开启），则在改变播放速度时会自动插入该滤镜。</p>
 <p>默认情况下， <code class="docutils literal notranslate"><span class="pre">search-interval</span></code> 和 <code class="docutils literal notranslate"><span class="pre">window-size</span></code> 参数的值与chromium相同。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">min-speed=&lt;speed&gt;</span></code></dt><dd><p>如果播放速度低于 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span></code> ，则将音频静音（默认： 0.25）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">max-speed=&lt;speed&gt;</span></code></dt><dd><p>如果播放速度高于 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span></code> 并且 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span> <span class="pre">!=</span> <span class="pre">0</span></code> ，则将音频静音（默认： 4.0）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">max-speed=&lt;speed&gt;</span></code></dt><dd><p>如果播放速度高于 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span></code> 并且 <code class="docutils literal notranslate"><span class="pre">&lt;speed&gt;</span> <span class="pre">!=</span> <span class="pre">0</span></code> ，则将音频静音（默认： 8.0）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">search-interval=&lt;amount&gt;</span></code></dt><dd><p>搜索最佳重叠位置的长度，以毫秒为单位（默认： 30）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">search-interval=&lt;amount&gt;</span></code></dt><dd><p>搜索最佳重叠位置的长度，以毫秒为单位（默认： 40）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">window-size=&lt;amount&gt;</span></code></dt><dd><p>overlap-and-add window的长度，以毫秒为单位（默认： 20）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">window-size=&lt;amount&gt;</span></code></dt><dd><p>overlap-and-add window的长度，以毫秒为单位（默认： 12）</p>
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">rubberband</span></code></dt><dd><p>用librubberband进行高质量的音调修正。它可以代替 <code class="docutils literal notranslate"><span class="pre">scaletempo</span></code> ，当以不同于正常的速度播放时，它将用于调整音频音调。它也可以用来调整音频音调而不改变播放速度。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">rubberband</span></code></dt><dd><p>用librubberband进行高质量的音调修正。它可以代替 <code class="docutils literal notranslate"><span class="pre">scaletempo</span></code> 和 <code class="docutils literal notranslate"><span class="pre">scaletempo2</span></code> ，当以不同于正常的速度播放时，它将用于调整音频音调。它也可以用来调整音频音调而不改变播放速度。</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code></dt><dd><p>设置音调比例系数。频率要乘以这个值。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale=&lt;amount&gt;</span></code></dt><dd><p>设置音调比例系数。频率要乘以这个值。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">engine=&lt;faster|finer&gt;</span></code></dt><dd><p>选择要使用的核心 Rubberband 引擎。有两种可供选择：</p>
+<dl class="field-list simple">
+<dt class="field-odd">Faster<span class="colon">:</span></dt>
+<dd class="field-odd"><p>这是 Rubberband R2 引擎。它的 CPU 占用率明显低于 Finer(R3) 引擎。</p>
+</dd>
+<dt class="field-even">Finer<span class="colon">:</span></dt>
+<dd class="field-even"><p>这是 Rubberband R3 引擎。该引擎仅适用于 librubberband 3 或更高版本。其输出质量明显更高，但 CPU 占用率也更高（如果可用的话它是默认值）</p>
 </dd>
 </dl>
-<p>这个滤镜有许多额外的子选项。你可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=rubberband=help</span></code> 列出它们。这也会显示每个选项的默认值。这里没有记录这些选项，因为它们只是被传递给librubberband。参阅librubberband的文档以了解每个选项的作用： <a class="reference external" href="https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html">https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html</a> （mpv rubberband滤镜的子选项名称和值与librubberband的映射遵循一个简单的模式： <code class="docutils literal notranslate"><span class="pre">&quot;Option&quot;</span> <span class="pre">+</span> <span class="pre">Name</span> <span class="pre">+</span> <span class="pre">Value</span></code> ）</p>
+</dd>
+</dl>
+<p>这个滤镜有许多额外的子选项。你可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--af=rubberband=help</span></code> 列出它们。这也会显示每个选项的默认值。这里没有记录这些选项，因为它们只是被传递给librubberband。参阅librubberband的文档以了解每个选项的作用： <a class="reference external" href="https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html">https://breakfastquay.com/rubberband/code-doc/classRubberBand_1_1RubberBandStretcher.html</a> 请注意，某些选项只适用于 R2(faster) 和 R3(finer) 引擎中的一个。（mpv rubberband滤镜的子选项名称和值与librubberband的映射遵循一个简单的模式： <code class="docutils literal notranslate"><span class="pre">&quot;Option&quot;</span> <span class="pre">+</span> <span class="pre">Name</span> <span class="pre">+</span> <span class="pre">Value</span></code> ）</p>
 <p>这个滤镜支持下列 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 命令：</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">set-pitch</span></code></dt><dd><p>动态设置 <code class="docutils literal notranslate"><span class="pre">&lt;pitch-scale&gt;</span></code> 参数。这可以用来在运行时改变播放的音调。注意，速度是用标准的 <code class="docutils literal notranslate"><span class="pre">speed</span></code> 属性控制的，而不是 <code class="docutils literal notranslate"><span class="pre">af-command</span></code> 。</p>

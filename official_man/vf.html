@@ -247,12 +247,11 @@
 <p><code class="docutils literal notranslate"><span class="pre">param-value</span></code> 可以进一步用 <code class="docutils literal notranslate"><span class="pre">[</span></code> / <code class="docutils literal notranslate"><span class="pre">]</span></code> 来引用，如果该值包含 <code class="docutils literal notranslate"><span class="pre">,</span></code> 或 <code class="docutils literal notranslate"><span class="pre">=</span></code> 等字符。这一点特别适用于 <code class="docutils literal notranslate"><span class="pre">lavfi</span></code> 滤镜，它使用与mpv（MPlayer历史上的）非常相似的语法来指定滤镜及其参数。</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">--vf</span></code> 只能以单个轨道作为输入，即使过滤器支持动态输入。无法使用需要多个输入的滤镜。对于这种情况，请使用 <code class="docutils literal notranslate"><span class="pre">--lavfi-complex</span></code> 。这也适用于 <code class="docutils literal notranslate"><span class="pre">--af</span></code> 。</p>
+</div>
 <p>滤镜可以在运行时被操控。你可以使用上面描述的 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 标签，结合 <code class="docutils literal notranslate"><span class="pre">vf</span></code> 命令（参见 <a href="#id2"><span class="problematic" id="id3">`命令接口`_</span></a> ）来获得更多的控制。初始禁用的滤镜与 <code class="docutils literal notranslate"><span class="pre">!</span></code> 在这方面也很有用。</p>
-<p>你也可以为每个滤镜设置默认值。默认值会在一般的滤镜参数之前应用。这个方法已经过时了，而且在 libavfilter bridge上从来没有有效过。</p>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">--vf-defaults=&lt;filter1[=parameter1:parameter2:...],filter2,...&gt;</span></code></dt><dd><p>为每个滤镜设置默认值。（已过时。 <code class="docutils literal notranslate"><span class="pre">--af-defaults</span></code> 也已过时。）</p>
-</dd>
-</dl>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>要获得可用的视频滤镜的完整列表，参见 <code class="docutils literal notranslate"><span class="pre">--vf=help</span></code> 和 <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html">https://ffmpeg.org/ffmpeg-filters.html</a></p>
@@ -272,8 +271,6 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--vf-remove=filter</span></code></dt><dd><p>从列表中删除滤镜。滤镜可以按照添加的方式（滤镜名称和它的完整参数列表），或者通过标签（以 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 为前缀）给出。滤镜的匹配工作如下：如果任何一个被比较的滤镜有一个标签集，则只比较标签。如果没有一个滤镜有标签，则比较滤镜的名称、参数和参数顺序（目前仍然可以传递多个滤镜，但已过时）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">-vf-toggle=filter</span></code></dt><dd><p>如果给定的滤镜还没有出现，则将其追加到列表的后方；如果已经出现，则将其从列表中移除。滤镜的匹配工作如 <code class="docutils literal notranslate"><span class="pre">--vf-remove</span></code> 中所描述。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--vf-del=filter</span></code></dt><dd><p>有点像 <code class="docutils literal notranslate"><span class="pre">--vf-remove</span></code> ，但也接受一个索引数字。索引数从0开始，负数指向列表的末尾（-1是最后一个）。已过时。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vf-clr</span></code></dt><dd><p>完全清空滤镜列表。</p>
 </dd>
@@ -595,10 +592,12 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">video_in_dw</span></code>, <code class="docutils literal notranslate"><span class="pre">video_in_dh</span></code></dt><dd><p>视频的显示尺寸。如果视频不使用方形像素（如DVD），可以与视频尺寸不同。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">container_fps</span></code></dt><dd><p>由文件头报告的FPS值。这个值可能是错误的或完全损坏的（例如0或NaN）。即使这个值是正确的，如果另一个滤镜改变了真实的FPS（通过丢帧或插入帧），这个变量的值将没有用。注意 <code class="docutils literal notranslate"><span class="pre">--fps</span></code> 命令行选项会覆盖这个值。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">container_fps</span></code></dt><dd><p>由文件头报告的FPS值。这个值可能是错误的或完全损坏的（例如0或NaN）。即使这个值是正确的，如果另一个滤镜改变了真实的FPS（通过丢帧或插入帧），这个变量的值将没有用。注意 <code class="docutils literal notranslate"><span class="pre">--container-fps-override</span></code> 命令行选项会覆盖这个值。</p>
 <p>对一些坚持要有FPS的滤镜很有用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">display_fps</span></code></dt><dd><p>当前显示器的刷新率。注意，这个值可以是0。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">display_res</span></code></dt><dd><p>当前显示器的分辨率。这是一个整数数组，第一个条目对应宽度，第二个条目对应高度。这些值可以为0。请注意，这不会响应显示器更改，而且可能在所有平台上都无法正常工作。</p>
 </dd>
 </dl>
 </dd>
