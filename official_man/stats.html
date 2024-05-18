@@ -272,10 +272,11 @@
 </tbody>
 </table>
 </div>
+<p>第 4 页还绑定了 <code class="docutils literal notranslate"><span class="pre">/</span></code> 以通过键入绑定或命令的一部分来搜索输入绑定。</p>
 </section>
 <section id="id3">
 <h2>设置<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
-<p>该脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/stats.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id8"><span class="problematic" id="id9">`屏显式控制器`_</span></a> 中已描述。</p>
+<p>该脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/stats.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id8"><span class="problematic" id="id9">`mp.options functions`_</span></a> 中已描述。</p>
 <section id="id4">
 <h3>设置选项<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <dl>
@@ -294,6 +295,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">key_scroll_down</span></code></dt><dd><p>默认： DOWN</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_scroll_search</span></code></dt><dd><p>默认： /</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">scroll_lines</span></code></dt><dd><p>默认： 1</p>
 <p>滚动操作的按键绑定和在支持它的页面上单次滚动的行数</p>
 </dd>
@@ -305,6 +308,12 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">persistent_overlay</span></code></dt><dd><p>默认： no</p>
 <p>当 <cite>no</cite> 时，其它脚本输出到屏幕的文本的可以覆盖已显示的统计数据。当 <cite>yes</cite> 时，显示的统计数据会在对应的时间段内持续显示。当多个脚本决定同时输出文本时，这可能导致文本重叠。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">term_width_limit</span></code></dt><dd><p>默认： -1</p>
+<p>设置终端宽度。值为 0 表示宽度无限大， -1 表示自动。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">term_height_limit</span></code></dt><dd><p>默认： -1</p>
+<p>设置终端高度。值为 0 表示宽度无限大， -1 表示自动。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_perfdata</span></code></dt><dd><p>默认： yes</p>
 <p>显示性能数据的图表（第2页）</p>
@@ -320,7 +329,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">flush_graph_data</span></code></dt><dd><p>默认： yes</p>
 <p>在始终显示时清除用于绘制图形的数据缓存</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： sans-serif</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code> 一致</p>
 <p>字体名称。应支持尽可能多的字重来获得最佳的视觉体验。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_mono</span></code></dt><dd><p>默认： monospace</p>
@@ -329,26 +338,41 @@
 <dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 8</p>
 <p>用于渲染文本的字体大小</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font_color</span></code></dt><dd><p>默认： FFFFFF</p>
-<p>字体颜色</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font_color</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-color</span></code> 一致</p>
+<p>文本颜色</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 0.8</p>
 <p>围绕字体绘制的边框大小</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">border_color</span></code></dt><dd><p>默认： 262626</p>
-<p>字体边框的颜色</p>
+<dt><code class="docutils literal notranslate"><span class="pre">border_color</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-border-color</span></code> 一致</p>
+<p>文本边框的颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadow_x_offset</span></code></dt><dd><p>默认： 0</p>
+<p>阴影与文字之间的水平距离。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadow_y_offset</span></code></dt><dd><p>默认： 0</p>
+<p>阴影与文字之间的垂直距离。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadow_color</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-shadow-color</span></code> 一致</p>
+<p>文本阴影3的颜色</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">alpha</span></code></dt><dd><p>默认： 11</p>
-<p>绘制文本的透明度</p>
+<p>指定 <code class="docutils literal notranslate"><span class="pre">font_color</span></code> 时文本的透明度，指定 <code class="docutils literal notranslate"><span class="pre">border_color</span></code> 时文本边框的透明度，指定 <code class="docutils literal notranslate"><span class="pre">shadow_color</span></code> 时文本阴影的透明度。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_color</span></code></dt><dd><p>默认： 0000FF</p>
 <p>用于绘制图形的边框颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_width</span></code></dt><dd><p>默认： 0.5</p>
+<p>用于绘制图形的边框宽度</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_bg_color</span></code></dt><dd><p>默认： 262626</p>
 <p>用于绘制图形的背景颜色</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_color</span></code></dt><dd><p>默认： FFFFFF</p>
 <p>用于绘制图形的颜色</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vidscale</span></code></dt><dd><p>默认： yes</p>
+<p>根据视频缩放文本和图表。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 试图保持大小不变。</p>
 </dd>
 </dl>
 <p>注意：颜色为十六进制值，并使用ASS标签的顺序。BBGGRR（蓝绿红）。</p>

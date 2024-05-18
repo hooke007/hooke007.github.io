@@ -229,12 +229,33 @@
 <p>如果这个列表末尾有 <code class="docutils literal notranslate"><span class="pre">,</span></code> ，mpv将回退到不在列表中的驱动程序。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>参见 <code class="docutils literal notranslate"><span class="pre">--ao=help</span></code> 获取已编译的音频输出驱动的列表。 <code class="docutils literal notranslate"><span class="pre">--ao=alsa</span></code> 是首选。 <code class="docutils literal notranslate"><span class="pre">--ao=pulse</span></code> 在使用PulseAudio的系统上是首选。在BSD系统上， <code class="docutils literal notranslate"><span class="pre">--ao=oss</span></code> 是首选。</p>
+<p>参见 <code class="docutils literal notranslate"><span class="pre">--ao=help</span></code> 获取已编译的音频输出驱动的列表，按自动探测顺序排列。</p>
 </div>
 <p>可用的音频输出驱动有：</p>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">alsa</span></code> （Linux独占）</dt><dd><p>ALSA音频输出驱动</p>
-<p>参见 <a href="#id3"><span class="problematic" id="id4">`ALSA音频输出选项`_</span></a> 以查看它的特定选项。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">alsa</span></code></dt><dd><p>ALSA音频输出驱动</p>
+<p>该AO支持以下全局选项：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-resample=yes</span></code></dt><dd><p>启用ALSA重采样插件。（默认禁用，因为一些驱动程序在某些情况下报告了不正确的音频延迟）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-mixer-device=&lt;device&gt;</span></code></dt><dd><p>设置与 <code class="docutils literal notranslate"><span class="pre">ao-volume</span></code> 一起使用的混音器设备（默认： <code class="docutils literal notranslate"><span class="pre">default</span></code> ）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-mixer-name=&lt;name&gt;</span></code></dt><dd><p>设置混音器元素的名称（默认： <code class="docutils literal notranslate"><span class="pre">Master</span></code> ）。例如，这是 <code class="docutils literal notranslate"><span class="pre">PCM</span></code> 或 <code class="docutils literal notranslate"><span class="pre">Master</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-mixer-index=&lt;number&gt;</span></code></dt><dd><p>设置混音器通道的索引（默认： 0）。考虑到 “<code class="docutils literal notranslate"><span class="pre">amixer</span> <span class="pre">scontrols</span></code>” 的输出，那么索引就是元素名称后面的数字。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-non-interleaved</span></code></dt><dd><p>允许输出非交错格式（如果音频解码器使用这种格式）。目前默认禁用，因为一些流行的ALSA插件在使用非交错格式时完全失效。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-ignore-chmap</span></code></dt><dd><p>不读取或设置ALSA设备的声道图 —— 只请求所需的声道数，然后将音频原封不动的传递给它。此选项很可能不应被使用。它在调试中可能很有用，或者对于有特殊设计的ALSA配置的静态设置（在这种情况下，你应该始终用 <code class="docutils literal notranslate"><span class="pre">--audio-channels</span></code> 强制使用相同的布局，否则它只对使用ALSA设备暗含布局的文件有效）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-buffer-time=&lt;microseconds&gt;</span></code></dt><dd><p>设置请求的缓冲时间，以微秒为单位。数值 0 可以跳过ALSA API的任何请求。该选项和 <code class="docutils literal notranslate"><span class="pre">--alsa-periods</span></code> 选项使用ALSA的 <code class="docutils literal notranslate"><span class="pre">near</span></code> 函数来设置请求的参数。如果这样做的结果是一个空的配置集，那么就跳过设置这些参数。</p>
+</dd>
+</dl>
+<p>这两个选项都控制缓冲区的大小。过小的缓冲区会导致较高的CPU使用率和音频丢失，而过大的缓冲区则会导致音量变化和其它滤镜的延迟。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--alsa-periods=&lt;number&gt;</span></code></dt><dd><p>从ALSA API请求的周期数。详见 <code class="docutils literal notranslate"><span class="pre">--alsa-buffer-time</span></code> 以了解更多。</p>
+</dd>
+</dl>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>要获得多声道/环绕声音频，使用 <code class="docutils literal notranslate"><span class="pre">--audio-channels=auto</span></code> 。 这个选项的默认值是 <code class="docutils literal notranslate"><span class="pre">auto-safe</span></code>，它将明确地拒绝多声道输出，因为无法检测某个声道布局是否被实际支持。</p>
@@ -270,6 +291,12 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">coreaudio_exclusive</span></code> （macOS独占）</dt><dd><p>原生macOS音频输出驱动，使用直接设备访问和独占模式（绕过声音服务）</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">avfoundation</span></code> (macOS only)</dt><dd><p>使用 AVFoundation 中 <code class="docutils literal notranslate"><span class="pre">AVSampleBufferAudioRenderer</span></code> 的原生 macOS 音频输出驱动程序，支持 <a class="reference external" href="https://support.apple.com/102469">空间音频</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Turning on spatial audio may hang the playback if mpv is not started out of the bundle, though playback with spatial audio off always works.</p>
+</div>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">openal</span></code></dt><dd><p>OpenAL音频输出驱动</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--openal-num-buffers=&lt;2-128&gt;</span></code></dt><dd><p>指定音频缓冲区的使用数量。值越低CPU的使用率越低。默认： 4</p>
@@ -282,13 +309,12 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">pulse</span></code></dt><dd><p>PulseAudio音频输出驱动</p>
 <p>支持以下全局选项：</p>
-<dl>
+<dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">--pulse-host=&lt;host&gt;</span></code></dt><dd><p>指定要使用的主机。空的 &lt;host&gt; 字符串使用本地连接， “localhost” 则使用网络传输（很可能不是你期望的）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--pulse-buffer=&lt;1-2000|native&gt;</span></code></dt><dd><p>以毫秒为单位设置音频缓冲区的大小。较高的值可以缓冲更多的数据，并且有较低的缓冲区不足的概率。较小的值使音频流反应更快，例如对播放速度变化的响应。 “native” 让声音服务自行设定缓冲</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--pulse-latency-hacks=&lt;yes|no&gt;</span></code></dt><dd><p>启用hack来解决PulseAudio的时间错误（默认： no）。如果启用，mpv将自己进行详细的延迟计算。如果禁用，它将使用PulseAudio自动更新的时间信息。禁用这个功能可能对网络音频或一些插件有帮助，而启用它可能对一些未知的情况有帮助（在旧版PulseAudio中，它曾是良好运行必要条件）</p>
-<p>如果你在使用pulse时有视频卡顿的情况，尝试启用这个选项。（或者尝试更新PulseAudio）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--pulse-latency-hacks=&lt;yes|no&gt;</span></code></dt><dd><p>启用hack来解决PulseAudio的时间错误（默认： yes）。如果启用，mpv将自己进行详细的延迟计算。如果禁用，它将使用PulseAudio自动更新的时间信息。禁用这个功能可能对网络音频或一些插件有帮助，而启用它可能对一些未知的情况有帮助（由于 PulseAudio 16.0 的已知错误，目前已启用）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--pulse-allow-suspended=&lt;yes|no&gt;</span></code></dt><dd><p>即使sink挂起也允许mpv使用PulseAudio（默认： no）。如果PulseAudio以桥接到jack的方式运行，而mpv的sink-input被设置为jack使用的输入，则会很有用。</p>
 </dd>
@@ -305,7 +331,7 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sdl</span></code></dt><dd><p>SDL 1.2+音频输出驱动。应该在任何受SDL 1.2支持的平台上工作，但可能需要为你的系统正确的设置 <code class="docutils literal notranslate"><span class="pre">SDL_AUDIODRIVER</span></code> 环境变量。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">sdl</span></code></dt><dd><p>SDL 2.0+音频输出驱动。应该在任何受SDL 2.0支持的平台上工作，但可能需要为你的系统正确的设置 <code class="docutils literal notranslate"><span class="pre">SDL_AUDIODRIVER</span></code> 环境变量。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>该驱动是为了与极其陌生的环境兼容，例如其他驱动程序都无法使用的系统。</p>
@@ -354,6 +380,12 @@
 <p>（注意：仅支持单声道，立体声，4.0/5.1和7.1声道布局）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">wasapi</span></code></dt><dd><p>音频输出到Windows音频会话API</p>
+<p>该AO支持以下全局选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">--wasapi-exclusive-buffer=&lt;default|min|1-2000000&gt;</span></code></dt><dd><p>设置独占模式下的缓冲区持续时间（即使用 <code class="docutils literal notranslate"><span class="pre">--audio-exclusive=yes</span></code> 时）。 <code class="docutils literal notranslate"><span class="pre">default</span></code> 和 <code class="docutils literal notranslate"><span class="pre">min</span></code> 分别使用 WASAPI 报告的默认和最小设备周期。你也可以直接以微秒为单位指定缓冲持续时间，在这种情况下，短于最小设备周期的持续时间将四舍五入为最小周期。</p>
+<p>默认的缓冲持续时间在大多数情况下都能提供稳定的播放，但据报告，在某些设备上，默认设置下的流重置会出现故障。在这种情况下，指定更短的持续时间可能会有帮助。</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </section>

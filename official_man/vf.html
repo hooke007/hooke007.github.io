@@ -321,19 +321,28 @@
 <dd class="field-odd"><p>自动选择（默认）</p>
 </dd>
 <dt class="field-even">bt.601<span class="colon">:</span></dt>
-<dd class="field-even"><p>ITU-R BT.601 (SD)</p>
+<dd class="field-even"><p>ITU-R Rec. BT.601 (SD)</p>
 </dd>
 <dt class="field-odd">bt.709<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ITU-R BT.709 (HD)</p>
+<dd class="field-odd"><p>ITU-R Rec. BT.709 (HD)</p>
 </dd>
 <dt class="field-even">bt.2020-ncl<span class="colon">:</span></dt>
-<dd class="field-even"><p>ITU-R BT.2020 非恒定亮度系统</p>
+<dd class="field-even"><p>ITU-R Rec. BT.2020 （非恒定亮度）</p>
 </dd>
 <dt class="field-odd">bt.2020-cl<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ITU-R BT.2020 恒定亮度系统</p>
+<dd class="field-odd"><p>ITU-R Rec. BT.2020 （恒定亮度）</p>
 </dd>
-<dt class="field-even">smpte-240m<span class="colon">:</span></dt>
-<dd class="field-even"><p>SMPTE-240M</p>
+<dt class="field-even">bt.2100-pq<span class="colon">:</span></dt>
+<dd class="field-even"><p>ITU-R Rec. BT.2100 ICtCp PQ 变体</p>
+</dd>
+<dt class="field-odd">bt.2100-hlg<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ITU-R Rec. BT.2100 ICtCp HLG 变体</p>
+</dd>
+<dt class="field-even">dolbyvision<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dolby Vision 杜比视界</p>
+</dd>
+<dt class="field-odd">smpte-240m<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SMPTE-240M</p>
 </dd>
 </dl>
 </dd>
@@ -473,6 +482,8 @@
 </dl>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&lt;dolbyvision=yes|no&gt;</span></code></dt><dd><p>是否包含杜比视界元数据（默认： yes）。如果禁用，将从帧中剥离任何杜比视界元数据。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;hdr10plus=yes|no&gt;</span></code></dt><dd><p>是否包含HDR10+元数据（默认： yes）。如果禁用，将从帧中剥离任何HDR10+元数据。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&lt;film-grain=yes|no&gt;</span></code></dt><dd><p>是否包括胶片颗粒元数据（默认： yes）。如果禁用，任何胶片颗粒元数据都将从帧中剥离。</p>
 </dd>
@@ -718,9 +729,17 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">gpu=...</span></code></dt><dd><p>使用通常与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 一起使用的OpenGL渲染器将视频转换为RGB。这需要EGL实现的支持默认显示器上的离屏渲染（Mesa就是这种情况）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">gpu=...</span></code></dt><dd><p>使用通常与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 一起使用的Vulkan或OpenGL渲染器，将视频转换为RGB。对于OpenGL来说，这需要EGL实现的支持默认显示器上的离屏渲染（Mesa就是这种情况）。</p>
 <p>子选项：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">api=&lt;type&gt;</span></code></dt><dd><p>更改值 <code class="docutils literal notranslate"><span class="pre">type</span></code> 来选择渲染 API。 您还可以通过传递 <code class="docutils literal notranslate"><span class="pre">help</span></code> 获取已编译后端的完整列表。</p>
 <dl class="simple">
+<dt>egl</dt><dd><p>EGL （如果可用即默认）</p>
+</dd>
+<dt>vulkan</dt><dd><p>Vulkan</p>
+</dd>
+</dl>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">w=&lt;pixels&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">h=&lt;pixels&gt;</span></code></dt><dd><p>输出的尺寸，单位是像素（默认： 0）。如果不是正数，这将使用第一个过滤后的输入帧的大小</p>
 </dd>
 </dl>

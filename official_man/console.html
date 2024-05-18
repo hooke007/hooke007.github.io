@@ -233,35 +233,35 @@
 </dd>
 <dt>Shift+ENTER</dt><dd><p>换行输入</p>
 </dd>
-<dt>LEFT, Ctrl+B</dt><dd><p>移动光标至前一个字符</p>
+<dt>LEFT, Ctrl+b</dt><dd><p>移动光标至前一个字符</p>
 </dd>
-<dt>RIGHT, Ctrl+F</dt><dd><p>移动光标至后一个字符</p>
+<dt>RIGHT, Ctrl+f</dt><dd><p>移动光标至后一个字符</p>
 </dd>
-<dt>Ctrl+LEFT, Alt+B</dt><dd><p>移动光标至当前单词的开头，如果在单词之间，则移到前一个单词的开头</p>
+<dt>Ctrl+LEFT, Alt+b</dt><dd><p>移动光标至当前单词的开头，如果在单词之间，则移到前一个单词的开头</p>
 </dd>
-<dt>Ctrl+RIGHT, Alt+F</dt><dd><p>移动光标至当前单词的末尾，如果在单词之间，则移到后一个单词的结尾</p>
+<dt>Ctrl+RIGHT, Alt+f</dt><dd><p>移动光标至当前单词的末尾，如果在单词之间，则移到后一个单词的结尾</p>
 </dd>
-<dt>HOME, Ctrl+A</dt><dd><p>移动光标至当前行的开头</p>
+<dt>HOME, Ctrl+a</dt><dd><p>移动光标至当前行的开头</p>
 </dd>
-<dt>END, Ctrl+E</dt><dd><p>移动光标至当前行的结尾</p>
+<dt>END, Ctrl+e</dt><dd><p>移动光标至当前行的结尾</p>
 </dd>
-<dt>BACKSPACE, Ctrl+H</dt><dd><p>删除前一个字符</p>
+<dt>BACKSPACE, Ctrl+h</dt><dd><p>删除前一个字符</p>
 </dd>
-<dt>Ctrl+D</dt><dd><p>如果当前行是空的，隐藏控制台，否则删除后一个字符</p>
+<dt>Ctrl+d</dt><dd><p>如果当前行是空的，隐藏控制台，否则删除后一个字符</p>
 </dd>
-<dt>Ctrl+BACKSPACE, Ctrl+W</dt><dd><p>删除从光标到当前单词的开头的文本，如果在单词之间，则删除到前一个单词的开头</p>
+<dt>Ctrl+BACKSPACE, Ctrl+w</dt><dd><p>删除从光标到当前单词的开头的文本，如果在单词之间，则删除到前一个单词的开头</p>
 </dd>
-<dt>Ctrl+DEL, Alt+D</dt><dd><p>删除从光标到当前单词的结尾的文本，如果在单词之间，则删除到下一个单词的结尾</p>
+<dt>Ctrl+DEL, Alt+d</dt><dd><p>删除从光标到当前单词的结尾的文本，如果在单词之间，则删除到下一个单词的结尾</p>
 </dd>
-<dt>Ctrl+U</dt><dd><p>删除从光标到当前行开头的文本</p>
+<dt>Ctrl+u</dt><dd><p>删除从光标到当前行开头的文本</p>
 </dd>
-<dt>Ctrl+K</dt><dd><p>删除从光标到当前行结尾的文本</p>
+<dt>Ctrl+k</dt><dd><p>删除从光标到当前行结尾的文本</p>
 </dd>
-<dt>Ctrl+C</dt><dd><p>删除当前行</p>
+<dt>Ctrl+c</dt><dd><p>删除当前行</p>
 </dd>
-<dt>UP, Ctrl+P</dt><dd><p>向前浏览历史命令</p>
+<dt>UP, Ctrl+p</dt><dd><p>向前浏览历史命令</p>
 </dd>
-<dt>DOWN, Ctrl+N</dt><dd><p>向后浏览历史命令</p>
+<dt>DOWN, Ctrl+n</dt><dd><p>向后浏览历史命令</p>
 </dd>
 <dt>PGUP</dt><dd><p>转到历史命令的第一个命令</p>
 </dd>
@@ -269,13 +269,15 @@
 </dd>
 <dt>INSERT</dt><dd><p>切换 插入/覆盖模式</p>
 </dd>
-<dt>Ctrl+V</dt><dd><p>粘贴文本（在X11和Wayland上使用剪贴板）</p>
+<dt>Ctrl+v</dt><dd><p>粘贴文本（在X11和Wayland上使用剪贴板）</p>
 </dd>
 <dt>Shift+INSERT</dt><dd><p>粘贴文本（在X11和Wayland上使用primary selection）</p>
 </dd>
-<dt>TAB, Ctrl+I</dt><dd><p>补全光标处的命令或属性名称</p>
+<dt>TAB, Ctrl+i</dt><dd><p>补全光标处的命令或属性名称。第一次按下时会插入补全内容的最长公共前缀，随后按下时会在它们之间循环。</p>
 </dd>
-<dt>Ctrl+L</dt><dd><p>清除控制台中的所有日志信息</p>
+<dt>Shift+TAB</dt><dd><p>向后循环浏览补全信息</p>
+</dd>
+<dt>Ctrl+l</dt><dd><p>清除控制台中的所有日志信息</p>
 </dd>
 </dl>
 </section>
@@ -285,7 +287,12 @@
 <dt><code class="docutils literal notranslate"><span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&lt;text&gt;</span> <span class="pre">[&lt;cursor_pos&gt;]</span></code></dt><dd><p>显示控制台并预填充所提供的文本，可选择指定初始光标位置为从1开始的正整数。</p>
 <div class="admonition-input-conf admonition">
 <p class="admonition-title">input.conf示例</p>
-<p><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;seek</span>&#160; <span class="pre">absolute-percent&quot;</span> <span class="pre">6</span></code></p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;seek</span>&#160; <span class="pre">absolute-percent&quot;</span> <span class="pre">6</span></code>; keypress ESC” 6``</dt><dd><p>（打开控制台）输入一个百分比位置，跳转并关闭控制台。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Ctrl+o</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;loadfile</span> <span class="pre">'';</span> <span class="pre">keypress</span> <span class="pre">ESC&quot;</span> <span class="pre">11</span></code></dt><dd><p>输入要播放的文件或 URL。Tab 补全文件系统中的路径。</p>
+</dd>
+</dl>
 </div>
 </dd>
 </dl>
@@ -300,7 +307,7 @@
 </section>
 <section id="id5">
 <h2>设置<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
-<p>这个脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/console.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id7"><span class="problematic" id="id8">`屏显式控制器`_</span></a> 中已描述。</p>
+<p>这个脚本可以通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/console.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项来定制。设置语法在 <a href="#id7"><span class="problematic" id="id8">`mp.options functions`_</span></a> 中描述。</p>
 <p>按键的绑定可以用标准的方式来改变，例如参见 stats.lua 文档。</p>
 <section id="id6">
 <h3>设置选项<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
@@ -318,11 +325,14 @@
 <dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 1</p>
 <p>设置用于交互式解释器和控制台的字体边框大小。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： （windows为 yes ，其它平台为 no ）</p>
+<p>Tab 补全是否区分大小写，仅适用于 ASCII 字符。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
 <p>删除历史记录中的重复条目，只保留最新的一项。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font_hw_ratio</span></code></dt><dd><p>默认： 2.0</p>
-<p>字体高度与字体宽度的比例。调节代码补全辅助的表格宽度。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font_hw_ratio</span></code></dt><dd><p>默认： auto</p>
+<p>字体高度与字体宽度的比例。调节代码补全辅助的表格宽度。对于一般的等宽字体，1.8-2.5 范围内的值是合理的。</p>
 </dd>
 </dl>
 </section>

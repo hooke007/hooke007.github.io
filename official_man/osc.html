@@ -422,7 +422,7 @@
 </section>
 <section id="id3">
 <h3>按键绑定<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
-<p>如果没有其他命令已经绑定在这些键上，这些键的绑定默认是激活的。在发生冲突的情况下，需要将该功能绑定到不同的按键上。参见 <a class="reference internal" href="#id8">脚本命令</a> 部分。</p>
+<p>如果没有其他命令已经绑定在这些键上，这些键的绑定默认是激活的。在发生冲突的情况下，需要将该功能绑定到不同的按键上。参见 <a class="reference internal" href="#id7">脚本命令</a> 部分。</p>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
@@ -436,27 +436,17 @@
 </section>
 <section id="id4">
 <h2>设置<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
-<p>OSC通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/osc.conf</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 命令行选项提供有限的设置。通过命令行提供的选项将覆盖设置文件中的选项。</p>
+<p>可以通过 mpv 用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/osc.conf</span></code> 和命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 来定制该脚本。设置语法记录在 <a href="#id8"><span class="problematic" id="id9">`mp.options functions`_</span></a> 部分。</p>
 <section id="id5">
-<h3>设置语法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
-<p>设置文件必须严格遵循以下语法:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这是一个注释</span>
-<span class="n">optionA</span><span class="o">=</span><span class="n">value1</span>
-<span class="n">optionB</span><span class="o">=</span><span class="n">value2</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">#</span></code> 只能用在一行的开头， <code class="docutils literal notranslate"><span class="pre">=</span></code> 周围或其它地方不能有空格。</p>
-</section>
-<section id="id6">
-<h3>命令行语法<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<h3>命令行语法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
 <p>为了避免与其他脚本发生冲突，所有选项都需要以 <code class="docutils literal notranslate"><span class="pre">osc-</span></code> 为前缀。</p>
 <p>示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">opts</span><span class="o">=</span><span class="n">osc</span><span class="o">-</span><span class="n">optionA</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span><span class="n">osc</span><span class="o">-</span><span class="n">optionB</span><span class="o">=</span><span class="n">value2</span>
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h3>设置选项<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<section id="id6">
+<h3>设置选项<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">layout</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">bottombar</span></code></p>
 <p>OSC的布局。目前可用的有：box, slimbox, bottombar 和 topbar。0.21.0之前的默认值是 box</p>
@@ -479,6 +469,9 @@
 <dt><code class="docutils literal notranslate"><span class="pre">seekrangealpha</span></code></dt><dd><p>默认： 200</p>
 <p>可搜寻范围的透明度，0（不透明）到255（完全透明）</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scrollcontrols</span></code></dt><dd><p>默认： yes</p>
+<p>默认情况下，如果鼠标悬停在 OSC 元素上，使用鼠标滚轮上下滚动会触发某些操作（例如seek）。设置为 <code class="docutils literal notranslate"><span class="pre">no</span></code> 可禁用任何特殊的鼠标滚轮行为。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">deadzonesize</span></code></dt><dd><p>默认： 0.5</p>
 <p>死区的大小。死区是一个区域，使鼠标像离开窗口一样。在那里移动不会使OSC显示出来，如果鼠标进入该区域，它将立即隐藏。死区从与OSC相对的窗口边界开始，其大小控制它在窗口中的跨度。值在0.0和1.0之间，其中0意味着OSC将总是随着鼠标在窗口中的移动而弹出，1意味着OSC只在鼠标悬停时显示。0.21.0之前的默认值是0。</p>
 </dd>
@@ -499,9 +492,6 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">scalefullscreen</span></code></dt><dd><p>默认： 1.0</p>
 <p>全屏时OSC的比例系数</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">scaleforcedwindow</span></code></dt><dd><p>默认： 2.0</p>
-<p>在强制（假）窗口上渲染时OSC的比例系数</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vidscale</span></code></dt><dd><p>默认： yes</p>
 <p>随视频的比例缩放OSC。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 试图在窗口大小允许的范围内保持OSC大小不变。</p>
@@ -525,7 +515,7 @@
 <p>淡出的持续时间，以ms为单位，0=不淡出</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>默认： ${media-title}</p>
-<p>支持属性扩展的字符串，将被显示为OSC标题。ASS标签被转义，换行和尾部斜杠被剥离。</p>
+<p>支持属性扩展的字符串，将被显示为OSC标题。ASS标签被转义，换行被转换为空格。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">tooltipborder</span></code></dt><dd><p>默认： 1</p>
 <p>使用bottombar或topbar布局时，搜寻时间码的大小</p>
@@ -563,14 +553,20 @@
 <p>如果窗口控件被显示出来，显示它们应该向一边对齐。</p>
 <p><code class="docutils literal notranslate"><span class="pre">left</span></code> 和 <code class="docutils literal notranslate"><span class="pre">right</span></code> 支持将把控件放在左侧和右侧。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">windowcontrols_title</span></code></dt><dd><p>默认： ${media-title}</p>
+<p>支持属性扩展的字符串，将显示为窗口控件的标题。ASS 标签会被转义，换行符和尾部斜杠会被剥离。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">greenandgrumpy</span></code></dt><dd><p>默认： no</p>
 <p>设置为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 以减少节日气氛（例如，在12月禁用圣诞帽）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">livemarkers</span></code></dt><dd><p>默认： yes</p>
 <p>在持续时间变化时更新章节标记的位置，例如，直播流。状态更新尚未优化 —— 考虑在非常低端的系统上禁用它。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">chapters_osd</span></code> <code class="docutils literal notranslate"><span class="pre">playlist_osd</span></code></dt><dd><p>默认： yes</p>
+<dt><code class="docutils literal notranslate"><span class="pre">chapters_osd</span></code> , <code class="docutils literal notranslate"><span class="pre">playlist_osd</span></code></dt><dd><p>默认： yes</p>
 <p>当左键单机OSC的下一个/上一个按钮时，是否分别在OSD上显示章节/播放列表。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">playlist_media_title</span></code></dt><dd><p>默认： yes</p>
+<p>是否以媒体标题显示为播放列表的条目。如果设置为 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，则使用文件名。请注意，文件的媒体标题只有在加载后才可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">chapter_fmt</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">Chapter:</span> <span class="pre">%s</span></code></p>
 <p>当悬停在进度条上时，显示章节名称的模板。使用 <code class="docutils literal notranslate"><span class="pre">no</span></code> 来禁止悬停时的章节显示。否则，它是一个lua <code class="docutils literal notranslate"><span class="pre">string.format</span></code> 模板， <code class="docutils literal notranslate"><span class="pre">%s</span></code> 被替换成实际的名字。</p>
@@ -578,10 +574,40 @@
 <dt><code class="docutils literal notranslate"><span class="pre">unicodeminus</span></code></dt><dd><p>默认： no</p>
 <p>在显示剩余播放时间时，使用Unicode减号而不是ASCII连字符。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">background_color</span></code></dt><dd><p>默认： #000000</p>
+<p>Sets the background color of the OSC.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">timecode_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the color of the timecode and seekbar, of the OSC.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">title_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the color of the video title. Formatted as #RRGGBB.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">time_pos_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the color of the timecode at hover position in the seekbar.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">time_pos_outline_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the color of the timecode’s outline at hover position in the seekbar. Also affects the timecode in the slimbox layout.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">buttons_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the colors of the big buttons.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">top_buttons_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the colors of the top buttons.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">small_buttonsL_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the colors of the small buttons on the left in the box layout.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">small_buttonsR_color</span></code></dt><dd><p>默认： #FFFFFF</p>
+<p>Sets the colors of the small buttons on the right in the box layout.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">held_element_color</span></code></dt><dd><p>默认： #999999</p>
+<p>Sets the colors of the elements that are being pressed or held down.</p>
+</dd>
 </dl>
 </section>
-<section id="id8">
-<h3>脚本命令<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<section id="id7">
+<h3>脚本命令<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
 <p>OSC脚本会监听某些脚本命令。这些命令可以绑定在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，或者由其他脚本发送。</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">osc-message</span></code></dt><dd><p>使用OSC在屏幕上显示一条信息。第一个参数是信息，第二个参数是持续时间（秒）。</p>
@@ -649,10 +675,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#id4">设置</a><ul>
-<li><a class="reference internal" href="#id5">设置语法</a></li>
-<li><a class="reference internal" href="#id6">命令行语法</a></li>
-<li><a class="reference internal" href="#id7">设置选项</a></li>
-<li><a class="reference internal" href="#id8">脚本命令</a></li>
+<li><a class="reference internal" href="#id5">命令行语法</a></li>
+<li><a class="reference internal" href="#id6">设置选项</a></li>
+<li><a class="reference internal" href="#id7">脚本命令</a></li>
 </ul>
 </li>
 </ul>
