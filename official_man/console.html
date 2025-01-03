@@ -221,7 +221,7 @@
         <article role="main">
           <section id="id1">
 <h1>控制台<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
-<p>控制台是mpv中可输入命令的交互式解释器。它显示在视频窗口上。它也显示日志信息。它可以通过 <code class="docutils literal notranslate"><span class="pre">--load-osd-console=no</span></code> 选项完全禁用。</p>
+<p>控制台是mpv中可输入命令的交互式解释器。它显示在视频窗口上。它也显示日志信息。它可以通过 <code class="docutils literal notranslate"><span class="pre">--load-console=no</span></code> 选项完全禁用。</p>
 <section id="id2">
 <h2>按键绑定<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
 <dl class="simple">
@@ -229,7 +229,7 @@
 </dd>
 <dt>ESC, Ctrl+[</dt><dd><p>隐藏控制台</p>
 </dd>
-<dt>ENTER, Ctrl+J, Ctrl+M</dt><dd><p>运行输入的命令</p>
+<dt>ENTER, Ctrl+J, Ctrl+M</dt><dd><p>展开第一个补全建议（如果存在，如果没有选择），并运行输入的命令。</p>
 </dd>
 <dt>Shift+ENTER</dt><dd><p>换行输入</p>
 </dd>
@@ -267,17 +267,27 @@
 </dd>
 <dt>PGDN</dt><dd><p>停止浏览历史命令</p>
 </dd>
+<dt>Ctrl+r</dt><dd><p>搜索命令的历史记录</p>
+</dd>
 <dt>INSERT</dt><dd><p>切换 插入/覆盖模式</p>
 </dd>
 <dt>Ctrl+v</dt><dd><p>粘贴文本（在X11和Wayland上使用剪贴板）</p>
 </dd>
 <dt>Shift+INSERT</dt><dd><p>粘贴文本（在X11和Wayland上使用primary selection）</p>
 </dd>
-<dt>TAB, Ctrl+i</dt><dd><p>补全光标处的命令或属性名称。第一次按下时会插入补全内容的最长公共前缀，随后按下时会在它们之间循环。</p>
+<dt>TAB, Ctrl+i</dt><dd><p>循环补全建议。</p>
 </dd>
 <dt>Shift+TAB</dt><dd><p>向后循环浏览补全信息</p>
 </dd>
 <dt>Ctrl+l</dt><dd><p>清除控制台中的所有日志信息</p>
+</dd>
+<dt>MBTN_RIGHT</dt><dd><p>隐藏控制台。</p>
+</dd>
+<dt>MBTN_MID</dt><dd><p>粘贴文本（在 X11 和 Wayland 上使用主选区）。</p>
+</dd>
+<dt>WHEEL_UP</dt><dd><p>在命令历史中后退。</p>
+</dd>
+<dt>WHEEL_DOWN</dt><dd><p>在命令历史中前进。</p>
 </dd>
 </dl>
 </section>
@@ -290,7 +300,7 @@
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;seek</span>&#160; <span class="pre">absolute-percent&quot;</span> <span class="pre">6</span></code>; keypress ESC” 6``</dt><dd><p>（打开控制台）输入一个百分比位置，跳转并关闭控制台。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">Ctrl+o</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;loadfile</span> <span class="pre">'';</span> <span class="pre">keypress</span> <span class="pre">ESC&quot;</span> <span class="pre">11</span></code></dt><dd><p>输入要播放的文件或 URL。Tab 补全文件系统中的路径。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">Ctrl+o</span> <span class="pre">script-message-to</span> <span class="pre">console</span> <span class="pre">type</span> <span class="pre">&quot;loadfile</span> <span class="pre">'';</span> <span class="pre">keypress</span> <span class="pre">ESC&quot;</span> <span class="pre">11</span></code></dt><dd><p>输入要播放的文件或 URL，并自动补全文件系统中的路径。</p>
 </dd>
 </dl>
 </div>
@@ -300,7 +310,6 @@
 <section id="id4">
 <h2>已知问题<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
-<li><p>Windows系统粘贴文本的速度慢</p></li>
 <li><p>非ASCII键盘输入有限制</p></li>
 <li><p>光标键在Unicode code-points之间移动，而不是在grapheme cluster之间移动</p></li>
 </ul>
@@ -312,21 +321,26 @@
 <section id="id6">
 <h3>设置选项<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">scale</span></code></dt><dd><p>默认： 1</p>
-<p>所有的绘制都按该值缩放，包括文本边框和光标。</p>
-<p>如果使用的视频输出驱动后端有HiDPI比例报告的比例，则选项值将采用HiDPI比例。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： 一个取决于平台的等宽字体</p>
+<p>设置用于控制台的字体。要在网格中正确对齐补全建议，必须使用等宽字体。如果控制台是通过调用 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> 打开的，且未设置字体时，则使用 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code> ，因为在这种情况下无需对齐。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>默认： 未设置（根据检测到的平台选择一个硬编码的字体）</p>
-<p>设置用于交互式解释器和控制台的字体。必需是等宽字体才能正确对齐代码补全辅助。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 24</p>
+<p>设置用于交互式解释器和控制台的字体大小。当控制台不随窗口缩放时，该值将乘以 <code class="docutils literal notranslate"><span class="pre">display-hidpi-scale</span></code> 。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 16</p>
-<p>设置用于交互式解释器和控制台的字体大小。这将和scale相乘。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 1</p>
+<dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 1.65</p>
 <p>设置用于交互式解释器和控制台的字体边框大小。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">margin_x</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-margin-x</span></code> 值相同</p>
+<p>至窗口左侧的边距。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">margin_y</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-margin-y</span></code> 值相同</p>
+<p>至窗口底部的边距。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scale_with_window</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code></p>
+<p>是否根据窗口高度缩放控制台。可以是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> 或 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，后者遵循 <code class="docutils literal notranslate"><span class="pre">--osd-scale-by-window</span></code> 的值。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： （windows为 yes ，其它平台为 no ）</p>
-<p>Tab 补全是否区分大小写，仅适用于 ASCII 字符。</p>
+<p>自动补全是否区分大小写，仅适用于 ASCII 字符。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
 <p>删除历史记录中的重复条目，只保留最新的一项。</p>

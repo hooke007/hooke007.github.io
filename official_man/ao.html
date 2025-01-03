@@ -230,6 +230,7 @@
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>参见 <code class="docutils literal notranslate"><span class="pre">--ao=help</span></code> 获取已编译的音频输出驱动的列表，按自动探测顺序排列。</p>
+<p>请注意，默认音频输出驱动程序可能会发生变化，不得依赖。如果需要使用某个AO，则必须明确指定。</p>
 </div>
 <p>可用的音频输出驱动有：</p>
 <dl>
@@ -291,11 +292,13 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">coreaudio_exclusive</span></code> （macOS独占）</dt><dd><p>原生macOS音频输出驱动，使用直接设备访问和独占模式（绕过声音服务）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">avfoundation</span></code> (macOS only)</dt><dd><p>使用 AVFoundation 中 <code class="docutils literal notranslate"><span class="pre">AVSampleBufferAudioRenderer</span></code> 的原生 macOS 音频输出驱动程序，支持 <a class="reference external" href="https://support.apple.com/102469">空间音频</a>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">avfoundation</span></code> （macOS独占）</dt><dd><p>使用 AVFoundation 中 <code class="docutils literal notranslate"><span class="pre">AVSampleBufferAudioRenderer</span></code> 的原生 macOS 音频输出驱动程序，支持 <a class="reference external" href="https://support.apple.com/102469">空间音频</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>Turning on spatial audio may hang the playback if mpv is not started out of the bundle, though playback with spatial audio off always works.</p>
+<p>如果不是以bundle的形式启动 mpv，启用空间音频可能会挂起播放，不过关闭空间音频后播放总是正常的。</p>
 </div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">audiounit</span></code> （ios独占）</dt><dd><p>使用 <code class="docutils literal notranslate"><span class="pre">AudioUnits</span></code> 和 AudioToolbox 的原生 iOS 音频输出驱动程序。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">openal</span></code></dt><dd><p>OpenAL音频输出驱动</p>
 <dl class="simple">

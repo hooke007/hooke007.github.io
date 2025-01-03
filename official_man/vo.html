@@ -231,6 +231,7 @@
 <p class="admonition-title">备注</p>
 <p>参见 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 获取已编译的视频输出驱动的列表。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 是默认的推荐的输出驱动。其他所有的驱动都是为了兼容性或特定场景。如果默认值无效，它将回退到其他驱动（优先顺序和 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 列出的相同）。</p>
+<p>请注意，默认视频输出驱动程序可能会发生变化，不得依赖。如果需要使用某个VO（例如 对于 <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> rendering API），则必须显式指定该VO。</p>
 </div>
 <p>可用的视频输出驱动有：</p>
 <dl>
@@ -340,7 +341,11 @@
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">dmabuf-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与 drm stateless 或 VA API 硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。强烈建议使用适当的 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> 选项（如 <code class="docutils literal notranslate"><span class="pre">auto-safe</span></code> ）来配合使用此VO。虽然在某些情况下可以不使用 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> ，因为mpv的内部转换滤镜，但不建议这样做，因为这是一个不必要的额外步骤。正确的输出取决于您的GPU、驱动程序和合成器的支持。已知Weston和基于wlroots的合成器（如Sway）以及英特尔GPU通常可以正常工作。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">dmabuf-wayland</span></code></dt><dd><p>实验性的Wayland输出驱动，旨在与 drm stateless 或 VA API 硬件解码一起使用。该驱动被设计为避免任何GPU到CPU的拷贝，并使用固定功能的硬件（如果可用的话）而不是GPU着色器来执行缩放和色彩空间转换。这就为其它任务释放了GPU资源。强烈建议使用适当的 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> 选项（如 <code class="docutils literal notranslate"><span class="pre">auto-safe</span></code> ）来配合使用此VO。虽然在某些情况下可以不使用 <code class="docutils literal notranslate"><span class="pre">--hwdec</span></code> ，因为mpv的内部转换滤镜，但不建议这样做，因为这是一个不必要的额外步骤。正确的输出取决于您的GPU、驱动程序和合成器的支持。这就要求合成器和 mpv 支持 <code class="docutils literal notranslate"><span class="pre">xx-color-management-v4</span></code> ，以准确显示不同于合成器默认（大多数情况下为 bt.601）的色彩空间。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>mpv 在 Wayland 上运行并不需要该驱动程序。 <code class="docutils literal notranslate"><span class="pre">vo=gpu</span></code> 和 <code class="docutils literal notranslate"><span class="pre">vo=gpu-next</span></code> 会自动切换到相应的 Wayland 上下文。此驱动是实验性的，质量通常低于 <code class="docutils literal notranslate"><span class="pre">gpu</span></code>/<code class="docutils literal notranslate"><span class="pre">gpu-next</span></code> 。</p>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vaapi</span></code></dt><dd><p>Intel VA API视频输出驱动，支持硬件解码。请注意除了兼容性之外，绝对没有理由使用这个。这是低质量的，而且在OSD方面有问题。我们强烈建议你使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> <code class="docutils literal notranslate"><span class="pre">--hwdec=vaapi</span></code> 代替它。</p>
 <p>支持以下全局选项：</p>

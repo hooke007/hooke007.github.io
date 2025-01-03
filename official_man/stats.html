@@ -234,6 +234,9 @@
 <tr class="row-even"><td><p>I</p></td>
 <td><p>切换 显示/隐藏统计数据（再次切换前始终显示）</p></td>
 </tr>
+<tr class="row-odd"><td><p>?</p></td>
+<td><p>切换 显示按键绑定列表</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -253,8 +256,21 @@
 <tr class="row-even"><td><p>4</p></td>
 <td><p>激活的按键绑定（可滚动）</p></td>
 </tr>
-<tr class="row-odd"><td><p>0</p></td>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>选中的轨道信息（可滚动）</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
 <td><p>内部活动（可滚动）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果统计数据以已打开，这些按键的绑定也是激活的：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>ESC</p></td>
+<td><p>关闭统计数据</p></td>
 </tr>
 </tbody>
 </table>
@@ -272,7 +288,16 @@
 </tbody>
 </table>
 </div>
-<p>第 4 页还绑定了 <code class="docutils literal notranslate"><span class="pre">/</span></code> 以通过键入绑定或命令的一部分来搜索输入绑定。</p>
+<p>在第 4 页，这些按键的绑定也是激活的：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>/</p></td>
+<td><p>搜索按键绑定</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="id3">
 <h2>设置<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
@@ -288,7 +313,11 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">key_page_4</span></code></dt><dd><p>默认： 4</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_page_5</span></code></dt><dd><p>默认： 5</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">key_page_0</span></code></dt><dd><p>默认： 0</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_exit</span></code></dt><dd><p>默认： ESC</p>
 <p>在显示统计数据时进行页面切换的按键绑定</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">key_scroll_up</span></code></dt><dd><p>默认： UP</p>
@@ -309,11 +338,14 @@
 <dt><code class="docutils literal notranslate"><span class="pre">persistent_overlay</span></code></dt><dd><p>默认： no</p>
 <p>当 <cite>no</cite> 时，其它脚本输出到屏幕的文本的可以覆盖已显示的统计数据。当 <cite>yes</cite> 时，显示的统计数据会在对应的时间段内持续显示。当多个脚本决定同时输出文本时，这可能导致文本重叠。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">term_width_limit</span></code></dt><dd><p>默认： -1</p>
-<p>设置终端宽度。值为 0 表示宽度无限大， -1 表示自动。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">file_tag_max_length</span></code></dt><dd><p>默认： 128</p>
+<p>只显示短于此长度（以字节为单位）的文件标签。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">term_height_limit</span></code></dt><dd><p>默认： -1</p>
-<p>设置终端高度。值为 0 表示宽度无限大， -1 表示自动。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">file_tag_max_count</span></code></dt><dd><p>默认： 16</p>
+<p>只显示首个指定数量的文件标签。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">term_clip</span></code></dt><dd><p>默认： yes</p>
+<p>是否按终端宽度截断行。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_perfdata</span></code></dt><dd><p>默认： yes</p>
 <p>显示性能数据的图表（第2页）</p>
@@ -335,13 +367,13 @@
 <dt><code class="docutils literal notranslate"><span class="pre">font_mono</span></code></dt><dd><p>默认： monospace</p>
 <p>用于对齐文本所必需的等宽字体名称。目前，monospaced digits已足够。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 8</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 20</p>
 <p>用于渲染文本的字体大小</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_color</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-color</span></code> 一致</p>
 <p>文本颜色</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 0.8</p>
+<dt><code class="docutils literal notranslate"><span class="pre">border_size</span></code></dt><dd><p>默认： 1.65</p>
 <p>围绕字体绘制的边框大小</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">border_color</span></code></dt><dd><p>默认： 与 <code class="docutils literal notranslate"><span class="pre">--osd-border-color</span></code> 一致</p>
@@ -362,7 +394,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_color</span></code></dt><dd><p>默认： 0000FF</p>
 <p>用于绘制图形的边框颜色</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_width</span></code></dt><dd><p>默认： 0.5</p>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_bg_border_width</span></code></dt><dd><p>默认： 1.25</p>
 <p>用于绘制图形的边框宽度</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_bg_color</span></code></dt><dd><p>默认： 262626</p>
@@ -371,8 +403,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">plot_color</span></code></dt><dd><p>默认： FFFFFF</p>
 <p>用于绘制图形的颜色</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">vidscale</span></code></dt><dd><p>默认： yes</p>
-<p>根据视频缩放文本和图表。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 试图保持大小不变。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">vidscale</span></code></dt><dd><p>默认： auto</p>
+<p>根据视频缩放文本和图表。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 试图保持大小不变。 <code class="docutils literal notranslate"><span class="pre">auto``会根据</span> <span class="pre">``--osd-scale-by-window</span></code> 选项，将文字和图形与 OSD 一起缩放或保持恒定大小。</p>
 </dd>
 </dl>
 <p>注意：颜色为十六进制值，并使用ASS标签的顺序。BBGGRR（蓝绿红）。</p>
@@ -386,7 +418,7 @@
 </div>
 <p>以及直接显示某个页面:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">page</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">e</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">page</span><span class="o">-</span><span class="mi">2</span>
+<span class="n">h</span> <span class="n">script</span><span class="o">-</span><span class="n">binding</span> <span class="n">stats</span><span class="o">/</span><span class="n">display</span><span class="o">-</span><span class="n">page</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="n">toggle</span>
 </pre></div>
 </div>
 </section>
@@ -394,7 +426,7 @@
 <h3>激活的按键绑定的页面<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
 <p>列出激活的按键绑定和它们所绑定的命令，不包括统计数据脚本本身的交互键。也参见 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 以获得每个绑定的更详细信息。</p>
 <p>这些按键是通过对命令字符串的简单分析而自动分组的，不应该期望文件级别的分组精度，然而，它仍然应该是相当有用的。</p>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">--idle</span> <span class="pre">--script-opts=stats-bindlist=yes</span></code> 会将列表输出到终端并立即退出。默认情况下，长行会被缩短到79个字符，并且终端转义序列被启用。通过将 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 改为数字（至少40）可以设置不同的长度限制，通过在数值前添加 <code class="docutils literal notranslate"><span class="pre">-</span></code> 可以禁用转义序列，例如 <code class="docutils literal notranslate"><span class="pre">...=-yes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">...=-120</span></code></p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">--idle</span> <span class="pre">--script-opts=stats-bindlist=yes</span></code> 会将列表输出到终端并立即退出。除非使用 <code class="docutils literal notranslate"><span class="pre">--script-opt=stats-term_clip=no</span></code> 禁用该行为，否则长行将按终端宽度裁切。在 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 前添加 <code class="docutils literal notranslate"><span class="pre">-</span></code> 可禁用转义序列，即 <code class="docutils literal notranslate"><span class="pre">`--script-opt=stats-bindlist=-yes</span></code> 。</p>
 <p>和 <code class="docutils literal notranslate"><span class="pre">--input-test</span></code> 一样，列表中包括来自 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 和用户脚本的绑定。使用 <code class="docutils literal notranslate"><span class="pre">--no-config</span></code> 只列出内建的绑定。</p>
 </section>
 <section id="id7">
