@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh-CN">
+<html class="no-js" lang="zh-CN" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 8.2.1 and Furo 2024.08.06 -->
         <title>屏显式控制器 - mpv_CFanStation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -73,7 +73,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -88,22 +88,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -116,6 +157,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -134,7 +177,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -148,7 +192,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../_static/html_logo.png" alt="Logo"/>
@@ -164,11 +208,11 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of mpv手册</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="mpv.html">mpv —— 媒体播放器</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of mpv其它</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
@@ -177,7 +221,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unofficial/index.html">非官方</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 非官方</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_start.html">mpv播放器的使用引导</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_shaders.html">第三方用户着色器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unofficial/mpv_profiles.html">配置预设</a></li>
@@ -204,11 +248,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/official_man/osc.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -218,39 +268,49 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="id1">
-<h1>屏显式控制器<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>屏显式控制器<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p>屏显式控制器（简称：OSC）是一个与mpv集成的最小GUI，提供基本的鼠标操控功能。它的目的是使新用户的交互更容易，并且能够精确和直接的进行进度查询。</p>
 <p>如果mpv在编译时支持Lua，那么OSC是默认启用的。它可以通过选项 <code class="docutils literal notranslate"><span class="pre">--osc=no</span></code> 完全禁用。</p>
 <section id="osc">
-<h2>使用OSC<a class="headerlink" href="#osc" title="此标题的永久链接">#</a></h2>
+<h2>使用OSC<a class="headerlink" href="#osc" title="Link to this heading">¶</a></h2>
 <p>默认情况下，只要光标在播放器窗口内移动，OSC就会显示；如果光标在OSC外超过0.5秒没有移动，或者光标离开窗口，OSC就会隐藏。</p>
 <section id="id2">
-<h3>界面<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------+-------------+-------------------------------+-----------+</span>
-<span class="o">|</span> <span class="n">上一文件</span>  <span class="o">|</span>  <span class="n">下一文件</span>   <span class="o">|</span>  <span class="n">标题</span>                         <span class="o">|</span>  <span class="n">缓存指示</span> <span class="o">|</span>
-<span class="o">+----+------+------+------+--------------+------+----+----+------+----+</span>
-<span class="o">|</span> <span class="n">播</span> <span class="o">|</span> <span class="n">上一</span> <span class="o">|</span> <span class="n">下一</span> <span class="o">|</span> <span class="n">已过</span> <span class="o">|</span>   <span class="n">进度条</span>     <span class="o">|</span> <span class="n">剩余</span> <span class="o">|</span> <span class="n">音</span> <span class="o">|</span> <span class="n">字</span> <span class="o">|</span> <span class="n">音量</span> <span class="o">|</span> <span class="n">全</span> <span class="o">|</span>
-<span class="o">|</span> <span class="n">放</span> <span class="o">|</span> <span class="n">章节</span> <span class="o">|</span> <span class="n">章节</span> <span class="o">|</span> <span class="n">时间</span> <span class="o">|</span>              <span class="o">|</span> <span class="n">时间</span> <span class="o">|</span> <span class="n">轨</span> <span class="o">|</span> <span class="n">幕</span> <span class="o">|</span>      <span class="o">|</span> <span class="n">屏</span> <span class="o">|</span>
-<span class="o">+----+------+------+------+--------------+------+----+----+------+----+</span>
+<h3>界面<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------+----------+----------+----------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">菜单</span> <span class="o">|</span> <span class="n">上一文件</span> <span class="o">|</span> <span class="n">下一文件</span> <span class="o">|</span> <span class="n">标题</span>                                            <span class="n">缓存指示</span> <span class="o">|</span>
+<span class="o">+------+-+--------+-+--------+-+------+----------------------+------+----+----+----+----+</span>
+<span class="o">|</span>   <span class="n">播</span>   <span class="o">|</span>   <span class="n">上一</span>   <span class="o">|</span>   <span class="n">下一</span>   <span class="o">|</span> <span class="n">已过</span> <span class="o">|</span> <span class="n">进度条</span>               <span class="o">|</span> <span class="n">剩余</span> <span class="o">|</span> <span class="n">音</span> <span class="o">|</span> <span class="n">字</span> <span class="o">|</span> <span class="n">音</span> <span class="o">|</span> <span class="n">全</span> <span class="o">|</span>
+<span class="o">|</span>   <span class="n">放</span>   <span class="o">|</span>   <span class="n">章节</span>   <span class="o">|</span>   <span class="n">章节</span>   <span class="o">|</span> <span class="n">时间</span> <span class="o">|</span>                      <span class="o">|</span> <span class="n">时间</span> <span class="o">|</span> <span class="n">轨</span> <span class="o">|</span> <span class="n">幕</span> <span class="o">|</span> <span class="n">量</span> <span class="o">|</span> <span class="n">屏</span> <span class="o">|</span>
+<span class="o">+--------+----------+----------+------+----------------------+------+----+----+----+----+</span>
 </pre></div>
 </div>
 <dl>
+<dt>菜单</dt><dd><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>左键单击</p></td>
+<td><p>打开菜单</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
 <dt>上一文件</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>播放列表中的上一个文件</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>显示播放列表</p></td>
 </tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
+<tr class="row-odd"><td><p>中键单击</p></td>
 <td><p>显示播放列表</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开播放列表选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开播放列表菜单</p></td>
 </tr>
 </tbody>
 </table>
@@ -259,17 +319,17 @@
 <dt>下一文件</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>播放列表中的下一个文件</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>显示播放列表</p></td>
 </tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
+<tr class="row-odd"><td><p>中键单击</p></td>
 <td><p>显示播放列表</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开播放列表选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开播放列表菜单</p></td>
 </tr>
 </tbody>
 </table>
@@ -281,17 +341,17 @@
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>显示文件和轨道信息</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
-<td><p>显示文件名</p></td>
-</tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
-<td><p>显示文件名</p></td>
-</tr>
-<tr class="row-even"><td><p>右键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>显示路径</p></td>
+</tr>
+<tr class="row-odd"><td><p>中键单击</p></td>
+<td><p>显示路径</p></td>
+</tr>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开历史菜单</p></td>
 </tr>
 </tbody>
 </table>
@@ -304,11 +364,17 @@
 <dt>播放</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>切换 播放/暂停</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>切换 无限循环播放</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
+<td><p>切换 无限循环播放列表</p></td>
+</tr>
+<tr class="row-odd"><td><p>中键单击</p></td>
+<td><p>切换 无限循环播放列表</p></td>
+</tr>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>切换 无限循环当前文件</p></td>
 </tr>
 </tbody>
 </table>
@@ -317,17 +383,17 @@
 <dt>上一章节</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>跳转章节开头/上一章节</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>显示章节列表</p></td>
 </tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
+<tr class="row-odd"><td><p>中键单击</p></td>
 <td><p>显示章节列表</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开章节选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开章节菜单</p></td>
 </tr>
 </tbody>
 </table>
@@ -336,17 +402,17 @@
 <dt>下一章节</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>跳转下一章节</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>显示章节列表</p></td>
 </tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
+<tr class="row-odd"><td><p>中键单击</p></td>
 <td><p>显示章节列表</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开章节选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开章节菜单</p></td>
 </tr>
 </tbody>
 </table>
@@ -358,7 +424,7 @@
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>切换 显示带毫秒的时间码</p></td>
 </tr>
 </tbody>
@@ -371,10 +437,10 @@
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>跳转至位置</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
 <td><p>跳转至最近章节</p></td>
 </tr>
 <tr class="row-odd"><td><p>鼠标滚轮</p></td>
@@ -390,7 +456,7 @@
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>切换 总时间/剩余时间</p></td>
 </tr>
 </tbody>
@@ -403,17 +469,17 @@
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>循环 音频/字幕轨 前进</p></td>
 </tr>
-<tr class="row-even"><td><p>shift左键单机</p></td>
+<tr class="row-even"><td><p>shift左键单击</p></td>
 <td><p>循环 音频/字幕轨 后退</p></td>
 </tr>
-<tr class="row-odd"><td><p>中键单机</p></td>
+<tr class="row-odd"><td><p>中键单击</p></td>
 <td><p>循环 音频/字幕轨 后退</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开音频/字幕轨选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开音频/字幕轨菜单</p></td>
 </tr>
 <tr class="row-odd"><td><p>鼠标滚轮</p></td>
 <td><p>循环 音频/字幕轨 前进/后退</p></td>
@@ -425,11 +491,11 @@
 <dt>音量</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>切换 静音</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
-<td><p>打开音频设备选择器</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
+<td><p>打开音频设备菜单</p></td>
 </tr>
 <tr class="row-odd"><td><p>滚轮滚动</p></td>
 <td><p>音量增大/减小</p></td>
@@ -441,10 +507,10 @@
 <dt>全屏</dt><dd><div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p>左键单机</p></td>
+<tr class="row-odd"><td><p>左键单击</p></td>
 <td><p>切换 全屏</p></td>
 </tr>
-<tr class="row-even"><td><p>右键单机</p></td>
+<tr class="row-even"><td><p>右键单击</p></td>
 <td><p>切换 窗口最大化</p></td>
 </tr>
 </tbody>
@@ -455,8 +521,8 @@
 <p>自 mpv 0.40.0 起，可以在某些界面元素上配置命令与鼠标指令同时运行，而且一些元素的默认行为也有所更改。如果你怀念某些旧行为，请查看 mpv git 仓库中的 <code class="docutils literal notranslate"><span class="pre">etc/restore-osc-bindings.conf</span></code> 。</p>
 </section>
 <section id="id3">
-<h3>按键绑定<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
-<p>如果没有其他命令已经绑定在这些键上，这些键的绑定默认是激活的。在发生冲突的情况下，需要将该功能绑定到不同的按键上。参见 <a class="reference internal" href="#id7">脚本命令</a> 部分。</p>
+<h3>按键绑定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<p>如果没有其他命令已经绑定在这些键上，这些键的绑定默认是激活的。在发生冲突的情况下，需要将该功能绑定到不同的按键上。参见 <a class="reference internal" href="#id8">脚本命令</a> 部分。</p>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <tbody>
@@ -469,10 +535,10 @@
 </section>
 </section>
 <section id="id4">
-<h2>设置<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
-<p>可以通过 mpv 用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/osc.conf</span></code> 和命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 来定制该脚本。设置语法记录在 <a href="#id8"><span class="problematic" id="id9">`mp.options functions`_</span></a> 部分。</p>
+<h2>设置<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>可以通过 mpv 用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/osc.conf</span></code> 和命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 来定制该脚本。设置语法记录在 <a href="#id9"><span class="problematic" id="id10">`mp.options functions`_</span></a> 部分。</p>
 <section id="id5">
-<h3>命令行语法<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<h3>命令行语法<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <p>为了避免与其他脚本发生冲突，所有选项都需要以 <code class="docutils literal notranslate"><span class="pre">osc-</span></code> 为前缀。</p>
 <p>示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">opts</span><span class="o">=</span><span class="n">osc</span><span class="o">-</span><span class="n">optionA</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span><span class="n">osc</span><span class="o">-</span><span class="n">optionB</span><span class="o">=</span><span class="n">value2</span>
@@ -480,10 +546,10 @@
 </div>
 </section>
 <section id="id6">
-<h3>设置选项<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<h3>设置选项<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">layout</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">bottombar</span></code></p>
-<p>OSC的布局。目前可用的有：box, slimbox, bottombar 和 topbar。0.21.0之前的默认值是 box</p>
+<p>OSC的布局。目前可用的有：box, slimbox, bottombar, topbar, slimbottombar, slimtopbar 。0.21.0之前的默认值是 box</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">seekbarstyle</span></code></dt><dd><p>默认： bar</p>
 <p>设置播放位置标记的样式和进度条的整体形状： <code class="docutils literal notranslate"><span class="pre">bar</span></code>, <code class="docutils literal notranslate"><span class="pre">diamond</span></code> 或 <code class="docutils literal notranslate"><span class="pre">knob</span></code></p>
@@ -537,7 +603,7 @@
 <p>水平对齐（仅box或slimbox布局有效），-1（左侧）到1（右侧）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">barmargin</span></code></dt><dd><p>默认： 0</p>
-<p>底部（bottomombar）或顶部（topbar）的边距，单位是像素</p>
+<p>底部（仅bottomombar或slimbottombar布局有效）或顶部（仅topbar或slimtopbar布局有效）的边距，单位是像素</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">boxalpha</span></code></dt><dd><p>默认： 80</p>
 <p>背景的透明度，0（不透明）到255（完全透明）</p>
@@ -572,12 +638,15 @@
 <dt><code class="docutils literal notranslate"><span class="pre">visibility</span></code></dt><dd><p>默认： auto （鼠标移动时自动隐藏/显示）</p>
 <p>也支持 <code class="docutils literal notranslate"><span class="pre">never</span></code> 和 <code class="docutils literal notranslate"><span class="pre">always</span></code></p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">visibility_modes</span></code></dt><dd><p>默认： never_auto_always</p>
+<p>调用 osc-visibility 循环script message时要循环切换显示的visibility模式列表。模式之间用 <code class="docutils literal notranslate"><span class="pre">_</span></code> 分隔。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">boxmaxchars</span></code></dt><dd><p>默认： 80</p>
 <p>mpv不能测量屏幕上的文本宽度，所以需要用字符数来限制。默认值是保守的，允许使用等宽字体而不溢出。然而，对于许多常见的字体，可以使用一个更大的数字。请自行斟酌。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">boxvideo</span></code></dt><dd><p>默认： no</p>
 <p>是否在视频上覆盖osc（ <code class="docutils literal notranslate"><span class="pre">no</span></code> ），或在osc未覆盖的区域内框住视频（ <code class="docutils literal notranslate"><span class="pre">yes</span></code> ）。如果设置了这个选项，osc可能会覆盖 <code class="docutils literal notranslate"><span class="pre">--video-margin-ratio-*</span></code> 选项，即使用户已经设置了它们（如果所有选项都被设置为默认值，则不会覆盖它们）。此外， <code class="docutils literal notranslate"><span class="pre">visibility</span></code> 必须被设置为 <code class="docutils literal notranslate"><span class="pre">always</span></code> 。否则，这个选项没有任何效果。</p>
-<p>目前，只支持 <code class="docutils literal notranslate"><span class="pre">bottombar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">topbar</span></code> 的布局。如果设置了这个选项，其他的布局就不会改变。另外，如果存在窗口控件（见下文），无论使用哪种OSC布局，它们都会受到影响。</p>
+<p>目前，只支持 <code class="docutils literal notranslate"><span class="pre">bottombar</span></code>, <code class="docutils literal notranslate"><span class="pre">slimbottombar</span></code>, <code class="docutils literal notranslate"><span class="pre">topbar</span></code>, <code class="docutils literal notranslate"><span class="pre">slimtopbar</span></code> 的布局。如果设置了这个选项，其他的布局就不会改变。另外，如果存在窗口控件（见下文），无论使用哪种OSC布局，它们都会受到影响。</p>
 <p>边框是静态的，即使OSC被设置为只在鼠标交互时出现，边框也会出现。如果OSC是不可见的，边框就会简单地用背景色（默认为黑色）填充。</p>
 <p>目前这仍然会使OSC与字幕重叠（如果 <code class="docutils literal notranslate"><span class="pre">--sub-use-margins</span></code> 选项被设置为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> ，默认）。这可能会在以后修复。</p>
 <p>这在个别视频输出驱动中不能正常工作，如 <code class="docutils literal notranslate"><span class="pre">--vo=xv</span></code> ，它将OSD渲染进未缩放的视频中。</p>
@@ -618,7 +687,7 @@
 <p>Sets the color of the timecode at hover position in the seekbar.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">time_pos_outline_color</span></code></dt><dd><p>默认： #FFFFFF</p>
-<p>Sets the color of the timecode’s outline at hover position in the seekbar. Also affects the timecode in the slimbox layout.</p>
+<p>Sets the color of the timecode's outline at hover position in the seekbar. Also affects the timecode in the slimbox layout.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">buttons_color</span></code></dt><dd><p>默认： #FFFFFF</p>
 <p>Sets the colors of the big buttons.</p>
@@ -644,6 +713,9 @@
 </dd>
 </dl>
 <p>以下选项可配置点击按钮时运行的命令。 <code class="docutils literal notranslate"><span class="pre">shift+mbtn_left</span></code> 也会触发 <code class="docutils literal notranslate"><span class="pre">mbtn_mid</span></code> 的命令。</p>
+<p><code class="docutils literal notranslate"><span class="pre">menu_mbtn_left_command=script-binding</span> <span class="pre">select/menu;</span> <span class="pre">script-message-to</span> <span class="pre">osc</span> <span class="pre">osc-hide</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">menu_mbtn_mid_command=</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">menu_mbtn_right_command=</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">playlist_prev_mbtn_left_command=playlist-prev;</span> <span class="pre">show-text</span> <span class="pre">${playlist}</span> <span class="pre">3000</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">playlist_prev_mbtn_mid_command=show-text</span> <span class="pre">${playlist}</span> <span class="pre">3000</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">playlist_prev_mbtn_right_command=script-binding</span> <span class="pre">select/select-playlist;</span> <span class="pre">script-message-to</span> <span class="pre">osc</span> <span class="pre">osc-hide</span></code></p>
@@ -651,10 +723,10 @@
 <p><code class="docutils literal notranslate"><span class="pre">playlist_next_mbtn_mid_command=show-text</span> <span class="pre">${playlist}</span> <span class="pre">3000</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">playlist_next_mbtn_right_command=script-binding</span> <span class="pre">select/select-playlist;</span> <span class="pre">script-message-to</span> <span class="pre">osc</span> <span class="pre">osc-hide</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">title_mbtn_left_command=script-binding</span> <span class="pre">stats/display-page-5</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">title_mbtn_mid_command=show-text</span> <span class="pre">${filename}</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">title_mbtn_right_command=show-text</span> <span class="pre">${path}</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">title_mbtn_mid_command=show-text</span> <span class="pre">${path}</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">title_mbtn_right_command=script-binding</span> <span class="pre">select/select-watch-history;</span> <span class="pre">script-message-to</span> <span class="pre">osc</span> <span class="pre">osc-hide</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">play_pause_mbtn_left_command=cycle</span> <span class="pre">pause</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">play_pause_mbtn_mid_command=</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">play_pause_mbtn_mid_command=cycle-values</span> <span class="pre">loop-playlist</span> <span class="pre">inf</span> <span class="pre">no</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">play_pause_mbtn_right_command=cycle-values</span> <span class="pre">loop-file</span> <span class="pre">inf</span> <span class="pre">no</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">chapter_prev_mbtn_left_command=osd-msg</span> <span class="pre">add</span> <span class="pre">chapter</span> <span class="pre">-1</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">chapter_prev_mbtn_mid_command=show-text</span> <span class="pre">${chapter-list}</span> <span class="pre">3000</span></code></p>
@@ -682,10 +754,31 @@
 <p><code class="docutils literal notranslate"><span class="pre">fullscreen_mbtn_right_command=&quot;cycle</span> <span class="pre">window-maximized&quot;</span></code></p>
 </section>
 <section id="id7">
-<h3>脚本命令<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<h3>自定义按钮<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>额外脚本选项可用于在 <code class="docutils literal notranslate"><span class="pre">bottombar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">topbar</span></code> 布局中定义自定义按钮。</p>
+<div class="admonition- admonition">
+<p class="admonition-title">示例：添加循环播放、播放列表洗牌和速度变更按钮</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>custom_button_1_content=🔁
+custom_button_1_mbtn_left_command=cycle-values loop-file inf no
+custom_button_1_mbtn_right_command=cycle-values loop-playlist inf no
+
+custom_button_2_content=🔀
+custom_button_2_mbtn_left_command=playlist-shuffle
+
+custom_button_3_content=⏱
+custom_button_3_mbtn_left_command=add speed 1
+custom_button_3_mbtn_right_command=set speed 1
+custom_button_3_wheel_up_command=add speed 0.25
+custom_button_3_wheel_down_command=add speed -0.25
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>脚本命令<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <p>OSC脚本会监听某些脚本命令。这些命令可以绑定在 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 中，或者由其他脚本发送。</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">osc-visibility</span></code></dt><dd><p>控制可见性模式 <code class="docutils literal notranslate"><span class="pre">never</span></code> / <code class="docutils literal notranslate"><span class="pre">auto</span></code> （在鼠标移动时）/ <code class="docutils literal notranslate"><span class="pre">always</span></code> 和 <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 在各种模式之间循环。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">osc-visibility</span></code></dt><dd><p>控制可见性模式 <code class="docutils literal notranslate"><span class="pre">never</span></code> / <code class="docutils literal notranslate"><span class="pre">auto</span></code> （在鼠标移动时）/ <code class="docutils literal notranslate"><span class="pre">always</span></code> 和 <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 在各种模式之间循环。如果传入第二个参数（任意值），则 OSD 上的输出将被静默。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">osc-show</span></code></dt><dd><p>触发 OSC 显示，就像用户移动鼠标一样。</p>
 </dd>
@@ -699,7 +792,7 @@
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">osc-idlescreen</span></code></dt><dd><p>控制空闲状态时mpv的logo可见性。有效的参数是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> ，也可用 <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 来切换。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">osc-idlescreen</span></code></dt><dd><p>控制空闲状态时mpv的logo可见性。有效的参数是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> ，也可用 <code class="docutils literal notranslate"><span class="pre">cycle</span></code> 来切换。如果传入第二个参数（任意值），则 OSD 上的输出将被静默。</p>
 </dd>
 </dl>
 </section>
@@ -752,7 +845,8 @@
 <li><a class="reference internal" href="#id4">设置</a><ul>
 <li><a class="reference internal" href="#id5">命令行语法</a></li>
 <li><a class="reference internal" href="#id6">设置选项</a></li>
-<li><a class="reference internal" href="#id7">脚本命令</a></li>
+<li><a class="reference internal" href="#id7">自定义按钮</a></li>
+<li><a class="reference internal" href="#id8">脚本命令</a></li>
 </ul>
 </li>
 </ul>
@@ -766,15 +860,12 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
+</div><script src="../_static/documentation_options.js?v=34088549"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
     </body>
 </html>

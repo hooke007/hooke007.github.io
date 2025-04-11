@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="zh-CN">
+<html class="no-js" lang="zh-CN" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="配置预设" href="mpv_profiles.html" /><link rel="prev" title="mpv播放器的使用引导" href="mpv_start.html" />
 
-    <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+    <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 8.2.1 and Furo 2024.08.06 -->
         <title>第三方用户着色器 - mpv_CFanStation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -73,7 +73,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -88,22 +88,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -116,6 +157,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -134,7 +177,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -148,7 +192,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../_static/html_logo.png" alt="Logo"/>
@@ -164,11 +208,11 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../official_man/index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_man/index.html">mpv手册</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of mpv手册</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../official_man/mpv.html">mpv —— 媒体播放器</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../official_misc/index.html">mpv其它</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of mpv其它</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/encoding.html">编码/压制的详细指南</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/Interpolation.html">插值技术</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../official_misc/VO_shader_stages.html">着色器处理阶段</a></li>
@@ -177,7 +221,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">导航：</span></p>
 <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">非官方</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">非官方</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 非官方</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mpv_start.html">mpv播放器的使用引导</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">第三方用户着色器</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mpv_profiles.html">配置预设</a></li>
@@ -204,11 +248,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/unofficial/mpv_shaders.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -218,12 +268,12 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="id1">
-<h1>第三方用户着色器<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<h1>第三方用户着色器<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p><em>ver.20231101</em></p>
 <section id="id2">
-<h2>起<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<h2>起<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>我选择主设置文件夹下新建的 <strong>shaders</strong> 目录下放置第三方着色器，常见后缀名为 .glsl .hook<br />
 通过编辑 <strong>mpv.conf</strong> / <strong>input.conf</strong> 自行决定自动/手动加载第三方着色器（语法见对应文件内示例）<br />
 部分放大着色器有最小缩放倍数的触发限制条件，即 目标分辨率 ＞或＝ 源分辨率x最小触发倍数<br />
@@ -235,13 +285,13 @@
 不同着色器/算法的比较参考 <a class="reference external" href="https://artoriuz.github.io/blog/mpv_upscaling.html">mpv_upscaling.html</a></p>
 </section>
 <section id="id3">
-<h2>…<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<h2>...<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>🔺 如果下方列出的着色器未在整合包中找到，前往 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders"><strong>此处</strong></a> 搜寻获取。<br />
 🔺 我统一修改了2x 3x 4x放大类着色器的最小缩放倍率限制，与上游的原始版本不同。
 🔺 名字中含有 next 的变体，指仅能在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 的条件下( mpv.conf )使用</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 <section id="anime4k-v3-2-v4-x">
-<h3>Anime4K v3.2-v4.x<a class="headerlink" href="#anime4k-v3-2-v4-x" title="此标题的永久链接">#</a></h3>
+<h3>Anime4K v3.2-v4.x<a class="headerlink" href="#anime4k-v3-2-v4-x" title="Link to this heading">¶</a></h3>
 <p>它是一组开源的高质量的实时动漫缩放/降噪算法。<br />
 在v1之前是个纯粹的锐化滤镜，v2引入人工智能卷积核，在v3之后进行了模块化改造，目前版本v4在局部场景下能达到waifu2x的效果。</p>
 <p>A4k不提供cscale色度升频类着色器。(v3.2-v4.x版理论上不兼容之前的旧版本，v3-v3.1版的区别说明见 <strong>附录</strong> 部分)</p>
@@ -333,11 +383,11 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 <span class="n">Anime4K_3DGraphics_AA_Upscale_x2_US</span><span class="o">.</span><span class="n">glsl</span>
 </pre></div>
 </div>
-<p>补充说明：对新版的混合搭配顺序为 Clamp → Restore → Upscale → AutoDownscalePre → Upscale …（仅作为推荐，可自行调节删改）<br />
+<p>补充说明：对新版的混合搭配顺序为 Clamp → Restore → Upscale → AutoDownscalePre → Upscale ...（仅作为推荐，可自行调节删改）<br />
 通常仅需一个 <strong>Anime4K_Restore_CNN_M.glsl</strong> 模块即满足大多数人的口味（适度画面修复+弱感知强化+少量瑕疵引入）</p>
 </section>
 <section id="anime4k-legacy">
-<h3>Anime4k-legacy<a class="headerlink" href="#anime4k-legacy" title="此标题的永久链接">#</a></h3>
+<h3>Anime4k-legacy<a class="headerlink" href="#anime4k-legacy" title="Link to this heading">¶</a></h3>
 <p>此处专指旧版不带放大功能的Anime4k v1及之前的版本，可作为动漫向专用的锐化器独立或搭配其它放大着色器使用，实现不错的最终效果。<br />
 已降低v1中不合理的缩放倍率限制。 10系列中被开发者视为最佳质量的变体反而被我认为质量最差（扭曲文字图形且油画感太重）</p>
 <p>🔺 变体 10 的最小缩放触发倍率为1</p>
@@ -351,7 +401,7 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="acnet">
-<h3>ACNet<a class="headerlink" href="#acnet" title="此标题的永久链接">#</a></h3>
+<h3>ACNet<a class="headerlink" href="#acnet" title="Link to this heading">¶</a></h3>
 <p>是Anime4KCPP-Net的缩写，设计用于高性能动画风格的图像和视频放大，它与Asymmetric Convolution Net(缩写重名ACNet)无关，与现在的Anime4k也无太大关联。ACNet是Anime4KCPP自己的基于CNN的算法。</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法<br />
 🔺 最小缩放触发倍率为1.2</p>
@@ -366,17 +416,17 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="chroma-from-luma-cfl-prediction">
-<h3>Chroma from Luma (CfL) Prediction<a class="headerlink" href="#chroma-from-luma-cfl-prediction" title="此标题的永久链接">#</a></h3>
+<h3>Chroma from Luma (CfL) Prediction<a class="headerlink" href="#chroma-from-luma-cfl-prediction" title="Link to this heading">¶</a></h3>
 <p>由现代视频编码方式启发的色度还原算法</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法</p>
 </section>
 <section id="joint-bilateral">
-<h3>joint-bilateral<a class="headerlink" href="#joint-bilateral" title="此标题的永久链接">#</a></h3>
+<h3>joint-bilateral<a class="headerlink" href="#joint-bilateral" title="Link to this heading">¶</a></h3>
 <p>简化的双边滤波色度还原算法，利用亮度信息为引导。</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法</p>
 </section>
 <section id="pixel-clipper">
-<h3>pixel-clipper<a class="headerlink" href="#pixel-clipper" title="此标题的永久链接">#</a></h3>
+<h3>pixel-clipper<a class="headerlink" href="#pixel-clipper" title="Link to this heading">¶</a></h3>
 <p>简易像素裁切，用于通用的后处理抗振铃。</p>
 <p>以上三项由同一开发者移植，在项目中提供了更多说明。</p>
 <p>🔺 Lite 变体支持了 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code></p>
@@ -398,7 +448,7 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="fsrcnnx">
-<h3>FSRCNNX<a class="headerlink" href="#fsrcnnx" title="此标题的永久链接">#</a></h3>
+<h3>FSRCNNX<a class="headerlink" href="#fsrcnnx" title="Link to this heading">¶</a></h3>
 <p>由原始SRCNN发展而来，是FSRCNN的变体，较快速的通用型AI放大算法。</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 算法<br />
 🔺 最小缩放触发倍率为1.2</p>
@@ -420,7 +470,7 @@ x2版常用于2k屏全屏观看1080p执行二倍放大过度（4k目标分辨率
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="avisynth-aiupscale">
-<h3>AviSynth AiUpscale<a class="headerlink" href="#avisynth-aiupscale" title="此标题的永久链接">#</a></h3>
+<h3>AviSynth AiUpscale<a class="headerlink" href="#avisynth-aiupscale" title="Link to this heading">¶</a></h3>
 <p>名字奇怪是因为开发者主要移植到AviSynth+上用的，和FSRCNNX有相似的体系结构，但使用了不同的滤镜。</p>
 <p>x2 x3 x4 分别对应 二倍 三倍 四倍 放大<br />
 质量上 Fast 弱于 Medium 弱于 HQ<br />
@@ -447,23 +497,23 @@ LineArt 适合2D画面而 Photo 适合现实类画面</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="adaptive-sharpen">
-<h3>Adaptive Sharpen<a class="headerlink" href="#adaptive-sharpen" title="此标题的永久链接">#</a></h3>
+<h3>Adaptive Sharpen<a class="headerlink" href="#adaptive-sharpen" title="Link to this heading">¶</a></h3>
 <p>自适应锐化</p>
 <p>变体 best 理论上拥有最佳质量但强度较低；<br />
 变体 luma 只处理亮度通道不适合rgb源</p>
 </section>
 <section id="krig">
-<h3>Krig<a class="headerlink" href="#krig" title="此标题的永久链接">#</a></h3>
+<h3>Krig<a class="headerlink" href="#krig" title="Link to this heading">¶</a></h3>
 <p>利用亮度信息进行高质量的色度升频<br />
 mpv目前最好的色度升频着色器，可以与其他缩放（ <code class="docutils literal notranslate"><span class="pre">--scale/dscale</span></code> ）算法共同使用</p>
 <p>🔺 启用将覆盖 <strong>mpv.conf</strong> 中指定的 <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 算法</p>
 </section>
 <section id="ssimsuperres">
-<h3>SSimSuperRes<a class="headerlink" href="#ssimsuperres" title="此标题的永久链接">#</a></h3>
+<h3>SSimSuperRes<a class="headerlink" href="#ssimsuperres" title="Link to this heading">¶</a></h3>
 <p>该着色器的目的是对mpv内置 <code class="docutils literal notranslate"><span class="pre">--scale=xxxxx</span></code> 放大算法进行增强校正。</p>
 </section>
 <section id="ssimdownscaler">
-<h3>SSimDownscaler<a class="headerlink" href="#ssimdownscaler" title="此标题的永久链接">#</a></h3>
+<h3>SSimDownscaler<a class="headerlink" href="#ssimdownscaler" title="Link to this heading">¶</a></h3>
 <p>基于感知的对mpv内置 <code class="docutils literal notranslate"><span class="pre">--dscale=xxxxx</span></code> 缩小算法进行增强校正。（例如抗振铃）</p>
 <p>以上四项及FSRCNNX皆由同一开发者移植</p>
 <p>相关列表：<a class="reference external" href="https://gist.github.com/igv">igv-hooks</a></p>
@@ -482,17 +532,17 @@ mpv目前最好的色度升频着色器，可以与其他缩放（ <code class="
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="ravu">
-<h3>RAVU<a class="headerlink" href="#ravu" title="此标题的永久链接">#</a></h3>
+<h3>RAVU<a class="headerlink" href="#ravu" title="Link to this heading">¶</a></h3>
 <p>(Rapid and Accurate Video Upscaling)是一组受RAISR（快速准确的图像超分辨率）启发的预分频着色器。<br />
 它具有不同的变体以适应不同的场景。 RAVU整体的性能消耗设计上比mpv内置的ewa系缩放器高。</p>
 </section>
 <section id="nnedi3">
-<h3>NNEDI3<a class="headerlink" href="#nnedi3" title="此标题的永久链接">#</a></h3>
+<h3>NNEDI3<a class="headerlink" href="#nnedi3" title="Link to this heading">¶</a></h3>
 <p>全称Neural Network Edge Directed Interpolation，是一种超高质量的插值放大算法。<br />
 nnedi3版速度较快（即便如此相比其它算法，依旧速度极慢且开销巨大）</p>
 </section>
 <section id="superxbr">
-<h3>SuperXBR<a class="headerlink" href="#superxbr" title="此标题的永久链接">#</a></h3>
+<h3>SuperXBR<a class="headerlink" href="#superxbr" title="Link to this heading">¶</a></h3>
 <p>一个经典的擅长整数倍放大算法，消耗介于NNEDI3和RAVU之间。</p>
 <p>以上三项由同一开发者移植，在项目中提供了更多说明： <a class="reference external" href="https://github.com/bjin/mpv-prescalers">bjin-hooks</a></p>
 <p>r2 → r3 → r4；<br />
@@ -612,12 +662,12 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="amd-cas">
-<h3>AMD-CAS<a class="headerlink" href="#amd-cas" title="此标题的永久链接">#</a></h3>
+<h3>AMD-CAS<a class="headerlink" href="#amd-cas" title="Link to this heading">¶</a></h3>
 <p>移植自AMD FidelityFX CAS (Contrast Adaptive Sharpening)，原始设计用于游戏，对比度自适应锐化是一种低开销的锐化算法。</p>
 <p>🔺 rgb 变体作用于后处理，比常规版本开销微高，速度微慢</p>
 </section>
 <section id="amd-fsr">
-<h3>AMD-FSR<a class="headerlink" href="#amd-fsr" title="此标题的永久链接">#</a></h3>
+<h3>AMD-FSR<a class="headerlink" href="#amd-fsr" title="Link to this heading">¶</a></h3>
 <p>移植自AMD FidelityFX Super Resolution (FSR)，原始设计用于游戏，是一种先执行常规放大后再进行对比度自适应锐化的改良算法。放大部分基于lanczos+bilinear，锐化部分基于cas</p>
 <p>相关列表：<a class="reference external" href="https://gist.github.com/agyild/82219c545228d70c5604f865ce0b0ce5">agyild-fsr</a> &amp; <a class="reference external" href="https://gist.github.com/agyild/bbb4e58298b2f86aa24da3032a0d2ee6">agyild-cas</a><br />
 （变体 scaled 功能完整，附带了缩放模块而非纯粹的锐化算法）</p>
@@ -646,12 +696,12 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="nv-nis">
-<h3>NV-NIS<a class="headerlink" href="#nv-nis" title="此标题的永久链接">#</a></h3>
+<h3>NV-NIS<a class="headerlink" href="#nv-nis" title="Link to this heading">¶</a></h3>
 <p>移植自NVIDIA Image Scaling (NIS)，原始设计用于游戏，是一种基于lanczos的常规放大算法，并辅以自适应锐化改变观感。</p>
 <p>🔺 此算法的振铃伪影异常明显，并且会随着锐化强度的增加而愈发显著</p>
 </section>
 <section id="nv-nvsharpen">
-<h3>NV-NVSharpen<a class="headerlink" href="#nv-nvsharpen" title="此标题的永久链接">#</a></h3>
+<h3>NV-NVSharpen<a class="headerlink" href="#nv-nvsharpen" title="Link to this heading">¶</a></h3>
 <p>移植自NIS中的锐化模块，原始设计用于游戏。</p>
 <p>相关列表：<a class="reference external" href="https://gist.github.com/agyild/7e8951915b2bf24526a9343d951db214">agyild-nis</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NVScaler</span><span class="o">.</span><span class="n">glsl</span>
@@ -667,7 +717,7 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="guided">
-<h3>guided<a class="headerlink" href="#guided" title="此标题的永久链接">#</a></h3>
+<h3>guided<a class="headerlink" href="#guided" title="Link to this heading">¶</a></h3>
 <p>快速降噪。</p>
 <p>相关列表（精简）：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guided</span><span class="o">.</span><span class="n">glsl</span>
@@ -677,7 +727,7 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 </div>
 </section>
 <section id="hdeband">
-<h3>hdeband<a class="headerlink" href="#hdeband" title="此标题的永久链接">#</a></h3>
+<h3>hdeband<a class="headerlink" href="#hdeband" title="Link to this heading">¶</a></h3>
 <p>高质量去色带。</p>
 <p>相关列表（精简）：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdeband</span><span class="o">.</span><span class="n">glsl</span>
@@ -685,7 +735,7 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 </div>
 </section>
 <section id="nl-means">
-<h3>NL Means<a class="headerlink" href="#nl-means" title="此标题的永久链接">#</a></h3>
+<h3>NL Means<a class="headerlink" href="#nl-means" title="Link to this heading">¶</a></h3>
 <p>移植自FFmpeg的nlmeans滤镜。非局部均值降噪</p>
 <p>以上三项由同一开发者移植，在项目中提供了更多说明<a class="reference external" href="https://github.com/AN3223/dotfiles/tree/master/.config/mpv/shaders">AN3223-nlmeans</a></p>
 <p>相关列表（精简）：</p>
@@ -705,7 +755,7 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="noise-static">
-<h3>Noise Static<a class="headerlink" href="#noise-static" title="此标题的永久链接">#</a></h3>
+<h3>Noise Static<a class="headerlink" href="#noise-static" title="Link to this heading">¶</a></h3>
 <p>优化静态的色度/亮度噪点。</p>
 <p>🔺 需要 <strong>mpv.conf</strong> 中设置为 <code class="docutils literal notranslate"><span class="pre">--deband-grain=0</span></code> 的前提下使用</p>
 <p>相关列表：<a class="reference external" href="https://pastebin.com/yacMe6EZ">pastebin-hook1</a> &amp; <a class="reference external" href="https://pastebin.com/15ZTaaUC">pastebin-hook2</a></p>
@@ -716,7 +766,7 @@ nnedi3最小缩放触发倍率约为1.2，对性能要求很高（临时加载�
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
 </section>
 <section id="id4">
-<h3>其它<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<h3>其它<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>相关列表：<br />
 <em>来源非全部可查</em><br />
 <a class="reference external" href="https://github.com/garamond13/Unsharp-mask-and-Gaussian-blur">garamond13-hooks</a><br />
@@ -759,10 +809,11 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 </section>
 </section>
 <section id="id5">
-<h2>实际工作顺序<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<h2>实际工作顺序<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>着色器按工作插入位置可大致分为“预处理”与“后处理”两类，此由着色器本身决定，无法被设置文件更改。（在统计信息的第二页可直观查看）</p>
 <p>如图，以 combining planes 为大致的分界线 —— 之前的步骤为预处理， <code class="docutils literal notranslate"><span class="pre">--cscale=xxxxx</span></code> 也在此处（图中被krig替换）。之后的步骤为后处理， <code class="docutils literal notranslate"><span class="pre">--scale/dscale=xxxxx</span></code> 也在此处。</p>
-<a class="reference internal image-reference" href="../_images/mpv_shaders-stats_01.webp"><img alt="stats_01" class="align-center" src="../_images/mpv_shaders-stats_01.webp" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../_images/mpv_shaders-stats_01.webp"><img alt="stats_01" class="align-center" src="../_images/mpv_shaders-stats_01.webp" style="width: 600px;" />
+</a>
 <p>因此，着色器的实际工作顺序，首选遵守该原则，其次才是用户指定的顺序。（此外在同为预处理与后处理类的着色器之中也有顺序限制，具体请自行测试）</p>
 <ul class="simple">
 <li><p>预处理： 所有 luma、 chroma 变体； ACNet FSRCNNX AiU Krig RAVU NNEDI3 SXBR CAS NoiseS minblur_usm</p></li>
@@ -772,7 +823,7 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 <p>🔺 （此处未完整列出全部着色器）</p>
 </section>
 <section id="id6">
-<h2>叠加放大类着色器的注意点<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<h2>叠加放大类着色器的注意点<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>前一节已经讲了着色器加载顺序上的一些逻辑，这里补充放大类着色器的专属问题。</p>
 <p>不同的放大类着色器对原尺寸的定义不同：<br />
 直觉认知里，1080p的视频不管怎么拉伸，源的原尺寸始终是1080p。符合这一逻辑的是Anime4k中的 Original 变体<br />
@@ -781,7 +832,7 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 例二：同上的硬件环境，720p的视频先调用了nnedi3再调用fsrcnnx进行二次放大，你可能发现无法真实触发后者，原因在于720p的视频经过nnedi3第一次放大后被后方加载的fsrcnnx认为源是(720x2=)1440p，此时2k的显示器在全屏模式的分辨率并不满足fsrcnnx的最小放大触发倍率(1.3)</p>
 </section>
 <section id="id7">
-<h2>通过快捷键动态启用与禁用<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<h2>通过快捷键动态启用与禁用<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>适用于 <strong>input.conf</strong><br />
 语法结构：<br />
 <code class="docutils literal notranslate"><span class="pre">键位(组合)名</span>&#160;&#160; <span class="pre">change-list</span> <span class="pre">glsl-shaders</span> <span class="pre">(不带符号&quot;-&quot;的)后缀</span>&#160;&#160; <span class="pre">着色器文件名(可多项，用半角符号&quot;;&quot;分隔)</span></code></p>
@@ -826,7 +877,7 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 <p>其它示例可参考仓库内 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/input_list.conf"><strong>input.conf</strong></a> 的“着色器列表”部分。</p>
 </section>
 <section id="id8">
-<h2>速度的对比参考<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
+<h2>速度的对比参考<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
 <p>🔺 （此节的信息已过时。我对部分着色器的跑分测试参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/255#discussioncomment-4685344">此处</a>）</p>
 <p>使用个别着色器进行两倍放大，计算每秒所能生成的最大帧数。数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。<br />
 实际速度<strong>极大</strong>取决于视频的质量、缩放倍率和你的显卡性能，因此两表中同一个 fsrcnnx16 的性能结果差异不符合常理也不奇怪，数据仅供大概参考。</p>
@@ -919,9 +970,9 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 </div>
 </section>
 <section id="id9">
-<h2>附录<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<h2>附录<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <section id="anime4k-v3-v3-1">
-<h3>Anime4k v3-v3.1<a class="headerlink" href="#anime4k-v3-v3-1" title="此标题的永久链接">#</a></h3>
+<h3>Anime4k v3-v3.1<a class="headerlink" href="#anime4k-v3-v3-1" title="Link to this heading">¶</a></h3>
 <p>这里是旧版a4k的说明。<br />
 旧版工作在luma通道，新版工作在RGB空间。<br />
 RA Upscale+Deblur_CNN Deblur_CNN 这些变体在v4中整合在 Restore 模块中</p>
@@ -1083,7 +1134,7 @@ CNN 虽然质量好但速度较慢。 CNN_M 和 CNN_L 变体的问题参考同�
             <ul>
 <li><a class="reference internal" href="#">第三方用户着色器</a><ul>
 <li><a class="reference internal" href="#id2">起</a></li>
-<li><a class="reference internal" href="#id3">…</a><ul>
+<li><a class="reference internal" href="#id3">...</a><ul>
 <li><a class="reference internal" href="#anime4k-v3-2-v4-x">Anime4K v3.2-v4.x</a></li>
 <li><a class="reference internal" href="#anime4k-legacy">Anime4k-legacy</a></li>
 <li><a class="reference internal" href="#acnet">ACNet</a></li>
@@ -1129,15 +1180,12 @@ CNN 虽然质量好但速度较慢。 CNN_M 和 CNN_L 变体的问题参考同�
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/scripts/furo.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/translations.js"></script>
+</div><script src="../_static/documentation_options.js?v=34088549"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
     </body>
 </html>
