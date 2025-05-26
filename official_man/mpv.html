@@ -361,6 +361,8 @@
 </dd>
 <dt>v</dt><dd><p>切换字幕的可见性</p>
 </dd>
+<dt>Alt+v</dt><dd><p>切换次字幕的可见性</p>
+</dd>
 <dt>j, J</dt><dd><p>循环可用的字幕</p>
 </dd>
 <dt>z, Z</dt><dd><p>调整字幕延迟 -/+0.1秒。目前 <code class="docutils literal notranslate"><span class="pre">x</span></code> 键与 <code class="docutils literal notranslate"><span class="pre">Z</span></code> 键的作用相同但不赞成使用</p>
@@ -1248,7 +1250,7 @@ mpv slice://100m@appending://cap.ts
 </div>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>目前，你可以在设置文件中以正常的方式扩展 <code class="docutils literal notranslate"><span class="pre">pseudo-gui</span></code> profile。这已经过时d。在未来的mpv版本中，该行为可能会变更，不要应用你的额外设置，和/或使用一个不同的配置预设名称。</p>
+<p>目前，你可以在设置文件中以正常的方式扩展 <code class="docutils literal notranslate"><span class="pre">pseudo-gui</span></code> profile。这已经过时。在未来的mpv版本中，该行为可能会变更，不要应用你的额外设置，和/或使用一个不同的配置预设名称。</p>
 </div>
 </section>
 <section id="id32">
@@ -1697,6 +1699,8 @@ mpv slice://100m@appending://cap.ts
 <li><p><code class="docutils literal notranslate"><span class="pre">--ytdl-raw-options-append=proxy=http://127.0.0.1:3128</span></code></p></li>
 </ul>
 </div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--ytdl-extract-chapters=&lt;yes|no&gt;</span></code></dt><dd><p>启用从youtube-dl视频描述中提取章节 （默认： yes ）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--js-memory-report=&lt;yes|no&gt;</span></code></dt><dd><p>启用在数据统计叠加层中为JavaScript脚本报告内存使用情况。默认禁用，因为它会增加开销并增加内存使用量。此选项仅在启动mpv之前启用时才会生效。</p>
 </dd>
@@ -2193,7 +2197,7 @@ mpv slice://100m@appending://cap.ts
 <section id="id39">
 <h3>音频<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h3>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">--audio-pitch-correction=&lt;yes|no&gt;</span></code></dt><dd><p>如果启用这个功能（默认），以不同于正常的速度播放时会自动插入 <code class="docutils literal notranslate"><span class="pre">scaletempo2</span></code> 音频滤镜。您可以插入除了 <code class="docutils literal notranslate"><span class="pre">scaletempo2</span></code> 之外的滤镜，并使用 <cite>附带条件的自动配置预设</cite> 来修改它们的参数：</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--audio-pitch-correction=&lt;yes|no&gt;</span></code></dt><dd><p>如果启用这个功能（默认），以不同于正常的速度播放时会自动插入 <code class="docutils literal notranslate"><span class="pre">scaletempo2</span></code> 音频滤镜。您可以插入除了 <code class="docutils literal notranslate"><span class="pre">scaletempo2</span></code> 之外的滤镜，并使用 <a class="reference internal" href="#id24">附带条件的自动配置预设</a> 来修改它们的参数：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">af_insert</span><span class="p">]</span>
 <span class="n">profile</span><span class="o">-</span><span class="n">cond</span><span class="o">=</span><span class="n">speed</span> <span class="o">~=</span> <span class="mi">1</span>
 <span class="n">profile</span><span class="o">-</span><span class="n">restore</span><span class="o">=</span><span class="n">copy</span>
@@ -2539,6 +2543,12 @@ mpv slice://100m@appending://cap.ts
 <p>对于已经“被看到”并需要再次渲染的event（如果这些event被pruning），在运行时将播放方向从前向后更改时，这会中断sub-seek和字幕渲染。</p>
 </div>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-glyph-limit=&lt;value&gt;</span></code></dt><dd><p>设置 libass 缓存中字幕轨道的最大缓存glyphs数。0 表示 libass 使用默认值。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-bitmap-max-size=&lt;value&gt;</span></code></dt><dd><p>设置 libass 缓存中字幕轨道的最大bitmap缓存大小。0 表示 libass 使用默认值。该值的单位为 MB。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-ass-styles=&lt;filename&gt;</span></code></dt><dd><p>加载在指定文件中找到的所有SSA/ASS样式，并使用它们来渲染文本字幕。文件的语法与SSA/ASS的 <code class="docutils literal notranslate"><span class="pre">[V4</span> <span class="pre">Styles]</span></code> / <code class="docutils literal notranslate"><span class="pre">[V4+</span> <span class="pre">Styles]</span></code> 部分完全一样。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
@@ -2566,13 +2576,13 @@ mpv slice://100m@appending://cap.ts
 <p>这也控制了一些位图字幕的覆盖，以及SRT等格式的HTML标签，尽管该选项的名称不同。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--secondary-sub-ass-override=&lt;no|yes|scale|force|strip&gt;</span></code></dt><dd><p>控制是否应该应用用户风格覆盖次字幕。这与 <code class="docutils literal notranslate"><span class="pre">--sub-ass-override</span></code> 类似。</p>
-<p>默认： strip.</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">strip</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-ass-force-margins</span></code></dt><dd><p>如果字幕是ASS格式，在有黑边的情况下，启用将顶部字幕和字幕放进黑边。</p>
-<p>默认： no</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-use-margins</span></code></dt><dd><p>如果字幕是纯文本格式（或ASS格式，前提是如果 <code class="docutils literal notranslate"><span class="pre">--sub-ass-override</span></code> 设置得足够高），在有黑边的情况下，启用将顶部字幕和字幕放进黑边。</p>
-<p>默认： yes</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-ass-use-video-data=&lt;none|aspect-ratio|all&gt;</span></code></dt><dd><p>控制传递给 libass 的视频流信息。除 <code class="docutils literal notranslate"><span class="pre">all</span></code> 以外的任何选项都与 VSFilter 定义的标准 ASS 不兼容，大多数字幕脚本和渲染器（包括 libass）都以 VSFilter 的行为为目标。要准确模拟 VSFilter 的语义，就必须使用视频流属性，不使用这些属性可能会导致大多数文件的字幕渲染出现问题。因此建议只在每个文件需要时才有选择性地更改。</p>
 <dl class="field-list simple">
@@ -3499,7 +3509,7 @@ mpv slice://100m@appending://cap.ts
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-font-size=&lt;size&gt;</span></code></dt><dd><p>指定OSD的字体大小。详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code></p>
-<p>默认： 30</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">30</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-msg1=&lt;string&gt;</span></code></dt><dd><p>在OSD等级1（默认可见）的OSD上显示这个字符串作为信息。该信息默认是可见的，只要没有其它信息挡住它，并且OSD等级无改变（参见 <code class="docutils literal notranslate"><span class="pre">--osd-level</span></code> ）。扩展属性；参见 <a class="reference internal" href="#id101">属性扩展</a></p>
 </dd>
@@ -3530,13 +3540,13 @@ mpv slice://100m@appending://cap.ts
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-bar-outline-size=&lt;size&gt;</span></code></dt><dd><p>OSD条的轮廓大小，以按比例缩放的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）</p>
 <p><code class="docutils literal notranslate"><span class="pre">--osd-bar-border-size</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--osd-bar-outline-size</span></code> 的别名。</p>
-<p>默认： 0.5.</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-bar-marker-scale=&lt;0-100&gt;</span></code></dt><dd><p>OSD条标记尺寸相对于OSD条轮廓尺寸的系数。</p>
-<p>默认： 1.3.</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">1.3</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-bar-marker-min-size=&lt;size&gt;</span></code></dt><dd><p>OSD条的最小标记尺寸。</p>
-<p>默认： 1.6.</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">1.6</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-bar-marker-style=&lt;none|triangle|line&gt;</span></code></dt><dd><p>设置OSD条的标记样式。</p>
 <dl class="field-list simple">
@@ -3551,7 +3561,7 @@ mpv slice://100m@appending://cap.ts
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--osd-blur=&lt;0..20.0&gt;</span></code></dt><dd><p>应用于OSD字体边框的高斯模糊系数。0表示不应用模糊（默认）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-blur=&lt;0..20.0&gt;</span></code></dt><dd><p>应用于OSD字体边框的高斯模糊系数。 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示不应用模糊（默认）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-bold=&lt;yes|no&gt;</span></code></dt><dd><p>格式化文本为粗体。</p>
 </dd>
@@ -3563,9 +3573,9 @@ mpv slice://100m@appending://cap.ts
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-back-color=&lt;color&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-color</span></code> 。用于 OSD 字体背景的颜色。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--osd-shadow-color</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--osd-back-color</span></code> 的别名。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--osd-outline-size=&lt;size&gt;</span></code></dt><dd><p>OSD字体轮廓的尺寸，以缩放的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code>）。值为 0 禁用轮廓。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-outline-size=&lt;size&gt;</span></code></dt><dd><p>OSD字体轮廓的尺寸，以缩放的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code>）。值为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 禁用轮廓。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--osd-border-size</span></code> 是 <code class="docutils literal notranslate"><span class="pre">--osd-outline-size</span></code> 的别名。</p>
-<p>默认： 1.65</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">1.65</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-border-style=&lt;outline-and-shadow|opaque-box|background-box&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-border-style</span></code> 。OSD文本边框的样式。</p>
 </dd>
@@ -3595,11 +3605,11 @@ mpv slice://100m@appending://cap.ts
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-margin-x=&lt;size&gt;</span></code></dt><dd><p>OSD的左右屏幕边距，以缩放后的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）。</p>
 <p>这个选项指定了OSD与左边的距离，以及从右边框到长OSD文本的断开距离。</p>
-<p>默认： 16</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">16</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-margin-y=&lt;size&gt;</span></code></dt><dd><p>OSD的顶部和底部屏幕边距，以缩放后的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）。</p>
 <p>这个选项指定了OSD的垂直边距。</p>
-<p>默认： 16</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">16</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-align-x=&lt;left|center|right&gt;</span></code></dt><dd><p>控制OSD应该对齐屏幕的哪个角（默认： <code class="docutils literal notranslate"><span class="pre">left</span></code> ）。</p>
 </dd>
@@ -3613,19 +3623,29 @@ mpv slice://100m@appending://cap.ts
 <p>对于绘制用户界面元素类的脚本，建议在决定元素是否随窗口大小缩放时遵循该选项的值。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--osd-shadow-offset=&lt;size&gt;</span></code></dt><dd><p>OSD阴影的位移，以缩放后的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）。值为0时禁用阴影。</p>
-<p>默认： 0</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-shadow-offset=&lt;size&gt;</span></code></dt><dd><p>OSD阴影的位移，以缩放后的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）。值为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 时禁用阴影。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-spacing=&lt;size&gt;</span></code></dt><dd><p>水平OSD/字幕字体的间距，以缩放后的像素为单位（详见 <code class="docutils literal notranslate"><span class="pre">--sub-font-size</span></code> ）。这个值会加到正常的字母间距上。允许负值。</p>
-<p>默认： 0</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--video-osd=&lt;yes|no&gt;</span></code></dt><dd><p>在视频窗口上启用OSD渲染（默认： yes）。这可用于终端OSD是优先的情况。如果你只是想禁用所有的OSD渲染，使用 <code class="docutils literal notranslate"><span class="pre">--osd-level=0</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">--video-osd=&lt;yes|no&gt;</span></code></dt><dd><p>在视频窗口上启用OSD渲染（默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code> ）。这可用于终端OSD是优先的情况。如果你只是想禁用所有的OSD渲染，使用 <code class="docutils literal notranslate"><span class="pre">--osd-level=0</span></code></p>
 <p>它不影响字幕或由脚本创建的覆盖层（特别的是，OSC需要用 <code class="docutils literal notranslate"><span class="pre">--osc=no</span></code> 来禁用）。</p>
 <p>这个选项在某种程度上是实验性的，将来可能会被另一种机制所取代。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-font-provider=&lt;...&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-font-provider</span></code> 了解可接受的值。注意，不同于字幕，OSD从不使用来自媒体文件的内嵌字体。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--osd-fonts-dir=&lt;path&gt;</span></code></dt><dd><p>参见 <code class="docutils literal notranslate"><span class="pre">--sub-fonts-dir</span></code> 了解详情。默认为 <code class="docutils literal notranslate"><span class="pre">~~/fonts</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-glyph-limit=&lt;value&gt;</span></code></dt><dd><p>设置 libass 缓存中用于OSD的最大缓存glyphs数。0 表示 libass 使用默认值。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-bitmap-max-size=&lt;value&gt;</span></code></dt><dd><p>设置 libass 缓存中用于OSD的最大bitmap缓存大小。0 表示 libass 使用默认值。该值的单位为 MB。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-prune-delay=&lt;-1|seconds&gt;</span></code></dt><dd><p>设置 libass 内存中事件自动pruning的延迟时间。默认禁用。另见 <code class="docutils literal notranslate"><span class="pre">--sub-ass-prune-delay</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--osd-shaper=&lt;simple|complex&gt;</span></code></dt><dd><p>设置 libass 用于 OSD 的文本布局引擎。默认： <code class="docutils literal notranslate"><span class="pre">complex</span></code> 。另见 <code class="docutils literal notranslate"><span class="pre">--sub-shaper</span></code></p>
 </dd>
 </dl>
 </section>
@@ -6284,7 +6304,7 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&lt;force-scaler=auto|zimg|sws&gt;</span></code></dt><dd><p>如果适用的话，强制一个特定的缩放器后端。这是一个调试选项，随时可能消失。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&lt;alpha=auto|straight|premul&gt;</span></code></dt><dd><p>设置视频使用的透明种类。如果图像格式没有透明通道，则未定义效果（可能被忽略或导致错误，取决于mpv内部如何发展）。设置这个可能会或不会导致下游的图像处理以不同的方式处理透明度，这取决于支持的情况。使用了 <code class="docutils literal notranslate"><span class="pre">convert</span></code> 或zimg，这将转换透明。libswscale和其他FFmpeg组件会完全忽略这一点。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;alpha=auto|straight|premul|none&gt;</span></code></dt><dd><p>设置视频使用的透明种类。如果图像格式没有透明通道，则未定义效果（可能被忽略或导致错误，取决于mpv内部如何发展）。设置这个可能会或不会导致下游的图像处理以不同的方式处理透明度，这取决于支持的情况。使用了 <code class="docutils literal notranslate"><span class="pre">convert</span></code> 或zimg，这将转换透明。libswscale和其他FFmpeg组件会完全忽略这一点。 <code class="docutils literal notranslate"><span class="pre">none</span></code> 仅在 libplacebo vN.344.0 开始可用。</p>
 </dd>
 </dl>
 </dd>
@@ -6648,7 +6668,7 @@ vec4 hook() {
 </section>
 <section id="id68">
 <h2>命令接口<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h2>
-<p>mpv的核心可以用命令和属性来控制。许多与播放器交互的方式都使用它们：按键绑定（ <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> ），OSD（用属性显示信息），JSON IPC，客户端API（ <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> ），以及经典的slave mode 。</p>
+<p>mpv的核心可以用命令和属性来控制。许多与播放器交互的方式都使用它们：按键绑定（ <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> ），OSD（用属性显示信息），JSON IPC和客户端API（ <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> ）。</p>
 <section id="input-conf">
 <h3>input.conf<a class="headerlink" href="#input-conf" title="Link to this heading">¶</a></h3>
 <p>input.conf文件由一系列按键绑定的列表组成，例如:</p>
@@ -8719,10 +8739,10 @@ vec4 hook() {
 </dl>
 <p>这个属性是只读的，不支持更改提醒。目前，除了脚本添加或删除自己的绑定外，没有任何机制可以在运行时改变按键绑定。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">clipboard</span></code></dt><dd><p>剪贴板内容，只有在平台支持本地剪贴板（ <code class="docutils literal notranslate"><span class="pre">--clipboard-enable</span></code> ）时才有效。根据平台的不同，某些子属性、写入属性或更改通知目前无法使用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">clipboard</span></code></dt><dd><p>剪贴板内容。只有在平台支持本地剪贴板时才有效。根据平台的不同，某些子属性、写入属性或更改通知目前无法使用。</p>
 <p>它有许多子属性：</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">clipboard/text</span></code> (RW)</dt><dd><p>剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）。写入此属性可设置剪贴板中的文本内容（Windows 独占）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">clipboard/text</span></code> (RW)</dt><dd><p>剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）。写入此属性可设置剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">clipboard/text-primary</span></code></dt><dd><p>primary selection 中的文本内容（Wayland 和 macOS 独占）。</p>
 </dd>
@@ -9469,13 +9489,16 @@ custom_button_3_wheel_down_command=add speed -0.25
 <dt><code class="docutils literal notranslate"><span class="pre">term_clip</span></code></dt><dd><p>默认： yes</p>
 <p>是否按终端宽度截断行。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">plot_perfdata</span></code></dt><dd><p>默认： yes</p>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_perfdata</span></code></dt><dd><p>默认： no</p>
 <p>显示性能数据的图表（第2页）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_ratio</span></code></dt><dd><p>默认： yes</p>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_ratio</span></code></dt><dd><p>默认： no</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_jitter</span></code></dt><dd><p>默认： yes</p>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_vsync_jitter</span></code></dt><dd><p>默认： no</p>
 <p>显示vsync和jitter值的图表（第1页）。只有在始终显示时才显示。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plot_cache</span></code></dt><dd><p>默认： yes</p>
+<p>显示缓存值的图表（第3页）。只有在始终显示时才显示。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plot_tonemapping_lut</span></code></dt><dd><p>默认： no</p>
 <p>自动启用色调映射LUT可视化。仅在切换时启用。</p>
@@ -9649,8 +9672,8 @@ custom_button_3_wheel_down_command=add speed -0.25
 <section id="id122">
 <h4>设置选项<a class="headerlink" href="#id122" title="Link to this heading">¶</a></h4>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>使用的字体名。</p>
-<p>如果需要在网格中对齐补全，则默认使用与平台有关的等宽字体。当没有补全时，则默认使用 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">monospace_font</span></code></dt><dd><p>默认： （视系统平台而定）</p>
+<p>当在网格中对齐补全时使用的等宽字体。当没有补全时，则使用 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 24</p>
 <p>字体大小。当控制台不随窗口缩放时，该值将乘以 <code class="docutils literal notranslate"><span class="pre">display-hidpi-scale</span></code> 。</p>
@@ -9682,17 +9705,20 @@ custom_button_3_wheel_down_command=add speed -0.25
 <dt><code class="docutils literal notranslate"><span class="pre">scale_with_window</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code></p>
 <p>是否根据窗口高度缩放控制台。可以是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> 或 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，后者遵循 <code class="docutils literal notranslate"><span class="pre">--osd-scale-by-window</span></code> 的值。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">selected_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#222222</span></code></p>
-<p>选中项目的颜色。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#222222</span></code></p>
+<p>聚焦项目的颜色。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">selected_back_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
-<p>选中项目的背景颜色。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_back_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
+<p>聚焦项目的背景颜色。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">match_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#0088FF</span></code></p>
 <p>与搜索字符串匹配的字符的颜色。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： （windows为 yes ，其它平台为 no ）</p>
-<p>自动补全是否区分大小写，仅适用于 ASCII 字符。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">exact_match</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+<p>是否精确匹配菜单搜索查询，而不是模糊匹配。如果不使用此选项，在查询前加上 <code class="docutils literal notranslate"><span class="pre">'</span></code> 可临时启用精确匹配。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+<p>精确搜索匹配是否区分大小写，仅适用于 ASCII 字符。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
 <p>删除历史记录中的重复条目，只保留最新的一项。</p>
@@ -9758,25 +9784,27 @@ custom_button_3_wheel_down_command=add speed -0.25
 <p>通过 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> API，控制台可显示供浏览和选择的项目列表。 <code class="docutils literal notranslate"><span class="pre">select.lua</span></code> 是该 API 的内置client ，提供脚本命令绑定，用于收集和格式化要在控制台中选择的数据，并对所选项目进行操作。可以使用 <code class="docutils literal notranslate"><span class="pre">--load-select=no</span></code> 选项禁用它。</p>
 <section id="id129">
 <h3>按键绑定<a class="headerlink" href="#id129" title="Link to this heading">¶</a></h3>
-<p>当使用 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> 时，输入可打印字符会对显示的项目进行模糊搜索，而 <a class="reference internal" href="#id118">控制台</a> 中列出的按键绑定会被扩展为以下内容：</p>
+<p>当使用 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> 时， <a class="reference internal" href="#id118">控制台</a> 中列出的按键绑定会被扩展为以下内容：</p>
 <dl class="simple">
-<dt>ENTER, Ctrl+j, Ctrl+m</dt><dd><p>确认选择的高亮显示的项目。</p>
+<dt>ENTER, Ctrl+j, Ctrl+m</dt><dd><p>确认选择当前聚焦的项目。</p>
 </dd>
-<dt>UP, Ctrl+p</dt><dd><p>选择上面的项目，或当第一个项目被选择时选择最后一个项目。</p>
+<dt>UP, Ctrl+p</dt><dd><p>聚焦上面的项目，或当第一个项目被选择时聚焦最后一个项目。</p>
 </dd>
-<dt>DOWN, Ctrl+n</dt><dd><p>选择下面的项目，或当最后一个项目被选择时选择第一个项目。</p>
+<dt>DOWN, Ctrl+n</dt><dd><p>聚焦下面的项目，或当最后一个项目被选择时聚焦第一个项目。</p>
 </dd>
 <dt>PGUP, Ctrl+b</dt><dd><p>向上滚动一页。</p>
 </dd>
 <dt>PGDN, Ctrl+f</dt><dd><p>向下滚动一页。</p>
 </dd>
-<dt>MBTN_LEFT</dt><dd><p>确认选择的高亮显示的项目，或关闭控制台（如果在菜单矩形外点击）。</p>
+<dt>MBTN_LEFT</dt><dd><p>确认选择光标下的项目，或关闭控制台（如果在菜单矩形外点击）。</p>
 </dd>
 <dt>WHEEL_UP</dt><dd><p>向上滚动。</p>
 </dd>
 <dt>WHEEL_DOWN</dt><dd><p>向下滚动。</p>
 </dd>
 </dl>
+<p>输入可打印字符会对显示的项目进行模糊搜索。</p>
+<p>如果查询以 <code class="docutils literal notranslate"><span class="pre">'</span></code> 开头，则只过滤完全匹配的项目。你也可以指定多个以空格分隔的搜索条件，只有符合所有条件的项目才会被过滤。</p>
 </section>
 <section id="id130">
 <h3>脚本命令绑定<a class="headerlink" href="#id130" title="Link to this heading">¶</a></h3>

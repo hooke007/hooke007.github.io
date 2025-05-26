@@ -353,8 +353,8 @@
 <section id="id5">
 <h3>设置选项<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">font</span></code></dt><dd><p>使用的字体名。</p>
-<p>如果需要在网格中对齐补全，则默认使用与平台有关的等宽字体。当没有补全时，则默认使用 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">monospace_font</span></code></dt><dd><p>默认： （视系统平台而定）</p>
+<p>当在网格中对齐补全时使用的等宽字体。当没有补全时，则使用 <code class="docutils literal notranslate"><span class="pre">--osd-font</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 24</p>
 <p>字体大小。当控制台不随窗口缩放时，该值将乘以 <code class="docutils literal notranslate"><span class="pre">display-hidpi-scale</span></code> 。</p>
@@ -386,17 +386,20 @@
 <dt><code class="docutils literal notranslate"><span class="pre">scale_with_window</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code></p>
 <p>是否根据窗口高度缩放控制台。可以是 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> 或 <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，后者遵循 <code class="docutils literal notranslate"><span class="pre">--osd-scale-by-window</span></code> 的值。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">selected_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#222222</span></code></p>
-<p>选中项目的颜色。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#222222</span></code></p>
+<p>聚焦项目的颜色。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">selected_back_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
-<p>选中项目的背景颜色。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_back_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
+<p>聚焦项目的背景颜色。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">match_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#0088FF</span></code></p>
 <p>与搜索字符串匹配的字符的颜色。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： （windows为 yes ，其它平台为 no ）</p>
-<p>自动补全是否区分大小写，仅适用于 ASCII 字符。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">exact_match</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+<p>是否精确匹配菜单搜索查询，而不是模糊匹配。如果不使用此选项，在查询前加上 <code class="docutils literal notranslate"><span class="pre">'</span></code> 可临时启用精确匹配。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">case_sensitive</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+<p>精确搜索匹配是否区分大小写，仅适用于 ASCII 字符。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history_dedup</span></code></dt><dd><p>默认： yes</p>
 <p>删除历史记录中的重复条目，只保留最新的一项。</p>

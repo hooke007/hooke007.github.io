@@ -271,7 +271,7 @@
         <article role="main" id="furo-main-content">
           <section id="id1">
 <h1>命令接口<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>mpv的核心可以用命令和属性来控制。许多与播放器交互的方式都使用它们：按键绑定（ <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> ），OSD（用属性显示信息），JSON IPC，客户端API（ <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> ），以及经典的slave mode 。</p>
+<p>mpv的核心可以用命令和属性来控制。许多与播放器交互的方式都使用它们：按键绑定（ <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> ），OSD（用属性显示信息），JSON IPC和客户端API（ <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> ）。</p>
 <section id="input-conf">
 <h2>input.conf<a class="headerlink" href="#input-conf" title="Link to this heading">¶</a></h2>
 <p>input.conf文件由一系列按键绑定的列表组成，例如:</p>
@@ -2342,10 +2342,10 @@
 </dl>
 <p>这个属性是只读的，不支持更改提醒。目前，除了脚本添加或删除自己的绑定外，没有任何机制可以在运行时改变按键绑定。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">clipboard</span></code></dt><dd><p>剪贴板内容，只有在平台支持本地剪贴板（ <code class="docutils literal notranslate"><span class="pre">--clipboard-enable</span></code> ）时才有效。根据平台的不同，某些子属性、写入属性或更改通知目前无法使用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">clipboard</span></code></dt><dd><p>剪贴板内容。只有在平台支持本地剪贴板时才有效。根据平台的不同，某些子属性、写入属性或更改通知目前无法使用。</p>
 <p>它有许多子属性：</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">clipboard/text</span></code> (RW)</dt><dd><p>剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）。写入此属性可设置剪贴板中的文本内容（Windows 独占）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">clipboard/text</span></code> (RW)</dt><dd><p>剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）。写入此属性可设置剪贴板中的文本内容（Windows, Wayland 和 macOS 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">clipboard/text-primary</span></code></dt><dd><p>primary selection 中的文本内容（Wayland 和 macOS 独占）。</p>
 </dd>
