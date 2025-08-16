@@ -281,21 +281,21 @@
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>参见 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 获取已编译的视频输出驱动的列表。</p>
-<p><code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 是默认的推荐的输出驱动。其他所有的驱动都是为了兼容性或特定场景。如果默认值无效，它将回退到其他驱动（优先顺序和 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 列出的相同）。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 是默认的推荐的输出驱动。其他所有的驱动都是为了兼容性或特定场景。如果默认值无效，它将回退到其他驱动（优先顺序和 <code class="docutils literal notranslate"><span class="pre">--vo=help</span></code> 列出的相同）。</p>
 <p>请注意，默认视频输出驱动程序可能会发生变化，不得依赖。如果需要使用某个VO（例如 对于 <code class="docutils literal notranslate"><span class="pre">libmpv</span></code> rendering API），则必须显式指定该VO。</p>
 </div>
 <p>可用的视频输出驱动有：</p>
 <dl>
+<dt><code class="docutils literal notranslate"><span class="pre">gpu-next</span></code></dt><dd><p>基于 <code class="docutils literal notranslate"><span class="pre">libplacebo</span></code> 的视频渲染器。它几乎支持与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 相同的功能集。具体列表参见 <a href="#id4"><span class="problematic" id="id5">`GPU渲染选项`_</span></a></p>
+<p>通常应该更快且质量更高，同时实现了 <code class="docutils literal notranslate"><span class="pre">gpu-next</span></code> 的一些特定特性，但某些特性可能被有意省略，或与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 存在功能差异。有关已知差异和错误的列表，参见此处：</p>
+<p><a class="reference external" href="https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU">https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU</a></p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">gpu</span></code></dt><dd><p>通用的可定制的、GPU加速的视频输出驱动。它支持扩展缩放方式、抖动、色彩管理、自定义着色器、HDR等。</p>
-<p>参见 <a href="#id4"><span class="problematic" id="id5">`GPU渲染选项`_</span></a> ，了解该视频输出的特定选项。</p>
+<p>参见 <a href="#id6"><span class="problematic" id="id7">`GPU渲染选项`_</span></a> ，了解该视频输出的特定选项。</p>
 <p>默认情况下，mpv使用平衡质量和性能的设置。此外，还有两个预定义的配置文件可用： <code class="docutils literal notranslate"><span class="pre">fast</span></code> 用于最大性能， <code class="docutils literal notranslate"><span class="pre">high-quality</span></code> 用于优越的渲染质量。您可以使用 <code class="docutils literal notranslate"><span class="pre">--profile=&lt;name&gt;</span></code> 选项应用特定的配置文件，并使用 <code class="docutils literal notranslate"><span class="pre">--show-profile=&lt;name&gt;</span></code> 来查看其内容。</p>
 <p>这个视频输出虚拟了几个可能的图形API和窗口环境，可以用 <code class="docutils literal notranslate"><span class="pre">--gpu-api</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context</span></code> 选项来影响它们。</p>
 <p>OpenGL-interop的硬件解码在一定程度上受支持。请注意在这种模式下，一些边缘情况可能无法被良好处理，并且色彩空间转换和色度还原通常由硬解码API负责。</p>
 <p><code class="docutils literal notranslate"><span class="pre">gpu</span></code> 默认使用FBOs。有时你可以通过改变选项 <code class="docutils literal notranslate"><span class="pre">--fbo-format</span></code> 为 <code class="docutils literal notranslate"><span class="pre">rgb16f</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb32f</span></code> 或 <code class="docutils literal notranslate"><span class="pre">rgb</span></code> 来达到更好的质量或性能。已知的问题包括Mesa/Intel不接受 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> ，Mesa有时不支持浮点纹理，以及一些macOS的设置在使用 <code class="docutils literal notranslate"><span class="pre">rgb16</span></code> 时非常慢，但使用``rgb32f``时非常快。如果你存在运行问题，也可以尝试启用 <code class="docutils literal notranslate"><span class="pre">--gpu-dumb-mode=yes</span></code> 选项。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">gpu-next</span></code></dt><dd><p>基于 <code class="docutils literal notranslate"><span class="pre">libplacebo</span></code> 的实验性视频渲染器。它几乎支持与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 相同的功能集。列表参见 <a href="#id6"><span class="problematic" id="id7">`GPU渲染选项`_</span></a></p>
-<p>通常应该更快，质量更高，但有些功能可能仍然缺失或运行异常。期待（并报告！）错误。有关已知差异和错误的列表，参见此处：</p>
-<p><a class="reference external" href="https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU">https://github.com/mpv-player/mpv/wiki/GPU-Next-vs-GPU</a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">xv</span></code> （X11独占）</dt><dd><p>使用XVideo扩展来启用硬件加速显示。这是在X上兼容性最好的视频输出驱动，但可能质量低下，而且在OSD和字幕显示方面存在问题。</p>
 <div class="admonition note">
