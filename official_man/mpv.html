@@ -614,7 +614,7 @@
 <td><p>macOS bundle的资源路径（macOS独占）</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">~~desktop/</span></code></p></td>
-<td><p>桌面的路径（win32 macOS）</p></td>
+<td><p>桌面的路径</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">~~exe_dir/</span></code></p></td>
 <td><p>win32独占：包含mpv.exe的目录路径（用于设置文件； <code class="docutils literal notranslate"><span class="pre">$MPV_HOME</span></code> 会覆盖它）</p></td>
@@ -3118,7 +3118,7 @@ mpv slice://100m@appending://cap.ts
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-rgba-osd-rendering</span></code></dt><dd><p>改变一些视频输出渲染OSD和文本字幕的方式。这并不改变字幕的外观，只对性能有影响。对于支持原生ASS渲染的视频输出（如 <code class="docutils literal notranslate"><span class="pre">gpu</span></code>, <code class="docutils literal notranslate"><span class="pre">vdpau</span></code>, <code class="docutils literal notranslate"><span class="pre">direct3d</span></code> ），这可能会稍快或稍慢，取决于GPU驱动和硬件。对于其它视频输出，这只会使渲染变慢。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--force-render</span></code></dt><dd><p>不论窗口的可见性，强制mpv始终渲染帧。目前只影响X11和Wayland视频输出驱动，因为只有它们具有这种优化（即其它的输出都是不考虑可见性进行渲染）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--force-render</span></code></dt><dd><p>不论窗口的可见性，强制mpv始终渲染帧。目前只影响 X11 和 Wayland 和 macvk 视频输出驱动，因为只有它们具有这种优化（即其它的输出都是不考虑可见性进行渲染）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-window-position</span></code></dt><dd><p>每当视频参数、视频流或文件有变化时，强制将mpv的视频输出窗口移到默认位置。这曾经是默认行为。目前只影响到 X11 macvk 和 SDL 视频输出驱动。</p>
 </dd>
@@ -8153,7 +8153,7 @@ though not the other way around.</p>
 <p>如果可能的话，对它的写入可以改变当前使用的硬件解码器（在内部，播放器可能会重新初始化解码器，并将执行一次跳转以正确刷新视频）。你可以关注其他的hwdec属性来观察这是否成功。</p>
 <p>与mpv0.9.x及之前的版本不同的是，这并不返回当前激活的硬件解码器。从mpv0.18.0开始， <code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code> 可用于此目的。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code></dt><dd><p>当前正在使用的硬件解码。如果解码是激活的，返回 <code class="docutils literal notranslate"><span class="pre">hwdec</span></code> 选项/属性所使用的值之一。 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false表示软件解码。如果没有加载解码器，该属性不可用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code></dt><dd><p>当前正在使用的硬件解码。如果解码是激活的，返回 <code class="docutils literal notranslate"><span class="pre">hwdec</span></code> 选项/属性所使用的值之一。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 表示软件解码。如果没有加载解码器，该属性不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">hwdec-interop</span></code></dt><dd><p>这将返回当前加载的硬件解码/输出interop驱动程序。这只有在视频输出程序被打开后才知道（也可能是后来）。对于某些视频输出（如 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> ），这可能永远不会提前知道，而只在解码器成功尝试创建硬件解码器时才知道（使用 <code class="docutils literal notranslate"><span class="pre">--gpu-hwdec-interop</span></code> 可以加急加载）。如果有多个驱动程序被加载，它们将以 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔。</p>
 <p>如果没有视频输出被激活或没有已知的interop驱动，这个属性就不可用。</p>

@@ -272,6 +272,9 @@
           <section id="id1">
 <h1>配置预设<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p><em>ver.20231101</em></p>
+<blockquote>
+<div><p><strong>该系列文档已经停止更新</strong> 详见： <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/issues/573">中止维护非官方系列文档</a></p>
+</div></blockquote>
 <section id="id2">
 <h2>序<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>阅读本文前默认已基本熟悉 mpv.conf 内各参数的用途及含义。</p>
@@ -319,7 +322,7 @@
 <span class="na">deband</span><span class="o">=</span><span class="s">yes</span>
 </pre></div>
 </div>
-<p>P.S. mpv还有其它内建profile，详见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/42">《profiles_补充内容》</a></p>
+<p>P.S. mpv还有其它内建profile，详见 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/discussions/42">《profiles_补充内容》</a></p>
 <p>因此，上方示例实际被解析为如下常驻参数列表 ——</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">### 常驻参数</span>
 <span class="na">vo</span><span class="o">=</span><span class="s">gpu</span>
@@ -375,7 +378,7 @@
 <li><p>若需某个属性的等于某个具体值时触发，对应条件就这样写： <code class="docutils literal notranslate"><span class="pre">p[&quot;xxxx&quot;]==&quot;value&quot;</span></code></p></li>
 <li><p>若需某个属性值（数字）大于等于某数值时触发（以音量为例），对应条件就这样写： <code class="docutils literal notranslate"><span class="pre">p[&quot;volume&quot;]&gt;=50</span></code></p></li>
 </ul>
-<p>P.S. 更多示例参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/profiles.conf">主仓库_profiles</a></p>
+<p>P.S. 更多示例参见 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/blob/main/portable_config/profiles.conf">主仓库_profiles</a></p>
 <p>P.S. 常见的引用属性的方式是直接写属性名和 <code class="docutils literal notranslate"><span class="pre">p.xxxx</span></code> 的形式（参见前文的示范），这种方式适合名字简单无符号的属性，不用担心语法上的暗病。</p>
 </section>
 <section id="restore">
@@ -397,7 +400,7 @@
 <span class="na">hwdec</span><span class="o">=</span><span class="s">auto</span><span class="w">                         </span><span class="c1"># 此行往后填写要你要应用的参数，自定义</span>
 </pre></div>
 </div>
-<p>它的功能有限，通常没有使用的必要而且可以转换为当前的 条件profile ，这在之前的 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/42">《profiles_补充内容》</a> 有记录。</p>
+<p>它的功能有限，通常没有使用的必要而且可以转换为当前的 条件profile ，这在之前的 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/discussions/42">《profiles_补充内容》</a> 有记录。</p>
 </section>
 <section id="id8">
 <h3>3.2.profile嵌套<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
@@ -424,7 +427,7 @@
 <h3>3.3.隔离profile<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <p>这也是我当前在 mpv-lazy 中的处理方式，避免开头提到的 常驻参数 误入profile的问题。<br />
 实现方式是通过在mpv.conf中使用参数 <code class="docutils literal notranslate"><span class="pre">--include=xxxx.conf</span></code> 这样mpv就会在主设置文件读取完毕后，再读取该文件作为 mpv.conf 的补充内容，而我只在该文件内写profile，常驻参数只写在 mpv.conf 中。</p>
-<p>P.S. 我以同样的方式隔离了脚本选项，参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/126">《集中化管理mpv的脚本选项》</a></p>
+<p>P.S. 我以同样的方式隔离了脚本选项，参见 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/discussions/126">《集中化管理mpv的脚本选项》</a></p>
 </section>
 <section id="id10">
 <h3>3.4.穿插常驻参数<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>

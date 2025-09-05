@@ -272,6 +272,9 @@
           <section id="id1">
 <h1>第三方用户着色器<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p><em>ver.20231101</em></p>
+<blockquote>
+<div><p><strong>该系列文档已经停止更新</strong> 详见： <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/issues/573">中止维护非官方系列文档</a></p>
+</div></blockquote>
 <section id="id2">
 <h2>起<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>我选择主设置文件夹下新建的 <strong>shaders</strong> 目录下放置第三方着色器，常见后缀名为 .glsl .hook<br />
@@ -286,7 +289,7 @@
 </section>
 <section id="id3">
 <h2>...<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>🔺 如果下方列出的着色器未在整合包中找到，前往 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/tree/main/portable_config/shaders"><strong>此处</strong></a> 搜寻获取。<br />
+<p>🔺 如果下方列出的着色器未在整合包中找到，前往 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/tree/main/portable_config/shaders"><strong>此处</strong></a> 搜寻获取。<br />
 🔺 我统一修改了2x 3x 4x放大类着色器的最小缩放倍率限制，与上游的原始版本不同。
 🔺 名字中含有 next 的变体，指仅能在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 的条件下( mpv.conf )使用</p>
 <p>☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲</p>
@@ -874,11 +877,11 @@ YIQ_converter.glsl                   -- YIQ转换，过饱和
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CTRL</span><span class="o">+</span><span class="mi">1</span> <span class="n">change</span><span class="o">-</span><span class="nb">list</span> <span class="n">glsl</span><span class="o">-</span><span class="n">shaders</span> <span class="nb">set</span> <span class="s2">&quot;~~/shaders/KrigBilateral.glsl;~~/shaders/ravu_zoom_r3.glsl;~~/shaders/AMD_CAS_lite_luma.glsl&quot;</span>
 </pre></div>
 </div>
-<p>其它示例可参考仓库内 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/blob/main/portable_config/input_list.conf"><strong>input.conf</strong></a> 的“着色器列表”部分。</p>
+<p>其它示例可参考仓库内 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/blob/main/portable_config/input_list.conf"><strong>input.conf</strong></a> 的“着色器列表”部分。</p>
 </section>
 <section id="id8">
 <h2>速度的对比参考<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
-<p>🔺 （此节的信息已过时。我对部分着色器的跑分测试参见 <a class="reference external" href="https://github.com/hooke007/MPV_lazy/discussions/255#discussioncomment-4685344">此处</a>）</p>
+<p>🔺 （此节的信息已过时。我对部分着色器的跑分测试参见 <a class="reference external" href="https://github.com/hooke007/mpv_PlayKit/discussions/255#discussioncomment-4685344">此处</a>）</p>
 <p>使用个别着色器进行两倍放大，计算每秒所能生成的最大帧数。数值越大说明速度越快，越适合实际观看时使用，数值低于视频原始帧率即完全不可用。<br />
 实际速度<strong>极大</strong>取决于视频的质量、缩放倍率和你的显卡性能，因此两表中同一个 fsrcnnx16 的性能结果差异不符合常理也不奇怪，数据仅供大概参考。</p>
 <p><em>数据来源 GitHub&#64;Alexkral(NVIDIA GTX 1080)</em></p>

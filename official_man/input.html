@@ -1626,7 +1626,7 @@
 <p>如果可能的话，对它的写入可以改变当前使用的硬件解码器（在内部，播放器可能会重新初始化解码器，并将执行一次跳转以正确刷新视频）。你可以关注其他的hwdec属性来观察这是否成功。</p>
 <p>与mpv0.9.x及之前的版本不同的是，这并不返回当前激活的硬件解码器。从mpv0.18.0开始， <code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code> 可用于此目的。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code></dt><dd><p>当前正在使用的硬件解码。如果解码是激活的，返回 <code class="docutils literal notranslate"><span class="pre">hwdec</span></code> 选项/属性所使用的值之一。 <code class="docutils literal notranslate"><span class="pre">no</span></code> /false表示软件解码。如果没有加载解码器，该属性不可用。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">hwdec-current</span></code></dt><dd><p>当前正在使用的硬件解码。如果解码是激活的，返回 <code class="docutils literal notranslate"><span class="pre">hwdec</span></code> 选项/属性所使用的值之一。 <code class="docutils literal notranslate"><span class="pre">no</span></code> 表示软件解码。如果没有加载解码器，该属性不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">hwdec-interop</span></code></dt><dd><p>这将返回当前加载的硬件解码/输出interop驱动程序。这只有在视频输出程序被打开后才知道（也可能是后来）。对于某些视频输出（如 <code class="docutils literal notranslate"><span class="pre">gpu</span></code> ），这可能永远不会提前知道，而只在解码器成功尝试创建硬件解码器时才知道（使用 <code class="docutils literal notranslate"><span class="pre">--gpu-hwdec-interop</span></code> 可以加急加载）。如果有多个驱动程序被加载，它们将以 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔。</p>
 <p>如果没有视频输出被激活或没有已知的interop驱动，这个属性就不可用。</p>
