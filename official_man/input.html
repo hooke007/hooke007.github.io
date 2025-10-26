@@ -992,15 +992,20 @@
 <dt><code class="docutils literal notranslate"><span class="pre">screenshot</span> <span class="pre">[&lt;flags&gt;]</span></code></dt><dd><p>拍摄屏幕截图。</p>
 <p>有多个标志可供选择（有些可与 <code class="docutils literal notranslate"><span class="pre">+</span></code> 组合）：</p>
 <dl class="simple">
-<dt>&lt;subtitles&gt; （默认）</dt><dd><p>以原始分辨率保存视频图像，带有字幕。在某些情况下，一些视频输出可能仍然包括OSD。</p>
+<dt>&lt;video&gt;</dt><dd><p>以原始分辨率保存视频图像，不包含OSD或字幕。当未指定任何标志时，此为默认设置，与其他标志组合使用时无需显式添加。</p>
 </dd>
-<dt>&lt;video&gt;</dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">subtitles</span></code> ，但通常没有OSD或字幕。具体行为取决于所选的视频输出。</p>
+<dt>&lt;scaled&gt;</dt><dd><p>以当前的播放分辨率保存视频图像。</p>
 </dd>
-<dt>&lt;window&gt;</dt><dd><p>保存mpv窗口的内容。通常视频是缩放过的，有OSD和字幕。具体行为取决于所选的视频输出。</p>
+<dt>&lt;subtitles&gt; （默认）</dt><dd><p>保存视频图像，带有字幕。在某些情况下，一些VO可能仍然包括OSD。</p>
+</dd>
+<dt>&lt;osd&gt;</dt><dd><p>保存视频图像和OSD。</p>
+</dd>
+<dt>&lt;window&gt;</dt><dd><p>保存mpv窗口的内容。带有OSD和字幕。这是 <code class="docutils literal notranslate"><span class="pre">scaled+subtitles+osd</span></code> 的别名。</p>
 </dd>
 <dt>&lt;each-frame&gt;</dt><dd><p>每一帧截一次屏。再次发出这个命令可以停止截图。注意，使用这种模式时，你应该禁用frame-dropping功能 —— 否则在丢帧的情况下，你可能会收到重复的图像。这个标志可以和其他标志结合使用，例如 <code class="docutils literal notranslate"><span class="pre">video+each-frame</span></code></p>
 </dd>
 </dl>
+<p>除 <code class="docutils literal notranslate"><span class="pre">each-frame</span></code> 之外的所有标志的实际行为取决于所选的视频输出。</p>
 <p>旧版本mpv需要把 <code class="docutils literal notranslate"><span class="pre">single</span></code> 和 <code class="docutils literal notranslate"><span class="pre">each-frame</span></code> 作为第二个参数传递（且无标志）。这种语法仍然可以被解析，但已经过时，将来可能会被移除。</p>
 <p>如果你使用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 把这个命令和另一个命令结合起来，你可以使用 <code class="docutils literal notranslate"><span class="pre">async</span></code> 标志来使编码/写入图像文件成为异步的。对于普通的独立命令，它总是异步的，这个标志没有影响。（该行为在mpv0.29.0中被更改）</p>
 <p>成功后，将返回一个带有 <code class="docutils literal notranslate"><span class="pre">filename</span></code> 字段，设为保存的屏幕截图位置的 <code class="docutils literal notranslate"><span class="pre">mpv_node</span></code> 。</p>
@@ -1010,7 +1015,7 @@
 <p>如果文件已存在，它将被覆盖写入。</p>
 <p>像所有的输入命令参数一样，文件名符合属性扩展，如 <a class="reference internal" href="#id34">属性扩展</a> 中所述。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">screenshot-raw</span> <span class="pre">[&lt;flags&gt;</span> <span class="pre">[&lt;format&gt;]]</span></code></dt><dd><p>在内存中返回一个屏幕截图。这只能通过client API使用。这个命令返回的MPV_FORMAT_NODE_MAP的 <code class="docutils literal notranslate"><span class="pre">w</span></code> , <code class="docutils literal notranslate"><span class="pre">h</span></code> , <code class="docutils literal notranslate"><span class="pre">stride</span></code> 字段被设置为明显的内容。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">screenshot-raw</span> <span class="pre">[&lt;flags&gt;</span> <span class="pre">[&lt;format&gt;]]</span></code></dt><dd><p>返回屏幕截图到内存中。此功能仅可通过客户端API或使用 <code class="docutils literal notranslate"><span class="pre">mp.command_native</span></code> 的脚本调用。本命令返回的 MPV_FORMAT_NODE_MAP 对象中， <code class="docutils literal notranslate"><span class="pre">w</span></code> <code class="docutils literal notranslate"><span class="pre">h</span></code> <code class="docutils literal notranslate"><span class="pre">stride</span></code> 字段已设置为明显内容。</p>
 <p><code class="docutils literal notranslate"><span class="pre">format</span></code> 字段设置为截图图像数据格式。这可以由 <code class="docutils literal notranslate"><span class="pre">format</span></code> 参数控制。格式可以是以下之一：</p>
 <dl class="simple">
 <dt>bgr0 （默认）</dt><dd><p>该格式的组织形式为 <code class="docutils literal notranslate"><span class="pre">B8G8R8X8</span></code> （其中 <code class="docutils literal notranslate"><span class="pre">B</span></code> 为 LSB）。填充 <code class="docutils literal notranslate"><span class="pre">X</span></code> 的内容未定义。</p>
@@ -1788,7 +1793,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">focused</span></code></dt><dd><p>窗口是否处于焦点。可能并非所有视频输出驱动都支持。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ambient-light</span></code></dt><dd><p>环境照明条件，以lux为单位。（macOS 独占）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ambient-light</span></code></dt><dd><p>环境照明条件，以lux为单位。仅在 macOS 上可被观察（macOS 和 Linux 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">display-names</span></code></dt><dd><p>mpv窗口所包含的显示器的名称。在X11上，这些是xrandr名称（LVDS1, HDMI1, DP1, VGA1, 等等）。在Windows上，这些是GDI名称（\.DISPLAY1，\.DISPLAY2，等等），列表中的第一个显示器将是Windows认为与该窗口相关的（由MonitorFromWindow API决定）。在 macOS 上，这些名称是系统信息中使用的显示产品名称，括号内为序列号，由于一个窗口只能在一个屏幕上显示，因此只返回一个显示名称。在 Wayland 上，如果使用的协议版本 &gt;= 4（LVDS-1、HDMI-A-1、X11-1 等），这些是 wl_output 名称；如果使用的协议版本 &lt;4，这些是 geometry 事件报告的 wl_output 模型。</p>
 </dd>
@@ -2365,7 +2370,35 @@
 <dt><code class="docutils literal notranslate"><span class="pre">profile-list</span></code></dt><dd><p>配置预设和其内容的列表。这是高度特定于此的实现，并可能随时改变。目前，它为每个配置预设返回一个选项数组。每个选项有一个名称和一个值，目前值总是一个字符串。请注意，选项数组不是一个表，因为顺序很重要，有可能出现重复的条目。递归的配置预设不被展开，并显示为特殊的 <code class="docutils literal notranslate"><span class="pre">profile</span></code> 选项。</p>
 <p>如果 <code class="docutils literal notranslate"><span class="pre">profile</span> <span class="pre">restore</span></code> 字段包含默认值（可能是因为它没有设置，或者显式设置为 <code class="docutils literal notranslate"><span class="pre">default</span></code> ），则当前缺少该字段，但将来可能会包含值 <code class="docutils literal notranslate"><span class="pre">default</span></code> 。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">command-list</span></code></dt><dd><p>输入命令的列表。这将返回一个数组表，其中每个表节点代表一个命令。这个表目前只有一个条目。 <code class="docutils literal notranslate"><span class="pre">name</span></code> 代表命令的名称（这个属性应该是对 <code class="docutils literal notranslate"><span class="pre">--input-cmdlist</span></code> 的替代。该选项转储了一些更多的信息，但如果需要的话，扩展这个属性是一个有效的功能请求）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">command-list</span></code></dt><dd><p>输入命令列表。该列表返回一个映射数组，其中每个映射节点代表一条命令。该映射包含以下条目：</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>命令名称。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vararg</span></code></dt><dd><p>该命令是否接受可变数量的参数。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">args</span></code></dt><dd><p>一个映射数组，其中每个映射节点代表一个参数，包含以下条目：</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>参数名称。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>参数类型名称，如 <code class="docutils literal notranslate"><span class="pre">String</span></code> 或 <code class="docutils literal notranslate"><span class="pre">Integer</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">optional</span></code></dt><dd><p>参数是否为可选参数。</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>当使用客户端API通过 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE</span></code> 查询属性，或通过Lua的 <code class="docutils literal notranslate"><span class="pre">mp.get_property_native</span></code> 查询时，将返回一个包含以下内容的 mpv_node 对象：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MPV_FORMAT_NODE_ARRAY</span>
+    <span class="n">MPV_FORMAT_NODE_MAP</span> <span class="p">(</span><span class="k">for</span> <span class="n">each</span> <span class="n">command</span> <span class="n">entry</span><span class="p">)</span>
+        <span class="s2">&quot;name&quot;</span>    <span class="n">MPV_FORMAT_STRING</span>
+        <span class="s2">&quot;vararg&quot;</span>  <span class="n">MPV_FORMAT_FLAG</span>
+        <span class="s2">&quot;args&quot;</span>    <span class="n">MPV_FORMAT_NODE_ARRAY</span>
+            <span class="n">MPV_FORMAT_NODE_MAP</span>
+                <span class="s2">&quot;name&quot;</span>     <span class="n">MPV_FORMAT_STRING</span>
+                <span class="s2">&quot;type&quot;</span>     <span class="n">MPV_FORMAT_STRING</span>
+                <span class="s2">&quot;optional&quot;</span> <span class="n">MPV_FORMAT_FLAG</span>
+</pre></div>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">input-bindings</span></code></dt><dd><p>当前输入按键键绑定的列表。这将返回一个数组，其中每个表节点代表一个单一的按键键/命令的绑定。这个表有以下条目：</p>
 <dl class="simple">

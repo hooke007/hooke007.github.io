@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
 
     <link rel="shortcut icon" href="../_static/html_favicon.png"/><!-- Generated with Sphinx 8.2.1 and Furo 2024.08.06 -->
-        <title>选择器 - mpv_CFanStation</title>
+        <title>上下文菜单脚本 - mpv_CFanStation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -249,7 +249,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/official_man/select.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/official_man/context_menu.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -270,103 +270,62 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="id1">
-<h1>选择器<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>通过 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> API，控制台可显示供浏览和选择的项目列表。 <code class="docutils literal notranslate"><span class="pre">select.lua</span></code> 是该 API 的内置client ，提供脚本命令绑定，用于收集和格式化要在控制台中选择的数据，并对所选项目进行操作。可以使用 <code class="docutils literal notranslate"><span class="pre">--load-select=no</span></code> 选项禁用它。</p>
+<h1>上下文菜单脚本<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>此脚本为未集成原生上下文菜单的平台提供替代方案。在这些平台上，可通过 <code class="docutils literal notranslate"><span class="pre">--load-context-menu=no</span></code> 选项完全禁用该功能。而在已实现原生集成的平台上，该功能默认处于禁用状态。</p>
 <section id="id2">
-<h2>按键绑定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>当使用 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> 时， <a href="#id8"><span class="problematic" id="id9">`控制台`_</span></a> 中列出的按键绑定会被扩展为以下内容：</p>
+<h2>脚本消息<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <dl class="simple">
-<dt>ENTER, Ctrl+j, Ctrl+m</dt><dd><p>确认选择当前聚焦的项目。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">open</span></code></dt><dd><p>显示上下文菜单。</p>
 </dd>
-<dt>UP, Ctrl+p</dt><dd><p>聚焦上面的项目，或当第一个项目被选择时聚焦最后一个项目。</p>
-</dd>
-<dt>DOWN, Ctrl+n</dt><dd><p>聚焦下面的项目，或当最后一个项目被选择时聚焦第一个项目。</p>
-</dd>
-<dt>PGUP, Ctrl+b</dt><dd><p>向上滚动一页。</p>
-</dd>
-<dt>PGDN, Ctrl+f</dt><dd><p>向下滚动一页。</p>
-</dd>
-<dt>Ctrl+y</dt><dd><p>将聚焦的项目复制到剪贴板。</p>
-</dd>
-<dt>MBTN_LEFT</dt><dd><p>确认选择光标下的项目，或关闭控制台（如果在菜单矩形外点击）。</p>
-</dd>
-<dt>WHEEL_UP</dt><dd><p>向上滚动。</p>
-</dd>
-<dt>WHEEL_DOWN</dt><dd><p>向下滚动。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">select</span></code></dt><dd><p>当存在聚焦项时，选择该条目。</p>
 </dd>
 </dl>
-<p>输入可打印字符会对显示的项目进行模糊搜索。</p>
-<p>如果查询以 <code class="docutils literal notranslate"><span class="pre">'</span></code> 开头，则只过滤完全匹配的项目。你也可以指定多个以空格分隔的搜索条件，只有符合所有条件的项目才会被过滤。</p>
 </section>
 <section id="id3">
-<h2>脚本命令绑定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>默认情况下，select.lua 的脚本命令绑定会被绑定到 <a href="#id10"><span class="problematic" id="id11">`键盘控制`_</span></a> 中列出的以 <code class="docutils literal notranslate"><span class="pre">g</span></code> 开头的按键序列。下面列出的脚本命令绑定名称，可用于将它们绑定到不同的按键上。</p>
-<div class="admonition-input-conf admonition">
-<p class="admonition-title">示例：在 input.conf 中重新绑定播放列表选择</p>
-<p>Ctrl+p script-binding select/select-playlist</p>
-</div>
-<p>可用的脚本命令绑定：</p>
-<dl>
-<dt><code class="docutils literal notranslate"><span class="pre">select-playlist</span></code></dt><dd><p>选择一个播放列表条目。 <code class="docutils literal notranslate"><span class="pre">--osd-playlist-entry</span></code> 决定播放列表条目的格式。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-sid</span></code></dt><dd><p>选择一个字幕轨道，或禁用当前的轨道。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-secondary-sid</span></code></dt><dd><p>选择一个次字幕轨道，或禁用当前的轨道。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-aid</span></code></dt><dd><p>选择一个音频轨道，或禁用当前的轨道。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-vid</span></code></dt><dd><p>选择一个视频轨道，或禁用当前的轨道。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-track</span></code></dt><dd><p>选择一个任意类型轨道，或禁用当前的轨道。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-chapter</span></code></dt><dd><p>选择一个章节。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-edition</span></code></dt><dd><p>选择一个 MKV edition 或 DVD/Blu-ray 标题。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-subtitle-line</span></code></dt><dd><p>选择要查找的字幕行。此功能不适用于图像字幕。</p>
-<p>当前，这需要在 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 或在 Windows 下与 mpv 位于同一文件夹中的 <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> 。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-audio-device</span></code></dt><dd><p>选择一个音频设备。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-watch-history</span></code></dt><dd><p>从稍后观看历史记录中选择文件。需要 <code class="docutils literal notranslate"><span class="pre">--save-watch-history</span></code></p>
-<p>如果尚未使用 <code class="docutils literal notranslate"><span class="pre">--autocreate-playlist</span></code> ，建议使用此脚本命令绑定启用它，以便用条目目录中的其它文件填充播放列表。</p>
-<div class="admonition-input-conf admonition">
-<p class="admonition-title">示例：编辑 input.conf 以播放与历史条目相邻文件</p>
-<p>g-h script-binding select/select-watch-history; no-osd set autocreate-playlist filter</p>
-</div>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-watch-later</span></code></dt><dd><p>从稍后观看配置文件（参见 <a href="#id12"><span class="problematic" id="id13">`恢复播放`_</span></a> ）中选择一个文件继续播放。需要 <code class="docutils literal notranslate"><span class="pre">--write-filename-in-watch-later-config</span></code> 。这与 <code class="docutils literal notranslate"><span class="pre">--ignore-path-in-watch-later-config</span></code> 无关。</p>
-<p>如果尚未使用 <code class="docutils literal notranslate"><span class="pre">--autocreate-playlist</span></code> ，建议使用此脚本命令绑定启用它，以便用条目目录中的其它文件填充播放列表。</p>
-<div class="admonition-input-conf admonition">
-<p class="admonition-title">示例：编辑 input.conf 以播放与历史条目相邻文件</p>
-<p>g-w script-binding select/select-watch-later; no-osd set autocreate-playlist filter</p>
-</div>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">select-binding</span></code></dt><dd><p>列出已定义的输入绑定。你还可以选择一个来运行相关命令。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">show-properties</span></code></dt><dd><p>列出所有属性的名称和值。你还可以选择一个属性，在 OSD 上输出其值，这对被裁切的长值非常有用。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">edit-config-file</span></code></dt><dd><p>使用系统文本编辑器打开 <code class="docutils literal notranslate"><span class="pre">mpv.conf</span></code> 文件，若不存在则创建。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">edit-input-conf</span></code></dt><dd><p>使用系统文本编辑器打开 <code class="docutils literal notranslate"><span class="pre">input.conf</span></code> 文件，若不存在则创建。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">open-docs</span></code></dt><dd><p>在浏览器中打开mpv的在线文档。</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">menu</span></code></dt><dd><p>显示一个杂项条目的菜单。</p>
-</dd>
-</dl>
-</section>
+<h2>设置<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>该脚本可通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/context_menu.conf</span></code> 以及命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 进行定制。设置语法详见 <a href="#id5"><span class="problematic" id="id6">`mp.options functions`_</span></a></p>
 <section id="id4">
-<h2>设置<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
-<p>该脚本可以通过 mpv 用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/select.conf</span></code> 和命令行选项 <a href="#id5"><span class="problematic" id="id6">``</span></a>--script-opts` 进行自定义。设置语法在 <a href="#id14"><span class="problematic" id="id15">`mp.options functions`_</span></a> 中描述。</p>
-<section id="id7">
-<h3>设置选项<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<h3>设置选项<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <dl>
-<dt><code class="docutils literal notranslate"><span class="pre">history_date_format</span></code></dt><dd><p>默认： %Y-%m-%d %H:%M:%S</p>
-<p>历史条目的日期格式。它将传递给 Lua 的 <code class="docutils literal notranslate"><span class="pre">os.date</span></code> ，后者使用与 <code class="docutils literal notranslate"><span class="pre">strftime(3)</span></code> 相同的格式。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">font_size</span></code></dt><dd><p>默认： 14</p>
+<p>字体尺寸</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">hide_history_duplicates</span></code></dt><dd><p>默认： yes</p>
-<p>是否只显示路径相同的历史条目中的最后一个。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">gap</span></code></dt><dd><p>默认： 0.2</p>
+<p>菜单项之间的间距，以字体大小的百分比形式指定。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">padding_x</span></code></dt><dd><p>默认： 8</p>
+<p>菜单的水平填充距离。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">padding_y</span></code></dt><dd><p>默认： 4</p>
+<p>菜单的垂直填充距离。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">menu_outline_size</span></code></dt><dd><p>默认： 0</p>
+<p>菜单边框的尺寸。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">menu_outline_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
+<p>菜单边框的颜色。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">corner_radius</span></code></dt><dd><p>默认： 5</p>
+<p>菜单边角的半径。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scale_with_window</span></code></dt><dd><p>默认： auto</p>
+<p>是否根据窗口高度缩放尺寸。可选值为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> <code class="docutils literal notranslate"><span class="pre">no</span></code> <code class="docutils literal notranslate"><span class="pre">auto</span></code> ，其中 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 将遵循 <code class="docutils literal notranslate"><span class="pre">--osd-scale-by-window</span></code> 的设置值。</p>
+<p>当尺寸未随窗口缩放时，将依据``display-hidpi-scale``进行缩放。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#222222</span></code></p>
+<p>聚焦项的颜色。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">focused_back_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code></p>
+<p>聚焦项的背景颜色。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">disabled_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#555555</span></code></p>
+<p>禁用项的颜色。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">seconds_to_open_submenus</span></code></dt><dd><p>默认： 0.2</p>
+<p>光标移入关联子菜单项后，该子菜单开启的延长时间（秒）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">seconds_to_close_submenus</span></code></dt><dd><p>默认： 0.2</p>
+<p>光标进入父级菜单后，关闭子菜单所需等待的秒数。</p>
 </dd>
 </dl>
 </section>
@@ -410,11 +369,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">选择器</a><ul>
-<li><a class="reference internal" href="#id2">按键绑定</a></li>
-<li><a class="reference internal" href="#id3">脚本命令绑定</a></li>
-<li><a class="reference internal" href="#id4">设置</a><ul>
-<li><a class="reference internal" href="#id7">设置选项</a></li>
+<li><a class="reference internal" href="#">上下文菜单脚本</a><ul>
+<li><a class="reference internal" href="#id2">脚本消息</a></li>
+<li><a class="reference internal" href="#id3">设置</a><ul>
+<li><a class="reference internal" href="#id4">设置选项</a></li>
 </ul>
 </li>
 </ul>

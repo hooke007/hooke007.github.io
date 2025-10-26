@@ -731,6 +731,8 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--load-select=&lt;yes|no&gt;</span></code></dt><dd><p>启用内置脚本，让你从项目列表中进行选择（默认： yes）。默认情况下，它的按键绑定以 <code class="docutils literal notranslate"><span class="pre">g</span></code> 键开始。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--load-context-menu=&lt;yes|no&gt;</span></code></dt><dd><p>启用实现上下文菜单的内置脚本。在未实现与原生上下文菜单集成的平台上默认为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> ，而在已实现集成的平台上默认为 <code class="docutils literal notranslate"><span class="pre">no</span></code></p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--load-positioning=&lt;yes|no&gt;</span></code></dt><dd><p>启用内置脚本，为平移视频和图像提供各种按键绑定（默认： yes）。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--player-operation-mode=&lt;cplayer|pseudo-gui&gt;</span></code></dt><dd><p>用于启用“伪GUI模式”，这表示一些选项的默认值被改变。这个选项通常不应该直接使用，而应该由mpv内部使用，或者由mpv提供的脚本、设置文件或.desktop文件。详见 <a href="#id48"><span class="problematic" id="id49">`伪GUI模式`_</span></a></p>
@@ -1210,7 +1212,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vd-apply-cropping</span></code></dt><dd><p>某些视频编解码器支持裁切，意味着只有解码帧的子矩形用于显示。此选项控制libavcodec如何处理裁剪。在解码过程中进行裁切对齐和硬件解码方面存在一些限制。如果启用了此选项，解码器将应用裁切，否则由VO处理。默认启用。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--swapchain-depth=&lt;N&gt;</span></code></dt><dd><p>允许最多N个in-flight的帧。这实质上控制了帧的延迟。增加交换链深度可以改善管线并防止错过垂直同步，但会增加可见的延迟。这个选项只规定了一个上限，该实现可以使用比内部请求更低的延迟。设置为1表示视频输出驱动将等待每一帧变为可见，再开始渲染下一帧。（默认： 3）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--swapchain-depth=&lt;N&gt;</span></code></dt><dd><p>允许最多N个in-flight的帧。这实质上控制了帧的延迟。增加交换链深度可以改善管线并防止错过垂直同步，但会增加可见的延迟。这个选项只规定了一个上限，该实现可以使用比内部请求更低的延迟。设置为1表示视频输出驱动将等待每一帧变为可见，再开始渲染下一帧。（默认： 2）</p>
 </dd>
 </dl>
 </section>
@@ -1720,7 +1722,12 @@
 <p>这仅应用于文本字幕。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--sub-fix-timing=&lt;yes|no&gt;</span></code></dt><dd><p>调整字幕计时是为了移除字幕之间的微小间隔或重叠（如果差距小于210毫秒，间隔或重叠会被移除）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-fix-timing=&lt;yes|no&gt;</span></code></dt><dd><p>调整字幕时间点，用于消除字幕间的小间隙或重叠。</p>
+<p>另见 <code class="docutils literal notranslate"><span class="pre">--sub-fix-timing-threshold</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--sub-fix-timing-keep</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-fix-timing-threshold=&lt;amount&gt;</span></code></dt><dd><p>设置字幕时间校正的阈值，以毫秒为单位（默认： 210）。若两个字幕事件间隔小于该值，则消除间隙。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sub-fix-timing-keep=&lt;amount&gt;</span></code></dt><dd><p>设置字幕事件被纳入时间校正的最小持续时间，以毫秒为单位（默认： 400）。若字幕事件持续时间小于该值，其时间点将保持不变。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--sub-forced-events-only=&lt;yes|no&gt;</span></code></dt><dd><p>启用此选项将仅显示字幕流中的强制事件。只有一些位图字幕格式（如DVD或PGS）能够在流中包含强制和非强制事件的混合。在文本字幕上启用此选项将导致不显示任何字幕（默认： <code class="docutils literal notranslate"><span class="pre">no</span></code> ）。</p>
 </dd>
@@ -2168,8 +2175,13 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--wid=&lt;ID|-1&gt;</span></code></dt><dd><p>这告知mpv附加到一个现有的窗口。如果选择了支持该选项的视频输出驱动，它将使用该窗口进行视频输出。mpv将根据该窗口的大小缩放视频，如果视频的长宽比不同，将添加黑条来补偿。</p>
 <p>值为 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 的ID将被特殊处理，mpv将从当前关联的窗口中分离出来，并进入其自己的窗口。</p>
 <p>在X11上，该ID被解释为X11上的一个 <code class="docutils literal notranslate"><span class="pre">Window</span></code> 。与MPlayer/mplayer2不同，mpv始终创建自己的窗口，并将wid窗口设置为父窗口。该窗口将始终重新调整大小来完全覆盖父窗口。值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 被特别解释，mpv将直接在根窗口上绘制。</p>
-<p>在win32上，ID被解释为 <code class="docutils literal notranslate"><span class="pre">HWND</span></code> 。将其作为值转换传递给 <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> （所有的Windows句柄都是32位的）。 mpv将创建自己的窗口，并将窗口设置为父窗口，就像X11一样。</p>
+<p>在win32上，ID被解释为 <code class="docutils literal notranslate"><span class="pre">HWND</span></code> 。将其作为值转换传递给 <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> （所有的Windows句柄都是32位的）。 mpv将创建自己的窗口，并将窗口设置为父窗口，就像X11一样。值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 具有特殊含义，mpv将显示在桌面壁纸之上、桌面图标之下。</p>
 <p>在Android上，ID会被解释为 <code class="docutils literal notranslate"><span class="pre">android.view.Surface</span></code> 。将其作为值转换传递给 <code class="docutils literal notranslate"><span class="pre">intptr_t</span></code> 。与 <code class="docutils literal notranslate"><span class="pre">--vo=mediacodec_embed</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> 一起使用，以便使用MediaCodec直接渲染，或者与 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span> <span class="pre">--gpu-context=android</span></code> 一起使用（带或者不带 <code class="docutils literal notranslate"><span class="pre">--hwdec=mediacodec</span></code> ）。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>在 Win32 系统上，若启用桌面壁纸过渡效果（例如在 Windows 设置中配置多图桌面幻灯片），且使用 ID 值 <code class="docutils literal notranslate"><span class="pre">0</span></code> 时，Windows 有时会销毁 mpv 关联的窗口。此时 mpv 将直接将此操作视为退出信号。</p>
+<p>为避免此情况，请设置静态桌面壁纸，例如单张图片或纯色背景。</p>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--window-dragging=&lt;yes|no&gt;</span></code></dt><dd><p>当鼠标点击在窗口上并移动指针时，移动窗口。（默认： yes）</p>
 </dd>
@@ -2245,7 +2257,9 @@
 <p>你需要有对DVD设备的写入权限才能变更速度。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--dvd-angle=&lt;ID&gt;</span></code></dt><dd><p>一些DVD包含可以从多个角度观看的场景。该选项告知mpv要使用哪个角度（默认： 1）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--dvd-angle=&lt;ID&gt;</span></code></dt><dd><p>一些DVD包含可以从多个角度观看的场景。此选项告知mpv要使用哪个角度（默认： 1）。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--bluray-angle=&lt;ID&gt;</span></code></dt><dd><p>一些蓝光碟包含可从多个角度观看的场景。此选项告知mpv应使用哪个角度（默认： 1）。</p>
 </dd>
 </dl>
 </section>
@@ -3806,6 +3820,9 @@ vec4 hook() {
 <dt><code class="docutils literal notranslate"><span class="pre">--android-surface-size=&lt;WxH&gt;</span></code></dt><dd><p>设置Android gpu上下文使用的渲染表面的尺寸。如果尺寸在运行期间发生变化（例如，如果设备被旋转），需要由嵌入的应用程序通过surfaceChanged回调进行设置。</p>
 <p>（Android 和 <code class="docutils literal notranslate"><span class="pre">--gpu-context=android</span></code> 独占）</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--d3d11-composition-size=&lt;WxH&gt;</span></code></dt><dd><p>设置D3D11合成模式的输出尺寸。使用合成模式时，系统不会显示窗口，必须由嵌入应用程序设置输出尺寸。</p>
+<p>仅适用于同时启用 <code class="docutils literal notranslate"><span class="pre">--gpu-context=d3d11</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--d3d11-output-mode=composition</span></code> 参数的窗口。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--gpu-sw</span></code></dt><dd><p>即使检测到软件渲染器也继续。仅适用于 OpenGL/Vulkan 后端。对于 d3d11，参见 <code class="docutils literal notranslate"><span class="pre">--d3d11-warp</span></code> 。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--gpu-context=&lt;context1,context2,...[,]&gt;</span></code></dt><dd><p>指定要使用的 GPU 上下文的优先级列表。值 <code class="docutils literal notranslate"><span class="pre">auto</span></code> （默认）选择默认自动探测顺序的GPU上下文。你也可以通过 <code class="docutils literal notranslate"><span class="pre">help</span></code> 来获得后端编译的完整列表（按自动探测顺序排序）。</p>
@@ -3891,50 +3908,26 @@ vec4 hook() {
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint=&lt;auto|yes|no&gt;</span></code></dt><dd><p>When enabled, output colorspace metadata will be set on the swapchain
-depending on the GPU context and platform this may affect compositor/display.
-This can be used for &quot;HDR passthrough&quot; and to set the output colorspace
-for SDR content. In <code class="docutils literal notranslate"><span class="pre">auto</span></code> mode, the target colorspace is only set if the
-current display parameters are known. Currently, this is supported on
-Wayland, D3D11 and winvk contexts. The <code class="docutils literal notranslate"><span class="pre">yes</span></code> option will always try to set
-the colorspace, you may need to adjust the <code class="docutils literal notranslate"><span class="pre">--target-*</span></code> options to match
-your display capabilities.
-Requires a supporting driver and <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code>. (Default: <code class="docutils literal notranslate"><span class="pre">auto</span></code>)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint=&lt;auto|yes|no&gt;</span></code></dt><dd><p>启用后，输出色彩空间元数据将根据GPU上下文和平台设置在交换链上，这可能影响合成器/显示器。此功能可用于“HDR直通”以及为SDR内容设置输出色彩空间。在 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 模式下，仅当当前显示参数已知时才会设置目标色彩空间。目前支持Wayland、D3D11和winvk上下文。选择 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 将始终尝试设置色彩空间，你可能需要调整 <code class="docutils literal notranslate"><span class="pre">--target-*</span></code> 选项以匹配显示器能力。需配备支持驱动程序并启用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 。（默认： <code class="docutils literal notranslate"><span class="pre">auto</span></code> ）</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>Auto detected target colorspace metadata is not guaranteed to be always
-best choice. It depends on your compositor, driver, and display
-capabilities. However in most cases <code class="docutils literal notranslate"><span class="pre">auto</span></code> mode should work fine.</p>
+<p>自动检测的目标色彩空间元数据未必总是最佳选择。这取决于你的合成器、驱动程序和显示器性能。但在大多数情况下， <code class="docutils literal notranslate"><span class="pre">auto</span></code> 模式应能正常工作。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint-mode=&lt;target|source|source-dynamic&gt;</span></code></dt><dd><p>Select which metadata to use for the <code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint</span></code>.
-(Only for <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code>)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint-mode=&lt;target|source|source-dynamic&gt;</span></code></dt><dd><p>选择用于 <code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint</span></code> 的元数据。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 <dl class="simple">
-<dt>target</dt><dd><p>Uses metadata based on the target display's actual capabilities. This
-mode adapts the source content to the target display before output.
-Note: HDR primaries are not overridden by the <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> option
-this only affects the enclosing container for the colorspace.</p>
+<dt>target</dt><dd><p>基于目标显示器的实际能力使用元数据。此模式会在输出前将源内容适配至目标显示器。注意：HDR原色不会被 <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> 选项覆盖，该选项仅影响颜色空间的外部容器。如需限制输出色域，可使用 <code class="docutils literal notranslate"><span class="pre">--target-gamut</span></code> 选项。</p>
 </dd>
-<dt>source</dt><dd><p>Uses the source content's metadata. This is the traditional
-&quot;HDR passthrough&quot; mode (SDR too), where it is assumed that the compositor
-and display will handle the colorspace directly and perform any necessary
-mappings.</p>
+<dt>source</dt><dd><p>使用源内容的元数据。这是传统的“HDR直通”模式（SDR同样适用），该模式假定合成器和显示器将直接处理色彩空间并执行必要的映射操作。</p>
 </dd>
-<dt>source-dynamic</dt><dd><p>The same as <code class="docutils literal notranslate"><span class="pre">source</span></code>, but uses dynamic per-scene metadata instead of
-static HDR10. This is experimental and depends on the display's ability
-to react to metadata changes. Note that this does not send full HDR10+
-or Dolby Vision metadata, but uses that information to produce HDR10
-with per-scene luminance values.</p>
+<dt>source-dynamic</dt><dd><p>与 <code class="docutils literal notranslate"><span class="pre">source</span></code> 相同，但使用动态的每场景元数据替代静态的HDR10。此功能尚在试验阶段，依赖显示设备对元数据变更的响应能力。请注意，此模式不会发送完整的HDR10+或杜比视界元数据，而是利用这些信息生成包含每场景亮度值的HDR10信号。</p>
 </dd>
 </dl>
-<p>Default is <code class="docutils literal notranslate"><span class="pre">target</span></code>. If target display parameters are not available, this
-will fall back to <code class="docutils literal notranslate"><span class="pre">source</span></code>. Note that this is done on individual properties
-basis, i.e. it will merge source params into target for unknown properties,
-though not the other way around.</p>
-<p><code class="docutils literal notranslate"><span class="pre">--target-*</span></code> options override the metadata in both modes.</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">target`</span> <span class="pre">`。若目标显示参数不可用，则回退至</span> <span class="pre">``source</span></code> 。请注意此操作基于单个属性进行，即对于未知属性，系统会将source参数合并到target中，但反向操作不可行。</p>
+<p><code class="docutils literal notranslate"><span class="pre">--target-*</span></code> 选项在两种模式下均会覆盖元数据。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>The ICC profile always takes precedence over any metadata.</p>
+<p>ICC配置文件始终优先于任何元数据。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
@@ -3955,6 +3948,8 @@ though not the other way around.</p>
 <p>您可以选择要发送给显示器的元数据，并使用 <code class="docutils literal notranslate"><span class="pre">--target-*</span></code> 选项手动调整。如果您希望让一切看起来更像HDR，还可以尝试使用 <code class="docutils literal notranslate"><span class="pre">--inverse-tone-mapping</span></code> 选项。</p>
 <p>效果因人而异，这高度取决于目标显示器，没有唯一的答案，但不妨尝试实验，您可能会感到惊喜。</p>
 </div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint-strict</span></code></dt><dd><p>启用时（默认），将遵循配置的交换链颜色空间（含hint）。在此模式下， <code class="docutils literal notranslate"><span class="pre">--target-*</span></code> 选项仅作为提示，渲染输出将采用协商后的交换链格式。这确保了正确结果，因为下游处理依赖于信号传递的颜色空间。禁用时，交换链颜色空间将被覆盖以匹配 <code class="docutils literal notranslate"><span class="pre">--target-*</span></code> 选项。（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--target-prim=&lt;value&gt;</span></code></dt><dd><p>指定显示器的色彩原色。当不使用ICC色彩管理时，视频色彩将被适应到这个色彩空间。有效值是：</p>
 <dl class="simple">
@@ -4041,9 +4036,20 @@ though not the other way around.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--target-gamut=&lt;value&gt;</span></code></dt><dd><p>限制显示的色域。您可以使用此选项输出例如 DCIP3-in-BT.2020 等色彩。将 <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> 设为包含色彩空间的基色（数值将被编码到基色中），将 <code class="docutils literal notranslate"><span class="pre">--target-gamut</span></code> 设为要限制色彩的色域。取值与 <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> 相同。
 （ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>若所选色域更宽，则将受限于 <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> 。此外，若指定了 <code class="docutils literal notranslate"><span class="pre">--target-colorspace-hint</span></code> ，则信号色域将受限于交换链支持的色域范围。该范围可能与请求的 <code class="docutils literal notranslate"><span class="pre">--target-prim</span></code> 存在差异。</p>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--target-lut=&lt;file&gt;</span></code></dt><dd><p>指定一个自定义的LUT文件（Adobe .cube格式），在屏幕上显示之前应用于颜色。这个LUT是在编码到目标色彩空间后，以标准化的RGB值输入的，所以在应用 <code class="docutils literal notranslate"><span class="pre">---target-trc</span></code> 之后。
 （ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--hdr-reference-white=&lt;auto|10-1000000&gt;</span></code></dt><dd><p>指定SDR内容母版显示器的假定峰值亮度，单位为cd/m²（尼特）。该值将作为SDR内容的HDR漫反射白电平使用。本质上，这是HDR容器中的SDR亮度值。默认值为 203
+（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This option overrides the <code class="docutils literal notranslate"><span class="pre">--target-peak</span></code> if is set and the target transfer function is SDR. This way you can control SDR output separately from HDR output.</p>
+</div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping=&lt;value&gt;</span></code></dt><dd><p>指定用于将图像色调映射到目标显示上的算法。这与HDR-&gt;SDR转换和降低色域有关（例如，在标准色域显示器上播放BT.2020内容）。有效值是：</p>
 <dl class="simple">
@@ -4235,8 +4241,10 @@ though not the other way around.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--background-tile-size=&lt;1-4096&gt;</span></code></dt><dd><p>用于在``--background=tiles``模式下绘制mpv窗口中未被视频覆盖部分的瓷贴大小。（默认： 16）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--border-background=&lt;none|color|tiles&gt;</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">--background</span></code> 但只应用于窗口的黑边/边框区域。
+<dt><code class="docutils literal notranslate"><span class="pre">--border-background=&lt;none|color|tiles|blur&gt;</span></code></dt><dd><p>类似 <code class="docutils literal notranslate"><span class="pre">--background</span></code> 但只应用于窗口的黑边/边框区域。
 <code class="docutils literal notranslate"><span class="pre">vo=gpu-next</span></code> 独占。默认： <code class="docutils literal notranslate"><span class="pre">color</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--background-blur-radius=&lt;radius&gt;</span></code></dt><dd><p>用于 <code class="docutils literal notranslate"><span class="pre">--border-background=blur</span></code> 的模糊半径（以像素为单位）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--opengl-rectangle-textures</span></code></dt><dd><p>强制使用矩形纹理（默认： no）。通常情况下，这不应该比普通纹理有任何优势。请注意，硬件解码会覆盖这个标志。可能在任何时候被移除。</p>
 </dd>
@@ -4380,8 +4388,9 @@ though not the other way around.</p>
 <p>使用realtime优先级会导致系统锁死。</p>
 </div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--media-controls=&lt;yes|no&gt;</span></code></dt><dd><p>（Windows独占）启用媒体控制界面 SystemMediaTransportControls 的集成。
-默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code> （除了libmpv）</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--media-controls=&lt;yes|no&gt;</span></code></dt><dd><p>（Windows独占）启用媒体控制界面 SystemMediaTransportControls 的集成。</p>
+<p>Windows 系统可能显示“未知应用程序”或在媒体控制面板中缺少 mpv 图标。为实现完整支持，你需要使用 <code class="docutils literal notranslate"><span class="pre">--register</span></code> 命令注册mpv。</p>
+<p>默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code> （libmpv除外）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--force-media-title=&lt;string&gt;</span></code></dt><dd><p>强制将 <code class="docutils literal notranslate"><span class="pre">media-title</span></code> 属性的内容变成这个值。对于想要设置标题的脚本很有用，而不需要覆盖用户在 <code class="docutils literal notranslate"><span class="pre">--title</span></code> 中的设置。</p>
 </dd>
@@ -4493,6 +4502,30 @@ though not the other way around.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">--clipboard-monitor=&lt;yes|no&gt;</span></code></dt><dd><p>（Windows Wayland macOS 独占）</p>
 <p>启用剪贴板监视，以便观察 <code class="docutils literal notranslate"><span class="pre">clipboard</span></code> 属性的内容变化（默认： no）。这只会影响使用轮询监控剪贴板更新的剪贴板实现。其他平台目前会忽略此选项，并始终/从不通知变更。</p>
 <p>在Wayland上，此选项仅对 <code class="docutils literal notranslate"><span class="pre">wayland</span></code> 后端有效，对 <code class="docutils literal notranslate"><span class="pre">vo</span></code> 后端无效。详见属性 <code class="docutils literal notranslate"><span class="pre">current-clipboard-backend</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--register</span></code></dt><dd><p>（Windows独占）（也可作为 mpv-register 辅助工具使用）</p>
+<p>在 Windows 上将 mpv 注册为媒体播放器。这包括添加注册表项以将 mpv 与媒体文件和协议关联，并启用蓝光、DVD 和 CD-Audio 的自动播放处理程序。</p>
+<p>请注意注册操作是在原位置完成的，因此将使用当前的 mpv.exe 路径。若注册后移动了mpv，可重新运行此命令更新注册表项。您也可随时使用支持此命令的任意mpv二进制文件执行 <code class="docutils literal notranslate"><span class="pre">--unregister</span></code> 操作，无需使用原始注册时使用的版本。</p>
+<p>使用此选项时，mpv将在完成操作后退出。若需查看详细操作列表，请使用 <code class="docutils literal notranslate"><span class="pre">-v</span></code> 选项运行mpv。</p>
+<p>可通过以下选项控制注册的文件扩展名列表：<code class="docutils literal notranslate"><span class="pre">--video-exts</span></code> <code class="docutils literal notranslate"><span class="pre">--audio-exts</span></code> <code class="docutils literal notranslate"><span class="pre">--image-exts</span></code> <code class="docutils literal notranslate"><span class="pre">--playlist-exts</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--archive-exts</span></code></p>
+<p>默认情况下，mpv将注册为当前用户专属。若需全局注册，请以管理员身份运行mpv并添加此选项。但不建议采用此方式，因按用户注册通常更优。</p>
+<p>您可通过Windows设置或运行mpv时添加``--unregister``选项来解除注册。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--register-rpath=&lt;string&gt;</span></code></dt><dd><p>（Windows独占）</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">--register</span></code> 注册时，此选项允许您指定要添加在前的路径，以便mpv能找到必要的DLL文件。每次执行mpv时，指定的字符串都会被添加到运行时PATH的前面。</p>
+<p>这有助于为mpv所需的外部库设置路径，而无需将其添加到全局PATH环境变量中。</p>
+<p>字符串格式遵循PATH环境变量的结构，即用分号分隔的路径列表。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>此设置将在Windows注册表中为mpv配置 <code class="docutils literal notranslate"><span class="pre">应用程序路径</span></code> ，Windows Shell会通过该路径定位可执行文件及其依赖项。因此mpv在大多数情况下可无缝启动，但并非适用于所有场景。需特别注意：命令行运行mpv时，底层并非调用 <cite>ShellExecute</cite> ，而是使用 <cite>CreateProcess</cite> ，后者无法处理注册表中的 <code class="docutils literal notranslate"><span class="pre">应用程序路径</span></code> 键值。</p>
+<p>为解决此问题，可创建一个简易PowerShell封装脚本，通过执行 <code class="docutils literal notranslate"><span class="pre">Start-Process</span> <span class="pre">&lt;mpv路径&gt;</span></code> 即可实现预期效果。</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--unregister</span></code></dt><dd><p>（Windows独占）（也可作为 mpv-unregister 辅助工具使用）</p>
+<p>在 Windows 上取消注册 mpv 作为媒体播放器，撤销所有由 <code class="docutils literal notranslate"><span class="pre">--register</span></code> 选项所做的更改。此操作不会删除 mpv 二进制文件本身。</p>
+<p>您可以使用任何支持此命令的 mpv 二进制文件进行取消注册，不必是最初用于注册的特定版本。</p>
+<p>Windows设置应用程序条目与mpv.exe路径绑定。若删除二进制文件，该功能将失效。但您仍可通过此命令取消注册，在新的位置重新注册，或将mpv恢复至原始位置。</p>
+<p>若mpv此前已为所有用户注册，请以管理员身份运行此命令以取消所有用户的注册。</p>
 </dd>
 </dl>
 </section>
