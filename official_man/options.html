@@ -1128,7 +1128,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--hwdec-codecs=&lt;codec1,codec2,...|all&gt;</span></code></dt><dd><p>只允许对一个给定的编码列表进行硬件解码。特殊值 <code class="docutils literal notranslate"><span class="pre">all</span></code> 总是允许所有的编码。</p>
 <p>可以用 <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--vd=help</span></code> 获得允许的编码列表。移除前缀，例如，用 <code class="docutils literal notranslate"><span class="pre">h264</span></code> 代替 <code class="docutils literal notranslate"><span class="pre">lavc:h264</span></code></p>
-<p>默认情况下，这被设置为 <code class="docutils literal notranslate"><span class="pre">h264,vc1,hevc,vp8,vp9,av1,prores,ffv1</span></code> 。请注意，像 <code class="docutils literal notranslate"><span class="pre">h264_vdpau</span></code> 这样的硬件加速的特殊编码已经没有意义了，事实上已经从FFmpeg中移除了这种形式。</p>
+<p>默认情况下，这被设置为 <code class="docutils literal notranslate"><span class="pre">h264,vc1,hevc,vp8,vp9,av1,prores,prores_raw,ffv1,dpx</span></code> 。请注意，像 <code class="docutils literal notranslate"><span class="pre">h264_vdpau</span></code> 这样的硬件加速的特殊编码已经没有意义了，事实上已经从FFmpeg中移除了这种形式。</p>
 <p>通常只有在损坏的GPU上才需要这样做，在这种情况下，一个编码被报告为支持，但解码导致的问题比它解决的问题更多。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
@@ -4051,6 +4051,17 @@ vec4 hook() {
 <p>This option overrides the <code class="docutils literal notranslate"><span class="pre">--target-peak</span></code> if is set and the target transfer function is SDR. This way you can control SDR output separately from HDR output.</p>
 </div>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--sdr-adjust-gamma=&lt;auto|yes|no&gt;</span></code></dt><dd><p>SDR传输函数常存在模糊或不匹配的情况。即使文件标记了特定函数（如 <code class="docutils literal notranslate"><span class="pre">bt.709</span></code> ），实际内容也可能不符。例如，多数屏幕录制软件将输出标记为 <code class="docutils literal notranslate"><span class="pre">bt.709</span></code> ，但内容通常是直接捕获的sRGB。</p>
+<p>在目标端，&quot;sRGB&quot;同样存在歧义：部分显示器出厂校准为纯幂2.2伽玛曲线，而另一些可能采用sRGB分段曲线。这两种配置在交换链设置中通常均标记为&quot;sRGB&quot;。不同平台对色彩管理的实现方式各异，导致合成器实现中也存在类似的不一致性。另见 <code class="docutils literal notranslate"><span class="pre">--treat-srgb-as-power22</span></code> 。此外，正确渲染 <code class="docutils literal notranslate"><span class="pre">bt.1886</span></code> 需要已知显示器对比度，但该参数通常不可用。请使用 <code class="docutils literal notranslate"><span class="pre">--target-contrast</span></code> 进行指定。</p>
+<p>此选项控制是否对SDR内容进行伽马值调整。仅适用于&quot;sRGB&quot;交换链目标配置（因其最常见且存在歧义）。若设为 <code class="docutils literal notranslate"><span class="pre">no</span></code> ，标记为 <code class="docutils literal notranslate"><span class="pre">sRGB</span></code> 、 <code class="docutils literal notranslate"><span class="pre">gamma2.2</span></code> 或 <code class="docutils literal notranslate"><span class="pre">bt.1886</span></code> 的内容将原样呈现；若设为 <code class="docutils literal notranslate"><span class="pre">yes</span></code> ，则根据可用元数据进行转换。</p>
+<p><code class="docutils literal notranslate"><span class="pre">auto</span></code> （默认值）的行为与 <code class="docutils literal notranslate"><span class="pre">no</span></code> 相同，但当显式设置 <code class="docutils literal notranslate"><span class="pre">--target-trc</span></code> 时，其行为将等同于 <code class="docutils literal notranslate"><span class="pre">yes</span></code> 。</p>
+<p>若能确保源目标两端的元数据均准确无误，通常建议启用此选项。</p>
+<p>（ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--treat-srgb-as-power22=&lt;no|input|output|both|auto&gt;</span></code></dt><dd><p>启用后，sRGB将采用纯幂2.2曲线进行(去)线性化处理，而非标准的sRGB分段传输函数。</p>
+<p><code class="docutils literal notranslate"><span class="pre">auto</span></code> 模式的行为与 <code class="docutils literal notranslate"><span class="pre">both</span></code> 相同，但可能根据平台特性进行调整以确保显示效果一致。不同平台下系统合成器使用的sRGB EOTF可能存在差异。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">auto</span></code> （ <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 独占）</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--tone-mapping=&lt;value&gt;</span></code></dt><dd><p>指定用于将图像色调映射到目标显示上的算法。这与HDR-&gt;SDR转换和降低色域有关（例如，在标准色域显示器上播放BT.2020内容）。有效值是：</p>
 <dl class="simple">
 <dt>auto</dt><dd><p>当使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 时，映射到 <code class="docutils literal notranslate"><span class="pre">bt.2390</span></code> ，当使用 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 时，映射到 <code class="docutils literal notranslate"><span class="pre">spline</span></code> 。再使用“--vo=gpu”。（默认）</p>
@@ -4492,6 +4503,8 @@ vec4 hook() {
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">mac</span></code></dt><dd><p>macOS 后端</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">x11</span></code></dt><dd><p>X11 后端。此后端仅在X服务器支持 <code class="docutils literal notranslate"><span class="pre">Xfixes</span></code> 扩展时可用。</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">wayland</span></code></dt><dd><p>Wayland 后端。此后端仅在合成器支持 <code class="docutils literal notranslate"><span class="pre">ext-data-control-v1</span></code> 协议时可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">vo</span></code></dt><dd><p>VO 后端。需要一个活动的VO窗口，并且支持因平台而异。当前，这被用作不支持 <code class="docutils literal notranslate"><span class="pre">ext-data-control-v1</span></code> 协议，或者如果 <code class="docutils literal notranslate"><span class="pre">wayland</span></code> 后端被禁用的Wayland合成器的后备方案。</p>
@@ -4499,9 +4512,11 @@ vec4 hook() {
 </dl>
 <p>这是一个对象设定列表选项。详见 <a href="#id160"><span class="problematic" id="id161">`列表选项`_</span></a></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--clipboard-monitor=&lt;yes|no&gt;</span></code></dt><dd><p>（Windows Wayland macOS 独占）</p>
-<p>启用剪贴板监视，以便观察 <code class="docutils literal notranslate"><span class="pre">clipboard</span></code> 属性的内容变化（默认： no）。这只会影响使用轮询监控剪贴板更新的剪贴板实现。其他平台目前会忽略此选项，并始终/从不通知变更。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--clipboard-monitor=&lt;yes|no&gt;</span></code></dt><dd><p>启用剪贴板监视，以便观察 <code class="docutils literal notranslate"><span class="pre">clipboard</span></code> 属性的内容变化（默认： no）。这只会影响使用轮询监控剪贴板更新的剪贴板实现。其他平台目前会忽略此选项，并始终/从不通知变更。</p>
 <p>在Wayland上，此选项仅对 <code class="docutils literal notranslate"><span class="pre">wayland</span></code> 后端有效，对 <code class="docutils literal notranslate"><span class="pre">vo</span></code> 后端无效。详见属性 <code class="docutils literal notranslate"><span class="pre">current-clipboard-backend</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--clipboard-xwayland=&lt;yes|no&gt;</span></code></dt><dd><p>在疑似Wayland环境中启用X11剪贴板后端（默认： no）。</p>
+<p>根据Wayland合成器的不同，使用X11后端可能导致mpv无法从原生Wayland客户端获取剪贴板数据。当Wayland后端不可用时禁用X11后端，可使mpv回退至VO后端，从而确保剪贴板功能正常运作。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--register</span></code></dt><dd><p>（Windows独占）（也可作为 mpv-register 辅助工具使用）</p>
 <p>在 Windows 上将 mpv 注册为媒体播放器。这包括添加注册表项以将 mpv 与媒体文件和协议关联，并启用蓝光、DVD 和 CD-Audio 的自动播放处理程序。</p>
