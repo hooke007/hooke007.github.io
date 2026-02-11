@@ -546,18 +546,25 @@
 </dd>
 <dt>&lt;append&gt;</dt><dd><p>将文件追加到播放列表中</p>
 </dd>
-<dt>&lt;append-play&gt;</dt><dd><p>添加文件，如果当前没有文件播放，则开始播放（始终从添加的文件开始播放，即使在运行这个命令之前的播放列表不是空的）</p>
-</dd>
 <dt>&lt;insert-next&gt;</dt><dd><p>将文件直接插入播放列表的当前条目之后。</p>
 </dd>
-<dt>&lt;insert-next-play&gt;</dt><dd><p>将文件插入下一个，如果当前没有播放，则开始播放。(总是从添加的文件开始播放，即使运行此命令前播放列表不是空的也是如此）。</p>
-</dd>
 <dt>&lt;insert-at&gt;</dt><dd><p>在第三个参数给定的索引处将文件插入播放列表。</p>
+</dd>
+<dt>&lt;play&gt;</dt><dd><p>若当前无内容播放，则开始播放（始终从添加的文件开始播放，即使在执行此命令前播放列表为非空状态）。</p>
+</dd>
+</dl>
+<p>可组合使用多个标志，例如： <code class="docutils literal notranslate"><span class="pre">append+play</span></code></p>
+<p>默认情况下，即使播放列表先前为空， <code class="docutils literal notranslate"><span class="pre">append</span></code> 、 <code class="docutils literal notranslate"><span class="pre">insert-next</span></code> 和 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 也不会立即开始播放。添加  <code class="docutils literal notranslate"><span class="pre">play</span></code> 标志可强制开始播放。</p>
+<p>以下值已过时，它们是 mpv 0.42 版本之前强制播放开始的旧方法（在添加 <code class="docutils literal notranslate"><span class="pre">play</span></code> 标志之前）。</p>
+<dl class="simple">
+<dt>&lt;append-play&gt;</dt><dd><p>添加文件，如果当前没有文件播放，则开始播放（始终从添加的文件开始播放，即使在运行这个命令之前的播放列表不是空的）</p>
+</dd>
+<dt>&lt;insert-next-play&gt;</dt><dd><p>将文件插入下一个，如果当前没有播放，则开始播放。(总是从添加的文件开始播放，即使运行此命令前播放列表不是空的也是如此）。</p>
 </dd>
 <dt>&lt;insert-at-play&gt;</dt><dd><p>在第三个参数给定的索引处插入文件，如果当前没有播放，则开始播放。(总是从添加的文件开始播放，即使播放列表在运行此命令前不是空的）。</p>
 </dd>
 </dl>
-<p>第三个参数是插入索引，仅用于 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 和 <code class="docutils literal notranslate"><span class="pre">insert-at-play</span></code> 操作。与这些操作一起使用时，新项目将被插入播放列表中的索引位置，如果索引小于 0 或大于播放列表的大小，则会被追加到末尾。所有其他操作都将忽略此参数。此参数自mpv0.38.0版本起加入。</p>
+<p>第三个参数是插入索引，仅用于 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 操作。与这些操作一起使用时，新项目将被插入播放列表中的索引位置，如果索引小于 0 或大于播放列表的大小，则会被追加到末尾。所有其他操作都将忽略此参数。此参数自mpv0.38.0版本起加入。</p>
 <p>第四个参数是一个选项和值的列表，应该在文件播放时设置。它的形式是 <code class="docutils literal notranslate"><span class="pre">opt1=value1,opt2=value2,..</span></code> 。当使用client API时，这可以是一个 <code class="docutils literal notranslate"><span class="pre">MPV_FORMAT_NODE_MAP</span></code> （或一个Lua表），但当前的值本身必须是字符串。这些选项在播放过程中设置，并在播放结束时恢复到之前的值（参见 <a href="#id40"><span class="problematic" id="id41">`单文件选项`_</span></a> ）。</p>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
@@ -571,18 +578,25 @@
 </dd>
 <dt>&lt;append&gt;</dt><dd><p>在当前的内部播放列表的末尾追加新的播放列表</p>
 </dd>
-<dt>&lt;append-play&gt;</dt><dd><p>追加新的播放列表，如果当前没有文件播放，则开始播放（始终从新的列表开始播放，即使在运行这个命令之前的内部播放列表不是空的）</p>
-</dd>
 <dt>&lt;insert-next&gt;</dt><dd><p>将新播放列表直接插入当前内部播放列表的当前条目之后。</p>
 </dd>
-<dt>&lt;insert-next-play&gt;</dt><dd><p>插入新的播放列表，如果当前没有播放列表，则开始播放。(总是从新的播放列表开始播放，即使运行此命令前内部播放列表不是空的也是如此）。</p>
-</dd>
 <dt>&lt;insert-at&gt;</dt><dd><p>在第三个参数给定的索引处插入新的播放列表。</p>
+</dd>
+<dt>&lt;play&gt;</dt><dd><p>如果当前没有正在播放的内容，则开始播放（始终从添加的播放列表开始播放，即使在执行此命令之前内部播放列表并非空状态）。</p>
+</dd>
+</dl>
+<p>可组合使用多个标志，例如： <code class="docutils literal notranslate"><span class="pre">append+play</span></code></p>
+<p>默认情况下，即使播放列表先前为空， <code class="docutils literal notranslate"><span class="pre">append</span></code> 、 <code class="docutils literal notranslate"><span class="pre">insert-next</span></code> 和 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 也不会立即开始播放。添加  <code class="docutils literal notranslate"><span class="pre">play</span></code> 标志可强制开始播放。</p>
+<p>以下值已过时，它们是 mpv 0.42 版本之前强制播放开始的旧方法（在添加 <code class="docutils literal notranslate"><span class="pre">play</span></code> 标志之前）。</p>
+<dl class="simple">
+<dt>&lt;append-play&gt;</dt><dd><p>追加新的播放列表，如果当前没有文件播放，则开始播放（始终从新的列表开始播放，即使在运行这个命令之前的内部播放列表不是空的）</p>
+</dd>
+<dt>&lt;insert-next-play&gt;</dt><dd><p>插入新的播放列表，如果当前没有播放列表，则开始播放。(总是从新的播放列表开始播放，即使运行此命令前内部播放列表不是空的也是如此）。</p>
 </dd>
 <dt>&lt;insert-at-play&gt;</dt><dd><p>在第三个参数给定的索引处插入新的播放列表，如果当前没有播放列表，则开始播放。(总是从新的播放列表开始播放，即使运行此命令前内部播放列表不是空的）。</p>
 </dd>
 </dl>
-<p>第三个参数是插入索引，仅用于 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 和 <code class="docutils literal notranslate"><span class="pre">insert-at-play</span></code> 操作。与这些操作一起使用时，新的播放列表将插入到内部播放列表中的索引位置，如果索引小于 0 或大于内部播放列表的大小，则附加到末尾。所有其他操作都将忽略此参数。</p>
+<p>第三个参数是插入索引，仅用于 <code class="docutils literal notranslate"><span class="pre">insert-at</span></code> 操作。与这些操作一起使用时，新的播放列表将插入到内部播放列表中的索引位置，如果索引小于 0 或大于内部播放列表的大小，则附加到末尾。所有其他操作都将忽略此参数。此参数自mpv0.38.0版本起加入。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">playlist-clear</span></code></dt><dd><p>清除播放列表，除了当前播放的文件。</p>
 </dd>
@@ -1516,7 +1530,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">af-metadata/&lt;filter-label&gt;</span></code></dt><dd><p>相当于 <code class="docutils literal notranslate"><span class="pre">vf-metadata/&lt;filter-label&gt;</span></code> ，但用于音频滤镜。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">deinterlace-active</span></code></dt><dd><p>如果 mpv 的去隔行扫描滤波器处于活动状态，则返回 <code class="docutils literal notranslate"><span class="pre">yes</span></code>/true 。请注意，它不会检测任何通过 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 手动插入的隔行扫描滤波器。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">deinterlace-active</span></code></dt><dd><p>如果 mpv 的去隔行扫描滤波器处于活动状态，则返回 <code class="docutils literal notranslate"><span class="pre">yes</span></code>/true 。这只是使用 <code class="docutils literal notranslate"><span class="pre">--deinterlace=auto</span></code> 参数时的猜测，可能不够准确。请注意，它不会检测任何通过 <code class="docutils literal notranslate"><span class="pre">--vf</span></code> 手动插入的隔行扫描滤波器。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">idle-active</span></code></dt><dd><p>如果没有文件被加载，但由于 <code class="docutils literal notranslate"><span class="pre">--idle</span></code> 选项，播放器在附近驻留，返回 <code class="docutils literal notranslate"><span class="pre">yes</span></code> /true。</p>
 <p>（由 <code class="docutils literal notranslate"><span class="pre">idle</span></code> 改名而来）</p>
@@ -2335,6 +2349,10 @@
 <dt><code class="docutils literal notranslate"><span class="pre">ffmpeg-version</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">av_version_info()</span></code> API调用的内容。这是一个以某种方式标识构建的字符串，可以是发布版本号，也可以是git哈希值。如果mpv与较早的FFmpeg版本链接，这个属性就不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">libass-version</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ass_library_version()</span></code> 的值。这是一个整数，以有点奇怪的形式编码（显然是 &quot;hex BCD&quot;），表示链接到mpv的libass库的发布版本。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">libplacebo-version</span></code></dt><dd><p>宏 <code class="docutils literal notranslate"><span class="pre">PL_VERSION</span></code> 的内容。这是一个字符串，通过发布版本号或Git哈希值来标识构建版本。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">subrandr-version</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">sbr_library_version()</span></code> 的返回值，以字符串形式呈现，格式为 <code class="docutils literal notranslate"><span class="pre">&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;</span></code> ，表示运行时 subrandr 库的发布版本号。若 mpv 未启用 subrandr 编译，则此属性不可用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">platform</span></code></dt><dd><p>返回一个描述mpv的目标构建平台的字符串。该值取决于底层构建系统检测到的内容。一些最常见的值是： <code class="docutils literal notranslate"><span class="pre">windows</span></code> , <code class="docutils literal notranslate"><span class="pre">darwin</span></code> （macos或ios）, <code class="docutils literal notranslate"><span class="pre">linux</span></code> , <code class="docutils literal notranslate"><span class="pre">android</span></code> 和 <code class="docutils literal notranslate"><span class="pre">freebsd</span></code> 。请注意，这不是一个完整的列表。</p>
 </dd>

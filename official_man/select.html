@@ -272,6 +272,7 @@
           <section id="id1">
 <h1>选择器<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p>通过 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> API，控制台可显示供浏览和选择的项目列表。 <code class="docutils literal notranslate"><span class="pre">select.lua</span></code> 是该 API 的内置client ，提供脚本命令绑定，用于收集和格式化要在控制台中选择的数据，并对所选项目进行操作。可以使用 <code class="docutils literal notranslate"><span class="pre">--load-select=no</span></code> 选项禁用它。</p>
+<p>该脚本还被用于填充上下文菜单。</p>
 <section id="id2">
 <h2>按键绑定<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>当使用 <code class="docutils literal notranslate"><span class="pre">mp.input.select</span></code> 时， <a href="#id8"><span class="problematic" id="id9">`控制台`_</span></a> 中列出的按键绑定会被扩展为以下内容：</p>
@@ -286,6 +287,10 @@
 </dd>
 <dt>PGDN, Ctrl+f</dt><dd><p>向下滚动一页。</p>
 </dd>
+<dt>Shift+LEFT</dt><dd><p>向左滚动。</p>
+</dd>
+<dt>Shift+RIGHT</dt><dd><p>向右滚动。</p>
+</dd>
 <dt>Ctrl+y</dt><dd><p>将聚焦的项目复制到剪贴板。</p>
 </dd>
 <dt>MBTN_LEFT</dt><dd><p>确认选择光标下的项目，或关闭控制台（如果在菜单矩形外点击）。</p>
@@ -293,6 +298,10 @@
 <dt>WHEEL_UP</dt><dd><p>向上滚动。</p>
 </dd>
 <dt>WHEEL_DOWN</dt><dd><p>向下滚动。</p>
+</dd>
+<dt>WHEEL_LEFT 或 Shift+WHEEL_DOWN</dt><dd><p>向左滚动。</p>
+</dd>
+<dt>WHEEL_RIGHT 或 Shift+WHEEL_UP</dt><dd><p>向右滚动。</p>
 </dd>
 </dl>
 <p>输入可打印字符会对显示的项目进行模糊搜索。</p>
@@ -352,7 +361,11 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">open-docs</span></code></dt><dd><p>在浏览器中打开mpv的在线文档。</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">open-chat</span></code></dt><dd><p>在浏览器中打开mpv的chat</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">menu</span></code></dt><dd><p>显示一个杂项条目的菜单。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">context-menu</span></code></dt><dd><p>显示上下文菜单。</p>
 </dd>
 </dl>
 </section>
@@ -367,6 +380,15 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">hide_history_duplicates</span></code></dt><dd><p>默认： yes</p>
 <p>是否只显示路径相同的历史条目中的最后一个。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">menu_conf_path</span></code></dt><dd><p>默认： ~~/menu.conf （参见 <a href="#id16"><span class="problematic" id="id17">`文件`_</span></a> )</p>
+<p>用于读取上下文菜单内容定义的路径（参见 <a href="#id18"><span class="problematic" id="id19">`上下文菜单脚本`_</span></a> ）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max_playlist_items</span></code></dt><dd><p>默认： 25</p>
+<p>上下文菜单中播放列表条目的最大数量。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">populate_menu_data</span></code></dt><dd><p>默认： yes （但libmpv除外）</p>
+<p>是否在mpv窗口创建后，根据 <code class="docutils literal notranslate"><span class="pre">menu.conf</span></code> 中引用的属性来更新 <code class="docutils literal notranslate"><span class="pre">menu-data</span></code> 并生成相应菜单项。</p>
 </dd>
 </dl>
 </section>

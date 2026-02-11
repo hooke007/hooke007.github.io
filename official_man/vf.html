@@ -780,6 +780,41 @@
 </dd>
 </dl>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">amf_frc</span></code></dt><dd><p>AMD帧率转换滤镜。需配备支持AMF FRC的AMD硬件及驱动程序。</p>
+<p>AMF FRC技术可将低帧率视频输入转换为高端视频帧率效果。该滤镜通过生成中间帧实现输入帧率翻倍。</p>
+<p>当前仅支持D3D11输入。请使用 <cite>--hwdec=d3d11va</cite> 或 <cite>--vf-pre=format=d3d11</cite> 上传数据，并建议配合 <cite>--d3d11va-zero-copy</cite> 以提升性能。</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">profile=&lt;auto|low|high|super&gt;</span></code></dt><dd><p>选择帧率转换的质量配置。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">auto</span></code> （默认）</dt><dd><p>根据输入分辨率选择配置文件。分辨率不高于1440p时采用 <code class="docutils literal notranslate"><span class="pre">high</span></code> ，超过1440p时采用 <code class="docutils literal notranslate"><span class="pre">super</span></code> 。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">low</span></code></dt><dd><p>减少分层运动搜索层级。仅推荐用于极低分辨率场景。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">high</span></code></dt><dd><p>推荐用于不高于1440p的分辨率。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">super</span></code></dt><dd><p>增加分层运动搜索层级。推荐用于超过1440p的分辨率。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mv-search=&lt;native|performance&gt;</span></code></dt><dd><p>选择运动向量搜索模式。</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">native</span></code> （默认）</dt><dd><p>在源图像全分辨率上进行运动搜索。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">performance</span></code></dt><dd><p>在缩放后的源图像上进行运动搜索。推荐用于APU或低端GPU以提升性能。</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fallback</span></code></dt><dd><p>当置信度过低无法进行插值时，回退至简单帧混合。若未设置，滤镜将重复播放上一帧。
+（默认： no）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">indicator</span></code></dt><dd><p>指定是否在视频左上角显示帧率控制 FRC 指示方块。
+（默认： no）</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">future-frame</span></code></dt><dd><p>启用时，除当前帧对外，序列中下一帧的信息也将用于FRC插值计算。此操作将引入额外一帧的延迟。
+（默认： yes）</p>
+</dd>
+</dl>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">fingerprint=...</span></code></dt><dd><p>计算视频帧fingerprints并作为元数据提供。事实上，它目前几乎不配被称为 <code class="docutils literal notranslate"><span class="pre">fingerprint</span></code> ，因为它不计算“正确的”fingerprints，只计算微小的降级图像（但可用于计算图像哈希值或进行相似性匹配）。</p>
 <p>这个滤镜的主要目的是为了支持 <code class="docutils literal notranslate"><span class="pre">skip-logo.lua</span></code> 脚本。如果这个脚本被抛弃，或者mpv获得了加载用户定义的滤镜的方法（除了VapourSynth），这个滤镜将被移除。由于这个滤镜的“特殊”性质，它将被移除而没有任何警告。</p>
 <p>从滤镜中读取的预期方式是使用 <code class="docutils literal notranslate"><span class="pre">vf-metadata</span></code> （另参见 <code class="docutils literal notranslate"><span class="pre">clear-on-query</span></code> 滤镜参数）。该属性将返回一个按键/值成对的列表，如下所示：</p>

@@ -271,7 +271,17 @@
         <article role="main" id="furo-main-content">
           <section id="id1">
 <h1>上下文菜单脚本<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>此脚本为未集成原生上下文菜单的平台提供替代方案。在这些平台上，可通过 <code class="docutils literal notranslate"><span class="pre">--load-context-menu=no</span></code> 选项完全禁用该功能。而在已实现原生集成的平台上，该功能默认处于禁用状态。</p>
+<p>上下文菜单是可在视频窗口上弹出的菜单。在默认情况下，它与鼠标右键点击绑定。</p>
+<section id="menu-conf">
+<h2>menu.conf<a class="headerlink" href="#menu-conf" title="Link to this heading">¶</a></h2>
+<p>你可以在 <code class="docutils literal notranslate"><span class="pre">~~/menu.conf</span></code> （参见 <a href="#id5"><span class="problematic" id="id6">`文件`_</span></a> ）中定义自定义菜单，或通过 <code class="docutils literal notranslate"><span class="pre">--script-opt=select-menu_conf_path</span></code> 指定替代路径。建议以 <a class="reference external" href="https://github.com/mpv-player/mpv/blob/master/etc/menu.conf">https://github.com/mpv-player/mpv/blob/master/etc/menu.conf</a> 中的默认 <code class="docutils literal notranslate"><span class="pre">menu.conf</span></code> 文件作为示例配置开始。</p>
+<p><code class="docutils literal notranslate"><span class="pre">menu.conf</span></code> 中的每一行代表一个菜单项，各字段以一个或多个制表符分隔。首个字段为菜单都显示文本，次字段通常为选中该项时执行的命令。第三个字段起可通过与 <a href="#id7"><span class="problematic" id="id8">`附带条件的自动配置预设`_</span></a> 相同的方式指定 <code class="docutils literal notranslate"><span class="pre">checked=</span></code> 、 <code class="docutils literal notranslate"><span class="pre">disabled=</span></code> 和 <code class="docutils literal notranslate"><span class="pre">hidden=</span></code> 状态。</p>
+<p>若未指定命令，该项将展开子菜单。下方首行缩进的字段将添加至该子菜单。可通过增加比父菜单项更多的首行缩进来定义嵌套子菜单项。</p>
+<p>空行被视为分隔符。</p>
+<p>第二个字段也可使用以下词元使该项成为包含相对项的子菜单： <code class="docutils literal notranslate"><span class="pre">$playlist</span></code>, <code class="docutils literal notranslate"><span class="pre">$tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">$video-tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">$audio-tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">$sub-tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">$secondary-sub-tracks</span></code>, <code class="docutils literal notranslate"><span class="pre">$chapters</span></code>, <code class="docutils literal notranslate"><span class="pre">$editions</span></code>, <code class="docutils literal notranslate"><span class="pre">$audio-devices</span></code>, <code class="docutils literal notranslate"><span class="pre">$profiles</span></code> 。这些子菜单在内容为空时会自动禁用。</p>
+<p>要使用原生上下文菜单，你需要将菜单定义数据填充 <code class="docutils literal notranslate"><span class="pre">menu-data</span></code> 属性，并调用 <code class="docutils literal notranslate"><span class="pre">context-menu</span></code> 命令。在内置脚本中，此操作由 <code class="docutils literal notranslate"><span class="pre">select.lua</span></code> 实现：该脚本解析 <code class="docutils literal notranslate"><span class="pre">menu.conf</span></code> 文件填充 <code class="docutils literal notranslate"><span class="pre">menu-data</span></code> ，随后在支持原生上下文菜单集成的平台上调用 <code class="docutils literal notranslate"><span class="pre">context-menu</span></code> 命令，而在未集成平台则直接调用 <code class="docutils literal notranslate"><span class="pre">context_menu.lua</span></code> 。</p>
+<p>在未集成原生上下文菜单的平台上，可通过 <code class="docutils literal notranslate"><span class="pre">--load-context-menu=no</span></code> 选项完全禁用 <code class="docutils literal notranslate"><span class="pre">context_menu.lua</span></code> 。而在已实现集成的平台上，该脚本默认处于禁用状态，使用 <code class="docutils literal notranslate"><span class="pre">--load-context-menu=yes</span></code> 选项可使 <code class="docutils literal notranslate"><span class="pre">select.lua</span></code> 调用其功能。</p>
+</section>
 <section id="id2">
 <h2>脚本消息<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <dl class="simple">
@@ -283,7 +293,7 @@
 </section>
 <section id="id3">
 <h2>设置<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>该脚本可通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/context_menu.conf</span></code> 以及命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 进行定制。设置语法详见 <a href="#id5"><span class="problematic" id="id6">`mp.options functions`_</span></a></p>
+<p>该脚本可通过放置在mpv用户目录下的设置文件 <code class="docutils literal notranslate"><span class="pre">script-opts/context_menu.conf</span></code> 以及命令行选项 <code class="docutils literal notranslate"><span class="pre">--script-opts</span></code> 进行定制。设置语法详见 <a href="#id9"><span class="problematic" id="id10">`mp.options functions`_</span></a></p>
 <section id="id4">
 <h3>设置选项<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <dl>
@@ -319,7 +329,7 @@
 <p>聚焦项的背景颜色。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">disabled_color</span></code></dt><dd><p>默认： <code class="docutils literal notranslate"><span class="pre">#555555</span></code></p>
-<p>禁用项的颜色。</p>
+<p>禁用项和分隔符的颜色。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">seconds_to_open_submenus</span></code></dt><dd><p>默认： 0.2</p>
 <p>光标移入关联子菜单项后，该子菜单开启的延长时间（秒）。</p>
@@ -370,6 +380,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">上下文菜单脚本</a><ul>
+<li><a class="reference internal" href="#menu-conf">menu.conf</a></li>
 <li><a class="reference internal" href="#id2">脚本消息</a></li>
 <li><a class="reference internal" href="#id3">设置</a><ul>
 <li><a class="reference internal" href="#id4">设置选项</a></li>

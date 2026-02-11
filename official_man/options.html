@@ -304,7 +304,7 @@
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>轨道选择的选项（ <code class="docutils literal notranslate"><span class="pre">--aid</span></code> 但也包括 <code class="docutils literal notranslate"><span class="pre">--sid</span></code> 和其它选项）有时可能会出现奇怪的行为。并且，这种行为往往随着每个mpv版本的发布而改变。</p>
-<p>轨道选择的属性将返回播放之外的选项值（符合预期），但在播放过程中，受影响的轨道选择会被返回。例如，在 <code class="docutils literal notranslate"><span class="pre">--aid=auto</span></code> 的情况下， <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性会在播放初始化后突然返回 <code class="docutils literal notranslate"><span class="pre">2</span></code> （假设文件至少有2个音轨，而且第二个是默认轨）。</p>
+<p>轨道选择的属性将返回播放之外的选项值（符合预期），但在播放过程中，实际生效的轨道选择会被返回。例如，在 <code class="docutils literal notranslate"><span class="pre">--aid=auto</span></code> 的情况下， <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性会在播放初始化后突然返回 <code class="docutils literal notranslate"><span class="pre">2</span></code> （假设文件至少有2个音轨，而且第二个是默认轨）。</p>
 <p>在mpv0.32.0（和一些之前的版本）中，如果传递的轨道值不存在对应的实际轨道（例如 <code class="docutils literal notranslate"><span class="pre">--aid=2</span></code> 但只有1个音轨）， <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性会返回 <code class="docutils literal notranslate"><span class="pre">no</span></code> 。然而，如果在播放过程中增加了另一个音轨，再尝试将 <code class="docutils literal notranslate"><span class="pre">aid</span></code> 属性设置为 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，什么也不会发生，因为 <code class="docutils literal notranslate"><span class="pre">aid</span></code> 选项的值仍然是 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，而写入相同的值是没有效果的。</p>
 <p>在mpv0.33.0中，这个行为被改变。现在如果轨道选择的选项尝试选择一个不存在的轨道，它在播放初始化时会被重置为 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 。如果轨道实际存在，但未能初始化，也会这样做。其后果是，与mpv0.33.0之前的版本不同，用户的轨道选择的参数在某些情况下被影响了。</p>
 <p>另外，从mpv0.33.0开始，尝试通过数字来选择一个轨道将严格特执行选择这个轨道。在此变化前，尝试选择一个不存在的轨道，会在播放初始化时回退到选择默认轨道。新的行为更具一致性。</p>
@@ -599,7 +599,7 @@
 <p>请注意，缓存路径和状态路径（<code class="docutils literal notranslate"><span class="pre">~~/cache</span></code>，<code class="docutils literal notranslate"><span class="pre">~~/state</span></code>）不被视为“设置”，它们保留自己的自动检测逻辑。</p>
 <p>注意， <code class="docutils literal notranslate"><span class="pre">--no-config</span></code> 选项优先于该选项。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--dump-stats=&lt;filename&gt;</span></code></dt><dd><p>将某些统计数据写入给定的文件。该文件在打开时被截断。该文件将包含原始样本，每个样本都有一个时间戳。为了使这个文件变成可读的，可以使用脚本 <code class="docutils literal notranslate"><span class="pre">TOOLS/stats-conv.py</span></code> （目前它以图表形式显示）。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--dump-stats=&lt;filename&gt;</span></code></dt><dd><p>将某些统计数据写入给定的文件。该文件在打开时被截断。该文件将包含原始样本，每个样本都有一个时间戳。为可视化统计数据，可以使用脚本 <code class="docutils literal notranslate"><span class="pre">TOOLS/stats-conv.py</span></code> （目前它以图表形式显示）。</p>
 <p>这个选项只在调试时有用。</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--idle=&lt;no|yes|once&gt;</span></code></dt><dd><p>让mpv在没有文件可以播放时空闲等待而不是退出。主要在输入模式下有用，mpv可以通过输入命令来控制。（默认： <code class="docutils literal notranslate"><span class="pre">no</span></code> )</p>
@@ -609,7 +609,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--load-scripts=&lt;yes|no&gt;</span></code></dt><dd><p>如果设置为 &quot;no&quot;，则不自动加载设置子目录 <code class="docutils literal notranslate"><span class="pre">scripts</span></code> （通常是 <code class="docutils literal notranslate"><span class="pre">~/.config/mpv/scripts/</span></code> ）中的脚本。（默认： <code class="docutils literal notranslate"><span class="pre">yes</span></code> ）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--script=&lt;filename&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--scripts=file1.lua:file2.lua:...</span></code></dt><dd><p>加载一个Lua脚本。第二个选项允许你加载多个脚本，用路径分隔符（Unix下为 <code class="docutils literal notranslate"><span class="pre">:</span></code> ，Windows下为 <code class="docutils literal notranslate"><span class="pre">;</span></code> ）将它们分开。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--script=&lt;filename&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--scripts=file1.lua:file2.lua:...</span></code></dt><dd><p>加载一个脚本（Lua或JS）或C插件。第二个选项允许你加载多个脚本，用路径分隔符（Unix下为 <code class="docutils literal notranslate"><span class="pre">:</span></code> ，Windows下为 <code class="docutils literal notranslate"><span class="pre">;</span></code> ）将它们分开。</p>
 <p><code class="docutils literal notranslate"><span class="pre">--scripts</span></code> 是一个路径列表选项。详见 <a href="#id36"><span class="problematic" id="id37">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--script-opt=&lt;key=value&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">--script-opts=key1=value1,key2=value2,...</span></code></dt><dd><p>为脚本设置选项。脚本可以通过按键来查询一个选项。如果一个选项被使用，以及该选项值具有什么样的语义，完全取决于所加载的脚本。没有被任何脚本声明的值会被忽略。</p>
@@ -716,8 +716,6 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">--ytdl-raw-options-append=proxy=http://127.0.0.1:3128</span></code></p></li>
 </ul>
 </div>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--ytdl-extract-chapters=&lt;yes|no&gt;</span></code></dt><dd><p>启用从youtube-dl视频描述中提取章节 （默认： yes ）</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--js-memory-report=&lt;yes|no&gt;</span></code></dt><dd><p>启用在数据统计叠加层中为JavaScript脚本报告内存使用情况。默认禁用，因为它会增加开销并增加内存使用量。此选项仅在启动mpv之前启用时才会生效。</p>
 </dd>
@@ -891,31 +889,31 @@
 <p>受到积极支持的hwdec：</p>
 <dl class="field-list simple">
 <dt class="field-odd">d3d11va<span class="colon">:</span></dt>
-<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 与 <code class="docutils literal notranslate"><span class="pre">--gpu-context=d3d11</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--gpu-context=angle</span></code> （Windows 8以上独占）</p>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 与 <code class="docutils literal notranslate"><span class="pre">--gpu-context=d3d11</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--gpu-context=angle</span></code> （Windows 8以上独占）</p>
 </dd>
 <dt class="field-even">d3d11va-copy<span class="colon">:</span></dt>
 <dd class="field-even"><p>将视频复制回到系统RAM（Windows 8以上独占）</p>
 </dd>
 <dt class="field-odd">videotoolbox<span class="colon">:</span></dt>
-<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> （macOS 10.8及以上）或 <code class="docutils literal notranslate"><span class="pre">--vo=libmpv</span></code> （iOS 9.0及以上）</p>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next``（macOS独占）或</span> <span class="pre">``--vo=libmpv</span></code> （iOS 9.0及以上）</p>
 </dd>
 <dt class="field-even">videotoolbox-copy<span class="colon">:</span></dt>
-<dd class="field-even"><p>将视频复制回到系统RAM（macOS 10.8或iOS 9.0及以上版本）</p>
+<dd class="field-even"><p>将视频复制回到系统RAM（macOS 10.15或iOS 9.0及以上版本）</p>
 </dd>
 <dt class="field-odd">vaapi<span class="colon">:</span></dt>
-<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=vaapi</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=dmabuf-wayland</span></code> （Linux独占）</p>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=vaapi</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=dmabuf-wayland</span></code> （Linux独占）</p>
 </dd>
 <dt class="field-even">vaapi-copy<span class="colon">:</span></dt>
 <dd class="field-even"><p>将视频复制回到系统RAM（Linux或Windows，且仅某些GPU可用）</p>
 </dd>
 <dt class="field-odd">nvdec<span class="colon">:</span></dt>
-<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> （任何可用CUDA的平台）</p>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> （任何可用CUDA的平台）</p>
 </dd>
 <dt class="field-even">nvdec-copy<span class="colon">:</span></dt>
 <dd class="field-even"><p>将视频复制回到系统RAM（任何可用CUDA的平台）</p>
 </dd>
 <dt class="field-odd">drm<span class="colon">:</span></dt>
-<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> （Linux独占）</p>
+<dd class="field-odd"><p>需要 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> （Linux独占）</p>
 </dd>
 <dt class="field-even">drm-copy<span class="colon">:</span></dt>
 <dd class="field-even"><p>将视频复制回到系统RAM（Linux独占）</p>
@@ -1416,6 +1414,9 @@
 <p>这是一个路径列表选项。详见 <a href="#id74"><span class="problematic" id="id75">`列表选项`_</span></a></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-client-name=&lt;name&gt;</span></code></dt><dd><p>播放器报告给音频API的应用程序名称。如果你想强制使用不同的音频profile（例如使用PulseAudio），或者在使用libmpv时设置你自己的应用程序名称，就很有用。</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--audio-set-media-role=&lt;yes|no&gt;</span></code></dt><dd><p>若启用此功能，mpv 将为支持的音频服务器设置相应的媒体角色，以表明mpv正在播放视频文件还是纯音频文件。该功能默认处于禁用状态，因为按媒体角色设置音量常会导致意外且令人困惑的行为。</p>
+<p>默认： no</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--audio-buffer=&lt;seconds&gt;</span></code></dt><dd><p>设置音频输出的最小缓冲区。如果音频设备可行的话，它实际上可能会创建一个更大的缓冲区。如果设备创建了一个较小的缓冲区，额外的音频将被缓存在一个额外的软件缓冲区中。</p>
 <p>把缓冲区变大可能会使软件音量和其它滤镜的反应变慢，在播放速度变化时引入额外的问题，并在音频格式变化时屏蔽播放器。较小的缓冲区可能会导致音频丢失。</p>
@@ -1979,6 +1980,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--image-display-duration=&lt;seconds|inf&gt;</span></code></dt><dd><p>如果当前文件是图像，播放图像的时间为给定的秒数（默认： 5）。 <code class="docutils literal notranslate"><span class="pre">inf</span></code> 表示该文件永远保持打开（直到用户手动停止播放）。</p>
 <p>与 <code class="docutils literal notranslate"><span class="pre">--keep-open</span></code> 不同，播放器不是暂停的，只是继续播放直到时间结束。（在“播放”期间，它不应该使用任何资源。）</p>
 <p>这影响到图像文件，它被定义为只有1个视频帧且无音频。播放器可能会将某些非图像识别为图像，例如，如果 <code class="docutils literal notranslate"><span class="pre">--length</span></code> 被用来减少长度到1帧，或者如果你跳转到最后一帧。</p>
+<p>有效时长现已受到 <cite>--speed</cite> 参数影响，而v0.41.0之前的旧版mpv并非如此。</p>
 <p>这个选项不影响用于 <code class="docutils literal notranslate"><span class="pre">mf://</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--merge-files</span></code> 的帧速率。为此，请使用 <code class="docutils literal notranslate"><span class="pre">--mf-fps</span></code> 代替。</p>
 <p>查看图像时，命令行输出不会跟踪播放时间，编码时也不会复制图像帧。要强制播放器进入 dumb mode 并实际计算秒数，或在编码时复制图像，需要使用 <code class="docutils literal notranslate"><span class="pre">--demuxer=lavf</span> <span class="pre">--demuxer-lavf-o=loop=1</span></code> ，并使用 <code class="docutils literal notranslate"><span class="pre">--length</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--frames</span></code> 在特定时间后停止播放。</p>
 </dd>
@@ -3219,8 +3221,8 @@
 <dt><code class="docutils literal notranslate"><span class="pre">--scale-radius=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--cscale-radius=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--dscale-radius=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--tscale-radius=&lt;value&gt;</span></code></dt><dd><p>为可调的filter设置半径，必须是0.5到16.0之间的浮点数。如果未指定则默认为filter的首选半径。并非对每个缩放器和视频输出驱动的组合都有效。</p>
 <p>注意，根据filter的实现细节和视频缩放比例，实际使用的半径可能是不同的（很可能被增加一点）。</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--scale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--cscale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--dscale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--tscale-antiring=&lt;value&gt;</span></code></dt><dd><p>设置抗振铃强度。这尝试消除振铃，但在此过程中可能会引入其它伪影。必须是0.0和1.0之间的浮点数。默认值0.0完全禁用抗振铃。</p>
-<p>注意，这不影响特殊的 <code class="docutils literal notranslate"><span class="pre">bilinear</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bicubic_fast</span></code> filter，也不影响任何polar (EWA) 缩放器。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--scale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--cscale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--dscale-antiring=&lt;value&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">--tscale-antiring=&lt;value&gt;</span></code></dt><dd><p>设置抗振铃强度。这尝试消除振铃，但在此过程中可能会引入其它伪影。必须是0.0和1.0之间的浮点数。默认值是0.0。 <code class="docutils literal notranslate"><span class="pre">high-quality</span></code> profile将此值设为0.6，这是一个相当保守的数值，应能微妙地提升图像质量。</p>
+<p>注意，这不影响特殊的 <code class="docutils literal notranslate"><span class="pre">bilinear</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bicubic_fast</span></code> filter，也不影响任何 vo_gpu 下的polar (EWA) 缩放器。</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 中，这也会影响polar (EWA) 缩放器。某些filter别名也会隐式的启用抗振铃，与此设置无关（参见 <code class="docutils literal notranslate"><span class="pre">--scale</span></code> ）。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
@@ -3276,7 +3278,7 @@
 <dl class="simple">
 <dt>no</dt><dd><p>禁用mpv所做的任何抖动</p>
 </dd>
-<dt>auto</dt><dd><p>自动选择。 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> ：检测位深或回退8bpc。 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next`</span></code> ：检测位深或回退8bpc（对于SDR）</p>
+<dt>auto</dt><dd><p>自动选择。 <code class="docutils literal notranslate"><span class="pre">--vo=gpu</span></code> ：检测位深或回退8bpc。 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next`</span></code> ：检测位深</p>
 </dd>
 <dt>8</dt><dd><p>抖动到8比特输出</p>
 </dd>
@@ -3318,10 +3320,6 @@
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>目前还没有可靠的 API 来查询 EGL 中的桌面位深度。你可以根据显示器的位深度手动设置该选项。此选项还会影响 <code class="docutils literal notranslate"><span class="pre">--dither-depth</span></code> 的自动检测。</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">备注</p>
-<p>与 <code class="docutils literal notranslate"><span class="pre">--d3d11-output-format</span></code> 不同，此选项也会在 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> 下生效。</p>
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--vulkan-device=&lt;device</span> <span class="pre">name&gt;</span></code></dt><dd><p>用于渲染和呈现的Vulkan设备的名称或UUID。使用 <code class="docutils literal notranslate"><span class="pre">--vulkan-device=help</span></code> 来查看可用设备的列表和它们的名称与UUID。如果未指定，将使用第一个枚举的硬件Vulkan设备。</p>
@@ -3377,6 +3375,10 @@
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>对于 <cite>--vo=gpu-next`</cite> ，这是一个尽力而为的提示，libplacebo 有最终决定权使用哪种格式。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>对于 <code class="docutils literal notranslate"><span class="pre">--vo=gpu-next</span></code> ， <code class="docutils literal notranslate"><span class="pre">rgba16f</span></code> 可启用scRGB输出。但该功能目前尚未完全支持，颜色可能比预期更暗，且不支持HDR输出。</p>
 </div>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">--d3d11-output-csp=&lt;auto|srgb|linear|pq|bt.2020&gt;</span></code></dt><dd><p>选择一个用于D3D11渲染的特定的D3D11输出色彩空间。 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 是默认值，它将选择交换链所在的桌面的色彩空间。</p>
@@ -3678,31 +3680,31 @@ vec4 hook() {
 <p><code class="docutils literal notranslate"><span class="pre">&lt;appearance&gt;</span></code> 可以是下列之一：</p>
 <dl class="field-list simple">
 <dt class="field-odd">auto<span class="colon">:</span></dt>
-<dd class="field-odd"><p>检测系统设置并适当地设置标题栏的外观。在macOS 10.14上，它也能检测到运行时的变化</p>
+<dd class="field-odd"><p>检测系统设置并适当地设置标题栏的外观。</p>
 </dd>
 <dt class="field-even">aqua<span class="colon">:</span></dt>
 <dd class="field-even"><p>标准的macOS浅色外观</p>
 </dd>
 <dt class="field-odd">darkAqua<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS暗色外观(macOS 10.14+)</p>
+<dd class="field-odd"><p>标准的macOS暗色外观</p>
 </dd>
 <dt class="field-even">vibrantLight<span class="colon">:</span></dt>
-<dd class="field-even"><p>充满活力的浅色外观</p>
+<dd class="field-even"><p>鲜明的浅色外观</p>
 </dd>
 <dt class="field-odd">vibrantDark<span class="colon">:</span></dt>
-<dd class="field-odd"><p>充满活力的深色外观</p>
+<dd class="field-odd"><p>鲜明的深色外观</p>
 </dd>
 <dt class="field-even">aquaHighContrast<span class="colon">:</span></dt>
-<dd class="field-even"><p>浅色无障碍外观(macOS 10.14+)</p>
+<dd class="field-even"><p>浅色无障碍外观</p>
 </dd>
 <dt class="field-odd">darkAquaHighContrast<span class="colon">:</span></dt>
-<dd class="field-odd"><p>深色无障碍外观(macOS 10.14+)</p>
+<dd class="field-odd"><p>深色无障碍外观</p>
 </dd>
 <dt class="field-even">vibrantLightHighContrast<span class="colon">:</span></dt>
-<dd class="field-even"><p>活力的浅色易读性外观(macOS 10.14+)</p>
+<dd class="field-even"><p>鲜明的浅色易读性外观</p>
 </dd>
 <dt class="field-odd">vibrantDarkHighContrast<span class="colon">:</span></dt>
-<dd class="field-odd"><p>活力的深色易读性外观(macOS 10.14+)</p>
+<dd class="field-odd"><p>鲜明的深色易读性外观</p>
 </dd>
 </dl>
 </dd>
@@ -3716,37 +3718,37 @@ vec4 hook() {
 <dd class="field-even"><p>标准的macOS选择材质</p>
 </dd>
 <dt class="field-odd">menu<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS菜单材质(macOS 10.11以上)</p>
+<dd class="field-odd"><p>标准的macOS菜单材质</p>
 </dd>
 <dt class="field-even">popover<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS弹出窗口材质(macOS 10.11+)</p>
+<dd class="field-even"><p>标准的macOS弹出窗口材质</p>
 </dd>
 <dt class="field-odd">sidebar<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS侧边栏材质(macOS 10.11+)</p>
+<dd class="field-odd"><p>标准的macOS侧边栏材质</p>
 </dd>
 <dt class="field-even">headerView<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS标题视图材质(macOS 10.14+)</p>
+<dd class="field-even"><p>标准的macOS标题视图材质</p>
 </dd>
 <dt class="field-odd">sheet<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS页面材质(macOS 10.14+)</p>
+<dd class="field-odd"><p>标准的macOS页面材质</p>
 </dd>
 <dt class="field-even">windowBackground<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS窗口背景材质(macOS 10.14+)</p>
+<dd class="field-even"><p>标准的macOS窗口背景材质</p>
 </dd>
 <dt class="field-odd">hudWindow<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS hudWindow材质(macOS 10.14+)</p>
+<dd class="field-odd"><p>标准的macOS hudWindow材质</p>
 </dd>
 <dt class="field-even">fullScreen<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS全屏材质(macOS 10.14+)</p>
+<dd class="field-even"><p>标准的macOS全屏材质</p>
 </dd>
 <dt class="field-odd">toolTip<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS工具提示材质(macOS 10.14+)</p>
+<dd class="field-odd"><p>标准的macOS工具提示材质</p>
 </dd>
 <dt class="field-even">contentBackground<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS内容背景材质(macOS 10.14+)</p>
+<dd class="field-even"><p>标准的macOS内容背景材质</p>
 </dd>
 <dt class="field-odd">underWindowBackground<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS窗口下的背景材质(macOS 10.14+)</p>
+<dd class="field-odd"><p>标准的macOS窗口下的背景材质</p>
 </dd>
 <dt class="field-even">underPageBackground<span class="colon">:</span></dt>
 <dd class="field-even"><p>标准的macOS页面下的背景材质(在macOS 10.14+中已过时)</p>
@@ -3755,13 +3757,13 @@ vec4 hook() {
 <dd class="field-odd"><p>标准的macOS深色材质(在macOS 10.14+中已过时)</p>
 </dd>
 <dt class="field-even">light<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS浅色材质(macOS 10.14+)</p>
+<dd class="field-even"><p>标准的macOS浅色材质</p>
 </dd>
 <dt class="field-odd">mediumLight<span class="colon">:</span></dt>
-<dd class="field-odd"><p>标准的macOS中浅材质(macOS 10.11+, 在macOS 10.14+中已过时)</p>
+<dd class="field-odd"><p>标准的macOS中浅材质(在macOS 10.14+中已过时)</p>
 </dd>
 <dt class="field-even">ultraDark<span class="colon">:</span></dt>
-<dd class="field-even"><p>标准的macOS超深材质(macOS 10.11+, 在macOS 10.14+中已过时)</p>
+<dd class="field-even"><p>标准的macOS超深材质(在macOS 10.14+中已过时)</p>
 </dd>
 </dl>
 </dd>
@@ -4333,7 +4335,7 @@ vec4 hook() {
 <p>例如，如果设置为1，只要速度变化不超过 <code class="docutils literal notranslate"><span class="pre">--video-sync-max-video-change</span></code> 设置的值，视频的FPS就会被强制为显示FPS的整数倍。</p>
 <p>关于该选项如何影响插值，请参见 <code class="docutils literal notranslate"><span class="pre">--interpolation-threshold</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">--video-sync-max-video-change=&lt;value&gt;</span></code></dt><dd><p>应用于 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-...</span></code> 的视频的最大速度差，以百分比为单位（默认： 1）。如果显示器和视频刷新方式在给定范围内不匹配，显示同步模式将被禁用。它还会尝试倍数：在60赫兹的屏幕上播放30帧的视频，每隔一帧就会重复一次。在60赫兹的屏幕上播放24帧的视频将以2-3-2-3-...的模式播放视频。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--video-sync-max-video-change=&lt;value&gt;</span></code></dt><dd><p>应用于 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-...</span></code> 的视频的最大速度差，以百分比为单位（默认： 1）。如果显示器和视频刷新率在给定范围内不匹配，显示同步模式将被禁用。它还会尝试倍数：在60赫兹的屏幕上播放30帧的视频，每隔一帧就会重复一次。在60赫兹的屏幕上播放24帧的视频将以2-3-2-3-...的模式播放视频。</p>
 <p>默认设置不够宽松，无法将23.976帧的视频加速到25帧。我们认为音调变化过于极端，默认情况下不允许这种行为。将这个选项设置为 <code class="docutils literal notranslate"><span class="pre">5</span></code> 的值来启用它。</p>
 <p>注意， <code class="docutils literal notranslate"><span class="pre">--video-sync=display-tempo</span></code> 可避免这种音调的变化。</p>
 <p>另注意，在 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-resample</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--video-sync=display-tempo</span></code> 模式下，如果需要A/V同步，音频速度将额外被改变一点。参见 <code class="docutils literal notranslate"><span class="pre">--video-sync-max-audio-change</span></code></p>
