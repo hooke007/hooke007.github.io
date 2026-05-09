@@ -289,7 +289,7 @@
 </div></blockquote>
 <p>和 <code class="docutils literal notranslate"><span class="pre">filter-parameter-list</span></code> ：</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">&lt;filter-parameter&gt;</span> <span class="pre">|</span> <span class="pre">&lt;filter-parameter&gt;</span> <span class="pre">&quot;,&quot;</span> <span class="pre">&lt;filter-parameter-list&gt;</span></code></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">&lt;filter-parameter&gt;</span> <span class="pre">|</span> <span class="pre">&lt;filter-parameter&gt;</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;filter-parameter-list&gt;</span></code></p>
 </div></blockquote>
 <p>和 <code class="docutils literal notranslate"><span class="pre">filter-parameter</span></code> ：</p>
 <blockquote>
@@ -774,8 +774,14 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">interlaced-only=&lt;yes|no&gt;</span></code></dt><dd><p>如果 <code class="docutils literal notranslate"><span class="pre">yes</span></code> ，只对标记为隔行的帧进行去隔行（默认： no）</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">mode=&lt;blend|bob|adaptive|mocomp|ivctc|none&gt;</span></code></dt><dd><p>尝试选择一个具有给定处理能力的视频处理器。如果一个视频处理器支持多种能力，不清楚实际选择的是哪种算法。 <code class="docutils literal notranslate"><span class="pre">none</span></code> 始终回退。在大多数（但不是所有）硬件上，这个选项可能什么都不做，因为视频处理器通常支持所有模式或不支持任何模式。</p>
+<dt><code class="docutils literal notranslate"><span class="pre">mode=&lt;blend|bob|adaptive|mocomp|ivtc|none&gt;</span></code></dt><dd><p>尝试选择具有指定处理能力的视频处理器。如果视频处理器支持多种功能，则无法保证实际会选择哪种算法，这取决于驱动程序。不过，通过不传递参考帧并调整输出帧率，可以强制启用 <code class="docutils literal notranslate"><span class="pre">blend</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bob</span></code> 模式。其他模式用于选择合适的视频处理器，但最终采用的算法取决于驱动程序和内容。 <code class="docutils literal notranslate"><span class="pre">ivtc</span></code> 模式以半速率输出。</p>
 </dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><code class="docutils literal notranslate"><span class="pre">ivtc</span></code> 模式仅执行场匹配，不会剔除重复帧。对于 3:2 降频的帧率，可使用 <code class="docutils literal notranslate"><span class="pre">decimate</span></code> 滤镜手动移除重复帧： <code class="docutils literal notranslate"><span class="pre">--vf=d3d11vpp=“deint:mode=ivtc,format=nv12,decimate=5”</span></code> 。若要将帧下载回 CPU 进行降采样，必须使用 <code class="docutils literal notranslate"><span class="pre">format=nv12</span></code> ，且该格式应与 d3d11 帧的底层格式一致。</p>
+</div>
+<dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">nvidia-true-hdr</span></code></dt><dd><p>启用 NVIDIA RTX Video HDR 后处理</p>
 </dd>
 </dl>
